@@ -1,0 +1,187 @@
+body {
+    font-family: Inter, sans-serif;
+    background-color: #F6F7F8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    margin-right: 100px;
+}
+
+.header-right div {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.header-right button {
+    display: flex;
+    padding: 15px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: #2A3647;
+    color: #FFF;
+    font-size: 20px;
+}
+
+.header-right button:hover {
+    cursor: pointer;
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#joinLogo {
+    width: 100.03px;
+    height: 121.97px;
+    margin-top: 80px;
+    margin-left: 77px;
+}
+
+#loginContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 652px;
+    height: auto;
+    padding: 48px 115px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    background-color: var(--white, #FFF);
+    border: solid 30px;
+    box-sizing: border-box;
+    border-color: var(--white, #FFF);
+    margin-top: 80px;
+}
+
+#loginContainer h1 {
+    font-size: 61px;
+    margin: 0;
+}
+
+#loginUnderline {
+    width: 150px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+#emailInput {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+#passwordInput {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+.loginInputs {
+    display: flex;
+    border: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 12px 21px;
+    border-radius: 10px;
+}
+
+
+
+.checkBoxContainer {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 8px;
+    padding-left: 30px;
+}
+
+.checkBoxContainer div {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#checkboxInput {
+    height: 24px;
+    width: 24px;
+}
+
+#loginButtons {
+    display: flex;
+    gap: 35px;
+}
+
+#loginButton {
+    display: flex;
+    height: 48px;
+    padding: 15px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: #2A3647;
+    font-size: 21px;
+    font-weight: 700;
+    border: none;
+    color: white;
+}
+
+#guestLoginButton {
+    display: flex;
+    height: 48px;
+    padding: 15px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid #2A3647;
+    background-color: #FFF;
+    font-size: 21px;
+    font-weight: 700;
+    color: #2A3647;
+}
+
+#loginButton:hover {
+    cursor: pointer;
+}
+
+#guestLoginButton {
+    cursor: pointer;
+}
+
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin-top: 100px;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #A8A8A8;
+    font-size: 16px;
+}

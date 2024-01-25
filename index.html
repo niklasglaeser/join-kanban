@@ -4,12 +4,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Join</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div class="header">
+    <img src="img/join-logo.svg" id="joinLogo">
+    <div class="header-right">
+      <div>Not a Join User?</div>
+      <button>Sign Up</button>
+    </div>
+  </div>
+  <div id="mainContainer">
+    <div id="loginContainer">
+      <h1>Log in</h1>
+      <div><img src="img/login-underline.svg" id="loginUnderline"></div>
+      <form id="loginForm">
+        <div class="loginInputs">
+          <input type="email" placeholder="Email" id="emailInput">
+          <img src="img/mail.svg">
+        </div>
+        <div class="loginInputs">
+          <input type="password" placeholder="Password" id="passwordInput">
+          <img src="img/lock.svg">
+        </div>
+        <div class="checkBoxContainer">
+          <input type="checkbox" id="checkboxInput">
+          <div>Remember me</div>
+        </div>
+        <div></div>
+      </form>
+      <div id="loginButtons">
+        <button id="loginButton">Log in</button>
+        <button id="guestLoginButton">Guest Log in</button>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <a href="">Privacy Policy</a>
+    <a href="">Legal Notice</a>
+  </div>
 
-<div>hello</div>
+  <script src="js/storage.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/register.js"></script>
+  <script src="script.js"></script>
 
 </body>
 
