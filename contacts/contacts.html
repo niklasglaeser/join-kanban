@@ -15,18 +15,54 @@
   <div w3-include-html="./templates/header.html"></div>
   <div w3-include-html="./templates/sidebar.html"></div>
   <main class="">
-    <div class="contact-left border">
+    <div class="contact-left">
       <div class="contact-button-wrapper">
-        <div class="contact-button">
+        <div onclick="slideout()" class="contact-button">
           <span>Add new contact</span>
           <span>ICON</span>
         </div>
       </div>
-      <div id="contact-list" class="contacts border">List</div>
+      <div id="contact-list" class="contacts">
+      </div>
     </div>
-    <div class="contact-right">right</div>
-
+    <div class="contact-right">
+      <!-- <div class="overlayAddContactBg"> -->
+      <div id="overlayAddContact" class="border">
+        <div class="overlay-add-contact-left">
+          <span>Add Contact</span>
+          <span>Tasks are better with a team!</span>
+        </div>
+        <div class="overlay-add-contact-right">
+          <div class="overlay-add-contact-person">
+            <img src="./images/add-person.svg" alt="">
+          </div>
+          <div class="overlay-add-contact-input">
+            <form onsubmit="addContact(); return false" class="addContactForm">
+              <div class="addContactInput">
+                <input id="contact" type="text" placeholder="Name">
+                <img src="./images/addContact-person.svg" alt="">
+              </div>
+              <div class="addContactInput">
+                <input id="email" type="text" placeholder="Email">
+                <img src="./images/addContact-person.svg" alt="">
+              </div>
+              <div class="addContactInput">
+                <input id="phone" type="number" placeholder="Phone">
+                <img src="./images/addContact-person.svg" alt="">
+              </div>
+              <button id="loginButton">Add</button>
+            </form>
+            <div id="loginButtons">
+              <button id="guestLoginButton">Guest Log in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
   </main>
 </body>
 
 </html>
+
+<div></div>
