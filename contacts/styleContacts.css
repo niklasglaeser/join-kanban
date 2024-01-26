@@ -29,6 +29,13 @@ body {
   font-family: 'Inter';
 }
 
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
+
 .border {
   border: 2px solid green;
 }
@@ -116,39 +123,30 @@ nav img {
 }
 
 main {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   margin: 96px 0 0 232px;
-  display: flex;
 }
 
 .contact-left {
   display: flex;
   flex-direction: column;
-  width: 456px;
-  /* margin: 0 28px; */
-  flex-shrink: 0;
+  width: 400px;
+  padding: 32px 28px;
   background: var(--white);
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
 }
 
 .contact-button-wrapper {
   display: flex;
-  width: 456px;
-  padding: 22.5px 24px;
   justify-content: center;
+  /* cursor: pointer; */
 }
 
 .contact-button {
   display: flex;
   width: 352px;
-  padding: 12px 0px;
+  padding: 12px 0;
   justify-content: center;
   gap: 16px;
-  flex-shrink: 0;
   border-radius: 10px;
   border: 1px solid #2A3647;
   background: #2A3647;
@@ -156,27 +154,32 @@ main {
   font-size: 21px;
   font-style: normal;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .contacts {
-  display: flex;
-  flex-direction: column;
-  padding: 0 24px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* padding: 0 24px; */
 }
 
 
 .contactsFirstLetter {
-  width: 280px;
-  padding: 17px 60px;
+  padding: 17px 36px;
+  font-size: 20px;
+}
+
+.contactsFirstLetterHeadline {
+  margin: 8px 0;
+  border: 0;
+  border-top: 1px solid #D1D1D1;
 }
 
 .contactNameWrapper {
   display: flex;
   align-items: center;
-  /* width: 352px; */
-  padding: 15px 0 15px 48px;
+  padding: 15px 24px;
   gap: 35px;
-  /* box-sizing: border-box; */
 
 }
 
@@ -184,7 +187,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 42px;
+  min-width: 42px;
   height: 42px;
   border-radius: 45px;
   color: var(--white);
@@ -204,42 +207,67 @@ main {
 
 
 /*overlay add contact*/
-.overlayAddContactBg {
+#overlay {
   position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  cursor: pointer;
 }
 
-#overlayAddContact {
+#text {
   position: absolute;
   top: 25%;
-  right: 25%;
-  height: 592px;
-  border-radius: 30px;
-  background-color: var(--white);
+  right: -100%;
+  font-size: 50px;
+  color: white;
+  /* transform: translate(-50%, -50%); */
+  -ms-transform: translate(-50%, -50%);
+  animation: forwards 1;
+  animation-name: moving-to-target;
+  animation-duration: 0.5s;
+  animation-delay: 0.0s;
+}
+
+@keyframes moving-to-target {
+  to {
+    right: 15%;
+  }
+}
+
+
+.contact-right {
+  position: relative;
+}
+
+
+#overlayAddContact {
   display: flex;
   align-items: center;
+  width: 1212px;
+  height: 592px;
+  border-radius: 38px;
+  background-color: var(--white);
   transition: right .3s ease-in-out;
   -webkit-transition: right .3s ease-in-out;
+  z-index: 10;
 }
 
 .overlay-add-contact-left {
   display: flex;
-  align-items: flex-start;
-  height: 594px;
-  padding: 66px 48px;
   flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 66px 48px;
   justify-content: center;
   align-items: flex-start;
   gap: 12px;
-  flex-shrink: 0;
   background-color: var(--blue-dark);
   border-radius: 38px;
 }
@@ -247,6 +275,12 @@ main {
 .overlay-add-contact-left span:first-child {
   font-size: 61px;
   font-weight: 700;
+  color: var(--white);
+}
+
+.overlay-add-contact-left-undertext {
+  font-size: 27px;
+  font-weight: 400;
   color: var(--white);
 }
 
@@ -275,6 +309,9 @@ main {
 }
 
 .overlay-add-contact-input {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -315,4 +352,10 @@ main {
   width: 422px;
   padding: 12px 21px;
   border-radius: 10px;
+}
+
+.addContactInputButton {
+  display: flex;
+  justify-content: space-evenly;
+
 }

@@ -67,7 +67,7 @@ function generateHeadline(i, letter) {
   contactList.innerHTML += `
     <div class="" id=${letter}>
       <div class="contactsFirstLetter">${letter}</div>
-      <hr/>
+      <div class="contactsFirstLetterHeadline"></div>
     </div>
   `;
 }
@@ -93,8 +93,17 @@ function generateCard(i, contact, firstLetter) {
   `;
 }
 
-function addContactSlideout() {
-  let overlayAddContact = document.getElementById("overlayAddContact");
+function on() {
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("#text").style.left = "50%";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+
+function doNotClose(event) {
+  event.stopPropagation();
 }
 
 async function includeHTML() {
