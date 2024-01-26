@@ -59,7 +59,10 @@ body {
     width: 100%;
     margin-top: -102px;
     padding-left: 250px;
-    padding-top: 150px;
+}
+
+#contentContainer div {
+    padding-top: 200px;
 }
 
 #sidebarContainer {
