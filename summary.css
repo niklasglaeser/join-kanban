@@ -63,6 +63,8 @@ body {
 
 #contentContainer div {
     padding-top: 200px;
+    font-size: 61px;
+    font-weight: bold;
 }
 
 #sidebarContainer {
@@ -100,7 +102,7 @@ body {
     background-color: #1d3558;
 }
 
-.sidebar-link a {
+.sidebar-link div {
     text-decoration: none;
     color: #CDCDCD;
 }
