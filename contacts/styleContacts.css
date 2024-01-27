@@ -248,10 +248,10 @@ nav img {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: none;
-  animation: slideIn 0.4s forwards;
+  animation: slideInInfo 0.4s forwards;
 }
 
-@keyframes slideIn {
+@keyframes slideInInfo {
   0% {
     transform: translateX(900px);
   }
@@ -301,9 +301,6 @@ nav img {
   margin: 21px 0;
   font-size: 20px;
 }
-
-
-
 
 #overlayAddContact {
   position: fixed;
@@ -461,4 +458,44 @@ nav img {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+
+
+/*SLIDE IN INFO*/
+.info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  display: none;
+  animation: slideIn 0.5s ease-in-out 0s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(800px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+  /* 100% {
+    transform: translateX(800px);
+  } */
+}
+
+.infoButton {
+  display: flex;
+  width: 326px;
+  height: 74px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: #2A3647;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  color: var(--white);
 }

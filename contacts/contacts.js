@@ -24,6 +24,7 @@ async function addContact() {
   await setItem("contacts", JSON.stringify(contacts));
 
   resetForm();
+  toogleInfo();
 }
 
 function getInitial(username) {
@@ -76,8 +77,8 @@ function generateCard(i, contact, firstLetter) {
 
   console.log(contact.contact);
   card.innerHTML += `
-  <a onclick="generateUserDetails(${i})"
-  <div id="contactName${i}" class="contactNameWrapper ">
+  <a onclick="generateUserDetails(${i}); setCardActive(${i})" id="contactId${i}" 
+  <div class="contactNameWrapper ">
   <div class="contactName-Initial"> ${contact.initial}</div>
   <div>
   <div class="contactName" >${contact.contact}</div>
@@ -86,12 +87,17 @@ function generateCard(i, contact, firstLetter) {
   </div>
   </a>
   `;
-  // setCardActive(i);
 }
 
 function setCardActive(i) {
-  let activeCard = document.getElementById(`contactName${i}`);
-  activeCard.classList.add("contactNameWrapperActive");
+  let allContactNames = document.querySelectorAll(".contactNameWrapperActive");
+  for (let j = 0; j < allContactNames.length; j++) {
+    allContactNames[j].classList.remove("contactNameWrapperActive");
+  }
+  let activeContact = document.getElementById(`contactId${i}`);
+  if (activeContact) {
+    activeContact.classList.add("contactNameWrapperActive");
+  }
 }
 
 function generateUserDetails(i) {
@@ -105,8 +111,8 @@ function generateUserDetails(i) {
     <div class="contact-right-name">
       <div>${contact.contact} </div>
       <div class="contact-right-name-action">
-        <div>EDIT</div>
-        <div>DELETE</div>
+      <a onclick="">EDIT</a>
+      <a onclick="deleteUser(${i})">DELETE</a>
       </div>
     </div>
   </div>
@@ -121,8 +127,8 @@ function generateUserDetails(i) {
 }
 
 function togglePopup() {
-  var overlay = document.getElementById("overlay");
-  var popup = document.getElementById("popup");
+  let overlay = document.getElementById("overlay");
+  let popup = document.getElementById("popup");
 
   if (overlay.style.display === "block" && popup.style.display === "block") {
     overlay.style.display = "none";
@@ -131,6 +137,21 @@ function togglePopup() {
     overlay.style.display = "block";
     popup.style.display = "block";
   }
+}
+
+function toogleInfo() {
+  let info = document.getElementById("info");
+  info.style.display = "block";
+  setTimeout(() => {
+    info.style.display = "none";
+  }, 2500);
+}
+
+async function deleteUser(id) {
+  contacts.splice(id, 1);
+  await setItem("contacts", JSON.stringify(contacts));
+  await init();
+  generateUserDetails();
 }
 
 async function includeHTML() {
