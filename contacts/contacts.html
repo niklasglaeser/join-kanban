@@ -8,52 +8,17 @@
   <script src="contacts.js" defer></script>
   <script src="storage.js" defer></script>
   <link rel="stylesheet" href="styleContacts.css">
+  <link rel="stylesheet" href="button.css">
   <title>Join28 Contacts</title>
 </head>
 
 <body onload="init()">
   <div w3-include-html="./templates/header.html"></div>
   <div w3-include-html="./templates/sidebar.html"></div>
-  <main class="">
-    <div id="overlay">
-      <div id="text">
-        <div id="overlayAddContact" class="">
-          <div class="overlay-add-contact-left">
-            <span onclick="off()">Add Contact</span>
-            <span class="overlay-add-contact-left-undertext">Tasks are better with a team!</span>
-          </div>
-          <div class="overlay-add-contact-right">
-            <div class="overlay-add-contact-person">
-              <img src="./images/add-person.svg" alt="">
-            </div>
-            <div class="overlay-add-contact-input">
-              <form onsubmit="addContact(); return false" class="addContactForm">
-                <div class="addContactInput">
-                  <input id="contact" type="text" placeholder="Name">
-                  <img src="./images/addContact-person.svg" alt="">
-                </div>
-                <div class="addContactInput">
-                  <input id="email" type="text" placeholder="Email">
-                  <img src="./images/addContact-person.svg" alt="">
-                </div>
-                <div class="addContactInput">
-                  <input id="phone" type="number" placeholder="Phone">
-                  <img src="./images/addContact-person.svg" alt="">
-                </div>
-                <div>
-                  <button id="loginButton">Add</button>
-                  <button id="guestLoginButton">Guest Log in</button>
-
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <main>
     <div class="contact-left left">
       <div class="contact-button-wrapper">
-        <button onclick="on()" class="contact-button">
+        <button id="slideButton" onclick="togglePopup()" class="contact-button">
           <span>Add new contact</span>
           <span>ICON</span>
         </button>
@@ -61,12 +26,55 @@
       <div id="contact-list" class="contacts">
       </div>
     </div>
-    <div class="contact-right border">
+    <div class="contact-right">
+      <h1>Contacts Better with a Team</h1>
+      <div id="contactDetails">
 
+      </div>
     </div>
+
   </main>
+  <div id="overlay" class="overlay d-none"></div>
+  <div id="popup" class="popup d-none">
+    <div id="overlayAddContact" class="">
+      <div class="overlay-add-contact-left">
+        <span>Add Contact</span>
+        <span class="overlay-add-contact-left-undertext">Tasks are better with a team!</span>
+      </div>
+      <div class="overlay-add-contact-right">
+        <div class="overlay-add-contact-person">
+          <div>
+            <img src="./images/add-person.svg" alt="">
+          </div>
+        </div>
+        <div class="overlay-add-contact-input">
+          <form onsubmit="addContact();togglePopup(); renderContact(); return false" class="addContactForm">
+            <div class="addContactInput">
+              <input id="contact" type="text" placeholder="Name">
+              <img src="./images/addContact-person.svg" alt="">
+              <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopup()">
+            </div>
+            <div class="addContactInput">
+              <input id="email" type="text" placeholder="Email">
+              <img src="./images/addContact-person.svg" alt="">
+            </div>
+            <div class="addContactInput">
+              <input id="phone" type="number" placeholder="Phone">
+              <img src="./images/addContact-person.svg" alt="">
+            </div>
+            <div class="addContactBtn">
+              <button class="addContactBtnCancel" type="button" onclick="togglePopup()">Cancel
+                <img src="./images/cancel.svg" alt="">
+              </button>
+              <button class="addContactBtnCreate" type="submit">Create contact
+                <img src="./images/check.svg" alt="">
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
-
-<div></div>

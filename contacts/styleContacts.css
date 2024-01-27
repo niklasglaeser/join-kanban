@@ -17,6 +17,7 @@
   --grey-bg: #F6F7F8;
   --link-color: #CDCDCD;
   --icon: #A8A8A8;
+  --background: #F6F8F8
 }
 
 * {
@@ -24,17 +25,28 @@
   text-decoration: none;
 }
 
-body {
-  margin: 0;
-  font-family: 'Inter';
-}
 
 html,
 body {
   margin: 0;
   height: 100%;
-  overflow: hidden
+  font-family: 'Inter';
+  overflow: hidden;
 }
+
+
+main {
+  height: 100vh;
+  margin: 96px 0 0 232px;
+  position: relative;
+  z-index: 0;
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
 
 .border {
   border: 2px solid green;
@@ -122,14 +134,11 @@ nav img {
   line-height: 19.2px;
 }
 
-main {
-  margin: 96px 0 0 232px;
-}
-
 .contact-left {
   display: flex;
   flex-direction: column;
   width: 400px;
+  height: 100%;
   padding: 32px 28px;
   background: var(--white);
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
@@ -180,8 +189,21 @@ main {
   align-items: center;
   padding: 15px 24px;
   gap: 35px;
-
+  cursor: pointer;
 }
+
+.contactNameWrapper:hover {
+  border-radius: 10px;
+  background-color: var(--blue-dark);
+  color: var(--white);
+}
+
+.contactNameWrapperActive {
+  border-radius: 10px;
+  background-color: var(--blue-dark);
+  color: var(--white);
+}
+
 
 .contactName-Initial {
   display: flex;
@@ -203,60 +225,97 @@ main {
 }
 
 
-
-
-
 /*overlay add contact*/
-#overlay {
+
+.overlay {
   position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: none;
 }
 
-#text {
-  position: absolute;
-  top: 25%;
-  right: -100%;
-  font-size: 50px;
-  color: white;
-  /* transform: translate(-50%, -50%); */
-  -ms-transform: translate(-50%, -50%);
-  animation: forwards 1;
-  animation-name: moving-to-target;
-  animation-duration: 0.5s;
-  animation-delay: 0.0s;
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+  animation: slideIn 0.4s forwards;
 }
 
-@keyframes moving-to-target {
-  to {
-    right: 15%;
+@keyframes slideIn {
+  0% {
+    transform: translateX(900px);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
 
 
+
+/*overlay add contact*/
+
 .contact-right {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 110px;
+  padding-left: 55px;
+  background-color: var(--background);
+  height: 100%;
+  width: 100%;
+
+}
+
+.contact-right-container {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 54px;
+}
+
+.contact-right-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-right-name-action {
+  display: flex;
+  gap: 16px;
+}
+
+.contact-right-details-headline {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 21px 0;
+  font-size: 20px;
 }
 
 
+
+
 #overlayAddContact {
+  position: fixed;
+  right: -1212px;
   display: flex;
   align-items: center;
   width: 1212px;
   height: 592px;
   border-radius: 38px;
   background-color: var(--white);
-  transition: right .3s ease-in-out;
-  -webkit-transition: right .3s ease-in-out;
-  z-index: 10;
+  z-index: 1005;
+  transform: translate(-50%, -50%);
 }
 
 .overlay-add-contact-left {
@@ -269,6 +328,7 @@ main {
   align-items: flex-start;
   gap: 12px;
   background-color: var(--blue-dark);
+  border: 3px solid var(--blue-dark);
   border-radius: 38px;
 }
 
@@ -289,6 +349,7 @@ main {
   display: flex;
   align-items: center;
   height: 100%;
+
 }
 
 .overlay-add-contact-person {
@@ -297,15 +358,20 @@ main {
   min-width: 275px;
 }
 
-.overlay-add-contact-person img {
-  background-color: var(--grey-light);
+.overlay-add-contact-person div {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 120px;
   height: 120px;
+  background-color: var(--grey-light);
   border-radius: 50%;
-  border: 4px solid red;
+}
+
+
+.overlay-add-contact-person img {
+  width: 64px;
+  height: 64px;
 }
 
 .overlay-add-contact-input {
@@ -315,11 +381,18 @@ main {
   width: 100%;
 }
 
-
 .addContactForm {
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+.addContactFormClose {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  width: 24px;
+  height: 24px;
 }
 
 #contact {
@@ -357,5 +430,35 @@ main {
 .addContactInputButton {
   display: flex;
   justify-content: space-evenly;
+}
 
+.addContactBtn {
+  display: inline-flex;
+  gap: 24px;
+}
+
+.addContactBtnCancel {
+  cursor: pointer;
+  font-size: 20px;
+  border: 1px solid var(--blue-dark);
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.addContactBtnCreate {
+  cursor: pointer;
+  font-size: 21px;
+  color: white;
+  font-weight: 700;
+  border: none;
+  background-color: var(--blue-dark);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

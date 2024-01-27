@@ -56,7 +56,6 @@ async function renderContact() {
     if (currentSign !== firstLetter) {
       generateHeadline(i, firstLetter);
       currentSign = firstLetter;
-      // generateStroke();
     }
     generateCard(i, currentContact, firstLetter);
   }
@@ -72,17 +71,12 @@ function generateHeadline(i, letter) {
   `;
 }
 
-function generateStroke() {
-  let contactList = document.getElementById("contact-list");
-  contactList.innerHTML += `<svg xmlns="http://www.w3.org/2000/svg" width="354" height="2" viewBox="0 0 354 2" fill="none">
-  <path d="M1 1H353" stroke="#D1D1D1" stroke-linecap="round"/>
-  </svg>`;
-}
-
 function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
+
   console.log(contact.contact);
   card.innerHTML += `
+  <a onclick="generateUserDetails(${i})"
   <div id="contactName${i}" class="contactNameWrapper ">
   <div class="contactName-Initial"> ${contact.initial}</div>
   <div>
@@ -90,20 +84,53 @@ function generateCard(i, contact, firstLetter) {
   <div class="contactEmail">${contact.email}</div>
   </div
   </div>
+  </a>
   `;
+  // setCardActive(i);
 }
 
-function on() {
-  document.getElementById("overlay").style.display = "block";
-  document.getElementById("#text").style.left = "50%";
+function setCardActive(i) {
+  let activeCard = document.getElementById(`contactName${i}`);
+  activeCard.classList.add("contactNameWrapperActive");
 }
 
-function off() {
-  document.getElementById("overlay").style.display = "none";
+function generateUserDetails(i) {
+  let details = document.getElementById("contactDetails");
+  let contact = contacts[i];
+  details.innerHTML = "";
+
+  details.innerHTML = /*HTML*/ `
+  <div class="contact-right-container">
+    <div>${contact.initial}</div>
+    <div class="contact-right-name">
+      <div>${contact.contact} </div>
+      <div class="contact-right-name-action">
+        <div>EDIT</div>
+        <div>DELETE</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="contact-right-details-headline border">Contact Information</div>
+    <div>Email</div>
+    <div>${contact.email}</div>
+    <div>Phone</div>
+    <div>${contact.phone}</div>
+  </div>
+`;
 }
 
-function doNotClose(event) {
-  event.stopPropagation();
+function togglePopup() {
+  var overlay = document.getElementById("overlay");
+  var popup = document.getElementById("popup");
+
+  if (overlay.style.display === "block" && popup.style.display === "block") {
+    overlay.style.display = "none";
+    popup.style.display = "none";
+  } else {
+    overlay.style.display = "block";
+    popup.style.display = "block";
+  }
 }
 
 async function includeHTML() {
