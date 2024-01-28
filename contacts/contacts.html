@@ -7,6 +7,7 @@
   <base href="./">
   <script src="contacts.js" defer></script>
   <script src="storage.js" defer></script>
+  <script src="global.js" defer></script>
   <link rel="stylesheet" href="styleContacts.css">
   <link rel="stylesheet" href="button.css">
   <title>Join28 Contacts</title>
@@ -27,7 +28,11 @@
       </div>
     </div>
     <div class="contact-right">
-      <h1>Contacts Better with a Team</h1>
+      <div class="contact-right-headline">
+        <span class="font-61-black">Contacts</span>
+        <img src="./images/stroke.svg"></img>
+        <span class="font-27-black">Better with a team</span>
+      </div>
       <div id="contactDetails">
 
       </div>
@@ -50,16 +55,16 @@
         <div class="overlay-add-contact-input">
           <form onsubmit="addContact();togglePopup(); renderContact(); return false" class="addContactForm">
             <div class="addContactInput">
-              <input id="contact" type="text" placeholder="Name">
+              <input id="contact" type="text" placeholder="Name" class="contact-input">
               <img src="./images/addContact-person.svg" alt="">
               <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopup()">
             </div>
             <div class="addContactInput">
-              <input id="email" type="text" placeholder="Email">
+              <input id="email" type="text" placeholder="Email" class="contact-input">
               <img src="./images/addContact-person.svg" alt="">
             </div>
             <div class="addContactInput">
-              <input id="phone" type="number" placeholder="Phone">
+              <input id="phone" type="number" placeholder="Phone" class="contact-input">
               <img src="./images/addContact-person.svg" alt="">
             </div>
             <div class="addContactBtn">
@@ -72,6 +77,17 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+  <div id="popupEdit" class="popupEdit d-none">
+    <div id="overlayAddContact" class="">
+      <div class="overlay-add-contact-left">
+        <span>Edit Contact</span>
+        <span class="overlay-add-contact-left-undertext">Tasks are better with a team!</span>
+      </div>
+      <div id="editContact" class="overlay-add-contact-right">
+
       </div>
     </div>
   </div>

@@ -6,6 +6,29 @@
   src: url('./fonts/inter.woff2') format('woff2');
 }
 
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #a8a8a7 #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: 40px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a8a8a7;
+  border-radius: 55px;
+  border: 18px solid #ffffff;
+}
+
+input {
+  all: unset;
+}
+
 :root {
   --blue-dark: #2A3647;
   --blue-light: #29ABE2;
@@ -19,6 +42,38 @@
   --icon: #A8A8A8;
   --background: #F6F8F8
 }
+
+.font-61-black {
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  color: var(--black);
+}
+
+.font-27-black {
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  color: var(--black);
+}
+
+.font-16-bold-black {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  color: var(--black);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+
+
 
 * {
   box-sizing: border-box;
@@ -137,11 +192,14 @@ nav img {
 .contact-left {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  min-width: 400px;
   height: 100%;
   padding: 32px 28px;
   background: var(--white);
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 120px;
 }
 
 .contact-button-wrapper {
@@ -170,6 +228,8 @@ nav img {
   /* display: flex; */
   /* flex-direction: column; */
   /* padding: 0 24px; */
+  /* overflow: visible; */
+  width: 100%;
 }
 
 
@@ -214,8 +274,6 @@ nav img {
   border-radius: 45px;
   color: var(--white);
   font-size: 12px;
-  background-color: #FF3D00;
-
 }
 
 .contactName {}
@@ -261,6 +319,29 @@ nav img {
   }
 }
 
+.popupEdit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+  animation: slideInInfo 0.4s forwards;
+}
+
+@keyframes slideInInfo {
+  0% {
+    transform: translateX(900px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 
 
 /*overlay add contact*/
@@ -273,8 +354,17 @@ nav img {
   background-color: var(--background);
   height: 100%;
   width: 100%;
-
 }
+
+.contact-right-headline {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+
 
 .contact-right-container {
   display: flex;
@@ -282,16 +372,48 @@ nav img {
   gap: 54px;
 }
 
+.contactInitial {
+  display: flex;
+}
+
+.contactInitial div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  background-color: var(--grey-light);
+  border-radius: 50%;
+  font-size: 47px;
+  color: var(--white);
+}
+
+
 .contact-right-name {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 8px;
 }
+
+.contact-right-name p {
+  font-size: 47px;
+  margin: 0;
+}
+
 
 .contact-right-name-action {
   display: flex;
   gap: 16px;
 }
+
+.contact-right-name-action a {
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 
 .contact-right-details-headline {
   height: 74px;
@@ -301,6 +423,19 @@ nav img {
   margin: 21px 0;
   font-size: 20px;
 }
+
+.contact-right-details-email {
+  color: var(--blue-light);
+  margin-top: 15px;
+  margin-bottom: 22px;
+}
+
+.contact-right-details-phone {
+  margin-top: 15px;
+  margin-bottom: 22px;
+}
+
+
 
 #overlayAddContact {
   position: fixed;
@@ -392,7 +527,16 @@ nav img {
   height: 24px;
 }
 
-#contact {
+.contact-input {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+/* .email-input {
   width: 100%;
   font-size: 20px;
   font-weight: 400;
@@ -400,21 +544,13 @@ nav img {
   outline: none;
 }
 
-#email {
+.phone-input {
   width: 100%;
   font-size: 20px;
   font-weight: 400;
   border: none;
   outline: none;
-}
-
-#phone {
-  width: 100%;
-  font-size: 20px;
-  font-weight: 400;
-  border: none;
-  outline: none;
-}
+} */
 
 .addContactInput {
   display: flex;
@@ -423,6 +559,7 @@ nav img {
   padding: 12px 21px;
   border-radius: 10px;
 }
+
 
 .addContactInputButton {
   display: flex;
@@ -459,6 +596,22 @@ nav img {
   align-items: center;
   gap: 4px;
 }
+
+
+.contactInitialEdit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  font-size: 47px;
+  color: var(--white);
+}
+
+
+
+
 
 
 

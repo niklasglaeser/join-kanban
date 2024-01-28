@@ -1,4 +1,5 @@
 let contacts = [];
+let currentContact = [];
 
 async function init() {
   await includeHTML();
@@ -18,13 +19,16 @@ async function addContact() {
   contacts.push({
     contact: contact.value,
     initial: getInitial(contact.value),
+    initial_color: getInitialColor(),
     email: email.value,
     phone: phone.value,
   });
   await setItem("contacts", JSON.stringify(contacts));
-
+  currentContact = contact.value;
   resetForm();
   toogleInfo();
+  generateUserDetails(getIdFromContact(currentContact));
+  setCardActive(getIdFromContact(currentContact));
 }
 
 function getInitial(username) {
@@ -41,12 +45,15 @@ function resetForm() {
   phone.value = "";
 }
 
+function getInitialColor() {
+  let randomColor = Math.floor(Math.random() * AVATAR_COLORS.length);
+  return AVATAR_COLORS[randomColor];
+}
+
 async function renderContact() {
   let contactList = document.getElementById("contact-list");
   contactList.innerHTML = "";
-  contacts.sort(function (a, b) {
-    return a.contact.charAt(0).localeCompare(b.contact.charAt(0));
-  });
+  sortContacts();
 
   let currentSign = null;
 
@@ -62,6 +69,16 @@ async function renderContact() {
   }
 }
 
+function sortContacts() {
+  contacts.sort(function (a, b) {
+    return a.contact.charAt(0).localeCompare(b.contact.charAt(0));
+  });
+}
+
+function getIdFromContact(currentContact) {
+  return contacts.findIndex((obj) => obj.contact == `${currentContact}`);
+}
+
 function generateHeadline(i, letter) {
   let contactList = document.getElementById("contact-list");
   contactList.innerHTML += `
@@ -74,12 +91,10 @@ function generateHeadline(i, letter) {
 
 function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
-
-  console.log(contact.contact);
   card.innerHTML += `
   <a onclick="generateUserDetails(${i}); setCardActive(${i})" id="contactId${i}" 
   <div class="contactNameWrapper ">
-  <div class="contactName-Initial"> ${contact.initial}</div>
+  <div class="contactName-Initial" style="background-color:${contact.initial_color}"> ${contact.initial}</div>
   <div>
   <div class="contactName" >${contact.contact}</div>
   <div class="contactEmail">${contact.email}</div>
@@ -107,21 +122,23 @@ function generateUserDetails(i) {
 
   details.innerHTML = /*HTML*/ `
   <div class="contact-right-container">
-    <div>${contact.initial}</div>
+    <div class="contactInitial" >
+      <div style="background-color: ${contact.initial_color}">${contact.initial}</div>
+    </div>
     <div class="contact-right-name">
-      <div>${contact.contact} </div>
+      <p >${contact.contact} </p>
       <div class="contact-right-name-action">
-      <a onclick="">EDIT</a>
-      <a onclick="deleteUser(${i})">DELETE</a>
+      <a onclick="togglePopupEdit(${i})" class="pointer"><img src="./images/edit.svg" alt="">EDIT</a>
+      <a onclick="deleteUser(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a>
       </div>
     </div>
   </div>
   <div>
-    <div class="contact-right-details-headline border">Contact Information</div>
-    <div>Email</div>
-    <div>${contact.email}</div>
-    <div>Phone</div>
-    <div>${contact.phone}</div>
+    <div class="contact-right-details-headline">Contact Information</div>
+    <div class="font-16-bold-black">Email</div>
+    <div class="contact-right-details-email">${contact.email}</div>
+    <div class="font-16-bold-black">Phone</div>
+    <div class="contact-right-details-phone"> ${contact.phone}</div>
   </div>
 `;
 }
@@ -139,12 +156,88 @@ function togglePopup() {
   }
 }
 
+function togglePopupEdit(i) {
+  let overlay = document.getElementById("overlay");
+  let popupEdit = document.getElementById("popupEdit");
+
+  if (
+    overlay.style.display === "block" &&
+    popupEdit.style.display === "block"
+  ) {
+    overlay.style.display = "none";
+    popupEdit.style.display = "none";
+  } else {
+    overlay.style.display = "block";
+    popupEdit.style.display = "block";
+  }
+  generateEditCard(i);
+}
+
+function generateEditCard(i) {
+  let editContact = document.getElementById("editContact");
+  let contact = contacts[i];
+  editContact.innerHTML = "";
+  editContact.innerHTML = /*HTML*/ `
+  <div class="overlay-add-contact-person" >
+    <div class="contactInitialEdit" style="background-color:${contact.initial_color}">${contact.initial}</div>
+  </div>
+  <div class="overlay-add-contact-input">
+    <form onsubmit="saveEdit(${i});   return false" class="addContactForm">
+      <div class="addContactInput" id="contactName${i}">
+        <input id="contact${i}" type="text" placeholder="Name" value="${contact.contact}" class="contact-input">
+        <img src="./images/addContact-person.svg" alt="">
+        <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopupEdit()">
+      </div>
+      <div class="addContactInput">
+        <input id="email${i}" type="text" placeholder="Email" value="${contact.email}" class="contact-input">
+        <img src="./images/addContact-person.svg" alt="">
+      </div>
+      <div class="addContactInput">
+        <input id="phone${i}" type="number" placeholder="Phone" value="${contact.phone}" class="contact-input">
+        <img src="./images/addContact-person.svg" alt="">
+      </div>
+      <div class="addContactBtn">
+        <button class="addContactBtnCancel" type="button" onclick="togglePopupEdit()">Delete
+          <img src="./images/cancel.svg" alt="">
+        </button>
+        <button class="addContactBtnCreate" type="submit">Save
+          <img src="./images/check.svg" alt="">
+        </button>
+      </div>
+    </form>
+  </div>
+`;
+}
+
 function toogleInfo() {
   let info = document.getElementById("info");
   info.style.display = "block";
   setTimeout(() => {
     info.style.display = "none";
   }, 2500);
+}
+
+async function saveEdit(i) {
+  let newUser = document.getElementById(`contact${i}`).value;
+  let newEmail = document.getElementById(`email${i}`).value;
+  let newPhone = document.getElementById(`phone${i}`).value;
+  let currentInitialColor = contacts[i].initial_color;
+
+  contacts.splice(i, 1, {
+    contact: newUser,
+    initial: getInitial(newUser),
+    initial_color: currentInitialColor,
+    email: newEmail,
+    phone: newPhone,
+  });
+
+  await setItem("contacts", JSON.stringify(contacts));
+  currentContact = newUser;
+  toogleInfo();
+  renderContact();
+  generateUserDetails(getIdFromContact(currentContact));
+  setCardActive(getIdFromContact(currentContact));
+  togglePopupEdit();
 }
 
 async function deleteUser(id) {
