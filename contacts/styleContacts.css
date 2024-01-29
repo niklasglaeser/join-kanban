@@ -6,6 +6,7 @@
   src: url('./fonts/inter.woff2') format('woff2');
 }
 
+/*Scrollbar*/
 * {
   scrollbar-width: auto;
   scrollbar-color: #a8a8a7 #ffffff;
@@ -24,6 +25,8 @@
   border-radius: 55px;
   border: 18px solid #ffffff;
 }
+
+/*Scrollbar*/
 
 input {
   all: unset;
@@ -560,7 +563,7 @@ nav img {
 .addContactInput {
   display: flex;
   border: 1px solid #D1D1D1;
-  /* width: 422px; */
+  width: 422px;
   padding: 12px 21px;
   border-radius: 10px;
 }
@@ -615,11 +618,6 @@ nav img {
 }
 
 
-
-
-
-
-
 /*SLIDE IN INFO*/
 .info {
   position: fixed;
@@ -659,25 +657,98 @@ nav img {
 }
 
 
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  padding: 15px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 15px; */
+  background-color: var(--blue-dark);
+  /* color: var(--link-color); */
+  z-index: 10;
+}
+
+footer a {
+  text-decoration: none;
+  text-align: center;
+  color: var(--link-color);
+}
+
+footer a img {
+  height: 24px;
+  width: 24px;
+}
+
+@media (min-width:1300px) {
+  footer {
+    display: none;
+  }
+}
+
 @media (max-width:1300px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  main {
+    margin: 96px 0 0 0;
+  }
+
+  #overlayAddContact {
+    right: -950px;
+    width: 950px;
+    gap: 30px;
+  }
+
+  .overlay-add-contact-right {
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .overlay-add-contact-input {
+    padding-right: 0;
+  }
+}
+
+@media (max-width:990px) {
 
   /* addcontact */
   #overlayAddContact {
     right: -396px;
     flex-direction: column;
-    width: 396px;
+    max-width: 396px;
     height: 760px;
+    gap: 0;
 
 
   }
 
   .overlay-add-contact-left {
-    height: 352px;
+    height: 70%;
+    width: 100%;
+  }
+
+  .overlay-add-contact-left span:first-child {
+    font-size: 47px;
+    font-weight: 700;
+  }
+
+  .overlay-add-contact-left-undertext {
+    font-size: 20px;
   }
 
 
   .overlay-add-contact-right {
     flex-direction: column;
+    gap: 0;
+    justify-content: flex-start;
 
   }
 
@@ -700,7 +771,9 @@ nav img {
     gap: 15px;
   }
 
-  .addContactInput {}
+  .addContactInput {
+    width: 100%;
+  }
 
   .addContactBtn {
     justify-content: center;
@@ -714,3 +787,6 @@ nav img {
     margin-top: 16px;
   }
 }
+
+
+@media (max-width:420px) {}

@@ -186,7 +186,7 @@ function generateEditCard(i) {
       <div class="addContactInput" id="contactName${i}">
         <input id="contact${i}" type="text" placeholder="Name" value="${contact.contact}" class="contact-input">
         <img src="./images/addContact-person.svg" alt="">
-        <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopupEdit()">
+        <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopupEdit();">
       </div>
       <div class="addContactInput">
         <input id="email${i}" type="text" placeholder="Email" value="${contact.email}" class="contact-input">
@@ -214,7 +214,7 @@ function toogleInfo() {
   info.style.display = "block";
   setTimeout(() => {
     info.style.display = "none";
-  }, 2500);
+  }, 2050000);
 }
 
 async function saveEdit(i) {
@@ -237,7 +237,7 @@ async function saveEdit(i) {
   renderContact();
   generateUserDetails(getIdFromContact(currentContact));
   setCardActive(getIdFromContact(currentContact));
-  togglePopupEdit();
+  togglePopupEdit(i);
 }
 
 async function deleteUser(id) {
