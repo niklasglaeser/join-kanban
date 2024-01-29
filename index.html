@@ -8,37 +8,68 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="init()">
   <div class="header">
     <img src="img/join-logo.svg" id="joinLogo">
     <div class="header-right">
       <div>Not a Join User?</div>
-      <button id="signUpButton">Sign Up</button>
+      <button id="signUpButton" onclick="openSignUpForm()">Sign Up</button>
     </div>
   </div>
   <div id="mainContainer">
+
+    <div id="signUpContainer">
+      <img src="img/go-back.svg" id="signUpGoBack" onclick="closeSignUpForm()">
+      <h1>Sign Up</h1>
+      <img src="img/login-underline.svg" id="signUpUnderline">
+      <form id="signUpForm" onsubmit="register()">
+        <div class="signUpInputs">
+          <input type="text" placeholder="Name" id="nameInputSignup" required>
+          <img src="img/person-icon.svg">
+        </div>
+        <div class="signUpInputs">
+          <input type="email" placeholder="Email" id="emailInputSignup" required>
+          <img src="img/mail.svg">
+        </div>
+        <div class="signUpInputs">
+          <input type="password" placeholder="Password" id="passwordInputSignup" required>
+          <img src="img/lock.svg">
+        </div>
+        <div class="signUpInputs">
+          <input type="password" placeholder="Confirm Password" id="confirmPasswordInputSignup">
+          <img src="img/lock.svg">
+        </div>
+        
+        <div class="checkBoxContainerSignup">
+          <input type="checkbox" id="checkboxInputSignup">
+          <div>I accept the <a href="" id="checkboxLink">Privacy Policy</a></div>
+        </div>
+        <button id="signUpFormButton">Sign up</button>
+      </form>
+    </div>
+
+
     <div id="loginContainer">
       <h1>Log in</h1>
       <div><img src="img/login-underline.svg" id="loginUnderline"></div>
-      <form id="loginForm">
+      <form id="loginForm" onsubmit="login(); return false;">
         <div class="loginInputs">
-          <input type="email" placeholder="Email" id="emailInput">
+          <input type="email" placeholder="Email" id="emailInputLogin" required>
           <img src="img/mail.svg">
         </div>
         <div class="loginInputs">
-          <input type="password" placeholder="Password" id="passwordInput">
+          <input type="password" placeholder="Password" id="passwordInputLogin" required>
           <img src="img/lock.svg">
         </div>
-        <div class="checkBoxContainer">
-          <input type="checkbox" id="checkboxInput">
+        <div class="checkBoxContainerLogin">
+          <input type="checkbox" id="checkboxInputLogin">
           <div>Remember me</div>
         </div>
-        <div></div>
+        <div id="loginButtons">
+          <button id="loginButton">Log in</button>
+          <button id="guestLoginButton" onclick="guestLogin()">Guest Log in</button>
+        </div>
       </form>
-      <div id="loginButtons">
-        <button id="loginButton">Log in</button>
-        <button id="guestLoginButton" onclick="guestLogin()">Guest Log in</button>
-      </div>
     </div>
   </div>
   <div id="footer">

@@ -1,6 +1,5 @@
 let users = [];
 
-
 async function init(){
     loadUsers();
 }
@@ -13,20 +12,20 @@ async function loadUsers(){
     }
 }
 
-
 async function register() {
-    registerBtn.disabled = true;
+    signUpFormButton.disabled = true;
     users.push({
-        email: email.value, //email : email.value ist wie let 'variable' = 'name'.value 
-        password: password.value,
+        name: nameInputSignup.value,
+        email: emailInputSignup.value,
+        password: passwordInputSignup.value,
     });
     await setItem('users', JSON.stringify(users));
-    window.location.href ='login.html?msg=Du hast dich erfolgreich registriert';
     resetForm();
+    window.location.href ='index.html';
 }
 
 function resetForm() {
-    email.value = '';
-    password.value = '';
-    registerBtn.disabled = false;
+    emailInputSignup.value = '';
+    passwordInputSignup.value = '';
+    signUpFormButton.disabled = false;
 }

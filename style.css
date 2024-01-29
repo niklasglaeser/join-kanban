@@ -64,10 +64,10 @@ body {
     padding: 48px 115px;
     border-radius: 30px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-    background-color: var(--white, #FFF);
+    background-color: #FFF;
     border: solid 30px;
     box-sizing: border-box;
-    border-color: var(--white, #FFF);
+    border-color:#FFF;
     margin-top: 60px;
 }
 
@@ -85,10 +85,12 @@ body {
 #loginForm {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 32px;
 }
 
-#emailInput {
+#emailInputLogin {
     width: 100%;
     font-size: 20px;
     font-weight: 400;
@@ -96,7 +98,7 @@ body {
     outline: none;
 }
 
-#passwordInput {
+#passwordInputLogin {
     width: 100%;
     font-size: 20px;
     font-weight: 400;
@@ -112,15 +114,16 @@ body {
     border-radius: 10px;
 }
 
-.checkBoxContainer {
+.checkBoxContainerLogin {
     display: flex;
     align-items: center;
     font-size: 16px;
     gap: 8px;
     padding-left: 30px;
+    align-self: flex-start;
 }
 
-.checkBoxContainer div {
+.checkBoxContainerLogin div {
     font-size: 16px;
     font-weight: 400;
     color: #6c6c6c;
@@ -204,4 +207,127 @@ body {
 
 #footer a:hover {
     color: #29ABE2;
+}
+
+
+#signUpContainer {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    height: 630px;
+    width: 598px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+
+}
+
+#signUpContainer h1 {
+    font-size: 61px;
+    margin: 0;
+    padding-bottom: 15px;
+}
+
+
+#signUpGoBack {
+    align-self: flex-start;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+#signUpGoBack:hover {
+    cursor: pointer;
+    background-color: #D1D1D1;
+    border-radius: 30px;
+}
+
+.signUpInputs {
+    display: flex;
+    border: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 12px 21px;
+    border-radius: 10px;
+}
+
+#signUpFormButton {
+    display: flex;
+    height: 48px;
+    width: 126px;
+    padding: 15px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: #2A3647;
+    font-size: 21px;
+    font-weight: 700;
+    border: none;
+    color: white;
+    margin-top: 8px;
+}
+
+#signUpFormButton:hover {
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+#signUpForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding-top: 24px;
+}
+
+.checkBoxContainerSignup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    gap: 8px;
+}
+
+.checkBoxContainerSignup div {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6c6c6c;
+}
+
+#emailInputSignup {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+#passwordInputSignup {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+#nameInputSignup {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+#confirmPasswordInputSignup {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+#checkboxLink {
+    color: #29ABE2;
+    text-decoration: none;
 }

@@ -11,11 +11,18 @@ function toggleDropdown() {
     }
 }
 
-document.addEventListener("click", function(event) {
-    var userProfile = document.getElementById("userProfile");
-    var dropdownContent = document.getElementById("dropdownContent");
+function openSignUpForm() {
+    let loginForm = document.getElementById('loginContainer');
+    let signUpForm = document.getElementById('signUpContainer');
 
-    if (event.target !== userProfile && event.target !== dropdownContent) {
-        dropdownContent.style.display = "none";
-    }
-});
+    loginForm.style.display = "none";
+    signUpForm.style.display = "flex";
+}
+
+function closeSignUpForm() {
+    let loginForm = document.getElementById('loginContainer');
+    let signUpForm = document.getElementById('signUpContainer');
+
+    loginForm.style.display = "flex";
+    signUpForm.style.display = "none";
+}
