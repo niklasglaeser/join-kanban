@@ -20,11 +20,12 @@ async function register() {
         password: passwordInputSignup.value,
     });
     await setItem('users', JSON.stringify(users));
-    resetForm();
     window.location.href ='index.html';
+    resetForm();
 }
 
 function resetForm() {
+    nameInputSignup.value = '';
     emailInputSignup.value = '';
     passwordInputSignup.value = '';
     signUpFormButton.disabled = false;

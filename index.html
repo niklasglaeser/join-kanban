@@ -22,7 +22,7 @@
       <img src="img/go-back.svg" id="signUpGoBack" onclick="closeSignUpForm()">
       <h1>Sign Up</h1>
       <img src="img/login-underline.svg" id="signUpUnderline">
-      <form id="signUpForm" onsubmit="register()">
+      <form id="signUpForm" onsubmit="register(); return false;">
         <div class="signUpInputs">
           <input type="text" placeholder="Name" id="nameInputSignup" required>
           <img src="img/person-icon.svg">
