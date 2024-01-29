@@ -227,6 +227,11 @@ nav img {
   cursor: pointer;
 }
 
+.contact-button img {
+  width: 24px;
+  height: 24px;
+}
+
 .contacts {
   /* display: flex; */
   /* flex-direction: column; */

@@ -1,4 +1,5 @@
 let contacts = [];
+let users = [];
 let currentContact = [];
 
 async function init() {
