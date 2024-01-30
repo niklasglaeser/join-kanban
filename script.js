@@ -14,7 +14,7 @@ function toggleDropdown() {
 function openSignUpForm() {
     let loginForm = document.getElementById('loginContainer');
     let signUpForm = document.getElementById('signUpContainer');
-
+    
     loginForm.style.display = "none";
     signUpForm.style.display = "flex";
 }
@@ -25,4 +25,25 @@ function closeSignUpForm() {
 
     loginForm.style.display = "flex";
     signUpForm.style.display = "none";
+}
+
+
+async function deleteAllUser() {
+    users.splice(0, users.length);
+    await setItem("users", JSON.stringify(users));
+}
+
+
+
+function renderHeader() {
+    const header = document.getElementById('headerContainer');
+
+    header.innerHTML = headerTemplate();
+
+}
+
+function renderSidebar() {
+    const sidebar = document.getElementById('sidebarContainer');
+
+    sidebar.innerHTML = sidebarTemplate();
 }
