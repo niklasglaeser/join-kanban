@@ -41,8 +41,8 @@
   </main>
   <div w3-include-html="./templates/footer.html"></div>
 
-  <div id="overlay" class="overlay d-none"></div>
-  <div id="popup" class="popup d-none">
+  <div id="overlay" class="overlay"> </div>
+  <div id="popup" class="popup">
     <div id="overlayAddContact" class="">
       <div class="overlay-add-contact-left">
         <span>Add Contact</span>
@@ -61,7 +61,7 @@
             <div class="addContactInput">
               <input id="contact" type="text" placeholder="Name" class="contact-input">
               <img src="./images/addContact-person.svg" alt="">
-              <!-- <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopup()"> -->
+              <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopup()">
             </div>
             <div class="addContactInput">
               <input id="email" type="text" placeholder="Email" class="contact-input">
@@ -84,7 +84,7 @@
       </div>
     </div>
   </div>
-  <div id="popupEdit" class="popupEdit d-none">
+  <div id="popupEdit" class="popupEdit">
     <div id="overlayAddContact" class="">
       <div class="overlay-add-contact-left">
         <span>Edit Contact</span>
@@ -96,7 +96,7 @@
     </div>
   </div>
   <div id="info" class="info d-none">
-    <div class="infoButton">Contact succesfully created</div>
+    <!-- <div class="infoButton">Contact succesfully created</div> -->
   </div>
 </body>
 

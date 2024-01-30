@@ -27,7 +27,7 @@ async function addContact() {
   await setItem("contacts", JSON.stringify(contacts));
   currentContact = contact.value;
   resetForm();
-  toogleInfo();
+  toogleInfo("Contact was created");
   generateUserDetails(getIdFromContact(currentContact));
   setCardActive(getIdFromContact(currentContact));
 }
@@ -148,12 +148,17 @@ function togglePopup() {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
 
-  if (overlay.style.display === "block" && popup.style.display === "block") {
-    overlay.style.display = "none";
-    popup.style.display = "none";
+  if (
+    overlay.classList.contains("overlay-show") &&
+    popup.classList.contains("popup-slideIn")
+  ) {
+    overlay.classList.remove("overlay-show");
+    overlay.classList.add("d-none");
+    popup.classList.remove("popup-slideIn");
   } else {
-    overlay.style.display = "block";
-    popup.style.display = "block";
+    overlay.classList.add("overlay-show");
+    overlay.classList.remove("d-none");
+    popup.classList.add("popup-slideIn");
   }
 }
 
@@ -162,16 +167,18 @@ function togglePopupEdit(i) {
   let popupEdit = document.getElementById("popupEdit");
 
   if (
-    overlay.style.display === "block" &&
-    popupEdit.style.display === "block"
+    overlay.classList.contains("overlay-show") &&
+    popupEdit.classList.contains("popupEdit-slideIn")
   ) {
-    overlay.style.display = "none";
-    popupEdit.style.display = "none";
+    overlay.classList.remove("overlay-show");
+    overlay.classList.add("d-none");
+    popupEdit.classList.remove("popupEdit-slideIn");
   } else {
-    overlay.style.display = "block";
-    popupEdit.style.display = "block";
+    overlay.classList.add("overlay-show");
+    overlay.classList.remove("d-none");
+    popupEdit.classList.add("popupEdit-slideIn");
+    generateEditCard(i);
   }
-  generateEditCard(i);
 }
 
 function generateEditCard(i) {
@@ -210,12 +217,13 @@ function generateEditCard(i) {
 `;
 }
 
-function toogleInfo() {
+function toogleInfo(text) {
   let info = document.getElementById("info");
+  info.innerHTML = `<div class="infoButton">${text}</div>`;
   info.style.display = "block";
   setTimeout(() => {
     info.style.display = "none";
-  }, 2050000);
+  }, 2000);
 }
 
 async function saveEdit(i) {
@@ -234,7 +242,7 @@ async function saveEdit(i) {
 
   await setItem("contacts", JSON.stringify(contacts));
   currentContact = newUser;
-  toogleInfo();
+  toogleInfo("Contact was edited");
   renderContact();
   generateUserDetails(getIdFromContact(currentContact));
   setCardActive(getIdFromContact(currentContact));
@@ -245,7 +253,7 @@ async function deleteUser(id) {
   contacts.splice(id, 1);
   await setItem("contacts", JSON.stringify(contacts));
   await init();
-  generateUserDetails();
+  generateUserDetails(id);
 }
 
 async function includeHTML() {
