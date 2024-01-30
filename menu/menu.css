@@ -1,0 +1,146 @@
+:root {
+  --blue-dark: #2A3647;
+  --blue-light: #29ABE2;
+  --white: #FFFFFF;
+  --black: #000000;
+  --red: #FF3D00;
+  --grey: #A8A8A8;
+  --grey-light: #D1D1D1;
+  --grey-bg: #F6F7F8;
+  --link-color: #CDCDCD;
+  --icon: #A8A8A8;
+  --background: #F6F8F8
+}
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+
+.border-red {
+  border: 2px solid red;
+}
+
+.border-green {
+  border: 2px solid green
+}
+
+.border-blue {
+  border: 2px solid blue
+}
+
+
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+
+main {
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  top: 96px;
+  left: 232px;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 20px 40px 20px 348px;
+  justify-content: space-between;
+  align-items: center;
+  height: 96px;
+  z-index: 1;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  width: 232px;
+  padding: 64px 0;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: var(--blue-dark);
+  z-index: 2;
+}
+
+nav img {
+  width: 100.034px;
+  height: 121.966px;
+  flex-shrink: 0;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.nav-button {
+  display: flex;
+  width: 232px;
+  height: 46px;
+  padding: 8px 56px;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: var(--link-color);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+
+.nav-button img {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.nav-imprint {
+  display: flex;
+  padding: 243px 0px 0px 52px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.nav-imprint a {
+  color: var(--icon);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  padding: 15px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--blue-dark);
+  z-index: 2;
+}
+
+.active {
+  color: greenyellow;
+}
