@@ -181,6 +181,15 @@ function togglePopupEdit(i) {
   }
 }
 
+function toogleInfo(message) {
+  let info = document.getElementById("info");
+  info.innerHTML = `<div class="infoButton">${message}</div>`;
+  info.classList.add("info-slideIn");
+  setTimeout(() => {
+    info.classList.remove("info-slideIn");
+  }, 2000);
+}
+
 function generateEditCard(i) {
   let editContact = document.getElementById("editContact");
   let contact = contacts[i];
@@ -215,15 +224,6 @@ function generateEditCard(i) {
     </form>
   </div>
 `;
-}
-
-function toogleInfo(text) {
-  let info = document.getElementById("info");
-  info.innerHTML = `<div class="infoButton">${text}</div>`;
-  info.style.display = "block";
-  setTimeout(() => {
-    info.style.display = "none";
-  }, 2000);
 }
 
 async function saveEdit(i) {
