@@ -209,7 +209,7 @@ nav img {
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
   overflow-y: auto;
   overflow-x: hidden;
-  padding-bottom: 120px;
+  padding-bottom: 220px;
 }
 
 .contact-button-wrapper {
@@ -676,22 +676,22 @@ nav img {
   transform: translateX(0);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .infoButton {
   display: flex;
   width: 326px;
+  height: 74px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: #2A3647;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+  font-size: 20px;
+  color: var(--white);
+}
+
+.infoButtonDelete {
+  display: flex;
+  width: 626px;
   height: 74px;
   justify-content: center;
   align-items: center;
@@ -730,27 +730,25 @@ footer a img {
 
 
 .addContactMobile {
-  position: absolute;
-  right: 60px;
-  bottom: 150px;
-  height: 32px;
-  width: 32px;
+  position: fixed;
+  right: 24px;
+  bottom: 112px;
+  padding: 12px;
+  border-radius: 46px;
+  background-color: var(--blue-dark);
+  border: 1px solid var(--blue-dark);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
+.addContactMobile:hover {
+  background-color: var(--blue-light);
+  border: 1px solid var(--blue-light);
+}
 
 
 .d-none {
@@ -759,6 +757,12 @@ footer a img {
 
 @media (min-width:1300px) {
   footer {
+    display: none;
+  }
+}
+
+@media (min-width:990px) {
+  .addContactMobile {
     display: none;
   }
 }
@@ -808,8 +812,18 @@ footer a img {
     max-width: 396px;
     height: 760px;
     gap: 0;
+  }
 
+  .contact-button-wrapper {
+    display: none;
+  }
 
+  .contact-left {
+    width: 100%;
+  }
+
+  .contact-right {
+    display: none;
   }
 
   .overlay-add-contact-left {

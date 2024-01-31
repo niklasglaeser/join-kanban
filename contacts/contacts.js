@@ -1,6 +1,7 @@
 let contacts = [];
 let users = [];
 let currentContact = [];
+let mobileStatus = true;
 
 async function init() {
   await includeHTML();
@@ -118,9 +119,10 @@ function setCardActive(i) {
 
 function generateUserDetails(i) {
   let details = document.getElementById("contactDetails");
+  let contactRight = document.getElementById("contact-right");
+  console.log(contactRight);
   let contact = contacts[i];
   details.innerHTML = "";
-
   details.innerHTML = /*HTML*/ `
   <div class="contact-right-container">
     <div class="contactInitial" >
@@ -130,7 +132,8 @@ function generateUserDetails(i) {
       <p >${contact.contact} </p>
       <div class="contact-right-name-action">
       <a onclick="togglePopupEdit(${i})" class="pointer"><img src="./images/edit.svg" alt="">EDIT</a>
-      <a onclick="deleteUser(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a>
+      <!-- <a onclick="deleteUser(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a> -->
+      <a onclick="toogleInfoDelete(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a>
       </div>
     </div>
   </div>
@@ -142,6 +145,11 @@ function generateUserDetails(i) {
     <div class="contact-right-details-phone"> ${contact.phone}</div>
   </div>
 `;
+
+  if (mobileStatus) {
+    contactRight.style.display = "block";
+    contactRight.style.position = "absolute";
+  }
 }
 
 function togglePopup() {
@@ -188,6 +196,26 @@ function toogleInfo(message) {
   setTimeout(() => {
     info.classList.remove("info-slideIn");
   }, 2000);
+}
+
+function toogleInfoDelete(i) {
+  let info = document.getElementById("info");
+  info.innerHTML = /*HTML*/ `
+  <div id="infoDelete" class="infoButton">
+    <a onclick="confirmDeleteUser(${i})" class="pointer">JA</a>
+    <a onclick="cancelDelete()" class="pointer">NEIN</a>
+  </div>`;
+  info.classList.add("info-slideIn");
+}
+
+function confirmDeleteUser(i) {
+  deleteUser(i);
+  info.classList.remove("info-slideIn");
+}
+
+function cancelDelete() {
+  let info = document.getElementById("info");
+  info.classList.remove("info-slideIn");
 }
 
 function generateEditCard(i) {
@@ -253,6 +281,7 @@ async function deleteUser(id) {
   contacts.splice(id, 1);
   await setItem("contacts", JSON.stringify(contacts));
   await init();
+  console.log("delete");
   generateUserDetails(id);
 }
 
