@@ -812,6 +812,7 @@ footer a img {
     max-width: 396px;
     height: 760px;
     gap: 0;
+    margin: 8px;
   }
 
   .contact-button-wrapper {
@@ -845,6 +846,7 @@ footer a img {
     flex-direction: column;
     gap: 0;
     justify-content: flex-start;
+    width: 100%;
 
   }
 
@@ -858,13 +860,14 @@ footer a img {
     padding-right: 0;
     position: relative;
     top: -30px;
-
+    width: 100%;
   }
 
   .addContactForm {
-    width: 364px;
-    height: 153px;
+    /* width: 364px; */
+    /* height: 153px; */
     gap: 15px;
+    margin: 0 8px;
   }
 
   .addContactInput {
@@ -881,6 +884,13 @@ footer a img {
 
   .addContactBtnCreate {
     margin-top: 16px;
+  }
+}
+
+
+@media (max-width:640px) {
+  .contact-right {
+    padding: 16px 8px 0 8px;
   }
 }
 

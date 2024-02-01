@@ -1,13 +1,33 @@
 let contacts = [];
 let users = [];
 let currentContact = [];
-let mobileStatus = true;
+let mobileStatus;
 
 async function init() {
   await includeHTML();
   await loadcontacts();
   await renderContact();
 }
+
+let innerWidth = window.innerWidth;
+let innerHeight = window.innerHeight;
+
+function getinnerWidth() {
+  return innerWidth;
+}
+
+function getinnerHeight() {
+  return innerHeight;
+}
+
+window.onresize = function () {
+  console.log(innerWidth);
+  console.log(mobileStatus);
+  innerWidth = window.innerWidth;
+  if (innerWidth < 990) {
+    mobileStatus = true;
+  } else mobileStatus = false;
+};
 
 async function loadcontacts() {
   try {
@@ -120,7 +140,6 @@ function setCardActive(i) {
 function generateUserDetails(i) {
   let details = document.getElementById("contactDetails");
   let contactRight = document.getElementById("contact-right");
-  console.log(contactRight);
   let contact = contacts[i];
   details.innerHTML = "";
   details.innerHTML = /*HTML*/ `
@@ -132,7 +151,6 @@ function generateUserDetails(i) {
       <p >${contact.contact} </p>
       <div class="contact-right-name-action">
       <a onclick="togglePopupEdit(${i})" class="pointer"><img src="./images/edit.svg" alt="">EDIT</a>
-      <!-- <a onclick="deleteUser(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a> -->
       <a onclick="toogleInfoDelete(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a>
       </div>
     </div>
