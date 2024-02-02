@@ -130,6 +130,7 @@ header {
   z-index: 1;
 }
 
+
 nav {
   position: absolute;
   top: 0;
@@ -398,20 +399,35 @@ nav img {
 
 .contact-right-headline {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   gap: 30px;
   margin-bottom: 32px;
   position: relative;
 }
 
+.horizontal-line {
+  display: block;
+}
+
+.vertical-line {
+  display: none;
+}
+
+
 .contact-right-headline-close {
-  position: absolute;
-  top: 0;
-  right: 40px;
-  width: 24px;
-  height: 24px;
+
+  display: flex;
+  justify-content: end;
+}
+
+.contact-right-headline-close img {
+  width: 32px;
+  height: 32px;
+  top: 32px;
+  right: 8px;
+  position: relative;
   cursor: pointer;
+  z-index: 1;
 }
 
 .contact-right-container {
@@ -582,38 +598,56 @@ nav img {
 }
 
 .contact-input {
-  width: 100%;
   font-size: 20px;
   font-weight: 400;
-  width: 100%;
-  border: none;
-  outline: none;
+  /* border: none;
+  outline: none; */
 }
-
-/* .email-input {
-  width: 100%;
-  font-size: 20px;
-  font-weight: 400;
-  border: none;
-  outline: none;
-}
-
-.phone-input {
-  width: 100%;
-  font-size: 20px;
-  font-weight: 400;
-  border: none;
-  outline: none;
-} */
 
 .addContactInput {
+  position: relative;
   display: flex;
-  border: 1px solid #D1D1D1;
   width: 422px;
-  padding: 12px 21px;
-  border-radius: 10px;
 }
 
+.addContactInput input {
+  flex: 1;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  padding: 13px 21px;
+  outline: none;
+  font-size: 20px;
+  font-weight: 400;
+  transition: border-color 0.3s ease;
+}
+
+.addContactInput img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.addContactInput input:focus {
+  border-color: var(--blue-light);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+/* 
+.addContactInput:focus-visible {
+  outline: var(--blue-dark) solid 1px;
+} */
 
 .addContactInputButton {
   display: flex;
@@ -785,9 +819,15 @@ footer a img {
   footer {
     display: none;
   }
+
+  header img {
+    display: none;
+  }
 }
 
 @media (min-width:990px) {
+
+
   .addContactMobile {
     display: none;
   }
@@ -800,6 +840,14 @@ footer a img {
 @media (max-width:1300px) {
 
   .sidebar {
+    display: none;
+  }
+
+  header {
+    padding: 16px 20px
+  }
+
+  header span {
     display: none;
   }
 
@@ -836,6 +884,17 @@ footer a img {
 
 @media (max-width:990px) {
 
+  header {
+    height: 80px;
+    padding: 20px 16px;
+  }
+
+
+
+  main {
+    margin: 80px 0 0 0;
+  }
+
   /* addcontact */
   #overlayAddContact {
     flex-direction: column;
@@ -855,6 +914,21 @@ footer a img {
 
   .contact-right {
     display: none;
+    padding-top: 55px;
+  }
+
+  .contact-right-headline {
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .horizontal-line {
+    display: none;
+  }
+
+  .vertical-line {
+    display: block;
   }
 
   .overlay-add-contact-left {
@@ -924,7 +998,17 @@ footer a img {
 
 @media (max-width:640px) {
   .contact-right {
-    padding: 16px 8px 0 8px;
+    padding: 16px 16px 0 16px;
+  }
+
+  .contact-right-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .contact-right-name-action {
+    justify-content: center;
   }
 }
 

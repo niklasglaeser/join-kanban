@@ -31,19 +31,19 @@
       </div>
     </div>
     <div id="contact-right" class="contact-right">
+      <a class="contact-right-headline-close">
+        <img src="./images/arrow-left.svg" alt="" onclick=" generateUserDetailsClose()">
+      </a>
       <div class="contact-right-headline">
         <span class="font-61-black">Contacts</span>
-        <img src="./images/stroke.svg"></img>
+        <img src="./images/stroke-horizontal.svg" class="horizontal-line"></img>
         <span class="font-27-black">Better with a team</span>
-        <img src="./images/close.svg" alt="" class="contact-right-headline-close border-red"
-          onclick="togglePopupEdit();">
-
+        <img src="./images/stroke-vertikal.svg" class="vertical-line"></img>
       </div>
       <div id="contactDetails">
 
       </div>
     </div>
-
   </main>
   <div w3-include-html="./templates/footer.html"></div>
 
@@ -64,15 +64,15 @@
           <img src="./images/close.svg" class=" addContactFormClose" onclick="togglePopup()">
           <form onsubmit="addContact();togglePopup(); renderContact(); return false" class="addContactForm">
             <div class="addContactInput">
-              <input id="contact" type="text" placeholder="Name" class="contact-input">
+              <input id="contact" type="text" placeholder="Name" required>
               <img src="./images/addContact-person.svg" alt="">
             </div>
             <div class="addContactInput">
-              <input id="email" type="text" placeholder="Email" class="contact-input">
+              <input id="email" type="email" placeholder="Email" required>
               <img src="./images/addContact-person.svg" alt="">
             </div>
             <div class="addContactInput">
-              <input id="phone" type="number" placeholder="Phone" class="contact-input">
+              <input id="phone" type="number" placeholder="Phone" required>
               <img src="./images/addContact-person.svg" alt="">
             </div>
             <div class="addContactBtn">

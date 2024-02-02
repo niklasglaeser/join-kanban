@@ -26,7 +26,10 @@ window.onresize = function () {
   innerWidth = window.innerWidth;
   if (innerWidth < 990) {
     mobileStatus = true;
-  } else mobileStatus = false;
+  } else {
+    mobileStatus = false;
+    generateUserDetailsClose();
+  }
 };
 
 async function loadcontacts() {
@@ -168,6 +171,12 @@ function generateUserDetails(i) {
     contactRight.style.display = "block";
     contactRight.style.position = "absolute";
   }
+}
+
+function generateUserDetailsClose() {
+  let contactRight = document.getElementById("contact-right");
+  contactRight.style.display = "";
+  contactRight.style.position = "";
 }
 
 function togglePopup() {
