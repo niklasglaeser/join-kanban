@@ -21,8 +21,8 @@ function getinnerHeight() {
 }
 
 window.onresize = function () {
-  console.log(innerWidth);
-  console.log(mobileStatus);
+  // console.log(innerWidth);
+  // console.log(mobileStatus);
   innerWidth = window.innerWidth;
   if (innerWidth < 990) {
     mobileStatus = true;
@@ -219,9 +219,13 @@ function toogleInfo(message) {
 function toogleInfoDelete(i) {
   let info = document.getElementById("info");
   info.innerHTML = /*HTML*/ `
-  <div id="infoDelete" class="infoButton">
-    <a onclick="confirmDeleteUser(${i})" class="pointer">JA</a>
-    <a onclick="cancelDelete()" class="pointer">NEIN</a>
+  <div id="infoDelete" class="infoButtonDelete">
+    <span>Delete ${contacts[i].contact}?</span>
+    <span></span>
+    <div>
+      <a onclick="confirmDeleteUser(${i})" class="pointer">YES <img src="./images/person-add.svg" alt=""></a>
+      <a onclick="cancelDelete()" class="pointer">NO <img src="./images/person-add.svg" alt=""></a>
+    </div>
   </div>`;
   info.classList.add("info-slideIn");
 }
