@@ -2,7 +2,7 @@ function headerTemplate() {
  
     return `
         <div id="header">
-            <div>Kanban Project Management Tool</div>
+            <div id="headerText">Kanban Project Management Tool</div>
             <div id="headerRight">
                 <div id="helpLink"><img src="img/help.svg"></div>
                 <div id="userProfile" onclick="toggleDropdown()">U</div>
