@@ -1,28 +1,18 @@
 let contacts = [];
 let users = [];
 let currentContact = [];
-let mobileStatus;
+let mobileStatus = false;
+let resizeTimer;
+let innerWidth = window.innerWidth;
 
 async function init() {
   await includeHTML();
   await loadcontacts();
   await renderContact();
+  await checkWindowSize();
 }
 
-let innerWidth = window.innerWidth;
-let innerHeight = window.innerHeight;
-
-function getinnerWidth() {
-  return innerWidth;
-}
-
-function getinnerHeight() {
-  return innerHeight;
-}
-
-window.onresize = function () {
-  // console.log(innerWidth);
-  // console.log(mobileStatus);
+async function checkWindowSize() {
   innerWidth = window.innerWidth;
   if (innerWidth < 990) {
     mobileStatus = true;
@@ -30,6 +20,11 @@ window.onresize = function () {
     mobileStatus = false;
     generateUserDetailsClose();
   }
+}
+
+window.onresize = function () {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(checkWindowSize, 650);
 };
 
 async function loadcontacts() {
@@ -116,14 +111,14 @@ function generateHeadline(i, letter) {
 
 function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
-  card.innerHTML += `
+  card.innerHTML += /*HTML*/ `
   <a onclick="generateUserDetails(${i}); setCardActive(${i})" id="contactId${i}" 
-  <div class="contactNameWrapper ">
+  <div class="contactNameWrapper">
   <div class="contactName-Initial" style="background-color:${contact.initial_color}"> ${contact.initial}</div>
-  <div>
-  <div class="contactName" >${contact.contact}</div>
-  <div class="contactEmail">${contact.email}</div>
-  </div
+  <div class="contactInfo">
+    <p class="contactName" >${contact.contact}</p>
+    <p class="contactEmail">${contact.email}</p>
+  </div>
   </div>
   </a>
   `;
@@ -131,12 +126,14 @@ function generateCard(i, contact, firstLetter) {
 
 function setCardActive(i) {
   let allContactNames = document.querySelectorAll(".contactNameWrapperActive");
-  for (let j = 0; j < allContactNames.length; j++) {
-    allContactNames[j].classList.remove("contactNameWrapperActive");
-  }
-  let activeContact = document.getElementById(`contactId${i}`);
-  if (activeContact) {
-    activeContact.classList.add("contactNameWrapperActive");
+  if (window.innerWidth > 990) {
+    for (let j = 0; j < allContactNames.length; j++) {
+      allContactNames[j].classList.remove("contactNameWrapperActive");
+    }
+    let activeContact = document.getElementById(`contactId${i}`);
+    if (activeContact) {
+      activeContact.classList.add("contactNameWrapperActive");
+    }
   }
 }
 
@@ -164,6 +161,17 @@ function generateUserDetails(i) {
     <div class="contact-right-details-email">${contact.email}</div>
     <div class="font-16-bold-black">Phone</div>
     <div class="contact-right-details-phone"> ${contact.phone}</div>
+  </div>
+  <div class="addContactMobile" onclick="toogleInfoEditMobile()">
+    <img src="./images/edit-more.svg" alt="">
+  </div>
+  <div id="popupHelper" class="d-none" onclick="toogleInfoEditMobile()">
+  <div id="edit-more" class="edit-more" onclick="toogleInfoEditMobile()">
+    <div class="contact-right-name-action-mobile">
+    <div onclick="togglePopupEdit(${i})" class="pointer"><img src="./images/edit.svg" alt="">Edit</div>
+    <div onclick="toogleInfoDelete(${i})" class="pointer"><img src="./images/delete.svg" alt="">Delete</div>
+  </div>
+  </div>
   </div>
 `;
 
@@ -239,6 +247,19 @@ function toogleInfoDelete(i) {
   info.classList.add("info-slideIn");
 }
 
+function toogleInfoEditMobile() {
+  let editPopup = document.getElementById("edit-more");
+  let popupHelper = document.getElementById("popupHelper");
+
+  if (editPopup.classList.contains("edit-more-slideIn")) {
+    editPopup.classList.remove("edit-more-slideIn");
+    popupHelper.classList.add("d-none");
+  } else {
+    popupHelper.classList.remove("d-none");
+    editPopup.classList.add("edit-more-slideIn");
+  }
+}
+
 function confirmDeleteUser(i) {
   deleteUser(i);
   info.classList.remove("info-slideIn");
@@ -258,18 +279,17 @@ function generateEditCard(i) {
     <div class="contactInitialEdit" style="background-color:${contact.initial_color}">${contact.initial}</div>
   </div>
   <div class="overlay-add-contact-input">
-    <form onsubmit="saveEdit(${i});   return false" class="addContactForm">
+    <form onsubmit="saveEdit(${i}); return false" class="addContactForm">
       <div class="addContactInput" id="contactName${i}">
         <input id="contact${i}" type="text" placeholder="Name" value="${contact.contact}" class="contact-input">
         <img src="./images/addContact-person.svg" alt="">
-        <img src="./images/close.svg" alt="" class="addContactFormClose" onclick="togglePopupEdit();">
       </div>
       <div class="addContactInput">
         <input id="email${i}" type="text" placeholder="Email" value="${contact.email}" class="contact-input">
         <img src="./images/addContact-person.svg" alt="">
       </div>
       <div class="addContactInput">
-        <input id="phone${i}" type="number" placeholder="Phone" value="${contact.phone}" class="contact-input">
+        <input id="phone${i}" type="tel" placeholder="Phone" value="${contact.phone}" class="contact-input">
         <img src="./images/addContact-person.svg" alt="">
       </div>
       <div class="addContactBtn">
