@@ -103,7 +103,7 @@ nav {
 }
 
 .nav-button:hover {
-  color: var(--white);
+  background-color: var(--hover-link);
 }
 
 .nav-imprint {
@@ -624,10 +624,22 @@ footer {
 }
 
 footer a {
-  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   text-align: center;
   color: var(--link-color);
+  width: 80px;
+  height: 76px;
+  border-radius: 8px;
 }
+
+footer a:hover {
+  background-color: var(--hover-link);
+}
+
 
 footer a img {
   height: 24px;
@@ -675,6 +687,10 @@ footer a img {
 
   .addContactFormClose {
     top: -180px;
+  }
+
+  .contact-right-headline-close {
+    display: none;
   }
 }
 
@@ -793,6 +809,18 @@ footer a img {
 
   .overlay-add-contact-left-undertext {
     font-size: 18px;
+  }
+
+  .overlay-add-contact-left-img {
+    display: none;
+  }
+
+  .font-61 {
+    font-size: 47px;
+  }
+
+  .font-27 {
+    font-size: 20px;
   }
 
 

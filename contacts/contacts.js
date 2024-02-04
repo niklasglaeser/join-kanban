@@ -158,7 +158,7 @@ function generateUserDetails(i) {
   <div>
     <div class="contact-right-details-headline">Contact Information</div>
     <div class="font-16-bold-black">Email</div>
-    <div class="contact-right-details-email">${contact.email}</div>
+    <div class="contact-right-details-email"><a href='mailto:${contact.email}'>${contact.email}</a></div>
     <div class="font-16-bold-black">Phone</div>
     <div class="contact-right-details-phone"> ${contact.phone}</div>
   </div>
