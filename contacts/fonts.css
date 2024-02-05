@@ -75,14 +75,12 @@
   font-size: 61px;
   font-style: normal;
   font-weight: 700;
-  /* line-height: 120%; */
 }
 
 .font-27 {
   font-size: 27px;
   font-style: normal;
   font-weight: 400;
-  /* line-height: 120%; */
 }
 
 .font-21 {
@@ -91,12 +89,10 @@
   font-weight: 700;
 }
 
-.font-16-bold-black {
+.font-16 {
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  /* line-height: 120%; */
-  color: var(--black);
 }
 
 .black {

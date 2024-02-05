@@ -6,16 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base href="./">
   <script src="contacts.js" defer></script>
+  <script src="contacts-template.js" defer></script>
   <script src="storage.js" defer></script>
-  <script src="global.js" defer></script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="colors.css">
   <link rel="stylesheet" href="css-reset.css">
   <link rel="stylesheet" href="contacts.css">
-  <link rel="stylesheet" href="button.css">
   <link rel="stylesheet" href="overlay.css">
-  <!-- <link rel="stylesheet" href="overlay-responsive.css"> -->
   <title>Join28 Contacts</title>
 </head>
 
@@ -49,7 +47,7 @@
       <div id="contactDetails">
 
       </div>
-      <!-- <div class="addContactMobile" onclick="toogleInfoDelete()">
+      <!-- <div class="addContactMobile" onclick="toogleDeleteWarn()">
         <img src="./images/edit-more.svg" alt="">
       </div> -->
     </div>
@@ -100,7 +98,7 @@
       </div>
     </div>
   </div>
-  <div id="popupEdit" class="popupEdit">
+  <div id="popupEdit" class="popup">
     <div id="overlayAddContact" class="overlayAddContact">
       <img src="./images/close-btn-white.svg" class=" addContactFormClose" onclick="togglePopupEdit()">
       <div class="overlay-add-contact-left">

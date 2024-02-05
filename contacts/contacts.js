@@ -12,6 +12,14 @@ async function init() {
   await checkWindowSize();
 }
 
+async function loadcontacts() {
+  try {
+    contacts = JSON.parse(await getItem("contacts"));
+  } catch (e) {
+    console.warn("User konnten nicht geladen werden ");
+  }
+}
+
 async function checkWindowSize() {
   innerWidth = window.innerWidth;
   if (innerWidth < 990) {
@@ -24,16 +32,8 @@ async function checkWindowSize() {
 
 window.onresize = function () {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(checkWindowSize, 650);
+  resizeTimer = setTimeout(checkWindowSize, 450);
 };
-
-async function loadcontacts() {
-  try {
-    contacts = JSON.parse(await getItem("contacts"));
-  } catch (e) {
-    console.warn("User konnten nicht geladen werden ");
-  }
-}
 
 async function addContact() {
   contacts.push({
@@ -76,7 +76,6 @@ async function renderContact() {
   sortContacts();
 
   let currentSign = null;
-
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
     let firstLetter = currentContact.contact.charAt(0).toUpperCase();
@@ -101,27 +100,31 @@ function getIdFromContact(currentContact) {
 
 function generateHeadline(i, letter) {
   let contactList = document.getElementById("contact-list");
-  contactList.innerHTML += `
-    <div class="" id=${letter}>
-      <div class="contactsFirstLetter">${letter}</div>
-      <div class="contactsFirstLetterHeadline"></div>
-    </div>
-  `;
+  contactList.innerHTML += generateHeadlineHTML(letter);
 }
 
 function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
-  card.innerHTML += /*HTML*/ `
-  <a onclick="generateUserDetails(${i}); setCardActive(${i})" id="contactId${i}" 
-  <div class="contactNameWrapper">
-  <div class="contactName-Initial" style="background-color:${contact.initial_color}"> ${contact.initial}</div>
-  <div class="contactInfo">
-    <p class="contactName" >${contact.contact}</p>
-    <p class="contactEmail">${contact.email}</p>
-  </div>
-  </div>
-  </a>
-  `;
+  card.innerHTML += generateCardHTML(i, contact);
+}
+
+function generateUserDetails(i) {
+  let details = document.getElementById("contactDetails");
+  let contactRight = document.getElementById("contact-right");
+  let contact = contacts[i];
+  details.innerHTML = "";
+  details.innerHTML = generateUserDetailsHTML(i, contact);
+
+  if (mobileStatus) {
+    contactRight.style.display = "block";
+    contactRight.style.position = "absolute";
+  }
+}
+
+function generateUserDetailsClose() {
+  let contactRight = document.getElementById("contact-right");
+  contactRight.style.display = "";
+  contactRight.style.position = "";
 }
 
 function setCardActive(i) {
@@ -137,90 +140,45 @@ function setCardActive(i) {
   }
 }
 
-function generateUserDetails(i) {
-  let details = document.getElementById("contactDetails");
-  let contactRight = document.getElementById("contact-right");
-  let contact = contacts[i];
-  details.innerHTML = "";
-  details.innerHTML = /*HTML*/ `
-  <div class="contact-right-container">
-    <div class="contactInitial" >
-      <div style="background-color: ${contact.initial_color}">${contact.initial}</div>
-    </div>
-    <div class="contact-right-name">
-      <p >${contact.contact} </p>
-      <div class="contact-right-name-action">
-      <a onclick="togglePopupEdit(${i})" class="pointer"><img src="./images/edit.svg" alt="">EDIT</a>
-      <a onclick="toogleInfoDelete(${i})" class="pointer"><img src="./images/delete.svg" alt="">DELETE</a>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="contact-right-details-headline">Contact Information</div>
-    <div class="font-16-bold-black">Email</div>
-    <div class="contact-right-details-email"><a href='mailto:${contact.email}'>${contact.email}</a></div>
-    <div class="font-16-bold-black">Phone</div>
-    <div class="contact-right-details-phone"> ${contact.phone}</div>
-  </div>
-  <div class="addContactMobile" onclick="toogleInfoEditMobile()">
-    <img src="./images/edit-more.svg" alt="">
-  </div>
-  <div id="popupHelper" class="d-none" onclick="toogleInfoEditMobile()">
-  <div id="edit-more" class="edit-more" onclick="toogleInfoEditMobile()">
-    <div class="contact-right-name-action-mobile">
-    <div onclick="togglePopupEdit(${i})" class="pointer"><img src="./images/edit.svg" alt="">Edit</div>
-    <div onclick="toogleInfoDelete(${i})" class="pointer"><img src="./images/delete.svg" alt="">Delete</div>
-  </div>
-  </div>
-  </div>
-`;
-
-  if (mobileStatus) {
-    contactRight.style.display = "block";
-    contactRight.style.position = "absolute";
-  }
-}
-
-function generateUserDetailsClose() {
-  let contactRight = document.getElementById("contact-right");
-  contactRight.style.display = "";
-  contactRight.style.position = "";
-}
-
 function togglePopup() {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
 
-  if (
+  if (popupVisible(overlay, popup)) {
+    hidePopup(overlay, popup);
+  } else {
+    showPopup(overlay, popup);
+  }
+}
+
+function popupVisible(overlay, popup) {
+  return (
     overlay.classList.contains("overlay-show") &&
     popup.classList.contains("popup-slideIn")
-  ) {
-    overlay.classList.remove("overlay-show");
-    overlay.classList.add("d-none");
-    popup.classList.remove("popup-slideIn");
-  } else {
-    overlay.classList.add("overlay-show");
-    overlay.classList.remove("d-none");
-    popup.classList.add("popup-slideIn");
-  }
+  );
+}
+
+function hidePopup(overlay, popup) {
+  overlay.classList.remove("overlay-show");
+  overlay.classList.add("d-none");
+  popup.classList.remove("popup-slideIn");
+}
+
+function showPopup(overlay, popup) {
+  overlay.classList.add("overlay-show");
+  overlay.classList.remove("d-none");
+  popup.classList.add("popup-slideIn");
 }
 
 function togglePopupEdit(i) {
   let overlay = document.getElementById("overlay");
   let popupEdit = document.getElementById("popupEdit");
+  generateEditCard(i);
 
-  if (
-    overlay.classList.contains("overlay-show") &&
-    popupEdit.classList.contains("popupEdit-slideIn")
-  ) {
-    overlay.classList.remove("overlay-show");
-    overlay.classList.add("d-none");
-    popupEdit.classList.remove("popupEdit-slideIn");
+  if (popupVisible(overlay, popupEdit)) {
+    hidePopup(overlay, popupEdit);
   } else {
-    overlay.classList.add("overlay-show");
-    overlay.classList.remove("d-none");
-    popupEdit.classList.add("popupEdit-slideIn");
-    generateEditCard(i);
+    showPopup(overlay, popupEdit);
   }
 }
 
@@ -233,17 +191,9 @@ function toogleInfo(message) {
   }, 2000);
 }
 
-function toogleInfoDelete(i) {
+function toogleDeleteWarn(i) {
   let info = document.getElementById("info");
-  info.innerHTML = /*HTML*/ `
-  <div id="infoDelete" class="infoButtonDelete">
-    <span>Delete ${contacts[i].contact}?</span>
-    <span></span>
-    <div>
-      <a onclick="confirmDeleteUser(${i})" class="pointer">YES <img src="./images/person-add.svg" alt=""></a>
-      <a onclick="cancelDelete()" class="pointer">NO <img src="./images/person-add.svg" alt=""></a>
-    </div>
-  </div>`;
+  info.innerHTML = toogleDeleteWarnHTML(i);
   info.classList.add("info-slideIn");
 }
 
@@ -274,35 +224,7 @@ function generateEditCard(i) {
   let editContact = document.getElementById("editContact");
   let contact = contacts[i];
   editContact.innerHTML = "";
-  editContact.innerHTML = /*HTML*/ `
-  <div class="overlay-add-contact-person" >
-    <div class="contactInitialEdit" style="background-color:${contact.initial_color}">${contact.initial}</div>
-  </div>
-  <div class="overlay-add-contact-input">
-    <form onsubmit="saveEdit(${i}); return false" class="addContactForm">
-      <div class="addContactInput" id="contactName${i}">
-        <input id="contact${i}" type="text" placeholder="Name" value="${contact.contact}" class="contact-input">
-        <img src="./images/addContact-person.svg" alt="">
-      </div>
-      <div class="addContactInput">
-        <input id="email${i}" type="text" placeholder="Email" value="${contact.email}" class="contact-input">
-        <img src="./images/addContact-person.svg" alt="">
-      </div>
-      <div class="addContactInput">
-        <input id="phone${i}" type="tel" placeholder="Phone" value="${contact.phone}" class="contact-input">
-        <img src="./images/addContact-person.svg" alt="">
-      </div>
-      <div class="addContactBtn">
-        <button class="addContactBtnCancel" type="button" onclick="togglePopupEdit()">Delete
-          <img src="./images/cancel.svg" alt="">
-        </button>
-        <button class="addContactBtnCreate" type="submit">Save
-          <img src="./images/check.svg" alt="">
-        </button>
-      </div>
-    </form>
-  </div>
-`;
+  editContact.innerHTML = generateEditCardHTML(i, contact);
 }
 
 async function saveEdit(i) {
@@ -332,8 +254,12 @@ async function deleteUser(id) {
   contacts.splice(id, 1);
   await setItem("contacts", JSON.stringify(contacts));
   await init();
-  console.log("delete");
   generateUserDetails(id);
+}
+
+async function deleteAllUser() {
+  contacts.splice(0, contacts.length);
+  await setItem("contacts", JSON.stringify(contacts));
 }
 
 async function includeHTML() {
@@ -348,9 +274,4 @@ async function includeHTML() {
       element.innerHTML = "Page not found";
     }
   }
-}
-
-async function deleteAllUser() {
-  contacts.splice(0, contacts.length);
-  await setItem("contacts", JSON.stringify(contacts));
 }
