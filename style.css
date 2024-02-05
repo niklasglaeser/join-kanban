@@ -3,7 +3,7 @@ body {
     background-color: #F6F7F8;
 }
 
-.header {
+header {
     display: flex;
     justify-content: space-between;
     width: 100%;

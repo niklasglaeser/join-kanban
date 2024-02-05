@@ -6,10 +6,10 @@
     <title>Summary</title>
     <link rel="stylesheet" href="summary.css">
 </head>
-<body onload="renderHeader(); renderSidebar()">
+<body onload="init()">
 
-    <div id="headerContainer"></div>
-    <div id="sidebarContainer"></div>
+    <div w3-include-html="header.html"></div>
+    <div w3-include-html="sidebar.html"></div>
 
     <div id="contentContainer">
         <div class="content-header">

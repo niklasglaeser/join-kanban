@@ -3,7 +3,7 @@ body {
     font-family: Inter, sans-serif;
 }
 
-#header {
+header {
     display: flex;
     max-width: 1920px;
     padding: 20px 0px 20px 0px;
