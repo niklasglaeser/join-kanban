@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="./">
+  <script src="contacts.js" defer></script>
+  <script src="contacts-template.js" defer></script>
+  <script src="storage.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="colors.css">
+  <link rel="stylesheet" href="css-reset.css">
+  <link rel="stylesheet" href="contacts.css">
+  <link rel="stylesheet" href="overlay.css">
+  <title>Join28 Contacts</title>
+</head>
+
+<body onload="init()">
+  <div w3-include-html="./templates/header.html"></div>
+  <div w3-include-html="./templates/sidebar.html"></div>
+  <main>
+    <div class="contact-left left">
+      <div class="contact-button-wrapper">
+        <button id="slideButton" onclick="togglePopup()" class="contact-button font-21 white">
+          <span>Add new contact</span>
+          <img src="./images/person-add.svg" alt="">
+        </button>
+      </div>
+      <div id="contact-list" class="contacts-list">
+      </div>
+      <div class="addContactMobile" onclick="togglePopup()">
+        <img src="./images/person-add.svg" alt="">
+      </div>
+    </div>
+    <div id="contact-right" class="contact-right">
+      <a class="contact-right-headline-close">
+        <img src="./images/arrow-left.svg" alt="" onclick=" generateUserDetailsClose()">
+      </a>
+      <div class="contact-right-headline">
+        <span class="font-61 black">Contacts</span>
+        <img src="./images/stroke-horizontal.svg" class="horizontal-line"></img>
+        <span class="font-27 black">Better with a team</span>
+        <img src="./images/stroke-vertikal.svg" class="vertical-line"></img>
+      </div>
+      <div id="contactDetails">
+
+      </div>
+      <!-- <div class="addContactMobile" onclick="toogleDeleteWarn()">
+        <img src="./images/edit-more.svg" alt="">
+      </div> -->
+    </div>
+  </main>
+  <div w3-include-html="./templates/footer.html"></div>
+
+  <div id="overlay" class="overlay"></div>
+  <div id="popup" class="popup">
+    <div id="overlayAddContact" class="overlayAddContact">
+      <img src="./images/close-btn-white.svg" class=" addContactFormClose" onclick="togglePopup()">
+      <div class="overlay-add-contact-left">
+        <img src="./images/logo-nav.svg" class="overlay-add-contact-left-img" alt="join-logo">
+        <span class="font-61 white">Add Contact</span>
+        <span class="font-27 white">Tasks are better with a team!</span>
+        <img src="./images/stroke-vertikal.svg" class="overlay-add-contact-left-stroke" alt="vertical-line"></img>
+      </div>
+      <div class="overlay-add-contact-right">
+        <div class="overlay-add-contact-person">
+          <div>
+            <img src="./images/add-person.svg" alt="">
+          </div>
+        </div>
+        <div class="overlay-add-contact-input">
+
+          <form onsubmit="addContact();togglePopup(); renderContact(); return false" class="addContactForm">
+            <div class="addContactInput">
+              <input id="contact" type="text" placeholder="Name" required>
+              <img src="./images/addContact-person.svg" alt="">
+            </div>
+            <div class="addContactInput">
+              <input id="email" type="email" placeholder="Email" required>
+              <img src="./images/addContact-person.svg" alt="">
+            </div>
+            <div class="addContactInput">
+              <input id="phone" type="tel" placeholder="Phone" required>
+              <img src="./images/addContact-person.svg" alt="">
+            </div>
+            <div class="addContactBtn">
+              <button class="addContactBtnCancel" type="button" onclick="togglePopup()">Cancel
+                <img src="./images/cancel.svg" alt="">
+              </button>
+              <button class="addContactBtnCreate" type="submit">Create contact
+                <img src="./images/check.svg" alt="">
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="popupEdit" class="popup">
+    <div id="overlayAddContact" class="overlayAddContact">
+      <img src="./images/close-btn-white.svg" class=" addContactFormClose" onclick="togglePopupEdit()">
+      <div class="overlay-add-contact-left">
+        <img src="./images/logo-nav.svg" class="overlay-add-contact-left-img" alt="join-logo">
+        <span class="font-61 white">Edit Contact</span>
+        <!-- <span class="font-27 white">Tasks are better with a team!</span> -->
+        <img src="./images/stroke-vertikal.svg" class="overlay-add-contact-left-stroke" alt="vertical-line"></img>
+      </div>
+      <div id="editContact" class="overlay-add-contact-right">
+
+      </div>
+    </div>
+  </div>
+  <div id="info" class="info">
+  </div>
+
+</body>
+
+
+</html>

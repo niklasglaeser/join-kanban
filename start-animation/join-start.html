@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Startseite</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    body {
+      background-color: grey;
+    }
+
+    main {
+      position: relative;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* border: 4px solid rebeccapurple; */
+      /* margin: 100px; */
+    }
+
+    .wrapper {
+      position: relative;
+      width: 1200px;
+      height: 600px;
+      border: 2px solid red;
+    }
+
+    .logo {
+      position: absolute;
+      z-index: 1;
+      width: 200px;
+    }
+
+    .logoShow {
+      animation: forwards 1;
+      animation-name: moving-to-target;
+      animation-duration: 2s;
+      animation-delay: 0.5s;
+      opacity: 1;
+    }
+
+    @keyframes moving-to-target {
+
+      from {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.2;
+      }
+
+      to {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        opacity: 1;
+        transition: 2.5s;
+        width: 50px;
+      }
+    }
+
+    .logo1 {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: grey;
+      width: 100%;
+    }
+
+    .logo1Show {
+      animation: forwards 1;
+      animation-name: logo-front;
+      animation-duration: 0.5s;
+      animation-delay: 0.5s;
+      animation-iteration-count: 1;
+    }
+
+    @keyframes logo-front {
+      to {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.0s linear;
+      }
+    }
+
+    .logo1 img {
+      position: absolute;
+      width: 200px;
+      top: 50%;
+      left: 50%;
+      right: 50%;
+      bottom: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (max-width: 576px) {
+      .logo {
+        width: 80px;
+      }
+
+      .logo1 img {
+
+        width: 80px;
+      }
+    }
+  </style>
+
+</head>
+
+<body onload="logoAnimation()">
+  <main>
+    <div class="wrapper">
+      <img id="logo" class="logo" src="./logo2.png" alt="">
+    </div>
+    <div id="logo1" class="logo1">
+      <img class="" src="./logo1.png" alt="">
+    </div>
+  </main>
+  <script>
+    let animationRunning = false;
+    function logoAnimation() {
+      let logo = document.getElementById("logo");
+      let logo1 = document.getElementById("logo1");
+      logo.classList.toggle("logoShow");
+      logo1.classList.toggle("logo1Show");
+      animationRunning = true;
+
+    }
+  </script>
+</body>
+
+</html>
