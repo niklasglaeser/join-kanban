@@ -68,7 +68,8 @@ main {
     border: solid 30px;
     box-sizing: border-box;
     border-color:#FFF;
-    margin-top: 60px;
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 
 #loginContainer h1 {
@@ -196,8 +197,6 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 35px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     height: 30px;
 }
@@ -334,3 +333,20 @@ footer a:hover {
     color: #29ABE2;
     text-decoration: none;
 }
+
+
+#errorConfirmPassword {
+    color: red;
+    align-self: flex-start;
+    margin-top: -15px;
+    margin-left: 20px;
+}
+
+#errorLogin {
+    color: red;
+    align-self: flex-start;
+    margin-top: -15px;
+    margin-left: 20px;
+}
+
+

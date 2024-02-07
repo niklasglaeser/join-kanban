@@ -20,15 +20,15 @@
         <div class="summary-section">
             <div class="summary-container">
                 <div class="first-row">
-                    <div class="first-row-div">
-                        <img src="img/pencil-icon.svg">
+                    <div class="first-row-div" onmouseenter="changePencilIcon()" onmouseleave="changePencilIconBack()">
+                        <img id="firstRowDivPencilIcon" src="img/pencil-icon.svg">
                         <div>
                             <div class="to-do-count">1</div>
                             <div class="to-do-label">To-do</div>
                         </div>
                     </div>
-                    <div class="first-row-div">
-                        <img src="img/haken-icon.svg">
+                    <div class="first-row-div" onmouseenter="changeHakenIcon()" onmouseleave="changeHakenIconBack()">
+                        <img id="firstRowDivHakenIcon" src="img/haken-icon.svg">
                         <div>
                             <div class="done-count">1</div>
                             <div class="done-label">Done</div>
