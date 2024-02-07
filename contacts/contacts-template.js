@@ -106,7 +106,7 @@ function generateEditCardHTML(i, contact) {
         <img src="./images/addContact-person.svg" alt="">
       </div>
       <div class="addContactBtn">
-        <button class="addContactBtnCancel" type="button" onclick="togglePopupEdit()">Delete BUG
+        <button class="addContactBtnCancel" type="button" onclick="toogleDeleteWarn(${i})">Delete
           <img src="./images/cancel.svg" alt="">
         </button>
         <button class="addContactBtnCreate" type="submit">Save
