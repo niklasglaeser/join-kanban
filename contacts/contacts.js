@@ -173,12 +173,12 @@ function showPopup(overlay, popup) {
 function togglePopupEdit(i) {
   let overlay = document.getElementById("overlay");
   let popupEdit = document.getElementById("popupEdit");
-  generateEditCard(i);
 
   if (popupVisible(overlay, popupEdit)) {
     hidePopup(overlay, popupEdit);
   } else {
     showPopup(overlay, popupEdit);
+    generateEditCard(i);
   }
 }
 
