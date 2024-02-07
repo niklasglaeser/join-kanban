@@ -56,9 +56,79 @@ function includeHTML() {
         return;
       }
     }
-  }
+}
 
-  function init() {
+function init() {
     includeHTML();
-  }
+}
+
+
+function changePasswordIcon(inputId, iconId) {
+    let passwordInput = document.getElementById(inputId);
+    let passwordIcon = document.getElementById(iconId);
+
+    if (passwordInput.value.trim() === '') {
+        passwordIcon.src = 'img/lock.svg';
+    } else {
+        passwordIcon.src = 'img/show-password-icon.svg';
+        passwordIcon.onclick = function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.src = 'img/hide-password-icon.svg';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.src = 'img/show-password-icon.svg';
+            }
+        };
+    }
+
+    passwordInput.addEventListener('input', function() {
+        if (passwordInput.type === 'text' && passwordInput.value.trim() !== '') {
+            passwordIcon.src = 'img/hide-password-icon.svg';
+        }
+    });
+}
+
+
+function changePencilIcon() {
+    let icon = document.getElementById('firstRowDivPencilIcon');
+
+    icon.src = 'img/pencil-icon-invert.svg';
+}
+
+function changePencilIconBack() {
+    let icon = document.getElementById('firstRowDivPencilIcon');
+
+    icon.src = 'img/pencil-icon.svg';
+}
+
+function changeHakenIcon() {
+    let icon = document.getElementById('firstRowDivHakenIcon');
+
+    icon.src = 'img/haken-icon-invert.svg';
+}
+
+function changeHakenIconBack() {
+    let icon = document.getElementById('firstRowDivHakenIcon');
+
+    icon.src = 'img/haken-icon.svg';
+}
+
+
+function comparePasswords(passwordInputId, confirmPasswordInputId, errorMessageId) {
+    let passwordInput = document.getElementById(passwordInputId);
+    let confirmPasswordInput = document.getElementById(confirmPasswordInputId);
+    let errorMessage = document.getElementById(errorMessageId);
+
+    if (confirmPasswordInput.value.trim() === '') {
+        errorMessage.innerHTML = "";
+        return;
+    }
+
+    if (passwordInput.value !== confirmPasswordInput.value) {
+        errorMessage.innerHTML = "Ups! your password don't match";
+    } else {
+        errorMessage.innerHTML = "";
+    }
+}
 
