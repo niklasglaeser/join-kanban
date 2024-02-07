@@ -173,12 +173,12 @@ function showPopup(overlay, popup) {
 function togglePopupEdit(i) {
   let overlay = document.getElementById("overlay");
   let popupEdit = document.getElementById("popupEdit");
-  generateEditCard(i);
 
   if (popupVisible(overlay, popupEdit)) {
     hidePopup(overlay, popupEdit);
   } else {
     showPopup(overlay, popupEdit);
+    generateEditCard(i);
   }
 }
 
@@ -213,6 +213,7 @@ function toogleInfoEditMobile() {
 function confirmDeleteUser(i) {
   deleteUser(i);
   info.classList.remove("info-slideIn");
+  hidePopup(overlay, popupEdit);
 }
 
 function cancelDelete() {
@@ -254,7 +255,7 @@ async function deleteUser(id) {
   contacts.splice(id, 1);
   await setItem("contacts", JSON.stringify(contacts));
   await init();
-  generateUserDetails(id);
+  generateUserDetails(0);
 }
 
 async function deleteAllUser() {

@@ -27,11 +27,11 @@ function generateHeadlineHTML(letter) {
 
 function generateCardHTML(i, contact) {
   return `
-  <a onclick="generateUserDetails(${i}); setCardActive(${i})" id="contactId${i}">
-  <div class="contactNameWrapper">
+  <a onclick="generateUserDetails(${i}); setCardActive(${i})" >
+  <div class="contactNameWrapper" id="contactId${i}">
   <div class="contactName-Initial" style="background-color:${contact.initial_color}"> ${contact.initial}</div>
   <div class="contactInfo">
-    <p class="contactName black">${contact.contact}</p>
+    <p class="contactName">${contact.contact}</p>
     <p class="contactEmail">${contact.email}</p>
   </div>
   </div>
@@ -80,8 +80,8 @@ function toogleDeleteWarnHTML(i) {
     <span>Delete ${contacts[i].contact}?</span>
     <span></span>
     <div>
-      <a onclick="confirmDeleteUser(${i})" class="pointer">YES <img src="./images/person-add.svg" alt=""></a>
-      <a onclick="cancelDelete()" class="pointer">NO <img src="./images/person-add.svg" alt=""></a>
+      <a onclick="confirmDeleteUser(${i})" class="pointer">YES <img src="./images/check.svg" alt=""></a>
+      <a onclick="cancelDelete()" class="pointer">NO <img src="./images/close-btn-white.svg" alt=""></a>
     </div>
   </div>`;
 }
@@ -99,15 +99,14 @@ function generateEditCardHTML(i, contact) {
       </div>
       <div class="addContactInput">
         <input id="email${i}" type="text" placeholder="Email" value="${contact.email}" class="contact-input">
-        <img src="./images/addContact-person.svg" alt="">
+        <img src="./images/mail.svg" alt="">
       </div>
       <div class="addContactInput">
         <input id="phone${i}" type="tel" placeholder="Phone" value="${contact.phone}" class="contact-input">
-        <img src="./images/addContact-person.svg" alt="">
+        <img src="./images/phone.svg" alt="">
       </div>
       <div class="addContactBtn">
-        <button class="addContactBtnCancel" type="button" onclick="togglePopupEdit()">Delete BUG
-          <img src="./images/cancel.svg" alt="">
+        <button class="addContactBtnCancel" type="button" onclick="toogleDeleteWarn(${i})">Delete
         </button>
         <button class="addContactBtnCreate" type="submit">Save
           <img src="./images/check.svg" alt="">
