@@ -1,0 +1,150 @@
+@media (max-width: 800px) {
+
+    #loginContainer {
+        width: 400px;
+        margin-top: 50px;
+        padding: 12px 37px;
+        margin-bottom: 50px;
+    }
+
+    .header-right {
+        display: none;
+    }
+
+    #joinLogo {
+        width: 70.03px;
+        height: 81.97px;
+        margin-top: 40px;
+        margin-left: 37px;
+    }
+
+    #loginContainer h1 {
+        font-size: 42px;
+    }
+    
+    .loginInputs {
+        width: 300px;
+    }
+
+    #loginButtons {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .signUpMobile {
+        display: flex;
+        gap: 35px;
+        padding-top: 0px;
+        margin-bottom: 30px;
+    }
+
+    #signUpButtonMobile {
+        display: flex;
+        padding: 15px 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 8px;
+        background-color: #2A3647;
+        color: #FFF;
+        font-size: 20px;
+        border: none;
+    }
+
+    .signUpMobile div {
+        display: flex;
+        padding-top: 15px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    #signUpButtonMobile:hover {
+        cursor: pointer;
+        background-color: #29ABE2;
+        box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #loginButton {
+        font-size: 21px;
+    }
+
+
+    #signUpContainer {
+        width: 400px;
+        height: 590px;
+        margin-bottom: 30px;
+    }
+
+    #signUpContainer h1 {
+        font-size: 42px;
+    }
+
+    .signUpInputs {
+        width: 250px;
+    }
+
+
+
+}
+
+
+@media (max-width: 550px) {
+
+    #loginContainer {
+        width: 280px;
+    }
+
+    #loginContainer h1 {
+        font-size: 38px;
+    }
+
+    #loginForm {
+        gap: 24px;
+    }
+    
+    .loginInputs {
+        width: 200px;
+    }
+
+    #signUpButtonMobile {
+        font-size: 15px;
+    }
+
+    .signUpMobile div {
+        font-size: 15px;
+    }
+
+    #signUpButtonMobile {
+        font-size: 16px;
+    }
+
+    .signUpMobile div {
+        display: flex;
+        padding-top: 15px;
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+
+    #loginButton {
+        font-size: 21px;
+    }
+
+    #signUpContainer {
+        width: 280px;
+        height: 590px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+
+    #signUpContainer h1 {
+        font-size: 32px;
+    }
+
+    .signUpInputs {
+        width: 200px;
+
+    }
+
+    
+}
