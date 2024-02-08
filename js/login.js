@@ -5,7 +5,7 @@ function login() {
     let errorLogin = document.getElementById('errorLogin');
 
     if (user) {
-        window.location.href = 'summary.html';
+        window.location.href = 'pages/summary.html';
     } else {
         errorLogin.innerHTML = 'Email or Password is wrong! Try again.'
     }
