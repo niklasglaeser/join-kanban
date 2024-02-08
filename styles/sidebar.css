@@ -27,6 +27,7 @@ aside {
     gap: 8px;
     align-items: center;
     padding: 8px 63px;
+    text-decoration: none;
 }
 
 .sidebar-link:hover {
@@ -34,7 +35,7 @@ aside {
     cursor: pointer;
 }
 
-.sidebar-link a {
+.sidebar-link div {
     text-decoration: none;
     color: #CDCDCD;
 }
@@ -65,12 +66,12 @@ aside {
     gap: 8px;
 }
 
-.sidebar-footer div:hover {
+.sidebar-footer a:hover {
     color: #29ABE2;
     cursor: pointer;
 }
 
-.sidebar-footer div {
+.sidebar-footer a {
     color: #A8A8A8;
     text-decoration: none;
 }
