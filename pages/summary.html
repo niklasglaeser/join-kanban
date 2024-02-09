@@ -1,83 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary</title>
+    <title>Join 28 Summary</title>
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/colors.css">
+    <link rel="stylesheet" href="../styles/css-reset.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
     <link rel="stylesheet" href="../styles/summary.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/overlay.css">
+    <!-- <link rel="stylesheet" href="../styles/css-reset.css"> -->
 </head>
+
 <body onload="init()">
 
     <div w3-include-html="../templates/header.html"></div>
     <div w3-include-html="../templates/sidebar.html"></div>
 
-    <main>
-        <div class="content-header">
-            <div>Join 360</div>
-            <img src="../img/separation-line.svg">
-            <span>Key Metrics at a Glance</span>
-        </div>
-        <div class="summary-section">
-            <div class="summary-container">
-                <div class="first-row">
-                    <div class="first-row-div" onmouseenter="changePencilIcon()" onmouseleave="changePencilIconBack()">
-                        <img id="firstRowDivPencilIcon" src="../img/pencil-icon.svg">
-                        <div>
-                            <div class="to-do-count">1</div>
-                            <div class="to-do-label">To-do</div>
+    <main class="">
+        <div class=" summary-left">
+            <div class="content-header">
+                <div>Join 360</div>
+                <img src="../img/separation-line.svg">
+                <span>Key Metrics at a Glance</span>
+            </div>
+            <div class="summary-section">
+                <div class="summary-container">
+                    <div class="first-row">
+                        <div class="first-row-div" onmouseenter="changePencilIcon()"
+                            onmouseleave="changePencilIconBack()">
+                            <img id="firstRowDivPencilIcon" src="../img/pencil-icon.svg">
+                            <div>
+                                <div class="to-do-count">1</div>
+                                <div class="to-do-label">To-do</div>
+                            </div>
+                        </div>
+                        <div class="first-row-div" onmouseenter="changeHakenIcon()"
+                            onmouseleave="changeHakenIconBack()">
+                            <img id="firstRowDivHakenIcon" src="../img/haken-icon.svg">
+                            <div>
+                                <div class="done-count">1</div>
+                                <div class="done-label">Done</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="first-row-div" onmouseenter="changeHakenIcon()" onmouseleave="changeHakenIconBack()">
-                        <img id="firstRowDivHakenIcon" src="../img/haken-icon.svg">
-                        <div>
-                            <div class="done-count">1</div>
-                            <div class="done-label">Done</div>
+                    <div class="second-row">
+                        <div class="second-row-div">
+                            <div class="urgent-icon-div">
+                                <img src="../img/urgent-icon.svg">
+                            </div>
+                            <div>
+                                <div class="urgent-count">1</div>
+                                <div class="urgent-label">Urgent</div>
+                            </div>
+                            <img src="../img/summary-seperation-line.svg" class="urgent-seperation">
+                            <div class="deadline-label">
+                                <div class="deadline-date">October 16, 2022</div>
+                                <div class="upcoming-deadline">Upcoming Deadline</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="second-row">
-                    <div class="second-row-div">
-                        <div class="urgent-icon-div">
-                            <img src="../img/urgent-icon.svg">
+                    <div class="third-row">
+                        <div class="third-row-div">
+                            <div class="tasks-in-board-count">5</div>
+                            <div class="third-row-label">Tasks in</div>
+                            <div class="third-row-label">Board</div>
                         </div>
-                        <div>
-                            <div class="urgent-count">1</div>
-                            <div class="urgent-label">Urgent</div>
+                        <div class="third-row-div">
+                            <div class="tasks-in-progress-count">2</div>
+                            <div class="third-row-label">Tasks in</div>
+                            <div class="third-row-label">Board</div>
                         </div>
-                        <img src="../img/summary-seperation-line.svg" class="urgent-seperation">
-                        <div class="deadline-label">
-                            <div class="deadline-date">October 16, 2022</div>
-                            <div class="upcoming-deadline">Upcoming Deadline</div>
+                        <div class="third-row-div">
+                            <div class="awaiting-feedback-count">3</div>
+                            <div class="third-row-label">Awaiting</div>
+                            <div class="third-row-label">Feedback</div>
                         </div>
-                    </div>
-                </div>
-                <div class="third-row">
-                    <div class="third-row-div">
-                        <div class="tasks-in-board-count">5</div>
-                        <div class="third-row-label">Tasks in</div>
-                        <div class="third-row-label">Board</div>
-                    </div>
-                    <div class="third-row-div">
-                        <div class="tasks-in-progress-count">2</div>
-                        <div class="third-row-label">Tasks in</div>
-                        <div class="third-row-label">Board</div>
-                    </div>
-                    <div class="third-row-div">
-                        <div class="awaiting-feedback-count">3</div>
-                        <div class="third-row-label">Awaiting</div>
-                        <div class="third-row-label">Feedback</div>
                     </div>
                 </div>
             </div>
-            <div class="welcome-message">Good Morning</div>
+        </div>
+        <div class="summary-right">
+            <div class="welcome-message">Good Morning,</div>
+            <div class="font-64 blue-light">Sofia Nachmame</div>
         </div>
     </main>
-
-
-    
+    <div w3-include-html="../templates/footer.html"></div>
     <script src="../script.js"></script>
     <script src="../js/summary.js"></script>
 </body>
+
 </html>

@@ -1,32 +1,37 @@
 header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
-    max-width: 1920px;
-    padding: 20px 0px 20px 0px;
-    align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    height: 96px;
+    padding: 20px 40px 20px 348px;
+    align-items: center;
+    background-color: var(--white);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-    position: relative;
+    z-index: 1;
 }
 
 #headerText {
     font-size: 20px;
-    padding-left: 348px;
+    /* padding-left: 348px; */
 }
 
 #headerRight {
     display: flex;
-    gap: 35px;
+    gap: 16px;
     justify-content: center;
     align-items: center;
 }
 
-#helpLink img {
+#helpLink {
+    text-align: center;
     height: 32px;
     width: 32px;
 }
 
-#helpLink img:hover {
+#helpLink:hover {
     height: 35px;
     width: 35px;
     cursor: pointer;
@@ -41,7 +46,7 @@ header {
     width: 56px;
     border-radius: 50%;
     color: #29ABE2;
-    margin-right: 40px;
+    /* margin-right: 40px; */
 }
 
 #userProfile:hover {
