@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Task</title>
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/sidebar.css">
     <link rel="stylesheet" href="../styles/addtask.css">
@@ -14,7 +14,53 @@
     <div w3-include-html="../templates/sidebar.html"></div> 
 
     <main>
+        <div class="title">Add Task</div>
+        <form class="task-form">
+            <div class="task-form-container">
+                <div class="left-column">
+                    <div>
+                        <div>Title*</div>
+                        <input type="text" id="titleInput">
+                    </div>
+                    <div>
+                        <div>Description</div>
+                        <input type="text" id="descriptionInput">
+                    </div>
+                    <div>
+                        <div>Assigned to</div>
+                        <select name="" id="assignedToInput"></select>
+                    </div>
+                </div>
+                <img src="../img/add-task-seperation-line.svg">
+                <div class="right-column">
+                    <div>
+                        <div>Due date*</div>
+                        <input type="date" id="dueDateInput">
+                    </div>
+                    <div >
+                        <div>Prio</div>
+                        <div class="prio-selection-container">
+                            <div>Urgent</div>
+                            <div>Medium</div>
+                            <div>Low</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>Category*</div>
+                        <select name="select-category" id="categoryInput"></select>
+                    </div>
+                    <div>
+                        <div>Subtask</div>
+                        <input type="text" placeholder="Add new subtask" id="subtaskInput">
+                    </div>
+                    <div>
+                        <button id="clearButton">Clear</button>
+                        <button id="createTaskButton">Create Task</button>
+                    </div>
+                </div>
+            </div> 
 
+        </form>
     </main>
 
 

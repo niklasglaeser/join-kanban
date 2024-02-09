@@ -8,3 +8,61 @@ main {
     max-width: 1920px;
     height: 100vh;
 }
+
+.title {
+    font-size: 61px;
+    font-weight: bold;
+    padding-left: 300px;
+    padding-top: 80px;
+}
+
+.task-form {
+    padding-left: 300px;
+}
+
+.task-form-container {
+    display: flex;
+    gap: 35px;
+
+}
+
+.prio-selection-container {
+    display: flex;
+    gap: 10px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+#titleInput {
+    width: 440px;
+}
+
+#descriptionInput {
+    width: 440px;
+    height: 150px;
+}
+
+
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+
+#dueDateInput {
+    width: 440px;
+}
+
+#categoryInput {
+    width: 440px;
+}
+
+#subtaskInput {
+    width: 440px;
+}
