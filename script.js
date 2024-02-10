@@ -34,6 +34,7 @@ function activeLink() {
     }
   }
 }
+
 function guestLogin() {
   window.location.href = "pages/summary.html";
 }

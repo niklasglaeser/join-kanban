@@ -1,8 +1,5 @@
 let users = [];
 
-async function init(){
-    loadUsers();
-}
 
 async function loadUsers(){
     try {

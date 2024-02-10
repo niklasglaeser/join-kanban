@@ -1,147 +1,45 @@
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #a8a8a7 #ffffff;
-}
 
-*::-webkit-scrollbar {
-  width: 40px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #a8a8a7;
-  border-radius: 55px;
-  border: 18px solid #ffffff;
-}
-
-* {
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
-input {
-  all: unset;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-html,
-body {
-  margin: 0;
-  height: 100%;
-  font-family: 'Inter', sans-serif;
-  overflow: hidden;
-}
-
-body {
-  position: relative;
-  max-width: 1920px;
-  margin: 0 auto;
-}
-
-main {
-  display: flex;
-  position: relative;
-  height: 100vh;
-  padding-bottom: 80px;
-  margin: 96px 0 0 232px;
-}
-
-header {
-  position: absolute;
+.overlay {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: space-between;
-  height: 96px;
-  padding: 20px 40px 20px 348px;
-  align-items: center;
-  background-color: var(--white);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-nav {
-  position: absolute;
-  top: 0;
-  left: 0;
   bottom: 0;
   display: flex;
-  width: 232px;
-  padding: 64px 0;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--blue-dark);
-  z-index: 2;
-}
-
-.nav-menu {
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  gap: 15px;
-}
-
-.nav-button {
-  display: flex;
-  padding: 8px 56px;
   align-items: center;
-  gap: 8px;
-  color: var(--link-color);
-  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  visibility: hidden;
+  transition: all 225ms ease-in-out;
 }
 
-.nav-button img {
-  width: 30px;
-  height: 30px;
+.overlay-show {
+  visibility: visible;
 }
 
-.nav-button:hover {
-  background-color: var(--hover-link);
-}
-
-.nav-button-legal {
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  padding: 8px 56px;
   justify-content: center;
-  gap: 8px;
-  color: var(--link-color);
-  width: 100%;
+  align-items: center;
+  z-index: 1000;
+  transform: translateX(200%);
+  transition: all 425ms ease-in-out;
 }
 
-.nav-button-legal:hover {
-  background-color: var(--hover-link);
+.popup-slideIn {
+  transform: translateX(0);
 }
 
 
 
 
-.active {
-  background-color: var(--active-link);
-}
 
-.nav-imprint {
-  display: flex;
-  padding: 243px 0px 0px 0;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 8px;
-  align-self: center;
-  width: 100%;
-}
-
-.nav-imprint a {
-  color: var(--icon);
-  padding: 8px;
-}
 
 .contact-left {
   display: flex;
