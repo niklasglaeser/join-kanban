@@ -3,6 +3,7 @@ const ACTIVEPATH = window.location.pathname;
 async function init() {
   await includeHTML();
   activeLink();
+  loadUsers();
 }
 
 async function includeHTML() {
