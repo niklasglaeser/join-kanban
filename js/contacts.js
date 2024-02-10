@@ -1,17 +1,17 @@
-let contacts = [];
-let users = [];
+// let contacts = [];
+// let users = [];
 let currentContact = [];
 let mobileStatus = false;
 let resizeTimer;
 let innerWidth = window.innerWidth;
-const ACTIVEPATH = window.location.pathname;
+// const ACTIVEPATH = window.location.pathname;
 
 async function init() {
-  await includeHTML();
-  await loadcontacts();
+  // await includeHTML();
+  // await loadcontacts();
   await renderContact();
   await checkWindowSize();
-  activeLink();
+  // activeLink();
 }
 
 async function loadcontacts() {
@@ -22,20 +22,20 @@ async function loadcontacts() {
   }
 }
 
-function activeLink() {
-  let activeLinks = document.querySelectorAll("nav a, footer a");
+// function activeLink() {
+//   let activeLinks = document.querySelectorAll("nav a, footer a");
 
-  if (ACTIVEPATH == "/") {
-    activeLinks[0].classList.add("active");
-  } else {
-    for (let i = 0; i < activeLinks.length; i++) {
-      let link = activeLinks[i];
-      if (link.href.includes(ACTIVEPATH)) {
-        link.classList.add("active");
-      }
-    }
-  }
-}
+//   if (ACTIVEPATH == "/") {
+//     activeLinks[0].classList.add("active");
+//   } else {
+//     for (let i = 0; i < activeLinks.length; i++) {
+//       let link = activeLinks[i];
+//       if (link.href.includes(ACTIVEPATH)) {
+//         link.classList.add("active");
+//       }
+//     }
+//   }
+// }
 
 async function checkWindowSize() {
   innerWidth = window.innerWidth;
@@ -275,21 +275,16 @@ async function deleteUser(id) {
   generateUserDetails(0);
 }
 
-async function deleteAllUser() {
-  contacts.splice(0, contacts.length);
-  await setItem("contacts", JSON.stringify(contacts));
-}
-
-async function includeHTML() {
-  let includeElements = document.querySelectorAll("[w3-include-html]");
-  for (let i = 0; i < includeElements.length; i++) {
-    const element = includeElements[i];
-    file = element.getAttribute("w3-include-html");
-    let resp = await fetch(file);
-    if (resp.ok) {
-      element.innerHTML = await resp.text();
-    } else {
-      element.innerHTML = "Page not found";
-    }
-  }
-}
+// async function includeHTML() {
+//   let includeElements = document.querySelectorAll("[w3-include-html]");
+//   for (let i = 0; i < includeElements.length; i++) {
+//     const element = includeElements[i];
+//     file = element.getAttribute("w3-include-html");
+//     let resp = await fetch(file);
+//     if (resp.ok) {
+//       element.innerHTML = await resp.text();
+//     } else {
+//       element.innerHTML = "Page not found";
+//     }
+//   }
+// }

@@ -1,3 +1,7 @@
+let users = [];
+let contacts = [];
+let tasks = [];
+
 const ACTIVEPATH = window.location.pathname;
 
 async function init() {
@@ -32,6 +36,16 @@ function activeLink() {
         link.classList.add("active");
       }
     }
+  }
+}
+
+async function loadUsers() {
+  try {
+    users = JSON.parse(await getItem("users"));
+    // contacts = JSON.parse(await getItem("contacts"));
+    tasks = JSON.parse(await getItem("tasks"));
+  } catch (e) {
+    console.error("Loading error:", e);
   }
 }
 
@@ -126,4 +140,9 @@ function comparePasswords(
   } else {
     errorMessage.innerHTML = "";
   }
+}
+
+async function deleteAllUser() {
+  contacts.splice(0, users.length);
+  await setItem("users", JSON.stringify(users));
 }

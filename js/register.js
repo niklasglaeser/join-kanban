@@ -1,29 +1,43 @@
-let users = [];
-
-
-async function loadUsers(){
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch(e){
-        console.error('Loading error:', e);
-    }
-}
+// let users = [];
+// let contacts = [];
+// let tasks = [];
 
 async function register() {
-    signUpFormButton.disabled = true;
-    users.push({
-        name: nameInputSignup.value,
-        email: emailInputSignup.value,
-        password: passwordInputSignup.value,
-    });
-    await setItem('users', JSON.stringify(users));
-    window.location.href ='index.html';
-    resetForm();
+  signUpFormButton.disabled = true;
+  let nextId = getNextId();
+  let newUser = {
+    id: nextId,
+    name: nameInputSignup.value,
+    email: emailInputSignup.value,
+    password: passwordInputSignup.value,
+    initial: getInitial(nameInputSignup.value),
+    contacts: users[{ id: nextId }],
+    tasks: [],
+  };
+  users.push(newUser);
+  await setItem("users", JSON.stringify(users));
+  window.location.href = "index.html";
+  resetForm();
 }
 
 function resetForm() {
-    nameInputSignup.value = '';
-    emailInputSignup.value = '';
-    passwordInputSignup.value = '';
-    signUpFormButton.disabled = false;
+  nameInputSignup.value = "";
+  emailInputSignup.value = "";
+  passwordInputSignup.value = "";
+  signUpFormButton.disabled = false;
 }
+
+function getNextId() {
+  return users.length + 1;
+}
+
+/*AUCH IN contact.js*/
+
+function getInitial(username) {
+  let name = username.split(" ");
+  let initial = name[1]
+    ? (name[0][0] + name[1][0]).toUpperCase()
+    : name[0][0].toUpperCase();
+  return initial;
+}
+/*AUCH IN contact.js*/
