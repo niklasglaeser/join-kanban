@@ -1,362 +1,189 @@
-* {
-    scrollbar-width: auto;
-    scrollbar-color: #a8a8a7 #ffffff;
-  }
-  
-  *::-webkit-scrollbar {
-    width: 40px;
-  }
-  
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background-color: #a8a8a7;
-    border-radius: 55px;
-    border: 18px solid #ffffff;
-  }
-  
-  * {
-    box-sizing: border-box;
-    text-decoration: none;
-  }
-  
-  input {
-    all: unset;
-  }
-  
-  .pointer {
-    cursor: pointer;
-  }
-  
-  html,
-  body {
-    margin: 0;
-    height: 100%;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-  }
-  
-  body {
-    position: relative;
-    max-width: 1920px;
-    margin: 0 auto;
-  }
-  
-  main {
-    display: flex;
-    position: relative;
-    height: 100vh;
-    padding-bottom: 80px;
-    margin: 96px 0 0 232px;
-  }
-
-
-
-
-/* colors.css */
-
 :root {
-    --blue-dark: #2A3647;
-    --blue-light: #29ABE2;
-    --white: #FFFFFF;
-    --black: #000000;
-    --red: #FF3D00;
-    --grey: #A8A8A8;
-    --grey-light: #D1D1D1;
-    --grey-bg: #F6F7F8;
-    --link-color: #CDCDCD;
-    --icon: #A8A8A8;
-    --background: #F6F8F8;
-    --hover-link: #2A3D59;
-    --active-link: #091931;
+  --blue-dark: #2A3647;
+  --blue-light: #29ABE2;
+  --white: #FFFFFF;
+  --black: #000000;
+  --red: #FF3D00;
+  --grey: #A8A8A8;
+  --grey-light: #D1D1D1;
+  --grey-bg: #F6F7F8;
+  --link-color: #CDCDCD;
+  --icon: #A8A8A8;
+  --background: #F6F8F8;
+  --hover-link: #2A3D59;
+  --active-link: #091931;
 }
-  
-.border {
-    border: 2px solid green;
-}
-
- /* colors.css */
-
-
-
-
-
-
-/* fonts.css */
 
 @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 100;
-    src: url('../fonts/inter-v13-latin-100.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 200;
-    src: url('../fonts/inter-v13-latin-200.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 300;
-    src: url('../fonts/inter-v13-latin-300.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/inter-v13-latin-regular.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    src: url('../fonts/inter-v13-latin-500.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    src: url('../fonts/inter-v13-latin-600.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../fonts/inter-v13-latin-700.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800;
-    src: url('../fonts/inter-v13-latin-800.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    src: url('../fonts/inter-v13-latin-900.woff2') format('woff2');
-  }
-  
-  
-  .font-64 {
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 700;
-  }
-  
-  .font-61 {
-    font-size: 61px;
-    font-style: normal;
-    font-weight: 700;
-  }
-  
-  .font-27 {
-    font-size: 27px;
-    font-style: normal;
-    font-weight: 400;
-  }
-  
-  .font-21 {
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 700;
-  }
-  
-  .font-16 {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-  }
-  
-  .black {
-    color: var(--black);
-  }
-  
-  .white {
-    color: var(--white);
-  }
-  
-  .blue-light {
-    color: var(--blue-light);
-  }
-
-
-/* fonts.css */
-
-
-
-
-
-
-
-
-
-/*css-reset.css */
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../fonts/inter-v13-latin-100.woff2') format('woff2');
 }
 
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 200;
+  src: url('../fonts/inter-v13-latin-200.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/inter-v13-latin-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inter-v13-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/inter-v13-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/inter-v13-latin-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/inter-v13-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/inter-v13-latin-800.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/inter-v13-latin-900.woff2') format('woff2');
+}
+
+
+.font-64 {
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.font-61 {
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.font-27 {
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.font-21 {
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.font-16 {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.black {
+  color: var(--black);
+}
+
+.white {
+  color: var(--white);
+}
+
+.blue-light {
+  color: var(--blue-light);
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #a8a8a7 #ffffff;
+}
+
+*::-webkit-scrollbar {
+  width: 40px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a8a8a7;
+  border-radius: 55px;
+  border: 18px solid #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html,
+body {
+  /* margin: 200px; */
+  height: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: var(--background);
+  overflow: hidden;
 }
 
 body {
-  line-height: 1;
+  position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
-ol,
-ul {
-  list-style: none;
+main {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  padding-bottom: 80px;
+  margin: 96px 0 0 232px;
 }
 
-blockquote,
-q {
-  quotes: none;
+.border {
+  border: 2px solid green;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
+input {
+  all: unset;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+.pointer {
+  cursor: pointer;
 }
-
-
-/* css-reset.css */
-
-
-
-
-
-  
-
-  

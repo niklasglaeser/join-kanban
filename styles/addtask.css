@@ -42,14 +42,11 @@ main {
     height: 150px;
 }
 
-
-
 .right-column {
     display: flex;
     flex-direction: column;
     gap: 50px;
 }
-
 
 #dueDateInput {
     width: 440px;
@@ -61,4 +58,10 @@ main {
 
 #subtaskInput {
     width: 440px;
+}
+
+@media (max-width:1300px) {
+    main {
+        margin: 96px 0 0 0;
+    }
 }
