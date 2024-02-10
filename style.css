@@ -1,12 +1,21 @@
 body {
     font-family: Inter, sans-serif;
     background-color: #F6F7F8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* overflow: hidden; */
 }
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     width: 100%;
+    animation-name: load-content;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
 }
 
 .header-right {
@@ -46,13 +55,53 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex: 1 1;
+    opacity: 1;
+    animation-name: load-content;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+}
+
+@keyframes load-content {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 #joinLogo {
+    position: absolute;
     width: 100.03px;
-    height: 121.97px;
-    margin-top: 80px;
-    margin-left: 77px;
+    /* height: 121.97px; */
+    /* margin-top: 80px;
+    margin-left: 77px; */
+    animation: forwards 1;
+    animation-name: moving-to-target;
+    animation-duration: 1.5s;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+@keyframes moving-to-target {
+
+    from {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        top: 80px;
+        left: 77px;
+        opacity: 1;
+    }
 }
 
 #loginContainer {
@@ -67,9 +116,9 @@ main {
     background-color: #FFF;
     border: solid 30px;
     box-sizing: border-box;
-    border-color:#FFF;
-    margin-top: 30px;
-    margin-bottom: 100px;
+    border-color: #FFF;
+    /* margin-top: 30px; */
+    /* margin-bottom: 100px; */
 }
 
 #loginContainer h1 {
@@ -180,7 +229,7 @@ main {
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
 }
 
-#guestLoginButton:hover{
+#guestLoginButton:hover {
     cursor: pointer;
     color: #29ABE2;
     border-color: #29ABE2;
@@ -198,7 +247,8 @@ footer {
     align-items: center;
     gap: 35px;
     width: 100%;
-    height: 30px;
+    /* height: 30px; */
+    padding-bottom: 40px;
 }
 
 footer a {
@@ -372,16 +422,38 @@ footer a:hover {
     }
 
     #joinLogo {
-        width: 70.03px;
-        height: 81.97px;
-        margin-top: 40px;
-        margin-left: 37px;
+        position: absolute;
+        width: 80px;
+        animation: forwards 1;
+        animation-name: moving-to-target-800;
+        animation-duration: 1.5s;
+        animation-delay: 0.5s;
+        opacity: 0;
     }
+
+    @keyframes moving-to-target-800 {
+
+        from {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            transform: translate(-50%, -50%);
+        }
+
+        to {
+            top: 80px;
+            left: 77px;
+            opacity: 1;
+        }
+    }
+
+
 
     #loginContainer h1 {
         font-size: 42px;
     }
-    
+
     .loginInputs {
         width: 300px;
     }
@@ -461,7 +533,7 @@ footer a:hover {
     #loginForm {
         gap: 24px;
     }
-    
+
     .loginInputs {
         width: 200px;
     }
@@ -506,5 +578,32 @@ footer a:hover {
 
     }
 
-    
+    #joinLogo {
+        position: absolute;
+        width: 80px;
+        animation: forwards 1;
+        animation-name: moving-to-target-550;
+        animation-duration: 1.5s;
+        animation-delay: 0.5s;
+        opacity: 0;
+    }
+
+    @keyframes moving-to-target-550 {
+
+        from {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            transform: translate(-50%, -50%);
+        }
+
+        to {
+            top: 30px;
+            left: 30px;
+            width: 50px;
+            opacity: 1;
+        }
+    }
+
 }

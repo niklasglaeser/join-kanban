@@ -1,24 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Summary</title>
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/fonts.css">
+    <link rel="stylesheet" href="../styles/colors.css">
+    <link rel="stylesheet" href="../styles/css-reset.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
     <link rel="stylesheet" href="../styles/board.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/overlay.css">
+    <!-- <link rel="stylesheet" href="../styles/css-reset.css"> -->
 </head>
+
 <body onload="init()">
-    
+
     <div w3-include-html="../templates/header.html"></div>
-    <div w3-include-html="../templates/sidebar.html"></div> 
+    <div w3-include-html="../templates/sidebar.html"></div>
 
-    <main>
-
+    <main class="border">
+        <h1>Board</h1>
     </main>
+    <div w3-include-html="../templates/footer.html"></div>
 
 
     <script src="../script.js"></script>
     <script src="../js/summary.js"></script>
 </body>
+
 </html>

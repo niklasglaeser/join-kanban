@@ -1,11 +1,7 @@
-body {
-    margin: 0;
-    font-family: Inter, sans-serif;
-}
-
 main {
-    background-color: #F6F7F8;
-    max-width: 1920px;
+    display: flex;
+    justify-content: center;
+    position: relative;
     height: 100vh;
 }
 
