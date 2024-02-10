@@ -42,7 +42,7 @@ function activeLink() {
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
-    // contacts = JSON.parse(await getItem("contacts"));
+    contacts = JSON.parse(await getItem("contacts"));
     tasks = JSON.parse(await getItem("tasks"));
   } catch (e) {
     console.error("Loading error:", e);
