@@ -85,7 +85,7 @@ header {
 }
 
 #dropdownContent a:hover {
-    background-color: #c0d1e9;
+    background-color: var(--hover-link);
 }
 
 

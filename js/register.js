@@ -11,8 +11,8 @@ async function register() {
     email: emailInputSignup.value,
     password: passwordInputSignup.value,
     initial: getInitial(nameInputSignup.value),
+    initial_color: getInitialColor(),
     contacts: [],
-    // contacts: getContactsTemplate(nextId),
     tasks: [],
   };
   users.push(newUser);
@@ -41,6 +41,30 @@ function getInitial(username) {
     : name[0][0].toUpperCase();
   return initial;
 }
+
+function getInitialColor() {
+  let randomColor = Math.floor(Math.random() * AVATAR_COLORS.length);
+  return AVATAR_COLORS[randomColor];
+}
+
+const AVATAR_COLORS = [
+  "#FF7A00",
+  "#FF5EB3",
+  "#6E52FF",
+  "#9327FF",
+  "#00BEE8",
+  "#00BEE8",
+  "#FF745E",
+  "#FFA35E",
+  "#FC71FF",
+  "#FFC701",
+  "#0038FF",
+  "#C3FF2B",
+  "#FFE62B",
+  "#FF4646",
+  "#FFBB2B",
+];
+
 /*AUCH IN contact.js*/
 
 function getContactsTemplate(nextId) {

@@ -57,10 +57,14 @@ function getInitialColor() {
 
 async function renderContact() {
   let contactList = document.getElementById("contact-list");
+  let contactYou = document.getElementById("contactYou");
+  // contactYou.innerHTML = "";
   contactList.innerHTML = "";
   sortContacts();
 
   let currentSign = null;
+  contactYou.innerHTML = generateCardYouHTML(activeUser);
+
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
     let firstLetter = currentContact.contact.charAt(0).toUpperCase();
