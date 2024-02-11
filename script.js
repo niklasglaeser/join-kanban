@@ -4,7 +4,7 @@ let tasks = [];
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
 
-const ACTIVEPATH = window.location.pathname;
+const ACTIVEPATH = "/join-kanban" + window.location.pathname;
 
 async function init() {
   await includeHTML();
@@ -21,6 +21,7 @@ async function init() {
 
   console.log("Kontakte vom active User");
   console.log(contacts);
+  console.log(ACTIVEPATH);
 }
 
 async function includeHTML() {
