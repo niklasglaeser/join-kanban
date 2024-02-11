@@ -14,6 +14,9 @@ async function init() {
   console.log("Object vom ActiveUser");
   console.log(activeUser);
 
+  prepareSummaryPage();
+  prepareAddtaskPage();
+  prepareBoardPage();
   prepareContactsPage();
 
   console.log("Kontakte vom active User");
@@ -65,15 +68,48 @@ async function getActiveUser() {
   return activeUser;
 }
 
+function setActiveUsername() {
+  let user = document.getElementById("setActiveUsername");
+  user.innerHTML = "";
+  user.innerHTML = activeUser["name"];
+}
+
+function setActiveInitial() {
+  let userProfile = document.getElementById("userProfile");
+  userProfile.innerHTML = "";
+  userProfile.innerHTML = activeUser["initial"];
+}
+
+function prepareSummaryPage() {
+  if (ACTIVEPATH === "/pages/summary.html") {
+    setActiveUsername();
+    setActiveInitial();
+  }
+}
+
+function prepareAddtaskPage() {
+  if (ACTIVEPATH === "/pages/addtask.html") {
+    setActiveInitial();
+  }
+}
+
+function prepareBoardPage() {
+  if (ACTIVEPATH === "/pages/board.html") {
+    setActiveInitial();
+  }
+}
+
 function prepareContactsPage() {
   contacts = activeUser["contacts"];
 
   if (ACTIVEPATH === "/pages/contacts.html") {
     renderContact();
+    setActiveInitial();
   }
 }
 
 function guestLogin() {
+  localStorage.setItem("activeUser", JSON.stringify(0));
   window.location.href = "pages/summary.html";
 }
 

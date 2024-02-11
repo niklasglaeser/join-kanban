@@ -24,3 +24,9 @@ function getUserId(user) {
     }
   }
 }
+
+function logout() {
+  console.log("logout");
+  localStorage.removeItem("activeUser");
+  window.location.href = "pages/index.html";
+}
