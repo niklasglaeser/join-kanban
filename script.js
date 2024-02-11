@@ -105,6 +105,7 @@ function prepareContactsPage() {
   if (ACTIVEPATH.includes("contacts.html")) {
     renderContact();
     setActiveInitial();
+    checkWindowSize();
   }
 }
 

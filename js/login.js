@@ -5,10 +5,10 @@ function login() {
     (u) => u.email == email.value && u.password == password.value
   );
 
-  localStorage.setItem("activeUser", JSON.stringify(getUserId(user)));
   let errorLogin = document.getElementById("errorLogin");
 
   if (user) {
+    localStorage.setItem("activeUser", JSON.stringify(getUserId(user)));
     window.location.href = "pages/summary.html";
   } else {
     errorLogin.innerHTML = "Email or Password is wrong! Try again.";
