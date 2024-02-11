@@ -84,6 +84,7 @@ function prepareSummaryPage() {
   if (ACTIVEPATH.includes("summary.html")) {
     setActiveUsername();
     setActiveInitial();
+    welcomeMessage();
   }
 }
 
