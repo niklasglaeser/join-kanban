@@ -4,7 +4,7 @@ let tasks = [];
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
 
-const ACTIVEPATH = "/join-kanban" + window.location.pathname;
+const ACTIVEPATH = window.location.href;
 
 async function init() {
   await includeHTML();
@@ -21,7 +21,6 @@ async function init() {
 
   console.log("Kontakte vom active User");
   console.log(contacts);
-  console.log(ACTIVEPATH);
 }
 
 async function includeHTML() {
@@ -82,20 +81,20 @@ function setActiveInitial() {
 }
 
 function prepareSummaryPage() {
-  if (ACTIVEPATH === "/pages/summary.html") {
+  if (ACTIVEPATH.includes("summary.html")) {
     setActiveUsername();
     setActiveInitial();
   }
 }
 
 function prepareAddtaskPage() {
-  if (ACTIVEPATH === "/pages/addtask.html") {
+  if (ACTIVEPATH.includes("addtask.html")) {
     setActiveInitial();
   }
 }
 
 function prepareBoardPage() {
-  if (ACTIVEPATH === "/pages/board.html") {
+  if (ACTIVEPATH.includes("board.html")) {
     setActiveInitial();
   }
 }
@@ -103,7 +102,7 @@ function prepareBoardPage() {
 function prepareContactsPage() {
   contacts = activeUser["contacts"];
 
-  if (ACTIVEPATH === "/pages/contacts.html") {
+  if (ACTIVEPATH.includes("contacts.html")) {
     renderContact();
     setActiveInitial();
   }
