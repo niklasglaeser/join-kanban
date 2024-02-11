@@ -187,3 +187,10 @@ input {
 .pointer {
   cursor: pointer;
 }
+
+@media (max-width: 1300px) {
+  header {
+    height: 80px;
+    padding: 20px 16px;
+  }
+}
