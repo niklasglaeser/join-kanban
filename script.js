@@ -1,13 +1,23 @@
 let users = [];
 let contacts = [];
 let tasks = [];
+let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
+let activeUser = "";
 
 const ACTIVEPATH = window.location.pathname;
 
 async function init() {
   await includeHTML();
-  activeLink();
-  loadUsers();
+  await activeLink();
+  await loadUsers();
+
+  console.log("Object vom ActiveUser");
+  console.log(activeUser);
+
+  prepareContactsPage();
+
+  console.log("Kontakte vom active User");
+  console.log(contacts);
 }
 
 async function includeHTML() {
@@ -42,10 +52,24 @@ function activeLink() {
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
-    contacts = JSON.parse(await getItem("contacts"));
     tasks = JSON.parse(await getItem("tasks"));
+    getActiveUser();
   } catch (e) {
     console.error("Loading error:", e);
+  }
+}
+
+async function getActiveUser() {
+  activeUser = users[activeUserId];
+  console.log("ID vom activeUser: " + activeUserId);
+  return activeUser;
+}
+
+function prepareContactsPage() {
+  contacts = activeUser["contacts"];
+
+  if (ACTIVEPATH === "/pages/contacts.html") {
+    renderContact();
   }
 }
 
@@ -86,14 +110,6 @@ function closeSignUpForm() {
   loginForm.style.display = "flex";
   signUpForm.style.display = "none";
 }
-
-/*
-async function deleteAllUser() {
-    users.splice(0, users.length);
-    await setItem("users", JSON.stringify(users));
-}
-
-*/
 
 function changePasswordIcon(inputId, iconId) {
   let passwordInput = document.getElementById(inputId);
@@ -143,6 +159,6 @@ function comparePasswords(
 }
 
 async function deleteAllUser() {
-  contacts.splice(0, users.length);
+  users.splice(0, users.length);
   await setItem("users", JSON.stringify(users));
 }

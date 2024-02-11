@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/allpages.css">
     <link rel="stylesheet" href="../styles/contacts.css">
-    <script src="../js/contacts.js" defer></script>
-    <script src="../js/contacts-template.js" defer></script>
     <script src="../js/storage.js" defer></script>
     <script src="../script.js" defer></script>
+    <script src="../js/contacts.js" defer></script>
+    <script src="../js/contacts-template.js" defer></script>
 </head>
 
 <body onload="init()">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="overlay-add-contact-input">
 
-                    <form onsubmit="addContact();togglePopup(); renderContact(); return false" class="addContactForm">
+                    <form onsubmit="addContact();togglePopup(); return false" class="addContactForm">
                         <div class="addContactInput">
                             <input id="contact" type="text" placeholder="Name" required>
                             <img src="../img/person-icon.svg" alt="">
@@ -116,9 +116,6 @@
     </div>
     <div id="info" class="info">
     </div>
-
-
-
 </body>
 
 </html>

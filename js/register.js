@@ -11,7 +11,8 @@ async function register() {
     email: emailInputSignup.value,
     password: passwordInputSignup.value,
     initial: getInitial(nameInputSignup.value),
-    contacts: users[{ id: nextId }],
+    contacts: [],
+    // contacts: getContactsTemplate(nextId),
     tasks: [],
   };
   users.push(newUser);
@@ -41,3 +42,14 @@ function getInitial(username) {
   return initial;
 }
 /*AUCH IN contact.js*/
+
+function getContactsTemplate(nextId) {
+  return {
+    id: nextId,
+    contact: "",
+    initial: "",
+    initial_color: "",
+    email: "",
+    phone: "",
+  };
+}

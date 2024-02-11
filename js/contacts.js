@@ -1,41 +1,7 @@
-// let contacts = [];
-// let users = [];
 let currentContact = [];
 let mobileStatus = false;
 let resizeTimer;
 let innerWidth = window.innerWidth;
-// const ACTIVEPATH = window.location.pathname;
-
-async function init() {
-  // await includeHTML();
-  // await loadcontacts();
-  await renderContact();
-  await checkWindowSize();
-  // activeLink();
-}
-
-async function loadcontacts() {
-  try {
-    contacts = JSON.parse(await getItem("contacts"));
-  } catch (e) {
-    console.warn("User konnten nicht geladen werden ");
-  }
-}
-
-// function activeLink() {
-//   let activeLinks = document.querySelectorAll("nav a, footer a");
-
-//   if (ACTIVEPATH == "/") {
-//     activeLinks[0].classList.add("active");
-//   } else {
-//     for (let i = 0; i < activeLinks.length; i++) {
-//       let link = activeLinks[i];
-//       if (link.href.includes(ACTIVEPATH)) {
-//         link.classList.add("active");
-//       }
-//     }
-//   }
-// }
 
 async function checkWindowSize() {
   innerWidth = window.innerWidth;
@@ -60,10 +26,12 @@ async function addContact() {
     email: email.value,
     phone: phone.value,
   });
-  await setItem("contacts", JSON.stringify(contacts));
+
+  await setItem("users", JSON.stringify(users));
   currentContact = contact.value;
   resetForm();
   toogleInfo("Contact was created");
+  renderContact();
   generateUserDetails(getIdFromContact(currentContact));
   setCardActive(getIdFromContact(currentContact));
 }
@@ -128,7 +96,7 @@ function generateCard(i, contact, firstLetter) {
 function generateUserDetails(i) {
   let details = document.getElementById("contactDetails");
   let contactRight = document.getElementById("contact-right");
-  let contact = contacts[i];
+  let contact = activeUser["contacts"][i];
   details.innerHTML = "";
   details.innerHTML = generateUserDetailsHTML(i, contact);
 
@@ -240,7 +208,7 @@ function cancelDelete() {
 
 function generateEditCard(i) {
   let editContact = document.getElementById("editContact");
-  let contact = contacts[i];
+  let contact = activeUser["contacts"][i];
   editContact.innerHTML = "";
   editContact.innerHTML = generateEditCardHTML(i, contact);
 }
@@ -259,7 +227,7 @@ async function saveEdit(i) {
     phone: newPhone,
   });
 
-  await setItem("contacts", JSON.stringify(contacts));
+  await setItem("users", JSON.stringify(users));
   currentContact = newUser;
   toogleInfo("Contact was edited");
   renderContact();
@@ -270,21 +238,8 @@ async function saveEdit(i) {
 
 async function deleteUser(id) {
   contacts.splice(id, 1);
-  await setItem("contacts", JSON.stringify(contacts));
+  await setItem("users", JSON.stringify(users));
   await init();
   generateUserDetails(0);
+  setCardActive(0);
 }
-
-// async function includeHTML() {
-//   let includeElements = document.querySelectorAll("[w3-include-html]");
-//   for (let i = 0; i < includeElements.length; i++) {
-//     const element = includeElements[i];
-//     file = element.getAttribute("w3-include-html");
-//     let resp = await fetch(file);
-//     if (resp.ok) {
-//       element.innerHTML = await resp.text();
-//     } else {
-//       element.innerHTML = "Page not found";
-//     }
-//   }
-// }
