@@ -3,17 +3,19 @@ main {
     justify-content: center;
     position: relative;
     height: 100vh;
+    flex-direction: column;
+    margin-top: 100px;
 }
 
 .title {
     font-size: 61px;
     font-weight: bold;
-    padding-left: 300px;
-    padding-top: 80px;
+    padding-left: 150px;
+    padding-bottom: 64px;
 }
 
 .task-form {
-    padding-left: 300px;
+    padding-left: 150px;
 }
 
 .task-form-container {
@@ -22,43 +24,215 @@ main {
 
 }
 
+.info-text {
+    align-self: flex-start;
+}
+
 .prio-selection-container {
     display: flex;
     gap: 10px;
+    margin-top: 8px;
+}
+
+.addTaskSeperationLine {
+    margin-top: -140px;
 }
 
 .left-column {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    font-size: 20px;
 }
 
+
+
 #titleInput {
-    width: 440px;
+    width: 420px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
+
 }
 
 #descriptionInput {
     width: 440px;
     height: 150px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+#descriptionInput::placeholder {
+    font-size: 20px;
+}
+
+
+#assignedToInput {
+    width: 440px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 20px;
 }
 
 .right-column {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    font-size: 20px;
 }
 
 #dueDateInput {
-    width: 440px;
+    width: 420px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+#urgentButton {
+    height: 56px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+
+}
+
+#mediumButton {
+    height: 56px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+}
+
+#lowButton {
+    height: 56px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 #categoryInput {
     width: 440px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 20px;
 }
 
-#subtaskInput {
-    width: 440px;
+#subTaskInput {
+    width: 420px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
 }
+
+.addTasksButtons {
+    display: flex;
+    gap: 16px;
+    margin-top: 70px;
+}
+
+
+#clearButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 110px;
+    border-radius: 10px;
+    border: solid 1px #2A3647;
+    background-color: #F6F7F8;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: lighter;
+    color: #2A3647;
+}
+
+#clearButton:hover {
+    cursor: pointer;
+    color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+#createTaskButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 183px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2A3647;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: lighter;
+    color: white;
+}
+
+#createTaskButton:hover {
+    cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width:1300px) {
     main {

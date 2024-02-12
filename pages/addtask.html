@@ -28,45 +28,50 @@
                 <div class="left-column">
                     <div>
                         <div>Title*</div>
-                        <input type="text" id="titleInput">
+                        <input type="text" id="titleInput" placeholder="Enter a title">
                     </div>
                     <div>
                         <div>Description</div>
-                        <input type="text" id="descriptionInput">
+                        <textarea id="descriptionInput" placeholder="Enter a Description"></textarea>
                     </div>
                     <div>
                         <div>Assigned to</div>
-                        <select name="" id="assignedToInput"></select>
+                        <select id="assignedToInput">
+                            <option value="">Select contacts to assign</option>
+                        </select>
                     </div>
                 </div>
-                <img src="../img/add-task-seperation-line.svg">
+                <img src="../img/add-task-seperation-line.svg" class="addTaskSeperationLine">
                 <div class="right-column">
                     <div>
                         <div>Due date*</div>
-                        <input type="date" id="dueDateInput">
+                        <input type="date" id="dueDateInput" >
                     </div>
                     <div>
                         <div>Prio</div>
                         <div class="prio-selection-container">
-                            <div>Urgent</div>
-                            <div>Medium</div>
-                            <div>Low</div>
+                            <div id="urgentButton">Urgent <img src="../img/urgent-button-icon.svg"></div>
+                            <div id="mediumButton">Medium <img src="../img/medium-button-icon.svg"></div>
+                            <div id="lowButton">Low <img src="../img/low-button-img.svg"></div>
                         </div>
                     </div>
                     <div>
                         <div>Category*</div>
-                        <select name="select-category" id="categoryInput"></select>
+                        <select name="select-category" id="categoryInput">
+                            <option value="">Select task category</option>
+                        </select>
                     </div>
                     <div>
                         <div>Subtask</div>
-                        <input type="text" placeholder="Add new subtask" id="subtaskInput">
+                        <input type="text" placeholder="Add new subtask" id="subTaskInput">
                     </div>
-                    <div>
-                        <button id="clearButton">Clear</button>
-                        <button id="createTaskButton">Create Task</button>
+                    <div class="addTasksButtons">
+                        <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
+                        <button id="createTaskButton">Create Task <img src="../img/create-task-button-icon.svg""></button>
                     </div>
                 </div>
             </div>
+            <div class="info-text">*This field is required</div>
 
         </form>
     </main>
