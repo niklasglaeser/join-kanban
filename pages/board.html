@@ -21,8 +21,55 @@
     <div w3-include-html="../templates/header.html"></div>
     <div w3-include-html="../templates/sidebar.html"></div>
 
-    <main class="border">
-        <h1>Board</h1>
+    <main class="">
+        <div class="board-headline ">
+            <span class="font-61">Board</span>
+            <div class="board-headline-search-container">
+                <form>
+                    <input id="searchInput" type="text" placeholder="Search.." name="search">
+                    <button type="submit"><img src="../img/search.svg" alt=""></button>
+                </form>
+                <div>Add Task +</div>
+            </div>
+        </div>
+        <div class="task-main">
+            <div id="" class="todo-wrapper">
+                <div class="task-main-headline ">
+                    <span class="font-20">To Do</span>
+                    <img src="../img/plus-icon.svg" alt="">
+                </div>
+                <div id="todo" class="drag-area" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
+                    ondragover="allowDrop(event); highlight('todo')">
+                </div>
+            </div>
+            <div id="" class="todo-wrapper">
+                <div class="task-main-headline ">
+                    <span class="font-20">In progress</span>
+                    <img src="../img/plus-icon.svg" alt="">
+                </div>
+                <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')"
+                    ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
+                </div>
+            </div>
+            <div id="" class="todo-wrapper">
+                <div class="task-main-headline ">
+                    <span class="font-20">Await feeback</span>
+                    <img src="../img/plus-icon.svg" alt="">
+                </div>
+                <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')"
+                    ondragleave="removeHighlight('awaitFeedback')"
+                    ondragover="allowDrop(event); highlight('awaitFeedback')">
+                </div>
+            </div>
+            <div id="" class="todo-wrapper">
+                <div class="task-main-headline ">
+                    <span class="font-20">Done</span>
+                </div>
+                <div id="done" class="drag-area" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
+                    ondragover="allowDrop(event); highlight('done')">
+                </div>
+            </div>
+        </div>
     </main>
     <div w3-include-html="../templates/footer.html"></div>
 
