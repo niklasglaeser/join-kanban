@@ -39,7 +39,7 @@
                         <div class="assignment-dropdown">
                             <div id="assignmentSelect" onclick="toggleAssignmentDropdown()">
                                 Select contacts to assign
-                                <img src="../img/dropdown-icon.svg">
+                                <img src="../img/dropdown-icon.svg" class="dropdown-icon">
                             </div>
                             <div id="assignmentDropdownList">
                                 <div class="assignment-dropdown-list-entry">
@@ -49,7 +49,29 @@
                                     </div>
                                     <img src="../img/check-button.svg">
                                 </div>
+                                <div class="assignment-dropdown-list-entry">
+                                    <div class="contact-option">
+                                        <div>NG</div>
+                                        <span>Niklas Gläser</span>
+                                    </div>
+                                    <img src="../img/check-button.svg">
+                                </div>
+                                <div class="assignment-dropdown-list-entry">
+                                    <div class="contact-option">
+                                        <div>NG</div>
+                                        <span>Niklas Gläser</span>
+                                    </div>
+                                    <img src="../img/check-button.svg">
+                                </div>
+                                <div class="assignment-dropdown-list-entry">
+                                    <div class="contact-option">
+                                        <div>NG</div>
+                                        <span>Niklas Gläser</span>
+                                    </div>
+                                    <img src="../img/check-button.svg">
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -76,17 +98,20 @@
                             </div>
                             <div id="categoryDropdownList">
                                 <div class="category-dropdown-list-entry">
-                                    <div>User Story</div>
+                                    User Story
                                 </div>
                                 <div class="category-dropdown-list-entry">
-                                    <div>Technical Task</div>
+                                    Technical Task
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
                         <div>Subtasks</div>
-                        <input type="text" placeholder="Add new subtask" id="subTaskInput">
+                        <div id="subtasksInput">
+                            <input type="text" placeholder="Add new subtask" id="subTaskInput">
+                            <img src="/img/subtasks-add-icon.svg">
+                        </div>
                     </div>
                     <div class="addTasksButtons">
                         <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
