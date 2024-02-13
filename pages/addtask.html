@@ -36,9 +36,21 @@
                     </div>
                     <div>
                         <div>Assigned to</div>
-                        <select id="assignedToInput">
-                            <option value="">Select contacts to assign</option>
-                        </select>
+                        <div class="assignment-dropdown">
+                            <div id="assignmentSelect" onclick="toggleAssignmentDropdown()">
+                                Select contacts to assign
+                                <img src="../img/dropdown-icon.svg">
+                            </div>
+                            <div id="assignmentDropdownList">
+                                <div class="assignment-dropdown-list-entry">
+                                    <div class="contact-option">
+                                        <div>NG</div>
+                                        <span>Niklas Gläser</span>
+                                    </div>
+                                    <img src="../img/check-button.svg">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <img src="../img/add-task-seperation-line.svg" class="addTaskSeperationLine">
@@ -57,12 +69,23 @@
                     </div>
                     <div>
                         <div>Category*</div>
-                        <select name="select-category" id="categoryInput">
-                            <option value="">Select task category</option>
-                        </select>
+                        <div class="category-dropdown">
+                            <div id="categorySelect" onclick="toggleCategoryDropdown()">
+                                Select task category
+                                <img src="../img/dropdown-icon.svg" class="dropdown-icon">
+                            </div>
+                            <div id="categoryDropdownList">
+                                <div class="category-dropdown-list-entry">
+                                    <div>User Story</div>
+                                </div>
+                                <div class="category-dropdown-list-entry">
+                                    <div>Technical Task</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <div>Subtask</div>
+                        <div>Subtasks</div>
                         <input type="text" placeholder="Add new subtask" id="subTaskInput">
                     </div>
                     <div class="addTasksButtons">

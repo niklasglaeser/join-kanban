@@ -72,15 +72,90 @@ main {
 }
 
 
-#assignedToInput {
+
+.assignment-dropdown {
     width: 440px;
+    position: relative;
+    margin-top: 8px;
+}
+
+#assignmentSelect {
+    display: flex;
+    width: 440px;
+    justify-content: space-between;
+    align-items: center;
     background-color: white;
+    padding: 10px;
     border-radius: 10px;
     border: solid 1px #D1D1D1;
-    padding: 10px;
-    margin-top: 8px;
-    font-size: 20px;
+    cursor: pointer;
 }
+
+
+
+
+#assignmentDropdownList {
+    display: none;
+    position: absolute;
+    z-index: 500;
+    width: 100%;
+    flex-direction: column;
+    list-style: none;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    height: 150px;
+    gap: 8px;
+    margin-top: 5px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    overflow-y: scroll;
+}
+
+.assignment-dropdown-list-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
+.assignment-dropdown-list-entry img {
+    margin-right: 20px;
+}
+
+.assignment-dropdown-list-entry:hover {
+    background-color: #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.contact-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-left: 15px;
+}
+
+.contact-option div {
+    background-color: #29ABE2;
+    border-radius: 50%;
+    padding: 10px 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .right-column {
     display: flex;
@@ -147,15 +222,84 @@ main {
     box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
-#categoryInput {
+
+
+.category-dropdown {
     width: 440px;
+    position: relative;
+    margin-top: 8px;
+}
+
+#categorySelect {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: white;
+    padding: 10px;
     border-radius: 10px;
     border: solid 1px #D1D1D1;
-    padding: 10px;
-    margin-top: 8px;
-    font-size: 20px;
+    cursor: pointer;
 }
+
+
+#categoryDropdownList {
+    display: none;
+    position: absolute;
+    z-index: 500;
+    flex-direction: column;
+    list-style: none;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+    height: 100px;
+    gap: 8px;
+    margin-top: 5px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.category-dropdown-list-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
+.category-dropdown-list-entry img {
+    margin-right: 20px;
+}
+
+.category-dropdown-list-entry:hover {
+    background-color: #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.category-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #subTaskInput {
     width: 420px;

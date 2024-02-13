@@ -115,23 +115,7 @@ function guestLogin() {
   window.location.href = "pages/summary.html";
 }
 
-function toggleDropdown() {
-  let dropdownContent = document.getElementById("dropdownContent");
-  if (dropdownContent.style.display === "flex") {
-    dropdownContent.style.display = "none";
-  } else {
-    dropdownContent.style.display = "flex";
-  }
-}
 
-document.addEventListener("click", function (event) {
-  var userProfile = document.getElementById("userProfile");
-  var dropdownContent = document.getElementById("dropdownContent");
-
-  if (event.target !== userProfile && event.target !== dropdownContent) {
-    dropdownContent.style.display = "none";
-  }
-});
 
 function openSignUpForm() {
   let loginForm = document.getElementById("loginContainer");
@@ -200,3 +184,22 @@ async function deleteAllUser() {
   users.splice(0, users.length);
   await setItem("users", JSON.stringify(users));
 }
+
+
+function toggleDropdown() {
+  let dropdownContent = document.getElementById("dropdownContent");
+  if (dropdownContent.style.display === "flex") {
+    dropdownContent.style.display = "none";
+  } else {
+    dropdownContent.style.display = "flex";
+  }
+}
+
+document.addEventListener("click", function (event) {
+  let userProfile = document.getElementById("userProfile");
+  let dropdownContent = document.getElementById("dropdownContent");
+
+  if (event.target !== userProfile && event.target !== dropdownContent) {
+    dropdownContent.style.display = "none";
+  }
+});
