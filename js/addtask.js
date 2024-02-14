@@ -12,6 +12,7 @@ function changeClearButtonIconBack() {
 
 
 function toggleAssignmentDropdown() {
+    console.log('test')
     let assignmentDropdown = document.getElementById("assignmentDropdownList");
     if (assignmentDropdown.style.display === "flex") {
       assignmentDropdown.style.display = "none";
@@ -19,7 +20,7 @@ function toggleAssignmentDropdown() {
       assignmentDropdown.style.display = "flex";
     }
 }
-  
+
 
 document.addEventListener("click", function(event) {
     let assignmentSelect = document.getElementById("assignmentSelect");
@@ -97,3 +98,28 @@ function selectAssignment(entry) {
     }
 }
 
+
+function changePriority(buttonId, priority) {
+    let img;
+    let buttons = document.querySelectorAll('.prio-selection-container div');
+    let button = document.getElementById(buttonId);
+    let isActive = button.classList.contains(priority);
+
+    buttons.forEach(function(btn) {
+        btn.classList.remove('urgent', 'medium', 'low');
+        img = btn.querySelector('img');
+        img.src = '../img/' + btn.id.split('Button')[0] + '-button-icon.svg';
+    });
+
+    if (!isActive) {
+        button.classList.add(priority);
+        img = button.querySelector('img');
+        if (priority === 'urgent') {
+            img.src = '../img/urgent-button-icon-active.svg';
+        } else if (priority === 'medium') {
+            img.src = '../img/medium-button-icon-active.svg';
+        } else if (priority === 'low') {
+            img.src = '../img/low-button-icon-active.svg';
+        }
+    }
+}
