@@ -91,7 +91,7 @@ main {
     cursor: pointer;
 }
 
-.dropdown-icon:hover {
+#dropdownIcon:hover {
     background-color: #D1D1D1;
     border-radius: 20px;
 }
@@ -106,7 +106,7 @@ main {
     background-color: white;
     border-radius: 10px;
     height: 150px;
-    gap: 8px;
+    gap: 3px;
     margin-top: 5px;
     box-shadow: 0px 0px 4px 0px #0000001A;
     overflow-y: scroll;
@@ -125,7 +125,7 @@ main {
 }
 
 .assignment-dropdown-list-entry:hover {
-    background-color: #D1D1D1;
+    background-color: #efefef;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -149,9 +149,15 @@ main {
 }
 
 .contact-option div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #29ABE2;
     border-radius: 50%;
     padding: 10px 5px;
+    height: 40px;
+    width: 40px;
+    font-size: 16px;
 }
 
 

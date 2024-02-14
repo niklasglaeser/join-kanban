@@ -19,15 +19,18 @@ function toggleAssignmentDropdown() {
     } else {
       assignmentDropdown.style.display = "flex";
     }
+    console.log('test2')
 }
 
 
 document.addEventListener("click", function(event) {
     let assignmentSelect = document.getElementById("assignmentSelect");
     let assignmentDropdown = document.getElementById("assignmentDropdownList");
+    let dropdownIcon = document.getElementById('dropdownIcon')
     if (
         event.target !== assignmentSelect &&
         event.target !== assignmentDropdown &&
+        event.target !== dropdownIcon &&
         !assignmentDropdown.contains(event.target) &&
         !event.target.classList.contains("assignment-dropdown-list-entry")
     ) {
@@ -97,7 +100,6 @@ function selectAssignment(entry) {
         img.src = "../img/checked-button.svg";
     }
 }
-
 
 function changePriority(buttonId, priority) {
     let img;
