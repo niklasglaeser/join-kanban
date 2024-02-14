@@ -12,6 +12,7 @@ function changeClearButtonIconBack() {
 
 
 function toggleAssignmentDropdown() {
+    console.log('test')
     let assignmentDropdown = document.getElementById("assignmentDropdownList");
     if (assignmentDropdown.style.display === "flex") {
       assignmentDropdown.style.display = "none";
@@ -19,7 +20,7 @@ function toggleAssignmentDropdown() {
       assignmentDropdown.style.display = "flex";
     }
 }
-  
+
 
 document.addEventListener("click", function(event) {
     let assignmentSelect = document.getElementById("assignmentSelect");
@@ -58,41 +59,67 @@ document.addEventListener("click", function (event) {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    let assignmentEntries = document.querySelectorAll(".assignment-dropdown-list-entry");
+function assignemtContactsTemplate(name, initial) {
+    return `
+    <div class="assignment-dropdown-list-entry" onclick="selectAssignment(this)">
+        <div class="contact-option">
+            <div>${initial}</div>
+            <span>${name}</span>
+        </div>
+        <img src="../img/check-button.svg">
+    </div>
+  `;
+}
 
-    assignmentEntries.forEach(function(entry) {
-        entry.addEventListener("click", function() {
-            entry.classList.toggle("selected");
+async function renderAssignmentContacts(users) {
+    let assignmentDropdownList = document.getElementById('assignmentDropdownList');
+    assignmentDropdownList.innerHTML = '';
 
-            if (entry.classList.contains("selected")) {
-                entry.style.backgroundColor = "#2A3647";
-            } else {
-                entry.style.backgroundColor = "transparent";
-            }
-
-            let img = entry.querySelector("img");
-            if (entry.classList.contains("selected")) {
-                img.src = "../img/checked-button.svg";
-            } else {
-                img.src = "../img/check-button.svg";
-            }
-        });
-        
-        entry.addEventListener("mouseenter", function() {
-            if (!entry.classList.contains("selected")) {
-                entry.style.backgroundColor = "#D1D1D1";
-            } else {
-                entry.style.backgroundColor = "#091931";
-            }
-        });
-
-        entry.addEventListener("mouseleave", function() {
-            if (!entry.classList.contains("selected")) {
-                entry.style.backgroundColor = "transparent";
-            } else {
-                entry.style.backgroundColor = "#2A3647";
-            }
-        });
+    users.forEach(user => {
+        const { name, initial } = user;
+        const userHtml = assignemtContactsTemplate(name, initial);
+        assignmentDropdownList.innerHTML += userHtml;
     });
-});
+}
+
+function selectAssignment(entry) {
+    const isSelected = entry.classList.contains('selected');
+
+    if (isSelected) {
+        entry.classList.remove('selected');
+        entry.style.backgroundColor = '';
+        const img = entry.querySelector('img');
+        img.src = "../img/check-button.svg";
+    } else {
+        entry.classList.add('selected');
+        entry.style.backgroundColor = '#2A3647';
+        const img = entry.querySelector('img');
+        img.src = "../img/checked-button.svg";
+    }
+}
+
+
+function changePriority(buttonId, priority) {
+    let img;
+    let buttons = document.querySelectorAll('.prio-selection-container div');
+    let button = document.getElementById(buttonId);
+    let isActive = button.classList.contains(priority);
+
+    buttons.forEach(function(btn) {
+        btn.classList.remove('urgent', 'medium', 'low');
+        img = btn.querySelector('img');
+        img.src = '../img/' + btn.id.split('Button')[0] + '-button-icon.svg';
+    });
+
+    if (!isActive) {
+        button.classList.add(priority);
+        img = button.querySelector('img');
+        if (priority === 'urgent') {
+            img.src = '../img/urgent-button-icon-active.svg';
+        } else if (priority === 'medium') {
+            img.src = '../img/medium-button-icon-active.svg';
+        } else if (priority === 'low') {
+            img.src = '../img/low-button-icon-active.svg';
+        }
+    }
+}
