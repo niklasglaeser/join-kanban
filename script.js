@@ -91,6 +91,7 @@ function prepareSummaryPage() {
 function prepareAddtaskPage() {
   if (ACTIVEPATH.includes("addtask.html")) {
     setActiveInitial();
+    renderAssignmentContacts(users);
   }
 }
 

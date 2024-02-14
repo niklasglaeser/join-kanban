@@ -130,7 +130,14 @@ main {
     cursor: pointer;
 }
 
+.selected {
+    border-radius: 10px;
+    color: white;
+}
 
+.assignment-dropdown-list-entry .selected:hover {
+    background-color: black;
+}
 
 
 .contact-option {
@@ -374,9 +381,6 @@ main {
 }
 
 
-.selected {
-    border-radius: 10px;
-}
 
 
 
