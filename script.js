@@ -98,6 +98,7 @@ function prepareAddtaskPage() {
 function prepareBoardPage() {
   if (ACTIVEPATH.includes("board.html")) {
     setActiveInitial();
+    updateHTML();
   }
 }
 
@@ -115,8 +116,6 @@ function guestLogin() {
   localStorage.setItem("activeUser", JSON.stringify(0));
   window.location.href = "pages/summary.html";
 }
-
-
 
 function openSignUpForm() {
   let loginForm = document.getElementById("loginContainer");
@@ -185,7 +184,6 @@ async function deleteAllUser() {
   users.splice(0, users.length);
   await setItem("users", JSON.stringify(users));
 }
-
 
 function toggleDropdown() {
   let dropdownContent = document.getElementById("dropdownContent");

@@ -111,6 +111,28 @@
   font-weight: 700;
 }
 
+.font-21-light {
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.font-20 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.font-20-light {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+
+
+
 .font-16 {
   font-size: 16px;
   font-style: normal;
@@ -187,6 +209,11 @@ input {
 .pointer {
   cursor: pointer;
 }
+
+.d-none {
+  display: none;
+}
+
 
 @media (max-width: 1300px) {
   header {
