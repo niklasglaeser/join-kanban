@@ -3,8 +3,9 @@ main {
     justify-content: start;
     flex-direction: column;
     position: relative;
-    height: 100vh;
-    padding-bottom: 80px;
+    min-height: 100%;
+
+    overflow: scroll;
     background-color: var(--background);
 }
 
@@ -37,6 +38,7 @@ main {
 .task-main {
     display: flex;
     justify-content: center;
+    align-items: stretch;
     flex-direction: row;
     flex-wrap: wrap;
     height: 100%;
@@ -46,6 +48,7 @@ main {
 .todo-wrapper {
     max-width: 246px;
     width: 100%;
+    margin-bottom: 60px;
 }
 
 
@@ -89,6 +92,6 @@ main {
 
 @media (max-width:1300px) {
     main {
-        margin: 96px 0 0 0;
+        margin: 0 0 200px 0;
     }
 }

@@ -14,6 +14,21 @@ let todos = [
     title: "Einkaufen",
     category: "inProgress",
   },
+  {
+    id: 3,
+    title: "Einkaufen1",
+    category: "inProgress",
+  },
+  {
+    id: 4,
+    title: "Einkaufen4",
+    category: "inProgress",
+  },
+  {
+    id: 5,
+    title: "Einkaufen2",
+    category: "inProgress",
+  },
 ];
 
 let currentDraggedElement;
@@ -77,6 +92,9 @@ function moveTo(category) {
 
 function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
+  setTimeout(() => {
+    document.getElementById(id).classList.remove("drag-area-highlight");
+  }, 2500);
 }
 
 function removeHighlight(id) {
