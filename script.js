@@ -1,6 +1,6 @@
 let users = [];
 let contacts = [];
-let tasks = [];
+// let tasks = [];
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
 

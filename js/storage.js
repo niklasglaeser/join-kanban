@@ -14,10 +14,34 @@ async function getItem(key) {
   return fetch(url)
     .then((res) => res.json())
     .then((res) => {
-      // Verbesserter code
       if (res.data) {
         return res.data.value;
       }
       throw `Could not find data with key "${key}".`;
     });
 }
+
+/*TESTING*/
+
+async function pushArrayToRemoteStorage(array) {
+  try {
+    const response = await setItem("users", array);
+
+    if (response.ok) {
+      console.log(
+        "Array erfolgreich auf Remote-Speicher übertragen:",
+        response
+      );
+    } else {
+      console.error(
+        "Fehler beim Übertragen des Arrays auf den Remote-Speicher:",
+        response.statusText
+      );
+    }
+  } catch (error) {
+    console.error("Fehler beim Senden der Anforderung:", error);
+  }
+}
+
+pushArrayToRemoteStorage(users);
+/*TESTING*/

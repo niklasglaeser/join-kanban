@@ -45,7 +45,7 @@ function generateCardHTML(i, contact) {
   <div class="contactNameWrapper" id="contactId${i}">
   <div class="contactName-Initial" style="background-color:${contact.initial_color}"> ${contact.initial}</div>
   <div class="contactInfo">
-    <p class="contactName">${contact.contact}</p>
+    <p class="contactName">${contact.name}</p>
     <p class="contactEmail">${contact.email}</p>
   </div>
   </div>
@@ -61,7 +61,7 @@ function generateUserDetailsHTML(i, contact) {
     <div style="background-color: ${contact.initial_color}">${contact.initial}</div>
   </div>
   <div class="contact-right-name">
-    <p >${contact.contact} </p>
+    <p >${contact.name} </p>
     <div class="contact-right-name-action">
     <a onclick="togglePopupEdit(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
     <a onclick="toogleDeleteWarn(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
@@ -109,7 +109,7 @@ function generateEditCardHTML(i, contact) {
   <div class="overlay-add-contact-input">
     <form onsubmit="saveEdit(${i}); return false" class="addContactForm">
       <div class="addContactInput" id="contactName${i}">
-        <input id="contact${i}" type="text" placeholder="Name" value="${contact.contact}" class="contact-input">
+        <input id="contact${i}" type="text" placeholder="Name" value="${contact.name}" class="contact-input">
         <img src="../img/person-icon.svg" alt="">
       </div>
       <div class="addContactInput">

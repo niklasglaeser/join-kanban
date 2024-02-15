@@ -23,13 +23,21 @@
 
     <main class="">
         <div class="board-headline ">
-            <span class="font-61">Board</span>
+            <div class="board-headline-mobil">
+                <p class="font-61">Board</p>
+                <button id="slideButton" onclick="togglePopup()" class="addTask-button-mobil font-21 white">
+                    <img src="../img/plus.svg" alt="">
+                </button>
+            </div>
             <div class="board-headline-search-container">
-                <form>
-                    <input id="searchInput" type="text" placeholder="Search.." name="search">
-                    <button type="submit"><img src="../img/search.svg" alt=""></button>
-                </form>
-                <div>Add Task +</div>
+                <div class="loginInputs">
+                    <input type="text" placeholder="Find Task" id="emailInputLogin" class="font-20-light" required>
+                    <img src="../img/search.svg">
+                </div>
+                <button id="slideButton" onclick="togglePopup()" class="addTask-button font-21 white">
+                    <span>Add task</span>
+                    <img src="../img/plus.svg" alt="">
+                </button>
             </div>
         </div>
         <div class="task-main">

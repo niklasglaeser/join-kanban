@@ -20,15 +20,15 @@ window.onresize = function () {
 
 async function addContact() {
   contacts.push({
-    contact: contact.value,
-    initial: getInitial(contact.value),
+    name: name.value,
+    initial: getInitial(name.value),
     initial_color: getInitialColor(),
     email: email.value,
     phone: phone.value,
   });
 
   await setItem("users", JSON.stringify(users));
-  currentContact = contact.value;
+  currentContact = name.value;
   resetForm();
   toogleInfo("Contact was created");
   renderContact();
@@ -45,7 +45,7 @@ function getInitial(username) {
 }
 
 function resetForm() {
-  contact.value = "";
+  name.value = "";
   email.value = "";
   phone.value = "";
 }
@@ -67,7 +67,7 @@ async function renderContact() {
 
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
-    let firstLetter = currentContact.contact.charAt(0).toUpperCase();
+    let firstLetter = currentContact.name.charAt(0).toUpperCase();
 
     if (currentSign !== firstLetter) {
       generateHeadline(i, firstLetter);
@@ -79,12 +79,12 @@ async function renderContact() {
 
 function sortContacts() {
   contacts.sort(function (a, b) {
-    return a.contact.charAt(0).localeCompare(b.contact.charAt(0));
+    return a.name.charAt(0).localeCompare(b.name.charAt(0));
   });
 }
 
 function getIdFromContact(currentContact) {
-  return contacts.findIndex((obj) => obj.contact == `${currentContact}`);
+  return contacts.findIndex((obj) => obj.name == `${currentContact}`);
 }
 
 function generateHeadline(i, letter) {
@@ -224,7 +224,7 @@ async function saveEdit(i) {
   let currentInitialColor = contacts[i].initial_color;
 
   contacts.splice(i, 1, {
-    contact: newUser,
+    name: newUser,
     initial: getInitial(newUser),
     initial_color: currentInitialColor,
     email: newEmail,

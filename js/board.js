@@ -94,7 +94,7 @@ function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
   setTimeout(() => {
     document.getElementById(id).classList.remove("drag-area-highlight");
-  }, 2500);
+  }, 1500);
 }
 
 function removeHighlight(id) {

@@ -602,7 +602,7 @@ input[type=number] {
   }
 
   main {
-    margin: 96px 0 0 0;
+    margin: 0 0 0 0;
   }
 
   .overlayAddContact {
@@ -634,7 +634,7 @@ input[type=number] {
 @media (max-width:990px) {
 
   main {
-    margin: 80px 0 0 0;
+    /* margin: 80px 0 0 0; */
   }
 
   .overlayAddContact {
