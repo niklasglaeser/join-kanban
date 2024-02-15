@@ -43,5 +43,5 @@ async function pushArrayToRemoteStorage(array) {
   }
 }
 
-pushArrayToRemoteStorage(users);
+// pushArrayToRemoteStorage(users);
 /*TESTING*/
