@@ -73,13 +73,13 @@
                         <div class="category-dropdown">
                             <div id="categorySelect" onclick="toggleCategoryDropdown()">
                                 Select task category
-                                <img src="../img/dropdown-icon.svg" class="dropdown-icon">
+                                <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
                             </div>
                             <div id="categoryDropdownList">
-                                <div class="category-dropdown-list-entry">
+                                <div class="category-dropdown-list-entry" onclick="setCategory('user-task')">
                                     User Story
                                 </div>
-                                <div class="category-dropdown-list-entry">
+                                <div class="category-dropdown-list-entry" onclick="setCategory('technical-task')">
                                     Technical Task
                                 </div>
                             </div>
@@ -88,9 +88,12 @@
                     <div>
                         <div>Subtasks</div>
                         <div id="subtasksInput">
-                            <input type="text" placeholder="Add new subtask" id="subTaskInput">
-                            <img src="../img/subtasks-add-icon.svg">
+                            <input type="text" placeholder="Add new subtask" id="subTaskInput" oninput="acitivateSubtaskEditor()">
+                            <div id="imageContainer">
+                                <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
+                            </div>
                         </div>
+                        <div id="subtasksList"></div>
                     </div>
                     <div class="addTasksButtons">
                         <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>

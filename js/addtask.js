@@ -12,14 +12,12 @@ function changeClearButtonIconBack() {
 
 
 function toggleAssignmentDropdown() {
-    console.log('test')
     let assignmentDropdown = document.getElementById("assignmentDropdownList");
     if (assignmentDropdown.style.display === "flex") {
       assignmentDropdown.style.display = "none";
     } else {
       assignmentDropdown.style.display = "flex";
     }
-    console.log('test2')
 }
 
 
@@ -54,8 +52,9 @@ function toggleCategoryDropdown() {
 document.addEventListener("click", function (event) {
     let categorySelect = document.getElementById("categorySelect");
     let categoryDropdown = document.getElementById("categoryDropdownList");
+    let dropdownIconCategory = document.getElementById('dropdownIconCategory')
   
-    if (event.target !== categoryDropdown && event.target !== categorySelect) {
+    if (event.target !== categoryDropdown && event.target !== categorySelect && event.target !== dropdownIconCategory) {
       categoryDropdown.style.display = "none";
     }
 });
@@ -125,3 +124,94 @@ function changePriority(buttonId, priority) {
         }
     }
 }
+
+
+function setCategory(category) {
+    let categorySelect = document.getElementById('categorySelect');
+    
+    if (category === 'user-task') {
+        categorySelect.innerHTML = 'User Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+    } else if (category === 'technical-task') {
+        categorySelect.innerHTML = 'Technical Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+    }
+    
+    toggleCategoryDropdown();
+}
+
+
+function acitivateSubtaskEditor() {
+    let imageContainer = document.getElementById('imageContainer');
+    let subTaskInput = document.getElementById('subTaskInput');
+
+    if (subTaskInput.value.trim() !== '') {
+        imageContainer.innerHTML = `
+            <img src="../img/x-icon-subtasks.svg" onclick="clearSubtaskInput()">
+            <img src="../img/check-icon-subtasks.svg" onclick="addSubtaskToList()">
+        `;
+    } else {
+        imageContainer.innerHTML = `
+            <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
+        `;
+    }
+}
+
+
+function focusSubtaskInput() {
+    let subTaskInput = document.getElementById('subTaskInput');
+    subTaskInput.focus();
+}
+
+
+function clearSubtaskInput() {
+    let subTaskInput = document.getElementById('subTaskInput');
+    subTaskInput.value = '';
+
+    let imageContainer = document.getElementById('imageContainer');
+    imageContainer.innerHTML = `
+        <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
+    `;
+}
+
+
+function addSubtaskToList() {
+    let subTaskInput = document.getElementById('subTaskInput');
+    let subTaskValue = subTaskInput.value.trim();
+
+    if (subTaskValue !== '') {
+        let subtasksList = document.getElementById('subtasksList');
+        
+        subtasksList.innerHTML += `
+            <div class="subtasks-list-entry" onmouseenter="addHoverToSubtask(event)" onmouseleave="removeHoverFromSubtask(event)">
+                <li>${subTaskValue}</li>
+                <img onclick="deleteSubtask(event)" class="delete-icon" src="../img/delete-subtask-icon.svg" style="display: none;">
+            </div>
+        `;
+        subTaskInput.value = '';
+        let imageContainer = document.getElementById('imageContainer');
+        imageContainer.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">`;
+    }
+}
+
+function addHoverToSubtask(event) {
+    let listItem = event.target;
+    listItem.style.backgroundColor = '#f0f0f0';
+    let deleteIcon = listItem.parentElement.querySelector('.delete-icon');
+    deleteIcon.style.display = 'inline';
+}
+
+function removeHoverFromSubtask(event) {
+    let listItem = event.target;
+    listItem.style.backgroundColor = '';
+    let deleteIcon = listItem.parentElement.querySelector('.delete-icon');
+    deleteIcon.style.display = 'none';
+}
+
+function deleteSubtask(event) {
+    let entryDiv = event.target.parentElement;
+    entryDiv.parentNode.removeChild(entryDiv);
+}
+
+
+
+
+
