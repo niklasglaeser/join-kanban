@@ -179,18 +179,6 @@ main {
         display: none;
     }
 
-    .board-headline {}
-}
-
-@media (max-width:640px) {
-    .board-headline {
-        padding: 0 16px;
-    }
-
-    .addTask-button {
-        display: none;
-    }
-
     .board-headline-search-container {
         width: 100%;
     }
@@ -198,4 +186,30 @@ main {
     .loginInputs {
         width: 100%;
     }
+}
+
+
+@media (max-width:640px) {
+    .board-headline {
+        padding: 32px 16px;
+    }
+
+    .addTask-button {
+        display: none;
+    }
+
+
+}
+
+@media (max-width:420px) {
+
+    .loginInputs input {
+        border-right: 0px solid var(--grey-light);
+    }
+
+    .loginInputs img {
+        display: none;
+    }
+
+
 }
