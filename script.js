@@ -1,6 +1,75 @@
 let users = [];
 let contacts = [];
-// let tasks = [];
+let tasks = [
+  {
+    id: 0,
+    title: "Einkauf erledigen",
+    description: "Besorge Lebensmittel und andere benötigte Artikel",
+    assignedTo: [],
+    dueDate: "2024-02-20",
+    prio: "medium",
+    category: "Hausarbeit",
+    subtask: [],
+    progress: "todo",
+  },
+  {
+    id: 1,
+    title: "Auto waschen",
+    description: "Reinige das Auto gründlich von außen und innen",
+    assignedTo: [],
+    dueDate: "2024-02-18",
+    prio: "high",
+    category: "Hausarbeit",
+    subtask: [],
+    progress: "todo",
+  },
+  {
+    id: 2,
+    title: "Dokumente sortieren",
+    description: "Sortiere wichtige Dokumente und Papiere",
+    assignedTo: [],
+    dueDate: "2024-02-25",
+    prio: "low",
+    category: "Organisation",
+    subtask: [],
+    progress: "inProgress",
+  },
+  {
+    id: 3,
+    title: "Sport treiben",
+    description: "Mache eine halbe Stunde lang Sportübungen",
+    assignedTo: [],
+    dueDate: "2024-02-19",
+    prio: "medium",
+    category: "Gesundheit",
+    subtask: [],
+    progress: "todo",
+  },
+  {
+    id: 4,
+    title: "Geburtstagsgeschenk kaufen",
+    description: "Besorge ein Geschenk für den bevorstehenden Geburtstag",
+    assignedTo: [],
+    dueDate: "2024-02-22",
+    prio: "high",
+    category: "Einkauf",
+    subtask: [],
+    progress: "awaitFeedback",
+  },
+  {
+    id: 5,
+    title: "Rechnungen bezahlen",
+    description:
+      "Bezahle ausstehende Rechnungen und Überprüfe den Zahlungsstatus",
+    assignedTo: [],
+    dueDate: "2024-02-28",
+    prio: "medium",
+    category: "Finanzen",
+    subtask: [],
+    progress: "todo",
+  },
+];
+
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
 
@@ -55,7 +124,7 @@ function activeLink() {
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
-    tasks = JSON.parse(await getItem("tasks"));
+    // tasks = JSON.parse(await getItem("tasks"));
     getActiveUser();
   } catch (e) {
     console.error("Loading error:", e);

@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="task-main">
-            <div id="" class="todo-wrapper">
+            <div id="" class="task-wrapper ">
                 <div class="task-main-headline ">
                     <span class="font-20">To Do</span>
                     <img src="../img/plus-icon.svg" alt="">
@@ -50,7 +50,7 @@
                     ondragover="allowDrop(event); highlight('todo')">
                 </div>
             </div>
-            <div id="" class="todo-wrapper">
+            <div id="" class="task-wrapper ">
                 <div class="task-main-headline ">
                     <span class="font-20">In progress</span>
                     <img src="../img/plus-icon.svg" alt="">
@@ -59,7 +59,7 @@
                     ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
                 </div>
             </div>
-            <div id="" class="todo-wrapper">
+            <div id="" class="task-wrapper ">
                 <div class="task-main-headline ">
                     <span class="font-20">Await feeback</span>
                     <img src="../img/plus-icon.svg" alt="">
@@ -69,12 +69,13 @@
                     ondragover="allowDrop(event); highlight('awaitFeedback')">
                 </div>
             </div>
-            <div id="" class="todo-wrapper">
+            <div id="" class="task-wrapper ">
                 <div class="task-main-headline ">
                     <span class="font-20">Done</span>
                 </div>
                 <div id="done" class="drag-area" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
                     ondragover="allowDrop(event); highlight('done')">
+                    <p>No task in </p>
                 </div>
             </div>
         </div>
@@ -84,3 +85,8 @@
 </body>
 
 </html>
+
+<div>
+    <div>Initial</div>
+    <div>Prio Arrow</div>
+</div>

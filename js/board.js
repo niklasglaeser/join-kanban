@@ -1,49 +1,16 @@
-let todos = [
-  {
-    id: 0,
-    title: "Putzen",
-    category: "todo",
-  },
-  {
-    id: 1,
-    title: "Kochen",
-    category: "todo",
-  },
-  {
-    id: 2,
-    title: "Einkaufen",
-    category: "inProgress",
-  },
-  {
-    id: 3,
-    title: "Einkaufen1",
-    category: "inProgress",
-  },
-  {
-    id: 4,
-    title: "Einkaufen4",
-    category: "inProgress",
-  },
-  {
-    id: 5,
-    title: "Einkaufen2",
-    category: "inProgress",
-  },
-];
-
 let currentDraggedElement;
 
 function updateHTML() {
-  let todo = todos.filter((t) => t["category"] == "todo");
+  let task = tasks.filter((t) => t["progress"] == "todo");
 
   document.getElementById("todo").innerHTML = "";
 
-  for (let index = 0; index < todo.length; index++) {
-    const element = todo[index];
+  for (let index = 0; index < task.length; index++) {
+    const element = task[index];
     document.getElementById("todo").innerHTML += generateTodoHTML(element);
   }
 
-  let inProgress = todos.filter((t) => t["category"] == "inProgress");
+  let inProgress = tasks.filter((t) => t["progress"] == "inProgress");
 
   document.getElementById("inProgress").innerHTML = "";
 
@@ -53,7 +20,7 @@ function updateHTML() {
       generateTodoHTML(element);
   }
 
-  let awaitFeedback = todos.filter((t) => t["category"] == "awaitFeedback");
+  let awaitFeedback = tasks.filter((t) => t["progress"] == "awaitFeedback");
 
   document.getElementById("awaitFeedback").innerHTML = "";
 
@@ -63,7 +30,7 @@ function updateHTML() {
       generateTodoHTML(element);
   }
 
-  let done = todos.filter((t) => t["category"] == "done");
+  let done = tasks.filter((t) => t["progress"] == "done");
 
   document.getElementById("done").innerHTML = "";
 
@@ -78,15 +45,30 @@ function startDragging(id) {
 }
 
 function generateTodoHTML(element) {
-  return `<div draggable="true" ondragstart="startDragging(${element["id"]})" class="todo">${element["title"]}</div>`;
+  return `<div draggable="true" ondragstart="startDragging(${element["id"]})" class="task">
+  <p class="task-category white">${element["category"]}</p>
+  <div>
+  <p class="task-title font-16">${element["title"]}</p>
+  <div class="task-description">
+  <p class="task-description-text font-16-light grey">${element["description"]}</p>
+  </div>
+  </div>
+  <div class="progressSubtask">
+  <progress id="subtasks" value="32" max="100">  </progress><label for="subtasks">1/2 Subtasks</label>
+  </div>
+  <div class="task-footer">
+    <div>Initial</div>
+    <div>Prio Arrow</div>
+  </div>
+  </div>`;
 }
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(category) {
-  todos[currentDraggedElement]["category"] = category;
+function moveTo(progress) {
+  tasks[currentDraggedElement]["progress"] = progress;
   updateHTML();
 }
 
