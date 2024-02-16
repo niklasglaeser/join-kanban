@@ -63,7 +63,7 @@ async function renderContact() {
   sortContacts();
 
   let currentSign = null;
-  contactYou.innerHTML = generateCardYouHTML(activeUser);
+  contactYou.innerHTML = generateCardYouHTML(activeUserId);
 
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
@@ -97,12 +97,18 @@ function generateCard(i, contact, firstLetter) {
   card.innerHTML += generateCardHTML(i, contact);
 }
 
-function generateUserDetails(i) {
+function generateUserDetails(i, array) {
   let details = document.getElementById("contactDetails");
   let contactRight = document.getElementById("contact-right");
-  let contact = activeUser["contacts"][i];
-  details.innerHTML = "";
-  details.innerHTML = generateUserDetailsHTML(i, contact);
+  if (array) {
+    let contact = users[i];
+    details.innerHTML = "";
+    details.innerHTML = generateUserDetailsHTML(i, contact, array);
+  } else {
+    let contact = activeUser["contacts"][i];
+    details.innerHTML = "";
+    details.innerHTML = generateUserDetailsHTML(i, contact);
+  }
 
   if (mobileStatus) {
     contactRight.style.display = "block";

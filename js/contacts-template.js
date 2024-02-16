@@ -25,14 +25,15 @@ function generateHeadlineHTML(letter) {
 `;
 }
 
-function generateCardYouHTML(activeUser) {
+function generateCardYouHTML(activeUserId) {
+  let user = users[activeUserId];
   return `
-   <a onclick="generateUserDetails(${activeUser}); setCardActive()" >
+   <a onclick="generateUserDetails(${activeUserId}, users); setCardActive()" >
    <div class="contactNameWrapper" id="contactId">
-   <div class="contactName-Initial" style="background-color:${activeUser.initial_color}"> ${activeUser.initial}</div>
+   <div class="contactName-Initial" style="background-color:${user.initial_color}"> ${user.initial}</div>
    <div class="contactInfo">
-     <p class="contactName">${activeUser.name}</p>
-     <p class="contactEmail">${activeUser.email}</p>
+     <p class="contactName">${user.name}</p>
+     <p class="contactEmail">${user.email}</p>
    </div>
    </div>
    </a>
@@ -53,8 +54,14 @@ function generateCardHTML(i, contact) {
   `;
 }
 
-function generateUserDetailsHTML(i, contact) {
-  console.log(contact);
+function generateUserDetailsHTML(i, contact, array) {
+  let person;
+  if (array) {
+    person = array;
+  } else {
+    person = contact;
+  }
+
   return `
 <div class="contact-right-container">
   <div class="contactInitial" >
@@ -63,7 +70,7 @@ function generateUserDetailsHTML(i, contact) {
   <div class="contact-right-name">
     <p >${contact.name} </p>
     <div class="contact-right-name-action">
-    <a onclick="togglePopupEdit(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
+    <a onclick="togglePopupEdit(${i}, )" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
     <a onclick="toogleDeleteWarn(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
     </div>
   </div>
@@ -81,7 +88,7 @@ function generateUserDetailsHTML(i, contact) {
 <div id="popupHelper" class="d-none" onclick="toogleInfoEditMobile()">
 <div id="edit-more" class="edit-more" onclick="toogleInfoEditMobile()">
   <div class="contact-right-name-action-mobile">
-  <div onclick="togglePopupEdit(${i})" class="pointer"><img src="../img/edit.svg" alt="">Edit</div>
+  <div onclick="togglePopupEdit(${i},${person})" class="pointer"><img src="../img/edit.svg" alt="">Edit</div>
   <div onclick="toogleDeleteWarn(${i})" class="pointer"><img src="../img/delete.svg" alt="">Delete</div>
 </div>
 </div>
