@@ -134,6 +134,7 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    overflow: hidden;
 }
 
 .drag-area-highlight {
@@ -166,10 +167,16 @@ main {
     position: relative;
 }
 
-.task-category-wrapper img {
+/* .task-category-wrapper img {
     width: 16px;
     height: 16px;
     margin: 4px;
+    cursor: pointer;
+} */
+
+.moveToIcon {
+    width: 24px;
+    height: 24px;
     cursor: pointer;
 }
 
@@ -194,10 +201,13 @@ main {
     display: flex;
     align-items: center;
     padding: 8px 0;
+    cursor: pointer;
 }
 
 .task-dropdown span img {
     rotate: 180deg;
+    width: 20px;
+    cursor: pointer;
 }
 
 
@@ -273,8 +283,6 @@ main {
     justify-content: space-evenly;
 }
 
-
-
 @media (max-width:1300px) {
     .board-headline {
         flex-direction: column;
@@ -319,6 +327,22 @@ main {
     }
 
     .addTask-button {
+        display: none;
+    }
+
+
+}
+
+
+
+
+@media (max-width:575px) {
+    .drag-area {
+        flex-direction: row;
+        overflow: scroll;
+    }
+
+    .drag-area::-webkit-scrollbar {
         display: none;
     }
 

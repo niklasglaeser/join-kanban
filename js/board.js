@@ -48,12 +48,12 @@ function updateHTML() {
   for (let index = 0; index < done.length; index++) {
     const element = done[index];
     const taskID = done[index]["id"];
-    console.log("done" + taskID);
     let generateHTML = generateTodoHTML(element, taskID);
     document.getElementById("done").innerHTML += generateHTML;
     generateAssignedToInitial(element, taskID);
     generatePrioIcon(element, taskID);
   }
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function startDragging(id) {
@@ -64,12 +64,12 @@ function generateTodoHTML(element, taskID) {
   return `<div id="task_${taskID}" draggable="true" ondragstart="startDragging(${element["id"]})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
   <div class="task-category-wrapper">
   <span class="task-category white">${element["category"]}</span>
-  <img id="taskDropdownIcon_${taskID}" src="../img/move-category.svg" onclick="taskDropdown(${taskID})"></img>
+  <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID})"></img>
   <div id="taskDropdown_${taskID}" class="task-dropdown">
-  <span class="font-14-light white"><img src="../img/arrow-left.svg"></img>ToDo</span>
-  <span class="font-14-light white"><img src="../img/arrow-left.svg"></img>In Progress</span>
-  <span class="font-14-light white"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
-  <span class="font-14-light white"><img src="../img/arrow-left.svg"></img>Done</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'todo')"><img src="../img/arrow-left.svg"></img>ToDo</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'inProgress')"><img src="../img/arrow-left.svg"></img>In Progress</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'awaitFeedback')"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'done')"><img src="../img/arrow-left.svg"></img>Done</span>
   </div>
   </div>
   <div class="task-description">
@@ -161,15 +161,16 @@ function generateSubTask(element, taskID) {
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
   subtask = element["subtask"];
   subtaskdone = element["subtaskdone"];
-  console.log(subtaskdone);
   totalTasks = subtask.length + subtaskdone.length;
   subtaskLabel.innerHTML = `<span>${subtask.length}/${totalTasks} Subtasks</span>`;
   progress.value = subtaskdone.length;
   progress.max = totalTasks;
 }
 
-function taskDropdown(taskID) {
+function taskOpenDropdown(taskID) {
+  console.log("click");
   let dropdownContent = document.getElementById(`taskDropdown_${taskID}`);
+  console.log(dropdownContent);
   if (dropdownContent.style.display === "flex") {
     dropdownContent.style.display = "none";
   } else {
@@ -177,23 +178,21 @@ function taskDropdown(taskID) {
   }
 }
 
-// document.addEventListener("click", function (event) {
-//   let isClickInsideDropdown = false;
-//   // Finde alle Elemente, deren ID mit "taskDropdown" beginnt
-//   let dropdownContents = document.querySelectorAll('[id^="taskDropdown_"]');
+document.addEventListener("click", function (event) {
+  let isClickInsideDropdown = false;
+  let dropdownContents = document.querySelectorAll('[id^="taskDropdown_"]');
 
-//   // Überprüfe jedes gefundene Element
-//   dropdownContents.forEach(function (dropdownContent) {
-//     // Überprüfe, ob das geklickte Element innerhalb eines Dropdown-Inhalts liegt
-//     if (dropdownContent.contains(event.target)) {
-//       isClickInsideDropdown = true;
-//     }
-//   });
-
-//   // Wenn das geklickte Element nicht innerhalb eines Dropdown-Inhalts liegt, schließe alle Dropdown-Menüs
-//   if (!isClickInsideDropdown) {
-//     dropdownContents.forEach(function (dropdownContent) {
-//       dropdownContent.style.display = "none";
-//     });
-//   }
-// });
+  dropdownContents.forEach(function (dropdownContent) {
+    if (dropdownContent.contains(event.target)) {
+      isClickInsideDropdown = true;
+    }
+  });
+  if (event.target.id.startsWith("taskDropdownIcon_")) {
+    isClickInsideDropdown = true;
+  }
+  if (!isClickInsideDropdown) {
+    dropdownContents.forEach(function (dropdownContent) {
+      dropdownContent.style.display = "none";
+    });
+  }
+});

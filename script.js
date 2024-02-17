@@ -98,20 +98,15 @@ let activeUser = "";
 const ACTIVEPATH = window.location.href;
 
 async function init() {
+  console.log("%cJoin by GROUP28", "color:blue; font-size:24px");
   await includeHTML();
   await activeLink();
   await loadUsers();
-
-  console.log("Object vom ActiveUser");
-  console.log(activeUser);
 
   prepareSummaryPage();
   prepareAddtaskPage();
   prepareBoardPage();
   prepareContactsPage();
-
-  console.log("Kontakte vom active User");
-  console.log(contacts);
 }
 
 async function includeHTML() {
@@ -146,6 +141,7 @@ function activeLink() {
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
+    tasks = JSON.parse(localStorage.getItem("tasks"));
     // tasks = JSON.parse(await getItem("tasks"));
     getActiveUser();
   } catch (e) {
@@ -155,7 +151,6 @@ async function loadUsers() {
 
 async function getActiveUser() {
   activeUser = users[activeUserId];
-  console.log("ID vom activeUser: " + activeUserId);
   return activeUser;
 }
 
