@@ -94,7 +94,7 @@ main {
     flex-wrap: wrap;
     gap: 24px;
     flex-shrink: 0;
-    padding: 16px 16px 80px 16px;
+    padding: 16px 16px 150px 16px;
     max-width: 1200px;
     width: 100%;
     height: auto;

@@ -141,7 +141,7 @@ function activeLink() {
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
-    tasks = JSON.parse(localStorage.getItem("tasks"));
+    // tasks = JSON.parse(localStorage.getItem("tasks"));
     // tasks = JSON.parse(await getItem("tasks"));
     getActiveUser();
   } catch (e) {
