@@ -107,6 +107,7 @@ async function init() {
   prepareAddtaskPage();
   prepareBoardPage();
   prepareContactsPage();
+  preparePrivacyPage();
 }
 
 async function includeHTML() {
@@ -195,6 +196,14 @@ function prepareContactsPage() {
     renderContact();
     setActiveInitial();
     checkWindowSize();
+  }
+}
+
+function preparePrivacyPage() {
+  contacts = activeUser["contacts"];
+
+  if (ACTIVEPATH.includes("privacypolicy.html")) {
+    setActiveInitial();
   }
 }
 

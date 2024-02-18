@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 110px 96px;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline img {
+  width: 32px;
+  height: 32px;
+}
+
+@media (max-width:1300px) {
+  main {
+    margin: 0;
+  }
+}
