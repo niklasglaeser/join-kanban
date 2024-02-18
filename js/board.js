@@ -137,7 +137,9 @@ function generateAssignedToInitial(element, taskID) {
     }
   }
   if (assignedArray.length > 5) {
-    totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${assignedArray.length}</div>`;
+    totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${
+      assignedArray.length - 5
+    }</div>`;
   }
   initial.innerHTML = totalHTML;
 }

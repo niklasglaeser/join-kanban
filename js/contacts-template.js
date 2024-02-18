@@ -88,7 +88,7 @@ function generateUserDetailsHTML(i, contact, array) {
 <div id="popupHelper" class="d-none" onclick="toogleInfoEditMobile()">
 <div id="edit-more" class="edit-more" onclick="toogleInfoEditMobile()">
   <div class="contact-right-name-action-mobile">
-  <div onclick="togglePopupEdit(${i},${person})" class="pointer"><img src="../img/edit.svg" alt="">Edit</div>
+  <div onclick="togglePopupEdit(${i})" class="pointer"><img src="../img/edit.svg" alt="">Edit</div>
   <div onclick="toogleDeleteWarn(${i})" class="pointer"><img src="../img/delete.svg" alt="">Delete</div>
 </div>
 </div>

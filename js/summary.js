@@ -34,4 +34,5 @@ function welcomeMessage() {
     greeting = "Good Evening,";
   }
   document.getElementById("welcomeMessage").innerHTML = greeting;
+  document.getElementById("welcomeMessageMobil").innerHTML = greeting;
 }

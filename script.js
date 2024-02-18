@@ -168,9 +168,9 @@ function setActiveInitial() {
 
 function prepareSummaryPage() {
   if (ACTIVEPATH.includes("summary.html")) {
+    welcomeMessage();
     setActiveUsername();
     setActiveInitial();
-    welcomeMessage();
   }
 }
 
