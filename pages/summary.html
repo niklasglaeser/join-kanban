@@ -41,7 +41,7 @@
                             onmouseleave="changePencilIconBack()">
                             <img id="firstRowDivPencilIcon" src="../img/pencil-icon.svg">
                             <div>
-                                <div class="to-do-count">1</div>
+                                <div id="countTaskToDo" class="to-do-count">1</div>
                                 <div class="to-do-label">To-do</div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             onmouseleave="changeHakenIconBack()">
                             <img id="firstRowDivHakenIcon" src="../img/haken-icon.svg">
                             <div>
-                                <div class="done-count">1</div>
+                                <div id="countTaskDone" class="done-count">1</div>
                                 <div class="done-label">Done</div>
                             </div>
                         </div>
@@ -60,29 +60,29 @@
                                 <img src="../img/urgent-icon.svg">
                             </div>
                             <div>
-                                <div class="urgent-count">1</div>
+                                <div id="countTaskUrgent" class="urgent-count">1</div>
                                 <div class="urgent-label">Urgent</div>
                             </div>
                             <img src="../img/summary-seperation-line.svg" class="urgent-seperation">
                             <div class="deadline-label">
-                                <div class="deadline-date">October 16, 2022</div>
+                                <div id="taskUrgentDeadline" class="deadline-date"></div>
                                 <div class="upcoming-deadline">Upcoming Deadline</div>
                             </div>
                         </div>
                     </div>
                     <div class="third-row">
                         <div class="third-row-div">
-                            <div class="tasks-in-board-count">5</div>
+                            <div id="countTasks" class="tasks-in-board-count">5</div>
                             <div class="third-row-label">Tasks in</div>
                             <div class="third-row-label">Board</div>
                         </div>
                         <div class="third-row-div">
-                            <div class="tasks-in-progress-count">2</div>
+                            <div id="countTaskInprogress" class="tasks-in-progress-count">2</div>
                             <div class="third-row-label">Tasks in</div>
-                            <div class="third-row-label">Board</div>
+                            <div class="third-row-label">Progress</div>
                         </div>
                         <div class="third-row-div">
-                            <div class="awaiting-feedback-count">3</div>
+                            <div id="countTaskAwaitFeedback" class="awaiting-feedback-count">3</div>
                             <div class="third-row-label">Awaiting</div>
                             <div class="third-row-label">Feedback</div>
                         </div>

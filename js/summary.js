@@ -36,3 +36,32 @@ function welcomeMessage() {
   document.getElementById("welcomeMessage").innerHTML = greeting;
   document.getElementById("welcomeMessageMobil").innerHTML = greeting;
 }
+
+function loadOpenTodos() {
+  let countTaskToDoValue = tasks.filter((t) => t["progress"] == "todo").length;
+  let countTaskDoneValue = tasks.filter((t) => t["progress"] == "done").length;
+  let countTaskInprogressValue = tasks.filter(
+    (t) => t["progress"] == "inProgress"
+  ).length;
+  let countTaskAwaitFeedbackValue = tasks.filter(
+    (t) => t["progress"] == "awaitFeedback"
+  ).length;
+  let countTaskUrgentValue = tasks.filter((t) => t["prio"] == "urgent").length;
+  countTaskToDo.innerHTML = countTaskToDoValue;
+  countTaskDone.innerHTML = countTaskDoneValue;
+  countTaskInprogress.innerHTML = countTaskInprogressValue;
+  countTaskAwaitFeedback.innerHTML = countTaskAwaitFeedbackValue;
+  countTaskUrgent.innerHTML = countTaskUrgentValue;
+  countTasks.innerHTML = tasks.length;
+}
+
+function taskUrgentDeadline() {
+  let taskUrgentDeadline = document.getElementById("taskUrgentDeadline");
+  let urgentDate = [];
+  for (let i = 0; i < tasks.length; i++) {
+    const date = tasks[i]["dueDate"];
+    urgentDate.push(date);
+  }
+  urgentDate.sort();
+  taskUrgentDeadline.innerHTML = urgentDate[0];
+}

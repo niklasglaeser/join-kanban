@@ -43,8 +43,8 @@ let tasks = [
     description: "Sortiere wichtige Dokumente und Papiere",
     assignedTo: ["NG", "NG", "ME"],
     initial_color: [""],
-    dueDate: "2024-02-20",
-    prio: "low",
+    dueDate: "2024-01-20",
+    prio: "urgent",
     category: "Organisation",
     subtask: [],
     subtaskdone: [],
@@ -56,12 +56,12 @@ let tasks = [
     description: "Mache eine halbe Stunde lang Sportübungen",
     assignedTo: ["NG", "NG", "ME"],
     initial_color: [""],
-    dueDate: "2024-02-20",
+    dueDate: "2023-02-20",
     prio: "medium",
     category: "Gesundheit",
     subtask: [],
     subtaskdone: [],
-    progress: "inProgress",
+    progress: "awaitFeedback",
   },
   {
     id: 4,
@@ -88,13 +88,12 @@ let tasks = [
     category: "Finanzen",
     subtask: [],
     subtaskdone: [],
-    progress: "todo",
+    progress: "done",
   },
 ];
 
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
-
 const ACTIVEPATH = window.location.href;
 
 async function init() {
@@ -157,8 +156,10 @@ async function getActiveUser() {
 
 function setActiveUsername() {
   let user = document.getElementById("setActiveUsername");
+  let userMobil = document.getElementById("setActiveUsernameMobil");
   user.innerHTML = "";
   user.innerHTML = activeUser["name"];
+  userMobil.innerHTML = activeUser["name"];
 }
 
 function setActiveInitial() {
@@ -172,6 +173,8 @@ function prepareSummaryPage() {
     welcomeMessage();
     setActiveUsername();
     setActiveInitial();
+    loadOpenTodos();
+    taskUrgentDeadline();
   }
 }
 
