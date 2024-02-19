@@ -17,22 +17,24 @@ function updateHTML() {
 
   let inProgress = tasks.filter((t) => t["progress"] == "inProgress");
 
-  document.getElementById("inProgress").innerHTML = "";
+  if (inProgress.length > 0) {
+    document.getElementById("inProgress").innerHTML = "";
 
-  for (let index = 0; index < inProgress.length; index++) {
-    const element = inProgress[index];
-    const taskID = inProgress[index]["id"];
-    let generateHTML = generateTodoHTML(element, taskID);
-    document.getElementById("inProgress").innerHTML += generateHTML;
-    generateAssignedToInitial(element, taskID);
-    generatePrioIcon(element, taskID);
+    for (let index = 0; index < inProgress.length; index++) {
+      const element = inProgress[index];
+      const taskID = inProgress[index]["id"];
+      let generateHTML = generateTodoHTML(element, taskID);
+      document.getElementById("inProgress").innerHTML += generateHTML;
+      generateAssignedToInitial(element, taskID);
+      generatePrioIcon(element, taskID);
+    }
   }
-
   let awaitFeedback = tasks.filter((t) => t["progress"] == "awaitFeedback");
 
   document.getElementById("awaitFeedback").innerHTML = "";
 
   for (let index = 0; index < awaitFeedback.length; index++) {
+    console.log("weiter");
     const element = awaitFeedback[index];
     const taskID = awaitFeedback[index]["id"];
     let generateHTML = generateTodoHTML(element, taskID);

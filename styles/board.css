@@ -112,6 +112,13 @@ main {
     align-self: stretch;
 }
 
+.noTask {
+    width: 250px;
+    height: 40px;
+    border: 1px dashed var(--grey);
+    border-radius: 8px;
+}
+
 
 .task-main-headline {
     display: flex;
