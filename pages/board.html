@@ -30,9 +30,11 @@
                 </button>
             </div>
             <div class="board-headline-search-container">
-                <div class="loginInputs">
-                    <input type="text" placeholder="Find Task" id="emailInputLogin" class="font-20-light" required>
-                    <img src="../img/search.svg">
+                <div>
+                    <form onsubmit="filterTasks(); return false" class="loginInputs">
+                        <input id="searchInput" type="text" placeholder="Find Task" onkeyup="filterTasks()" required>
+                        <img src="../img/search.svg">
+                    </form>
                 </div>
                 <button id="slideButton" onclick="togglePopup()" class="addTask-button font-21 white">
                     <span>Add task</span>
@@ -41,41 +43,42 @@
             </div>
         </div>
         <div class="task-main">
-            <div id="" class="task-wrapper ">
+            <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">To Do</span>
                     <img src="../img/plus-icon.svg" alt="">
                 </div>
                 <div id="todo" class="drag-area" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
-                    ondragover="allowDrop(event); highlight('todo')">
+                    onmouseleave="removeHighlight('todo')" ondragover="allowDrop(event); highlight('todo')">
                 </div>
             </div>
-            <div id="" class="task-wrapper ">
+            <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">In progress</span>
                     <img src="../img/plus-icon.svg" alt="">
                 </div>
                 <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')"
-                    ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
-                    <div class="noTask">In Progress</div>
+                    ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress');"
+                    onmouseleave="removeHighlight('inProgress')" onmouseover="">
+
                 </div>
             </div>
-            <div id="" class="task-wrapper ">
+            <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">Await feeback</span>
                     <img src="../img/plus-icon.svg" alt="">
                 </div>
                 <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')"
-                    ondragleave="removeHighlight('awaitFeedback')"
+                    ondragleave="removeHighlight('awaitFeedback')" onmouseleave="removeHighlight('awaitFeedback')"
                     ondragover="allowDrop(event); highlight('awaitFeedback')">
                 </div>
             </div>
-            <div id="" class="task-wrapper ">
+            <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">Done</span>
                 </div>
                 <div id="done" class="drag-area" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
-                    ondragover="allowDrop(event); highlight('done')">
+                    onmouseleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">
                     <p>No task in </p>
                 </div>
             </div>

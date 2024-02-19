@@ -35,7 +35,7 @@ let tasks = [
     category: "Hausarbeit",
     subtask: [],
     subtaskdone: [],
-    progress: "inProgress",
+    progress: "todo",
   },
   {
     id: 2,

@@ -15,32 +15,48 @@ function updateHTML() {
     generateSubTask(element, taskID);
   }
 
+  if (task.length < 1) {
+    document.getElementById(
+      "todo"
+    ).innerHTML = `<div id="area_todo" class="noTask">No task in todo</div>`;
+  }
+
   let inProgress = tasks.filter((t) => t["progress"] == "inProgress");
 
-  if (inProgress.length > 0) {
-    document.getElementById("inProgress").innerHTML = "";
+  document.getElementById("inProgress").innerHTML = "";
 
-    for (let index = 0; index < inProgress.length; index++) {
-      const element = inProgress[index];
-      const taskID = inProgress[index]["id"];
-      let generateHTML = generateTodoHTML(element, taskID);
-      document.getElementById("inProgress").innerHTML += generateHTML;
-      generateAssignedToInitial(element, taskID);
-      generatePrioIcon(element, taskID);
-    }
+  for (let index = 0; index < inProgress.length; index++) {
+    const element = inProgress[index];
+    const taskID = inProgress[index]["id"];
+    let generateHTML = generateTodoHTML(element, taskID);
+    document.getElementById("inProgress").innerHTML += generateHTML;
+    generateAssignedToInitial(element, taskID);
+    generatePrioIcon(element, taskID);
   }
+
+  if (inProgress.length < 1) {
+    document.getElementById(
+      "inProgress"
+    ).innerHTML = `<div id="area_inProgress" class="noTask">No task in progress</div>`;
+  }
+
   let awaitFeedback = tasks.filter((t) => t["progress"] == "awaitFeedback");
 
   document.getElementById("awaitFeedback").innerHTML = "";
 
   for (let index = 0; index < awaitFeedback.length; index++) {
-    console.log("weiter");
     const element = awaitFeedback[index];
     const taskID = awaitFeedback[index]["id"];
     let generateHTML = generateTodoHTML(element, taskID);
     document.getElementById("awaitFeedback").innerHTML += generateHTML;
     generateAssignedToInitial(element, taskID);
     generatePrioIcon(element, taskID);
+  }
+
+  if (awaitFeedback.length < 1) {
+    document.getElementById(
+      "awaitFeedback"
+    ).innerHTML = `<div id="area_awaitFeedback" class="noTask">No task in Await feedback</div>`;
   }
 
   let done = tasks.filter((t) => t["progress"] == "done");
@@ -55,7 +71,24 @@ function updateHTML() {
     generateAssignedToInitial(element, taskID);
     generatePrioIcon(element, taskID);
   }
+  if (done.length < 1) {
+    document.getElementById(
+      "done"
+    ).innerHTML = `<div id="area_done" class="noTask">No task in §done</div>`;
+  }
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function filterTasks() {
+  const searchText = document.getElementById("searchInput").value.toLowerCase();
+  const filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchText) ||
+      task.description.toLowerCase().includes(searchText)
+  );
+  console.log(filteredTasks);
+  updateHTML();
 }
 
 function startDragging(id) {
@@ -107,9 +140,7 @@ function moveToMobile(taskID, progress) {
 
 function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
-  setTimeout(() => {
-    document.getElementById(id).classList.remove("drag-area-highlight");
-  }, 1500);
+  // document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
 function removeHighlight(id) {
