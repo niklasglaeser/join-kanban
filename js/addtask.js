@@ -146,8 +146,8 @@ function setCategory(selectedCategory) {
 
     let categorySelect = document.getElementById('categorySelect');
     
-    if (category === 'user-task') {
-        categorySelect.innerHTML = 'User Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+    if (category === 'user-story') {
+        categorySelect.innerHTML = 'User Story <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
     } else if (category === 'technical-task') {
         categorySelect.innerHTML = 'Technical Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
     }
@@ -272,6 +272,7 @@ async function addNewTask() {
 
     try {
         await setItem("tasks", JSON.stringify(tasks));
+        window.location.href = "../pages/board.html";
         console.log('Task added successfully.');
     } catch (error) {
         console.error('Error adding task:', error);

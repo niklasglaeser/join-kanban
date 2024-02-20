@@ -23,7 +23,7 @@
 
     <main>
         <div class="title">Add Task</div>
-        <form class="task-form">
+        <form class="task-form" onsubmit="addNewTask(); return false;">
             <div class="task-form-container">
                 <div class="left-column">
                     <div>
@@ -76,7 +76,7 @@
                                 <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
                             </div>
                             <div id="categoryDropdownList">
-                                <div class="category-dropdown-list-entry" onclick="setCategory('user-task')">
+                                <div class="category-dropdown-list-entry" onclick="setCategory('user-story')">
                                     User Story
                                 </div>
                                 <div class="category-dropdown-list-entry" onclick="setCategory('technical-task')">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="addTasksButtons">
                         <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
-                        <button id="createTaskButton" onclick="addNewTask()" type="submit">Create Task <img src="../img/create-task-button-icon.svg"></button>
+                        <button id="createTaskButton" type="submit">Create Task <img src="../img/create-task-button-icon.svg"></button>
                     </div>
                 </div>
             </div>
