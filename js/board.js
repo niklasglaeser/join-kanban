@@ -7,6 +7,14 @@ function updateHTML(filteredTasks) {
   } else {
     tasksFilter = tasks;
   }
+
+  let progress = ["todo", "inProgress", "awaitFeedback", "done"];
+
+  progress.forEach((element) => {
+    document.getElementById(`${element}`).innerHTML = "";
+    console.log("forEach");
+  });
+
   let task = tasksFilter.filter((t) => t["progress"] == "todo");
 
   document.getElementById("todo").innerHTML = "";

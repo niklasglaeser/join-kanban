@@ -30,7 +30,7 @@
                 </button>
             </div>
             <div class="board-headline-search-container">
-                <div>
+                <div class="board-headline-search-container">
                     <form onsubmit="filterTasks(); return false" class="loginInputs">
                         <input id="searchInput" type="text" placeholder="Find Task" onkeyup="filterTasks()" required>
                         <img src="../img/search.svg">
@@ -59,7 +59,7 @@
                 </div>
                 <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')"
                     ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress');"
-                    onmouseleave="removeHighlight('inProgress')" onmouseover="">
+                    onmouseleave="removeHighlight('inProgress')">
 
                 </div>
             </div>
@@ -85,12 +85,6 @@
         </div>
     </main>
     <div w3-include-html="../templates/footer.html"></div>
-
 </body>
 
 </html>
-
-<div>
-    <div>Initial</div>
-    <div>Prio Arrow</div>
-</div>

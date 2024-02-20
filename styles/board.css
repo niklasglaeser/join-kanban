@@ -141,7 +141,6 @@ main {
 .drag-area {
     /* height: 100vh; */
     background-color: transparent;
-    /* border: 1px dashed black; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,7 +155,7 @@ main {
     padding: 16px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     width: 100%;
-    /* min-height: 100vh; */
+    height: 100vh;
     z-index: 20;
 
 
