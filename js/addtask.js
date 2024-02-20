@@ -3,6 +3,8 @@ let prio = "medium";
 let category = "";
 let subtasks = [];
 
+dueDateInput.min = new Date().toISOString().split("T")[0];
+
 function changeClearButtonIcon() {
     let icon = document.getElementById("clearButtonIcon");
   
