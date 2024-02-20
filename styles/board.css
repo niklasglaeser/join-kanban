@@ -139,7 +139,7 @@ main {
 }
 
 .drag-area {
-    height: 100vh;
+    /* height: 100vh; */
     background-color: transparent;
     /* border: 1px dashed black; */
     display: flex;
@@ -147,7 +147,7 @@ main {
     align-items: center;
     gap: 20px;
     overflow: hidden;
-    /* padding-bottom: 150px; */
+    padding-bottom: 16px;
 }
 
 .drag-area-highlight {

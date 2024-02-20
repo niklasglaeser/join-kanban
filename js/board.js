@@ -1,7 +1,13 @@
 let currentDraggedElement;
 
-function updateHTML() {
-  let task = tasks.filter((t) => t["progress"] == "todo");
+function updateHTML(filteredTasks) {
+  let tasksFilter = [];
+  if (filteredTasks) {
+    tasksFilter = filteredTasks;
+  } else {
+    tasksFilter = tasks;
+  }
+  let task = tasksFilter.filter((t) => t["progress"] == "todo");
 
   document.getElementById("todo").innerHTML = "";
 
@@ -21,7 +27,7 @@ function updateHTML() {
     ).innerHTML = `<div id="area_todo" class="noTask">No task in todo</div>`;
   }
 
-  let inProgress = tasks.filter((t) => t["progress"] == "inProgress");
+  let inProgress = tasksFilter.filter((t) => t["progress"] == "inProgress");
 
   document.getElementById("inProgress").innerHTML = "";
 
@@ -40,7 +46,9 @@ function updateHTML() {
     ).innerHTML = `<div id="area_inProgress" class="noTask">No task in progress</div>`;
   }
 
-  let awaitFeedback = tasks.filter((t) => t["progress"] == "awaitFeedback");
+  let awaitFeedback = tasksFilter.filter(
+    (t) => t["progress"] == "awaitFeedback"
+  );
 
   document.getElementById("awaitFeedback").innerHTML = "";
 
@@ -59,7 +67,7 @@ function updateHTML() {
     ).innerHTML = `<div id="area_awaitFeedback" class="noTask">No task in Await feedback</div>`;
   }
 
-  let done = tasks.filter((t) => t["progress"] == "done");
+  let done = tasksFilter.filter((t) => t["progress"] == "done");
 
   document.getElementById("done").innerHTML = "";
 
@@ -74,7 +82,7 @@ function updateHTML() {
   if (done.length < 1) {
     document.getElementById(
       "done"
-    ).innerHTML = `<div id="area_done" class="noTask">No task in §done</div>`;
+    ).innerHTML = `<div id="area_done" class="noTask">No task in done</div>`;
   }
 
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -87,8 +95,7 @@ function filterTasks() {
       task.title.toLowerCase().includes(searchText) ||
       task.description.toLowerCase().includes(searchText)
   );
-  console.log(filteredTasks);
-  updateHTML();
+  updateHTML(filteredTasks);
 }
 
 function startDragging(id) {
