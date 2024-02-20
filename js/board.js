@@ -1,6 +1,6 @@
 let currentDraggedElement;
 
-function updateHTML(filteredTasks) {
+async function updateHTML(filteredTasks) {
   let tasksFilter = [];
   if (filteredTasks) {
     tasksFilter = filteredTasks;
@@ -12,7 +12,6 @@ function updateHTML(filteredTasks) {
 
   progress.forEach((element) => {
     document.getElementById(`${element}`).innerHTML = "";
-    console.log("forEach");
   });
 
   let task = tasksFilter.filter((t) => t["progress"] == "todo");
@@ -46,6 +45,7 @@ function updateHTML(filteredTasks) {
     document.getElementById("inProgress").innerHTML += generateHTML;
     generateAssignedToInitial(element, taskID);
     generatePrioIcon(element, taskID);
+    generateSubTask(element, taskID);
   }
 
   if (inProgress.length < 1) {
@@ -67,6 +67,7 @@ function updateHTML(filteredTasks) {
     document.getElementById("awaitFeedback").innerHTML += generateHTML;
     generateAssignedToInitial(element, taskID);
     generatePrioIcon(element, taskID);
+    generateSubTask(element, taskID);
   }
 
   if (awaitFeedback.length < 1) {
@@ -86,6 +87,7 @@ function updateHTML(filteredTasks) {
     document.getElementById("done").innerHTML += generateHTML;
     generateAssignedToInitial(element, taskID);
     generatePrioIcon(element, taskID);
+    generateSubTask(element, taskID);
   }
   if (done.length < 1) {
     document.getElementById(
@@ -93,7 +95,11 @@ function updateHTML(filteredTasks) {
     ).innerHTML = `<div id="area_done" class="noTask">No task in done</div>`;
   }
 
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  try {
+    await setItem("tasks", JSON.stringify(tasks));
+  } catch (error) {
+    console.error("Error adding task:", error);
+  }
 }
 
 function filterTasks() {
@@ -128,7 +134,7 @@ function generateTodoHTML(element, taskID) {
   </div>
 
   <div class="progressSubtask">
-  <progress id="subtasks_${taskID}" value="" max="">  </progress><label for="subtasks_${taskID}"></label>
+  <progress id="subtasks_${taskID}" value="" max=""></progress><label for="subtasks_${taskID}"></label>
   </div>
   <div class="task-footer">
     <div id="cardInitial_${taskID}" class="cardInitial">
@@ -179,9 +185,9 @@ function generateAssignedToInitial(element, taskID) {
 
   for (let i = 0; i < assignedArray.length; i++) {
     const element = assignedArray[i];
-    const color = tasks[taskID]["initial_color"][i];
+    const color = tasks[taskID]["assignedTo"][i]["initial_color"];
     if (i < 5) {
-      totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element}</div>`;
+      totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element.initial}</div>`;
     }
   }
   if (assignedArray.length > 5) {
@@ -209,12 +215,11 @@ function generatePrioIcon(element, taskID) {
 function generateSubTask(element, taskID) {
   let progress = document.getElementById(`subtasks_${taskID}`);
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
-  subtask = element["subtask"];
+  subtask = element["subtasks"];
   subtaskdone = element["subtaskdone"];
-  totalTasks = subtask.length + subtaskdone.length;
-  subtaskLabel.innerHTML = `<span>${subtask.length}/${totalTasks} Subtasks</span>`;
+  subtaskLabel.innerHTML = `<span>${subtaskdone.length}/${subtask.length} Subtasks</span>`;
   progress.value = subtaskdone.length;
-  progress.max = totalTasks;
+  progress.max = subtask.length;
 }
 
 function taskOpenDropdown(taskID) {
