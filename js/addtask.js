@@ -1,3 +1,8 @@
+let assignedTo = [];
+let prio = "medium";
+let category = "";
+let subtasks = [];
+
 function changeClearButtonIcon() {
     let icon = document.getElementById("clearButtonIcon");
   
@@ -73,6 +78,7 @@ function assignemtContactsTemplate(name, initial) {
   `;
 }
 
+
 async function renderAssignmentContacts(users) {
     let assignmentDropdownList = document.getElementById('assignmentDropdownList');
     assignmentDropdownList.innerHTML = '';
@@ -88,11 +94,18 @@ function selectAssignment(entry) {
     const isSelected = entry.classList.contains('selected');
 
     if (isSelected) {
+        const name = entry.querySelector('.contact-option span').textContent;
+        const initial = entry.querySelector('.contact-option div').textContent;
+        const index = assignedTo.findIndex(user => user.name === name && user.initial === initial);
+        assignedTo.splice(index, 1);
         entry.classList.remove('selected');
         entry.style.backgroundColor = '';
         const img = entry.querySelector('img');
         img.src = "../img/check-button.svg";
     } else {
+        const name = entry.querySelector('.contact-option span').textContent;
+        const initial = entry.querySelector('.contact-option div').textContent;
+        assignedTo.push({ name, initial });
         entry.classList.add('selected');
         entry.style.backgroundColor = '#2A3647';
         const img = entry.querySelector('img');
@@ -122,11 +135,15 @@ function changePriority(buttonId, priority) {
         } else if (priority === 'low') {
             img.src = '../img/low-button-icon-active.svg';
         }
+        prio = priority;
     }
 }
 
 
-function setCategory(category) {
+function setCategory(selectedCategory) {
+
+    category = selectedCategory;
+
     let categorySelect = document.getElementById('categorySelect');
     
     if (category === 'user-task') {
@@ -180,6 +197,8 @@ function addSubtaskToList() {
     if (subTaskValue !== '') {
         let subtasksList = document.getElementById('subtasksList');
         
+        subtasks.push(subTaskValue);
+
         subtasksList.innerHTML += `
             <div class="subtasks-list-entry" onmouseenter="addHoverToSubtask(event)" onmouseleave="removeHoverFromSubtask(event)">
                 <li>${subTaskValue}</li>
@@ -193,23 +212,72 @@ function addSubtaskToList() {
 }
 
 function addHoverToSubtask(event) {
-    let listItem = event.target;
-    listItem.style.backgroundColor = '#f0f0f0';
-    let deleteIcon = listItem.parentElement.querySelector('.delete-icon');
+    let entryDiv = event.target.closest('.subtasks-list-entry');
+    entryDiv.style.backgroundColor = '#f0f0f0';
+    let deleteIcon = entryDiv.querySelector('.delete-icon');
     deleteIcon.style.display = 'inline';
 }
 
 function removeHoverFromSubtask(event) {
-    let listItem = event.target;
-    listItem.style.backgroundColor = '';
-    let deleteIcon = listItem.parentElement.querySelector('.delete-icon');
+    let entryDiv = event.target.closest('.subtasks-list-entry');
+    entryDiv.style.backgroundColor = '';
+    let deleteIcon = entryDiv.querySelector('.delete-icon');
     deleteIcon.style.display = 'none';
 }
 
+
+
 function deleteSubtask(event) {
     let entryDiv = event.target.parentElement;
+    let subTaskValue = entryDiv.querySelector('li').textContent;
+
+    const index = subtasks.indexOf(subTaskValue);
+    if (index !== -1) {
+        subtasks.splice(index, 1);
+    }
+
     entryDiv.parentNode.removeChild(entryDiv);
 }
+
+
+async function addNewTask() {
+
+    const title = document.getElementById('titleInput').value;
+    const description = document.getElementById('descriptionInput').value;
+    const dueDate = document.getElementById('dueDateInput').value;
+
+    if (!title) {
+        console.log('Title cannot be empty.');
+        return;
+    }
+
+    const sanitizedTitle = title.trim() === '' ? null : title;
+    const sanitizedDescription = description.trim() === '' ? null : description;
+    const sanitizedDueDate = dueDate.trim() === '' ? null : dueDate;
+
+    const newTask = {
+        id: tasks.length,
+        title: sanitizedTitle,
+        description: sanitizedDescription,
+        assignedTo,
+        dueDate: sanitizedDueDate,
+        prio,
+        category,
+        subtasks,
+        subtaskdone: [],
+        progress: "todo"
+    };
+
+    tasks.push(newTask);
+
+    try {
+        await setItem("tasks", JSON.stringify(tasks));
+        console.log('Task added successfully.');
+    } catch (error) {
+        console.error('Error adding task:', error);
+    }
+}
+
 
 
 

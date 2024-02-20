@@ -1,96 +1,6 @@
 let users = [];
 let contacts = [];
-let tasks = [
-  {
-    id: 0,
-    title: "Einkauf erledigen",
-    description: "Besorge Lebensmittel und andere benötigte Artikel",
-    assignedTo: ["NG", "NG", "ME", "GU", "SM", "XG", "AG", "TZ", "XI"],
-    initial_color: [
-      "#FC71FF",
-      "#FF5EB3",
-      "#6E52FF",
-      "#9327FF",
-      "#00BEE8",
-      "#00BEE8",
-      "#FF745E",
-      "#FFA35E",
-      "#FC71FF",
-    ],
-    dueDate: "2024-02-20",
-    prio: "low",
-    category: "Hausarbeit",
-    subtask: ["Mehl"],
-    subtaskdone: ["Wasser", "Bier", "Pizza"],
-    progress: "todo",
-  },
-  {
-    id: 1,
-    title: "Auto waschen",
-    description: "Reinige das Auto gründlich von außen und innen",
-    assignedTo: ["NG", "NG", "ME"],
-    initial_color: [""],
-    dueDate: "2024-02-20",
-    prio: "urgent",
-    category: "Hausarbeit",
-    subtask: [],
-    subtaskdone: [],
-    progress: "todo",
-  },
-  {
-    id: 2,
-    title: "Dokumente sortieren",
-    description: "Sortiere wichtige Dokumente und Papiere",
-    assignedTo: ["NG", "NG", "ME"],
-    initial_color: [""],
-    dueDate: "2024-01-20",
-    prio: "urgent",
-    category: "Organisation",
-    subtask: [],
-    subtaskdone: [],
-    progress: "done",
-  },
-  {
-    id: 3,
-    title: "Sport treiben",
-    description: "Mache eine halbe Stunde lang Sportübungen",
-    assignedTo: ["NG", "NG", "ME"],
-    initial_color: [""],
-    dueDate: "2023-02-20",
-    prio: "medium",
-    category: "Gesundheit",
-    subtask: [],
-    subtaskdone: [],
-    progress: "awaitFeedback",
-  },
-  {
-    id: 4,
-    title: "Geburtstagsgeschenk kaufen",
-    description: "Besorge ein Geschenk für den bevorstehenden Geburtstag",
-    assignedTo: ["NG", "NG", "ME"],
-    initial_color: [""],
-    dueDate: "2024-02-20",
-    prio: "urgent",
-    category: "Einkauf",
-    subtask: [],
-    subtaskdone: [],
-    progress: "awaitFeedback",
-  },
-  {
-    id: 5,
-    title: "Rechnungen bezahlen",
-    description:
-      "Bezahle ausstehende Rechnungen und Überprüfe den Zahlungsstatus",
-    assignedTo: ["NG", "NG", "ME", "GH"],
-    initial_color: [""],
-    dueDate: "2024-02-20",
-    prio: "medium",
-    category: "Finanzen",
-    subtask: [],
-    subtaskdone: [],
-    progress: "done",
-  },
-];
+let tasks = [];
 
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
@@ -141,6 +51,7 @@ function activeLink() {
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
+    tasks = JSON.parse(await getItem("tasks"));
     // tasks = JSON.parse(localStorage.getItem("tasks"));
     // tasks = JSON.parse(await getItem("tasks"));
     getActiveUser();
@@ -281,6 +192,11 @@ function comparePasswords(
 async function deleteAllUser() {
   users.splice(0, users.length);
   await setItem("users", JSON.stringify(users));
+}
+
+async function deleteAllTasks() {
+  tasks.splice(0, tasks.length);
+  await setItem("tasks", JSON.stringify(tasks));
 }
 
 function toggleDropdown() {

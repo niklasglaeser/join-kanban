@@ -28,7 +28,7 @@
                 <div class="left-column">
                     <div>
                         <div>Title*</div>
-                        <input type="text" id="titleInput" placeholder="Enter a title">
+                        <input type="text" id="titleInput" placeholder="Enter a title" required>
                     </div>
                     <div>
                         <div>Description</div>
@@ -96,8 +96,8 @@
                         <div id="subtasksList"></div>
                     </div>
                     <div class="addTasksButtons">
-                        <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
-                        <button id="createTaskButton">Create Task <img src="../img/create-task-button-icon.svg""></button>
+                        <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
+                        <button id="createTaskButton" onclick="addNewTask()" type="submit">Create Task <img src="../img/create-task-button-icon.svg"></button>
                     </div>
                 </div>
             </div>
