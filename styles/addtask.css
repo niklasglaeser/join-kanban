@@ -2,16 +2,16 @@ main {
     display: flex;
     justify-content: center;
     position: relative;
-    height: 100vh;
     flex-direction: column;
-    margin-top: 100px;
+    padding-bottom: 100px;
+    overflow: scroll;
 }
 
 .title {
     font-size: 61px;
     font-weight: bold;
     padding-left: 150px;
-    padding-bottom: 64px;
+    padding-bottom: 50px;
 }
 
 .task-form {
