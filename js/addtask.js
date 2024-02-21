@@ -66,7 +66,6 @@ function renderAssignedToArray() {
 
 
 
-
 function toggleCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdownList");
   if (categoryDropdown.style.display === "flex") {
@@ -230,8 +229,12 @@ function addSubtaskToList() {
 
     subtasksList.innerHTML += `
             <div class="subtasks-list-entry" onmouseenter="addHoverToSubtask(event)" onmouseleave="removeHoverFromSubtask(event)">
-                <li>${subTaskValue}</li>
-                <img onclick="deleteSubtask(event)" class="delete-icon" src="../img/delete-subtask-icon.svg" style="display: none;">
+                <li><input type="text" value="${subTaskValue}" readonly id="subtaskEditInput"></li>
+                <div id="subtaskIcons">
+                    <img onclick="editSubtask(event)" class="edit-icon" src="../img/edit-subtasks-icon.svg" style="display: none;">
+                    <img onclick="deleteSubtask(event)" class="delete-icon" src="../img/delete-subtask-icon.svg" style="display: none;">
+                    <img onclick="saveSubtask(event)" class="save-icon" src="../img/save-subtask-icon.svg" style="display: none;">
+                </div>
             </div>
         `;
     subTaskInput.value = "";
@@ -240,11 +243,63 @@ function addSubtaskToList() {
   }
 }
 
+
+function editSubtask(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry");
+    let subTaskInput = entryDiv.querySelector("li input");
+    let subTaskValue = subTaskInput.value;
+
+    entryDiv.onmouseenter = null;
+    entryDiv.onmouseleave = null;
+    
+    subTaskInput.style.backgroundColor = "white";
+    subTaskInput.readOnly = false;
+    subTaskInput.focus();
+
+    
+    let editIcon = entryDiv.querySelector(".edit-icon");
+    editIcon.style.display = "none";
+    
+    let deleteIcon = entryDiv.querySelector(".delete-icon");
+    deleteIcon.style.display = "inline";
+
+    let saveIcon = entryDiv.querySelector(".save-icon");
+    saveIcon.style.display = "inline";
+  }
+  
+function saveSubtask(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry");
+    let subTaskInput = entryDiv.querySelector("li input");
+    let subTaskValue = subTaskInput.value.trim();
+
+    entryDiv.onmouseenter = addHoverToSubtask;
+    entryDiv.onmouseleave = removeHoverFromSubtask;
+
+    const index = subtasks.indexOf(subTaskInput.value);
+    if (index !== -1) {
+      subtasks[index] = subTaskValue;
+    }
+    
+    subTaskInput.readOnly = true;
+    subTaskInput.style.backgroundColor = "";
+    
+    let saveIcon = entryDiv.querySelector(".save-icon");
+    saveIcon.style.display = "none";
+    
+    let editIcon = entryDiv.querySelector(".edit-icon");
+    editIcon.style.display = "inline";
+  }
+
+
+
 function addHoverToSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
   entryDiv.style.backgroundColor = "#f0f0f0";
   let deleteIcon = entryDiv.querySelector(".delete-icon");
   deleteIcon.style.display = "inline";
+  let editIcon = entryDiv.querySelector(".edit-icon");
+  editIcon.style.display = "inline";
+  
 }
 
 function removeHoverFromSubtask(event) {
@@ -252,27 +307,46 @@ function removeHoverFromSubtask(event) {
   entryDiv.style.backgroundColor = "";
   let deleteIcon = entryDiv.querySelector(".delete-icon");
   deleteIcon.style.display = "none";
+  let editIcon = entryDiv.querySelector(".edit-icon");
+  editIcon.style.display = "none";
 }
 
 function deleteSubtask(event) {
-  let entryDiv = event.target.parentElement;
-  let subTaskValue = entryDiv.querySelector("li").textContent;
-
-  const index = subtasks.indexOf(subTaskValue);
-  if (index !== -1) {
-    subtasks.splice(index, 1);
+    let entryDiv = event.target.closest(".subtasks-list-entry");
+    let subTaskValue = entryDiv.querySelector("li input").value;
+  
+    const index = subtasks.indexOf(subTaskValue);
+    if (index !== -1) {
+      subtasks.splice(index, 1);
+    }
+  
+    entryDiv.parentNode.removeChild(entryDiv);
   }
-
-  entryDiv.parentNode.removeChild(entryDiv);
-}
+  
 
 async function addNewTask() {
+
   const title = document.getElementById("titleInput").value;
   const description = document.getElementById("descriptionInput").value;
   const dueDate = document.getElementById("dueDateInput").value;
+  let errorTitle = document.getElementById("errorTitle");
+  let titleInput = document.getElementById("titleInput");
+  let errorCategory = document.getElementById("requiredCategoryMessage");
+  let categoryInput = document.getElementById("categorySelect");
 
   if (!title) {
-    console.log("Title cannot be empty.");
+    errorTitle.innerHTML = `A Title is required!`;
+    titleInput.style.borderColor = 'red';
+    errorCategory.innerHTML = ``;
+    categoryInput.style.borderColor = '#D1D1D1';
+    return;
+  }
+
+  if (!category) {
+    errorTitle.innerHTML = ``;
+    titleInput.style.borderColor = '#D1D1D1';
+    errorCategory.innerHTML = `A Category must be selected!`;
+    categoryInput.style.borderColor = 'red';
     return;
   }
 
@@ -303,3 +377,55 @@ async function addNewTask() {
     console.error("Error adding task:", error);
   }
 }
+
+
+function resetAddTaskForm() {
+
+    document.getElementById("titleInput").value = "";
+    document.getElementById("titleInput").style.borderColor = '#D1D1D1';
+    document.getElementById("errorTitle").innerHTML = "";
+
+    document.getElementById("descriptionInput").value = "";
+
+    assignedTo = [];
+    renderAssignedToArray();
+
+    document.getElementById("dueDateInput").value = "";
+
+    changePriority('mediumButton', 'medium');
+
+    let mediumButton = document.getElementById("mediumButton");
+    mediumButton.classList.add("medium");
+    
+    let mediumButtonImg = mediumButton.querySelector("img");
+    mediumButtonImg.src = "../img/medium-button-icon-active.svg";
+
+    category = "";
+    document.getElementById("categorySelect").innerHTML = 'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+    document.getElementById("requiredCategoryMessage").innerHTML = "";
+    document.getElementById("categorySelect").style.borderColor = '#D1D1D1';
+
+    subtasks = [];
+    document.getElementById("subtasksList").innerHTML = "";
+
+    document.getElementById("assignmentDropdownList").style.display = "none";
+    document.getElementById("categoryDropdownList").style.display = "none";
+
+    let contactOptions = document.querySelectorAll(".assignment-dropdown-list-entry");
+    contactOptions.forEach(option => {
+        option.classList.remove("selected");
+        option.style.backgroundColor = "";
+        option.querySelector("img").src = "../img/check-button.svg";
+    });
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    });
+});

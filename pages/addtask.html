@@ -28,7 +28,8 @@
                 <div class="left-column">
                     <div>
                         <div>Title*</div>
-                        <input type="text" id="titleInput" placeholder="Enter a title" required>
+                        <input type="text" id="titleInput" placeholder="Enter a title">
+                        <div id="errorTitle"></div>
                     </div>
                     <div>
                         <div>Description</div>
@@ -70,6 +71,7 @@
                                 Select task category
                                 <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
                             </div>
+                            <div id="requiredCategoryMessage"></div>
                             <div id="categoryDropdownList">
                                 <div class="category-dropdown-list-entry" onclick="setCategory('User Story')">
                                     User Story
@@ -91,7 +93,7 @@
                         <div id="subtasksList"></div>
                     </div>
                     <div class="addTasksButtons">
-                        <button id="clearButton" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
+                        <button id="clearButton" onclick="resetAddTaskForm()" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
                         <button id="createTaskButton" type="submit">Create Task <img src="../img/create-task-button-icon.svg"></button>
                     </div>
                 </div>
@@ -105,3 +107,6 @@
 </body>
 
 </html>
+
+
+

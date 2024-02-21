@@ -51,10 +51,19 @@ main {
     width: 420px;
     background-color: white;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px;
+    border-color: #D1D1D1;
     padding: 10px;
     margin-top: 8px;
 
+}
+
+#errorTitle {
+    position: absolute;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: red;
+    font-size: 15px;
 }
 
 #descriptionInput {
@@ -303,7 +312,8 @@ main {
     background-color: white;
     padding: 10px;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px;
+    border-color: #D1D1D1;
     cursor: pointer;
 }
 
@@ -358,6 +368,14 @@ main {
 }
 
 
+#requiredCategoryMessage {
+    position: absolute;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: red;
+    font-size: 15px;
+}
+
 
 
 
@@ -404,9 +422,10 @@ main {
     display: flex;
     position: absolute;
     width: 440px;
-    height: 100px;
+    height: 110px;
     flex-direction: column;
     overflow-y: scroll;
+    gap: 5px;
 }
 
 .subtasks-list-entry {
@@ -419,17 +438,26 @@ main {
 
 .subtasks-list-entry li {
     display: list-item;
-    justify-content: center;
-    align-items: center;
     height: 40px;
-    padding: 10px;
     padding-left: 30px;
-    border-radius: 10px;
+    padding-top: 7px;
+    padding-bottom: 10px;
 }
 
-.delete-icon {
-    padding-right: 20px;
+#subtaskIcons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+    gap: 5px;
 }
+
+#subtaskEditInput {
+    border-radius: 10px;
+    padding-left: 10px;
+    height: 25px;
+}
+
 
 
 
