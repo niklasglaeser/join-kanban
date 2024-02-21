@@ -55,6 +55,7 @@ nav {
 
 .active {
   background-color: var(--active-link);
+  color: var(--white);
 }
 
 .nav-imprint {
