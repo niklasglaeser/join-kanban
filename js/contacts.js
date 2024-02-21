@@ -20,15 +20,14 @@ window.onresize = function () {
 
 async function addContact() {
   contacts.push({
-    name: name.value,
-    initial: getInitial(name.value),
+    name: contact.value,
+    initial: getInitial(contact.value),
     initial_color: getInitialColor(),
     email: email.value,
     phone: phone.value,
   });
-
   await setItem("users", JSON.stringify(users));
-  currentContact = name.value;
+  currentContact = contact.value;
   resetForm();
   toogleInfo("Contact was created");
   renderContact();
@@ -58,7 +57,6 @@ function getInitialColor() {
 async function renderContact() {
   let contactList = document.getElementById("contact-list");
   let contactYou = document.getElementById("contactYou");
-  // contactYou.innerHTML = "";
   contactList.innerHTML = "";
   sortContacts();
 

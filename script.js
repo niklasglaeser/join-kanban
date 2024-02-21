@@ -199,6 +199,11 @@ async function deleteAllTasks() {
   await setItem("tasks", JSON.stringify(tasks));
 }
 
+async function deleteAllContacts() {
+  contacts.splice(0, contacts.length);
+  await setItem("contacts", JSON.stringify(contacts));
+}
+
 function toggleDropdown() {
   let dropdownContent = document.getElementById("dropdownContent");
   if (dropdownContent.style.display === "flex") {
