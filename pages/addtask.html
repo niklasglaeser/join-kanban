@@ -41,14 +41,9 @@
                                 Select contacts to assign
                                 <img src="../img/dropdown-icon.svg" id="dropdownIcon">
                             </div>
+                            <div id="renderedAssignedToContacts"></div>
                             <div id="assignmentDropdownList">
-                                <div class="assignment-dropdown-list-entry">
-                                    <div class="contact-option">
-                                        <div>NG</div>
-                                        <span>Niklas Gläser</span>
-                                    </div>
-                                    <img src="../img/check-button.svg">
-                                </div>
+                                <div class="assignment-dropdown-list-entry"></div>
                             </div>
                             
                         </div>
@@ -57,7 +52,7 @@
                 <img src="../img/add-task-seperation-line.svg" class="addTaskSeperationLine">
                 <div class="right-column">
                     <div>
-                        <div>Due date*</div>
+                        <div>Due date</div>
                         <input type="date" id="dueDateInput" >
                     </div>
                     <div>
@@ -76,10 +71,10 @@
                                 <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
                             </div>
                             <div id="categoryDropdownList">
-                                <div class="category-dropdown-list-entry" onclick="setCategory('user-story')">
+                                <div class="category-dropdown-list-entry" onclick="setCategory('User Story')">
                                     User Story
                                 </div>
-                                <div class="category-dropdown-list-entry" onclick="setCategory('technical-task')">
+                                <div class="category-dropdown-list-entry" onclick="setCategory('Technical Task')">
                                     Technical Task
                                 </div>
                             </div>

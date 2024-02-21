@@ -21,6 +21,7 @@ function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
   if (assignmentDropdown.style.display === "flex") {
     assignmentDropdown.style.display = "none";
+    renderAssignedToArray();
   } else {
     assignmentDropdown.style.display = "flex";
   }
@@ -38,8 +39,33 @@ document.addEventListener("click", function (event) {
     !event.target.classList.contains("assignment-dropdown-list-entry")
   ) {
     assignmentDropdown.style.display = "none";
+    renderAssignedToArray();
   }
 });
+
+
+function renderAssignedToArray() {
+    let initial = document.getElementById("renderedAssignedToContacts");
+    let totalHTML = "";
+  
+    for (let i = 0; i < assignedTo.length; i++) {
+      const element = assignedTo[i];
+      const color = assignedTo[i]["initial_color"];
+      if (i < 5) {
+        totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element.initial}</div>`;
+      }
+    }
+    if (assignedTo.length > 5) {
+      totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${
+        assignedTo.length - 5
+      }</div>`;
+    }
+    initial.innerHTML = totalHTML;
+  }
+
+
+
+
 
 function toggleCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdownList");
@@ -151,10 +177,10 @@ function setCategory(selectedCategory) {
 
   let categorySelect = document.getElementById("categorySelect");
 
-  if (category === "user-task") {
+  if (category === 'User Story') {
     categorySelect.innerHTML =
       'User Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
-  } else if (category === "technical-task") {
+  } else if (category === 'Technical Task') {
     categorySelect.innerHTML =
       'Technical Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
   }
