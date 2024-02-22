@@ -61,7 +61,9 @@
     <div id="overlay" class="overlay"></div>
     <div id="popup" class="popup">
         <div id="overlayAddContact" class="overlayAddContact">
-            <img src="../img/close-btn-white.svg" class=" addContactFormClose" onclick="togglePopup()">
+            <div onclick="togglePopup()">
+                <img id="closeBtn" class="addContactFormClose" src="../img/close-btn-black.svg">
+            </div>
             <div class="overlay-add-contact-left">
                 <img src="../img/join-logo-alternative.svg" class="overlay-add-contact-left-img" alt="join-logo">
                 <span class="font-61 white">Add Contact</span>

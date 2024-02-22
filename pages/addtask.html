@@ -46,7 +46,7 @@
                             <div id="assignmentDropdownList">
                                 <div class="assignment-dropdown-list-entry"></div>
                             </div>
-                            
+
                         </div>
                         <div class="info-text">*This field is required</div>
                     </div>
@@ -56,13 +56,17 @@
                     <div>
                         <div>Due date</div>
                         <input type="date" id="dueDateInput">
+                        <input type="date" id="dueDateInput">
                     </div>
                     <div>
                         <div>Prio</div>
                         <div class="prio-selection-container">
-                            <div id="urgentButton" onclick="changePriority('urgentButton', 'urgent')">Urgent <img src="../img/urgent-button-icon.svg"></div>
-                            <div id="mediumButton" onclick="changePriority('mediumButton', 'medium')" class="medium">Medium <img src="../img/medium-button-icon-active.svg"></div>
-                            <div id="lowButton" onclick="changePriority('lowButton', 'low')">Low <img src="../img/low-button-icon.svg"></div>
+                            <div id="urgentButton" onclick="changePriority('urgentButton', 'urgent')">Urgent <img
+                                    src="../img/urgent-button-icon.svg"></div>
+                            <div id="mediumButton" onclick="changePriority('mediumButton', 'medium')" class="medium">
+                                Medium <img src="../img/medium-button-icon-active.svg"></div>
+                            <div id="lowButton" onclick="changePriority('lowButton', 'low')">Low <img
+                                    src="../img/low-button-icon.svg"></div>
                         </div>
                     </div>
                     <div>
@@ -86,7 +90,8 @@
                     <div>
                         <div>Subtasks</div>
                         <div id="subtasksInput">
-                            <input type="text" placeholder="Add new subtask" id="subTaskInput" oninput="acitivateSubtaskEditor()">
+                            <input type="text" placeholder="Add new subtask" id="subTaskInput"
+                                oninput="acitivateSubtaskEditor()">
                             <div id="imageContainer">
                                 <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
                             </div>
@@ -94,8 +99,11 @@
                         <div id="subtasksList"></div>
                     </div>
                     <div class="addTasksButtons">
-                        <button id="clearButton" onclick="resetAddTaskForm()" onmouseenter="changeClearButtonIcon()" onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
-                        <button id="createTaskButton" type="submit">Create Task <img src="../img/create-task-button-icon.svg"></button>
+                        <button id="clearButton" onclick="resetAddTaskForm()" onmouseenter="changeClearButtonIcon()"
+                            onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img
+                                src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
+                        <button id="createTaskButton" type="submit">Create Task <img
+                                src="../img/create-task-button-icon.svg"></button>
                     </div>
                 </div>
             </div>
@@ -107,6 +115,3 @@
 </body>
 
 </html>
-
-
-

@@ -17,6 +17,7 @@ async function init() {
   prepareBoardPage();
   prepareContactsPage();
   preparePrivacyPage();
+  prepareLegalPage();
 }
 
 async function includeHTML() {
@@ -117,6 +118,14 @@ function preparePrivacyPage() {
   contacts = activeUser["contacts"];
 
   if (ACTIVEPATH.includes("privacypolicy.html")) {
+    setActiveInitial();
+  }
+}
+
+function prepareLegalPage() {
+  contacts = activeUser["contacts"];
+
+  if (ACTIVEPATH.includes("legalnotice.html")) {
     setActiveInitial();
   }
 }
