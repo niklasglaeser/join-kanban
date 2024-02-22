@@ -188,20 +188,29 @@ function setCategory(selectedCategory) {
 }
 
 function acitivateSubtaskEditor() {
-  let imageContainer = document.getElementById("imageContainer");
-  let subTaskInput = document.getElementById("subTaskInput");
+    let imageContainer = document.getElementById("imageContainer");
+    let subTaskInput = document.getElementById("subTaskInput");
+  
+    if (subTaskInput.value.trim() !== "") {
+      imageContainer.innerHTML = `
+              <img src="../img/x-icon-subtasks.svg" onclick="clearSubtaskInput()">
+              <img src="../img/check-icon-subtasks.svg" onclick="addSubtaskToList()">
+          `;
+    } else {
+      imageContainer.innerHTML = `
+              <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
+          `;
+    }
+  
 
-  if (subTaskInput.value.trim() !== "") {
-    imageContainer.innerHTML = `
-            <img src="../img/x-icon-subtasks.svg" onclick="clearSubtaskInput()">
-            <img src="../img/check-icon-subtasks.svg" onclick="addSubtaskToList()">
-        `;
-  } else {
-    imageContainer.innerHTML = `
-            <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
-        `;
+    subTaskInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addSubtaskToList();
+      }
+    });
   }
-}
+  
 
 function focusSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
@@ -242,6 +251,7 @@ function addSubtaskToList() {
     imageContainer.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">`;
   }
 }
+
 
 
 function editSubtask(event) {
@@ -426,6 +436,22 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             event.preventDefault();
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    let descriptionInput = document.getElementById("descriptionInput");
+    
+    descriptionInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            
+            let cursorPos = this.selectionStart;
+            let newValue = this.value.slice(0, cursorPos) + "\n" + this.value.slice(cursorPos);
+            this.value = newValue;
+            this.setSelectionRange(cursorPos + 1, cursorPos + 1);
         }
     });
 });

@@ -22,10 +22,10 @@
     <div w3-include-html="../templates/sidebar.html"></div>
 
     <main>
-        <div class="title">Add Task</div>
         <form class="task-form" onsubmit="addNewTask(); return false;">
             <div class="task-form-container">
                 <div class="left-column">
+                    <div class="title">Add Task</div>
                     <div>
                         <div>Title*</div>
                         <input type="text" id="titleInput" placeholder="Enter a title">
@@ -48,13 +48,14 @@
                             </div>
                             
                         </div>
+                        <div class="info-text">*This field is required</div>
                     </div>
                 </div>
                 <img src="../img/add-task-seperation-line.svg" class="addTaskSeperationLine">
                 <div class="right-column">
                     <div>
                         <div>Due date</div>
-                        <input type="date" id="dueDateInput" placeholder="dd/mm/yyyy" >
+                        <input type="date" id="dueDateInput">
                     </div>
                     <div>
                         <div>Prio</div>
@@ -98,7 +99,6 @@
                     </div>
                 </div>
             </div>
-            <div class="info-text">*This field is required</div>
 
         </form>
     </main>

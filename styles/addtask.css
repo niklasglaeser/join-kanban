@@ -1,21 +1,24 @@
 main {
     display: flex;
-    justify-content: center;
-    position: relative;
     flex-direction: column;
+    position: relative;
     padding-bottom: 100px;
     overflow: scroll;
+    font: inherit;
 }
 
 .title {
+    align-self: flex-start;
     font-size: 61px;
     font-weight: bold;
-    padding-left: 150px;
-    padding-bottom: 50px;
 }
 
 .task-form {
-    padding-left: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 75px;
 }
 
 .task-form-container {
@@ -25,7 +28,7 @@ main {
 }
 
 .info-text {
-    align-self: flex-start;
+    padding-top: 220px;
 }
 
 .prio-selection-container {
@@ -55,7 +58,6 @@ main {
     border-color: #D1D1D1;
     padding: 10px;
     margin-top: 8px;
-
 }
 
 #errorTitle {
@@ -74,6 +76,8 @@ main {
     border: solid 1px #D1D1D1;
     padding: 10px;
     margin-top: 8px;
+    font-size: 18px;
+    font: inherit;
 }
 
 #descriptionInput::placeholder {
@@ -210,6 +214,7 @@ main {
     flex-direction: column;
     gap: 50px;
     font-size: 20px;
+    padding-top: 100px;
 }
 
 #dueDateInput {
@@ -426,6 +431,7 @@ main {
     flex-direction: column;
     overflow-y: scroll;
     gap: 5px;
+    margin-top: 5px;
 }
 
 .subtasks-list-entry {
@@ -438,10 +444,13 @@ main {
 
 .subtasks-list-entry li {
     display: list-item;
-    height: 40px;
+    height: 50px;
     padding-left: 30px;
     padding-top: 7px;
-    padding-bottom: 10px;
+}
+
+.subtasks-list-entry li input {
+    padding: 5px;
 }
 
 #subtaskIcons {
@@ -460,18 +469,10 @@ main {
 
 
 
-
-
-
-
-
-
-
-
 .addTasksButtons {
     display: flex;
     gap: 16px;
-    margin-top: 70px;
+    margin-top: 100px;
 }
 
 
@@ -519,24 +520,53 @@ main {
 }
 
 
+@media (max-width: 1400px) {
+    .task-form {
+        padding-left: 75px;
+    }
 
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width:1300px) {
+@media (max-width: 1300px) {
     main {
-        margin: 96px 0 0 0;
+        margin: 0;
+    }
+
+    .task-form {
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+    .title {
+        padding-left: 0px;
     }
 }
+
+@media (max-width: 1100px) {
+    .task-form-container {
+        flex-direction: column;
+    }
+
+    .addTaskSeperationLine {
+        display: none;
+    }
+
+    .info-text {
+        display: none;
+    }
+
+    .right-column {
+        padding-top: 0px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
