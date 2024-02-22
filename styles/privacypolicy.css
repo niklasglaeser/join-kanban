@@ -20,3 +20,9 @@
     margin: 0;
   }
 }
+
+@media (max-width:640px) {
+  .wrapper {
+    margin: 16px 16px;
+  }
+}
