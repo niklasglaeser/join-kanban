@@ -5,7 +5,7 @@ main {
     position: relative;
     /* min-height: 100%; */
 
-    overflow: scroll;
+    /* overflow: scroll; */
     background-color: var(--background);
 }
 
@@ -311,7 +311,10 @@ main {
 
 @media (max-width:1300px) {
     main {
-        margin: 0 0 200px 0;
+        margin: 0 0 0 0;
+        flex-grow: 1;
+        overflow-y: auto;
+        padding-bottom: 80px;
     }
 }
 
@@ -359,7 +362,7 @@ main {
 @media (max-width:575px) {
     .drag-area {
         flex-direction: row;
-        overflow: scroll;
+        overflow-x: auto;
     }
 
     .drag-area::-webkit-scrollbar {
