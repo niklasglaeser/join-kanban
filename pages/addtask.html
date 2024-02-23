@@ -21,6 +21,7 @@
     <div w3-include-html="../templates/header.html"></div>
     <div w3-include-html="../templates/sidebar.html"></div>
 
+    <div class="mobile-title">Add Task</div>
     <main>
         <form class="task-form" onsubmit="addNewTask(); return false;">
             <div class="task-form-container">
@@ -109,6 +110,15 @@
 
         </form>
     </main>
+    <div class="mobile-button">
+        <div class="info-text-mobile">*This field is required</div>
+        <div class="buttons">
+            <button id="clearButtonMobile" onclick="resetAddTaskForm()" onmouseenter="changeClearButtonIconMobile()"
+                            onmouseleave="changeClearButtonIconBackMobile()" type="reset">Clear <img
+                                src="../img/clear-button-icon.svg" id="clearButtonIconMobile"></button>
+            <button id="createTaskButtonMobile" type="submit">Create Task <img src="../img/create-task-button-icon.svg"></button>
+        </div>
+    </div>
     <div w3-include-html="../templates/footer.html"></div>
 
 </body>

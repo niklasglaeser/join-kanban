@@ -17,6 +17,18 @@ function changeClearButtonIconBack() {
   icon.src = "../img/clear-button-icon.svg";
 }
 
+function changeClearButtonIconMobile() {
+    let icon = document.getElementById("clearButtonIconMobile");
+  
+    icon.src = "../img/clear-button-icon-alternative.svg";
+  }
+  
+  function changeClearButtonIconBackMobile() {
+    let icon = document.getElementById("clearButtonIconMobile");
+  
+    icon.src = "../img/clear-button-icon.svg";
+  }
+
 function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
   if (assignmentDropdown.style.display === "flex") {
