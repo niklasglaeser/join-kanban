@@ -630,6 +630,7 @@ main {
 
     .addTaskSeperationLine {
         display: none;
+        margin-top: 0;
     }
 
     .info-text {
