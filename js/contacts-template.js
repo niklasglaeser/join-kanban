@@ -100,7 +100,7 @@ function generateUserDetailsHTML(i, contact, array) {
 function toogleDeleteWarnHTML(i) {
   return `
   <div id="infoDelete" class="infoButtonDelete">
-    <span>Delete ${contacts[i].contact}?</span>
+    <span>Delete ${contacts[i].name}?</span>
     <span></span>
     <div>
       <a onclick="confirmDeleteUser(${i})" class="pointer">YES <img src="../img/check.svg" alt=""></a>
