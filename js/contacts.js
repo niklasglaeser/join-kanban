@@ -56,12 +56,12 @@ function getInitialColor() {
 
 async function renderContact() {
   let contactList = document.getElementById("contact-list");
-  // let contactYou = document.getElementById("contactYou");
+  let contactYou = document.getElementById("contactYou");
   contactList.innerHTML = "";
   sortContacts();
 
   let currentSign = null;
-  // contactYou.innerHTML = generateCardYouHTML(activeUserId);
+  contactYou.innerHTML = generateCardYouHTML(activeUserId);
 
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
@@ -96,6 +96,7 @@ function generateCard(i, contact, firstLetter) {
 }
 
 function generateUserDetails(i, array) {
+  console.log(array);
   let details = document.getElementById("contactDetails");
   let contactRight = document.getElementById("contact-right");
   if (array) {
