@@ -210,6 +210,45 @@
   color: var(--grey);
 }
 
+.backgroundNotLogin {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--background);
+  transition: ease-in-out;
+  z-index: 1000;
+}
+
+.backgroundNotLogin div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.backgroundNotLogin div img {
+  height: 50px;
+}
+
+.login-button {
+  display: flex;
+  width: 160px;
+  padding: 8px 16px 8px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--blue-dark);
+  background: var(--blue-dark);
+  cursor: pointer;
+
+  margin-top: 40px;
+}
+
+
 html,
 body {
   /* margin: 200px; */
@@ -243,7 +282,7 @@ main {
 
 input {
   border: 0;
-  all: unset;
+  /* all: unset; */
 }
 
 .pointer {

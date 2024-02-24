@@ -9,6 +9,7 @@ function login() {
 
   if (user) {
     localStorage.setItem("activeUser", JSON.stringify(getUserId(user)));
+    localStorage.setItem("checkLogin", JSON.stringify(true));
     window.location.href = "pages/summary.html";
   } else {
     errorLogin.innerHTML = "Email or Password is wrong! Try again.";
@@ -23,10 +24,4 @@ function getUserId(user) {
       return i;
     }
   }
-}
-
-function logout() {
-  console.log("logout");
-  localStorage.removeItem("activeUser");
-  window.location.href = "pages/index.html";
 }
