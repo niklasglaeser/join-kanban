@@ -240,7 +240,45 @@
      }
  }
 
+
+ @media (min-width:551px) {
+     .welcomeMobil {
+         display: none;
+     }
+ }
+
  @media (max-width:990px) {
+     .welcomeMobil {
+         position: absolute;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         background-color: var(--background);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         margin-top: -100px;
+         animation-name: welcomeMobil;
+         animation-duration: 1.8s;
+         animation-delay: 0.5s;
+         animation-fill-mode: forwards;
+         animation-timing-function: ease-in-out;
+         animation-iteration-count: 1;
+         /* Nur einmal ausführen */
+     }
+
+     @keyframes welcomeMobil {
+         from {
+             opacity: 1;
+         }
+
+         to {
+             opacity: 0;
+             z-index: -1;
+         }
+     }
 
      .summary-left {
          margin-left: 0;
@@ -263,12 +301,6 @@
          display: none;
      }
 
- }
-
- @media (min-width:550px) {
-     .welcomeMobil {
-         display: none;
-     }
  }
 
  @media (max-width:600px) {
@@ -346,39 +378,7 @@
  }
 
 
- @media (max-width:550px) {
-     .welcomeMobil {
-         position: absolute;
-         top: 0;
-         bottom: 0;
-         left: 0;
-         right: 0;
-         background-color: var(--background);
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-direction: column;
-         margin-top: -100px;
-         animation-name: welcomeMobil;
-         animation-duration: 1.3s;
-         animation-delay: 0.5s;
-         animation-fill-mode: forwards;
-         animation-timing-function: ease-in-out;
-         animation-iteration-count: 1;
-         /* Nur einmal ausführen */
-     }
-
-     @keyframes welcomeMobil {
-         from {
-             opacity: 1;
-         }
-
-         to {
-             opacity: 0;
-             z-index: -1;
-         }
-     }
- }
+ @media (max-width:550px) {}
 
 
  @media (max-width:420px) {

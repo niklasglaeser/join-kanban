@@ -4,12 +4,13 @@ let tasks = [];
 
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
 let activeUser = "";
+let animationMobil = false;
+let checkLogin = JSON.parse(localStorage.getItem("checkLogin"));
 const ACTIVEPATH = window.location.href;
 
 async function init() {
   console.log("%cJoin by GROUP28", "color:blue; font-size:24px");
   await includeHTML();
-  await activeLink();
   await loadUsers();
 
   prepareSummaryPage();
@@ -19,6 +20,23 @@ async function init() {
   preparePrivacyPage();
   prepareLegalPage();
   prepareHelpPage();
+}
+
+async function checkRegUser() {
+  return new Promise((resolve, reject) => {
+    let backgroundNotLogin = document.getElementById("backgroundNotLogin");
+    if (!checkLogin) {
+      backgroundNotLogin.classList.add("backgroundNotLogin");
+      setTimeout(() => {
+        window.location.href = "../index.html";
+      }, 5000);
+      reject(new Error("Benutzer nicht eingeloggt"));
+    } else {
+      backgroundNotLogin.innerHTML = "";
+      backgroundNotLogin.classList.remove("backgroundNotLogin");
+      resolve();
+    }
+  });
 }
 
 async function includeHTML() {
@@ -54,8 +72,6 @@ async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
     tasks = JSON.parse(await getItem("tasks"));
-    // tasks = JSON.parse(localStorage.getItem("tasks"));
-    // tasks = JSON.parse(await getItem("tasks"));
     getActiveUser();
   } catch (e) {
     console.error("Loading error:", e);
@@ -81,19 +97,26 @@ function setActiveInitial() {
   userProfile.innerHTML = activeUser["initial"];
 }
 
-function prepareSummaryPage() {
+async function prepareSummaryPage() {
   if (ACTIVEPATH.includes("summary.html")) {
-    welcomeMessage();
-    setActiveUsername();
-    setActiveInitial();
-    loadOpenTodos();
-    taskUrgentDeadline();
+    try {
+      await checkRegUser();
+      await activeLink();
+      await welcomeMessage();
+      await setActiveUsername();
+      await setActiveInitial();
+      await loadOpenTodos();
+      await taskUrgentDeadline();
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 }
 
 function prepareAddtaskPage() {
   if (ACTIVEPATH.includes("addtask.html")) {
     setActiveInitial();
+    activeLink();
     renderAssignmentContacts(users);
   }
 }
@@ -101,46 +124,48 @@ function prepareAddtaskPage() {
 function prepareBoardPage() {
   if (ACTIVEPATH.includes("board.html")) {
     setActiveInitial();
+    activeLink();
     updateHTML();
   }
 }
 
 function prepareContactsPage() {
-  contacts = activeUser["contacts"];
-
   if (ACTIVEPATH.includes("contacts.html")) {
+    contacts = activeUser["contacts"];
     renderContact();
+    activeLink();
     setActiveInitial();
     checkWindowSize();
   }
 }
 
 function preparePrivacyPage() {
-  contacts = activeUser["contacts"];
-
   if (ACTIVEPATH.includes("privacypolicy.html")) {
+    contacts = activeUser["contacts"];
     setActiveInitial();
+    activeLink();
   }
 }
 
 function prepareLegalPage() {
-  contacts = activeUser["contacts"];
-
   if (ACTIVEPATH.includes("legalnotice.html")) {
+    contacts = activeUser["contacts"];
     setActiveInitial();
+    activeLink();
   }
 }
 
 function prepareHelpPage() {
-  contacts = activeUser["contacts"];
-
   if (ACTIVEPATH.includes("help.html")) {
+    contacts = activeUser["contacts"];
     setActiveInitial();
+    activeLink();
   }
 }
 
-function guestLogin() {
-  localStorage.setItem("activeUser", JSON.stringify(0));
+async function guestLogin() {
+  await localStorage.setItem("checkLogin", JSON.stringify(true));
+  await localStorage.setItem("activeUser", JSON.stringify(0));
   window.location.href = "pages/summary.html";
 }
 
@@ -239,3 +264,9 @@ document.addEventListener("click", function (event) {
     dropdownContent.style.display = "none";
   }
 });
+
+function logout() {
+  localStorage.removeItem("checkLogin");
+  localStorage.removeItem("activeUser");
+  window.location.href = "./index.html";
+}
