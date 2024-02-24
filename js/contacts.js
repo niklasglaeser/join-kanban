@@ -61,7 +61,7 @@ async function renderContact() {
   sortContacts();
 
   let currentSign = null;
-  contactYou.innerHTML = generateCardYouHTML(activeUserId);
+  // contactYou.innerHTML = generateCardYouHTML(activeUserId);
 
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
@@ -96,7 +96,6 @@ function generateCard(i, contact, firstLetter) {
 }
 
 function generateUserDetails(i, array) {
-  console.log(array);
   let details = document.getElementById("contactDetails");
   let contactRight = document.getElementById("contact-right");
   if (array) {
@@ -226,15 +225,11 @@ async function saveEdit(i) {
   let newUser = document.getElementById(`contact${i}`).value;
   let newEmail = document.getElementById(`email${i}`).value;
   let newPhone = document.getElementById(`phone${i}`).value;
-  let currentInitialColor = contacts[i].initial_color;
 
-  contacts.splice(i, 1, {
-    name: newUser,
-    initial: getInitial(newUser),
-    initial_color: currentInitialColor,
-    email: newEmail,
-    phone: newPhone,
-  });
+  contacts[i].name = newUser;
+  contacts[i].initial = getInitial(newUser);
+  contacts[i].email = newEmail;
+  contacts[i].phone = newPhone;
 
   await setItem("users", JSON.stringify(users));
   currentContact = newUser;

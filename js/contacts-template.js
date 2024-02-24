@@ -55,7 +55,6 @@ function generateCardHTML(i, contact) {
 }
 
 function generateUserDetailsHTML(i, contact, array) {
-  console.log(array);
   let person;
   if (array) {
     person = array;
