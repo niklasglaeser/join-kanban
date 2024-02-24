@@ -14,6 +14,23 @@
   --active-link: #091931;
 }
 
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--white);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--grey);
+}
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
 @font-face {
   font-display: swap;
   font-family: 'Inter';
@@ -108,6 +125,12 @@
 .font-27 {
   font-size: 27px;
   font-style: normal;
+  font-weight: 700;
+}
+
+.font-27-light {
+  font-size: 27px;
+  font-style: normal;
   font-weight: 400;
 }
 
@@ -175,30 +198,6 @@
   color: var(--grey);
 }
 
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #a8a8a7 #ffffff;
-}
-
-*::-webkit-scrollbar {
-  width: 40px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #a8a8a7;
-  border-radius: 55px;
-  border: 18px solid #ffffff;
-}
-
-* {
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
 html,
 body {
   /* margin: 200px; */
@@ -229,7 +228,10 @@ main {
   border: 2px solid green;
 }
 
-
+input {
+  border: 0;
+  all: unset;
+}
 
 .pointer {
   cursor: pointer;

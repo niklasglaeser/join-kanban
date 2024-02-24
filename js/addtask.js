@@ -18,16 +18,16 @@ function changeClearButtonIconBack() {
 }
 
 function changeClearButtonIconMobile() {
-    let icon = document.getElementById("clearButtonIconMobile");
-  
-    icon.src = "../img/clear-button-icon-alternative.svg";
-  }
-  
-  function changeClearButtonIconBackMobile() {
-    let icon = document.getElementById("clearButtonIconMobile");
-  
-    icon.src = "../img/clear-button-icon.svg";
-  }
+  let icon = document.getElementById("clearButtonIconMobile");
+
+  icon.src = "../img/clear-button-icon-alternative.svg";
+}
+
+function changeClearButtonIconBackMobile() {
+  let icon = document.getElementById("clearButtonIconMobile");
+
+  icon.src = "../img/clear-button-icon.svg";
+}
 
 function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
@@ -55,28 +55,24 @@ document.addEventListener("click", function (event) {
   }
 });
 
-
 function renderAssignedToArray() {
-    let initial = document.getElementById("renderedAssignedToContacts");
-    let totalHTML = "";
-  
-    for (let i = 0; i < assignedTo.length; i++) {
-      const element = assignedTo[i];
-      const color = assignedTo[i]["initial_color"];
-      if (i < 5) {
-        totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element.initial}</div>`;
-      }
+  let initial = document.getElementById("renderedAssignedToContacts");
+  let totalHTML = "";
+
+  for (let i = 0; i < assignedTo.length; i++) {
+    const element = assignedTo[i];
+    const color = assignedTo[i]["initial_color"];
+    if (i < 5) {
+      totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element.initial}</div>`;
     }
-    if (assignedTo.length > 5) {
-      totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${
-        assignedTo.length - 5
-      }</div>`;
-    }
-    initial.innerHTML = totalHTML;
   }
-
-
-
+  if (assignedTo.length > 5) {
+    totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${
+      assignedTo.length - 5
+    }</div>`;
+  }
+  initial.innerHTML = totalHTML;
+}
 
 function toggleCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdownList");
@@ -188,10 +184,10 @@ function setCategory(selectedCategory) {
 
   let categorySelect = document.getElementById("categorySelect");
 
-  if (category === 'User Story') {
+  if (category === "User Story") {
     categorySelect.innerHTML =
       'User Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
-  } else if (category === 'Technical Task') {
+  } else if (category === "Technical Task") {
     categorySelect.innerHTML =
       'Technical Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
   }
@@ -200,29 +196,27 @@ function setCategory(selectedCategory) {
 }
 
 function acitivateSubtaskEditor() {
-    let imageContainer = document.getElementById("imageContainer");
-    let subTaskInput = document.getElementById("subTaskInput");
-  
-    if (subTaskInput.value.trim() !== "") {
-      imageContainer.innerHTML = `
+  let imageContainer = document.getElementById("imageContainer");
+  let subTaskInput = document.getElementById("subTaskInput");
+
+  if (subTaskInput.value.trim() !== "") {
+    imageContainer.innerHTML = `
               <img src="../img/x-icon-subtasks.svg" onclick="clearSubtaskInput()">
               <img src="../img/check-icon-subtasks.svg" onclick="addSubtaskToList()">
           `;
-    } else {
-      imageContainer.innerHTML = `
+  } else {
+    imageContainer.innerHTML = `
               <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
           `;
-    }
-  
-
-    subTaskInput.addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        addSubtaskToList();
-      }
-    });
   }
-  
+
+  subTaskInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      addSubtaskToList();
+    }
+  });
+}
 
 function focusSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
@@ -264,55 +258,50 @@ function addSubtaskToList() {
   }
 }
 
-
-
 function editSubtask(event) {
-    let entryDiv = event.target.closest(".subtasks-list-entry");
-    let subTaskInput = entryDiv.querySelector("li input");
-    let subTaskValue = subTaskInput.value;
+  let entryDiv = event.target.closest(".subtasks-list-entry");
+  let subTaskInput = entryDiv.querySelector("li input");
+  let subTaskValue = subTaskInput.value;
 
-    entryDiv.onmouseenter = null;
-    entryDiv.onmouseleave = null;
-    
-    subTaskInput.style.backgroundColor = "white";
-    subTaskInput.readOnly = false;
-    subTaskInput.focus();
+  entryDiv.onmouseenter = null;
+  entryDiv.onmouseleave = null;
 
-    
-    let editIcon = entryDiv.querySelector(".edit-icon");
-    editIcon.style.display = "none";
-    
-    let deleteIcon = entryDiv.querySelector(".delete-icon");
-    deleteIcon.style.display = "inline";
+  subTaskInput.style.backgroundColor = "white";
+  subTaskInput.readOnly = false;
+  subTaskInput.focus();
 
-    let saveIcon = entryDiv.querySelector(".save-icon");
-    saveIcon.style.display = "inline";
-  }
-  
+  let editIcon = entryDiv.querySelector(".edit-icon");
+  editIcon.style.display = "none";
+
+  let deleteIcon = entryDiv.querySelector(".delete-icon");
+  deleteIcon.style.display = "inline";
+
+  let saveIcon = entryDiv.querySelector(".save-icon");
+  saveIcon.style.display = "inline";
+}
+
 function saveSubtask(event) {
-    let entryDiv = event.target.closest(".subtasks-list-entry");
-    let subTaskInput = entryDiv.querySelector("li input");
-    let subTaskValue = subTaskInput.value.trim();
+  let entryDiv = event.target.closest(".subtasks-list-entry");
+  let subTaskInput = entryDiv.querySelector("li input");
+  let subTaskValue = subTaskInput.value.trim();
 
-    entryDiv.onmouseenter = addHoverToSubtask;
-    entryDiv.onmouseleave = removeHoverFromSubtask;
+  entryDiv.onmouseenter = addHoverToSubtask;
+  entryDiv.onmouseleave = removeHoverFromSubtask;
 
-    const index = subtasks.indexOf(subTaskInput.value);
-    if (index !== -1) {
-      subtasks[index] = subTaskValue;
-    }
-    
-    subTaskInput.readOnly = true;
-    subTaskInput.style.backgroundColor = "";
-    
-    let saveIcon = entryDiv.querySelector(".save-icon");
-    saveIcon.style.display = "none";
-    
-    let editIcon = entryDiv.querySelector(".edit-icon");
-    editIcon.style.display = "inline";
+  const index = subtasks.indexOf(subTaskInput.value);
+  if (index !== -1) {
+    subtasks[index] = subTaskValue;
   }
 
+  subTaskInput.readOnly = true;
+  subTaskInput.style.backgroundColor = "";
 
+  let saveIcon = entryDiv.querySelector(".save-icon");
+  saveIcon.style.display = "none";
+
+  let editIcon = entryDiv.querySelector(".edit-icon");
+  editIcon.style.display = "inline";
+}
 
 function addHoverToSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
@@ -321,7 +310,6 @@ function addHoverToSubtask(event) {
   deleteIcon.style.display = "inline";
   let editIcon = entryDiv.querySelector(".edit-icon");
   editIcon.style.display = "inline";
-  
 }
 
 function removeHoverFromSubtask(event) {
@@ -334,20 +322,18 @@ function removeHoverFromSubtask(event) {
 }
 
 function deleteSubtask(event) {
-    let entryDiv = event.target.closest(".subtasks-list-entry");
-    let subTaskValue = entryDiv.querySelector("li input").value;
-  
-    const index = subtasks.indexOf(subTaskValue);
-    if (index !== -1) {
-      subtasks.splice(index, 1);
-    }
-  
-    entryDiv.parentNode.removeChild(entryDiv);
+  let entryDiv = event.target.closest(".subtasks-list-entry");
+  let subTaskValue = entryDiv.querySelector("li input").value;
+
+  const index = subtasks.indexOf(subTaskValue);
+  if (index !== -1) {
+    subtasks.splice(index, 1);
   }
-  
+
+  entryDiv.parentNode.removeChild(entryDiv);
+}
 
 async function addNewTask() {
-
   const title = document.getElementById("titleInput").value;
   const description = document.getElementById("descriptionInput").value;
   const dueDate = document.getElementById("dueDateInput").value;
@@ -358,17 +344,17 @@ async function addNewTask() {
 
   if (!title) {
     errorTitle.innerHTML = `A Title is required!`;
-    titleInput.style.borderColor = 'red';
+    titleInput.style.borderColor = "red";
     errorCategory.innerHTML = ``;
-    categoryInput.style.borderColor = '#D1D1D1';
+    categoryInput.style.borderColor = "#D1D1D1";
     return;
   }
 
   if (!category) {
     errorTitle.innerHTML = ``;
-    titleInput.style.borderColor = '#D1D1D1';
+    titleInput.style.borderColor = "#D1D1D1";
     errorCategory.innerHTML = `A Category must be selected!`;
-    categoryInput.style.borderColor = 'red';
+    categoryInput.style.borderColor = "red";
     return;
   }
 
@@ -400,70 +386,68 @@ async function addNewTask() {
   }
 }
 
-
 function resetAddTaskForm() {
+  document.getElementById("titleInput").value = "";
+  document.getElementById("titleInput").style.borderColor = "#D1D1D1";
+  document.getElementById("errorTitle").innerHTML = "";
 
-    document.getElementById("titleInput").value = "";
-    document.getElementById("titleInput").style.borderColor = '#D1D1D1';
-    document.getElementById("errorTitle").innerHTML = "";
+  document.getElementById("descriptionInput").value = "";
 
-    document.getElementById("descriptionInput").value = "";
+  assignedTo = [];
+  renderAssignedToArray();
 
-    assignedTo = [];
-    renderAssignedToArray();
+  document.getElementById("dueDateInput").value = "";
 
-    document.getElementById("dueDateInput").value = "";
+  changePriority("mediumButton", "medium");
 
-    changePriority('mediumButton', 'medium');
+  let mediumButton = document.getElementById("mediumButton");
+  mediumButton.classList.add("medium");
 
-    let mediumButton = document.getElementById("mediumButton");
-    mediumButton.classList.add("medium");
-    
-    let mediumButtonImg = mediumButton.querySelector("img");
-    mediumButtonImg.src = "../img/medium-button-icon-active.svg";
+  let mediumButtonImg = mediumButton.querySelector("img");
+  mediumButtonImg.src = "../img/medium-button-icon-active.svg";
 
-    category = "";
-    document.getElementById("categorySelect").innerHTML = 'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
-    document.getElementById("requiredCategoryMessage").innerHTML = "";
-    document.getElementById("categorySelect").style.borderColor = '#D1D1D1';
+  category = "";
+  document.getElementById("categorySelect").innerHTML =
+    'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+  document.getElementById("requiredCategoryMessage").innerHTML = "";
+  document.getElementById("categorySelect").style.borderColor = "#D1D1D1";
 
-    subtasks = [];
-    document.getElementById("subtasksList").innerHTML = "";
+  subtasks = [];
+  document.getElementById("subtasksList").innerHTML = "";
 
-    document.getElementById("assignmentDropdownList").style.display = "none";
-    document.getElementById("categoryDropdownList").style.display = "none";
+  document.getElementById("assignmentDropdownList").style.display = "none";
+  document.getElementById("categoryDropdownList").style.display = "none";
 
-    let contactOptions = document.querySelectorAll(".assignment-dropdown-list-entry");
-    contactOptions.forEach(option => {
-        option.classList.remove("selected");
-        option.style.backgroundColor = "";
-        option.querySelector("img").src = "../img/check-button.svg";
-    });
+  let contactOptions = document.querySelectorAll(
+    ".assignment-dropdown-list-entry"
+  );
+  contactOptions.forEach((option) => {
+    option.classList.remove("selected");
+    option.style.backgroundColor = "";
+    option.querySelector("img").src = "../img/check-button.svg";
+  });
 }
 
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-        }
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  let descriptionInput = document.getElementById("descriptionInput");
 
-document.addEventListener("DOMContentLoaded", function() {
-    let descriptionInput = document.getElementById("descriptionInput");
-    
-    descriptionInput.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            
-            let cursorPos = this.selectionStart;
-            let newValue = this.value.slice(0, cursorPos) + "\n" + this.value.slice(cursorPos);
-            this.value = newValue;
-            this.setSelectionRange(cursorPos + 1, cursorPos + 1);
-        }
-    });
+  descriptionInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+
+      let cursorPos = this.selectionStart;
+      let newValue =
+        this.value.slice(0, cursorPos) + "\n" + this.value.slice(cursorPos);
+      this.value = newValue;
+      this.setSelectionRange(cursorPos + 1, cursorPos + 1);
+    }
+  });
 });
