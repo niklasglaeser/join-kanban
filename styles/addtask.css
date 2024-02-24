@@ -1,3 +1,7 @@
+input {
+    all: initial;
+}
+
 main {
     display: flex;
     flex-direction: column;
