@@ -3,7 +3,7 @@ let prio = "medium";
 let category = "";
 let subtasks = [];
 
-dueDateInput.min = new Date().toISOString().split("T")[0];
+// dueDateInput.min = new Date().toISOString().split("T")[0];
 
 function changeClearButtonIcon() {
   let icon = document.getElementById("clearButtonIcon");
@@ -451,3 +451,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+let config = {
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d", 
+}
+
+flatpickr("input[type=datetime-local]", config);
