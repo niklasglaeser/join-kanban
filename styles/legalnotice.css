@@ -1,3 +1,9 @@
+p,
+h1,
+h3 {
+  margin: 0;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -13,6 +19,11 @@
 .headline img {
   width: 32px;
   height: 32px;
+}
+
+.hightlight-join,
+.hightlight-dev {
+  color: var(--blue-light);
 }
 
 @media (max-width:1300px) {

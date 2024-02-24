@@ -134,6 +134,18 @@
   font-weight: 400;
 }
 
+.font-24 {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.font-24-light {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .font-21 {
   font-size: 21px;
   font-style: normal;
@@ -205,6 +217,7 @@ body {
   font-family: 'Inter', Arial, sans-serif;
   background-color: var(--background);
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 body {

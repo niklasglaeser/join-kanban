@@ -4,7 +4,7 @@
      /* position: relative; */
      /* height: 100vh; */
      /* padding-bottom: 80px; */
-     background-color: var(--background);
+     /* background-color: var(--background); */
      overflow: auto;
  }
 
@@ -338,7 +338,6 @@
      .awaiting-feedback-count {
          font-size: 47px;
          font-weight: 600;
-
      }
 
      .third-row-label {
@@ -387,17 +386,47 @@
          gap: 16px;
      }
 
+     .third-row-div {
+         height: 120px;
+
+     }
+
      .urgent-icon-div {
          margin-left: 16px;
          margin-right: 16px;
      }
 
      .urgent-seperation {
-         margin-left: 16x;
+         margin-left: 16px;
          margin-right: 16px;
      }
 
      .deadline-date {
          font-size: 16px;
+     }
+ }
+
+ @media (max-width:380px) {
+     .first-row-div {
+         gap: 4px;
+     }
+
+     .urgent-icon-div {
+         margin-left: 8px;
+         margin-right: 8px;
+     }
+
+     .to-do-count,
+     .urgent-count,
+     .done-count {
+         font-size: 30px;
+         text-align: center;
+     }
+
+     .tasks-in-board-count,
+     .tasks-in-progress-count,
+     .awaiting-feedback-count {
+         font-size: 30px;
+         font-weight: 600;
      }
  }

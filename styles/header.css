@@ -69,7 +69,8 @@ header {
     height: 158px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    top: 103px;
+    top: 100px;
+    right: 8px;
     border-radius: 20px 0px 20px 20px;
 }
 

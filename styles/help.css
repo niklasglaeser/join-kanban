@@ -24,6 +24,10 @@ h2 {
   height: 32px;
 }
 
+.hightlight-join {
+  color: var(--blue-light);
+}
+
 @media (max-width:1300px) {
   main {
     margin: 0;
