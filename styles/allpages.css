@@ -238,7 +238,7 @@ main {
 }
 
 .border {
-  border: 2px solid green;
+  border: none;
 }
 
 input {

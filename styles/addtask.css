@@ -2,9 +2,9 @@ main {
     display: flex;
     flex-direction: column;
     position: relative;
-    /* padding-bottom: 100px; */
     overflow: auto;
     font: inherit;
+    padding-bottom: 100px;
 }
 
 .title {
@@ -570,7 +570,7 @@ main {
 
 @media (max-width: 1400px) {
     .task-form {
-        padding-left: 25pxpx;
+        padding-left: 25px;
     }
 
 }
@@ -662,13 +662,11 @@ main {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 30px;
-        padding-left: 16px;
-    }
+        padding-top: 20px;
+        width: 100%;
+        padding-left: 0;
+        padding-bottom: 20px;
 
-    .addTasksButtons {
-        margin-top: 90px;
-        margin-bottom: 150px;
     }
 }
 
@@ -677,7 +675,7 @@ main {
 
     main {
         padding: 0;
-        height: calc(100vh - 345px);
+        height: calc(100vh - 380px);
     }
 
     .task-form {
@@ -691,9 +689,9 @@ main {
 
     .mobile-title {
         font-size: 51px;
-        padding-top: 25px;
-        padding-left: 16px;
-        padding-bottom: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .left-column {
