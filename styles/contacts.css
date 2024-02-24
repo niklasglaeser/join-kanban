@@ -668,6 +668,7 @@ input[type=number] {
   .contact-right {
     display: none;
     padding-top: 55px;
+    background-color: var(--background);
   }
 
   .contact-right-headline {
