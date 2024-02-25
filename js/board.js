@@ -23,8 +23,14 @@ async function updateHTML(filteredTasks) {
     const taskID = task[index]["id"];
     let generateHTML = generateTodoHTML(element, taskID);
     document.getElementById("todo").innerHTML += generateHTML;
-    generateAssignedToInitial(element, taskID);
-    generatePrioIcon(element, taskID);
+    generateAssignedToInitial(
+      element,
+      taskID,
+      "cardInitial",
+      "cardInitialAssignedTo",
+      5
+    );
+    generatePrioIcon(element, taskID, "prioArrow");
     generateSubTask(element, taskID);
   }
 
@@ -43,8 +49,14 @@ async function updateHTML(filteredTasks) {
     const taskID = inProgress[index]["id"];
     let generateHTML = generateTodoHTML(element, taskID);
     document.getElementById("inProgress").innerHTML += generateHTML;
-    generateAssignedToInitial(element, taskID);
-    generatePrioIcon(element, taskID);
+    generateAssignedToInitial(
+      element,
+      taskID,
+      "cardInitial",
+      "cardInitialAssignedTo",
+      5
+    );
+    generatePrioIcon(element, taskID, "prioArrow");
     generateSubTask(element, taskID);
   }
 
@@ -65,8 +77,14 @@ async function updateHTML(filteredTasks) {
     const taskID = awaitFeedback[index]["id"];
     let generateHTML = generateTodoHTML(element, taskID);
     document.getElementById("awaitFeedback").innerHTML += generateHTML;
-    generateAssignedToInitial(element, taskID);
-    generatePrioIcon(element, taskID);
+    generateAssignedToInitial(
+      element,
+      taskID,
+      "cardInitial",
+      "cardInitialAssignedTo",
+      5
+    );
+    generatePrioIcon(element, taskID, "prioArrow");
     generateSubTask(element, taskID);
   }
 
@@ -85,8 +103,14 @@ async function updateHTML(filteredTasks) {
     const taskID = done[index]["id"];
     let generateHTML = generateTodoHTML(element, taskID);
     document.getElementById("done").innerHTML += generateHTML;
-    generateAssignedToInitial(element, taskID);
-    generatePrioIcon(element, taskID);
+    generateAssignedToInitial(
+      element,
+      taskID,
+      "cardInitial",
+      "cardInitialAssignedTo",
+      5
+    );
+    generatePrioIcon(element, taskID, "prioArrow");
     generateSubTask(element, taskID);
   }
   if (done.length < 1) {
@@ -117,7 +141,7 @@ function startDragging(id) {
 }
 
 function generateTodoHTML(element, taskID) {
-  return `<div id="task_${taskID}" draggable="true" ondragstart="startDragging(${element["id"]})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
+  return `<div id="task_${taskID}" onclick="togglePopup(${taskID})" draggable="true" ondragstart="startDragging(${element["id"]})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
   <div class="task-category-wrapper">
   <span class="task-category white">${element["category"]}</span>
   <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID})"></img>
@@ -178,28 +202,52 @@ function rotateTaskEnd(taskID) {
   document.getElementById(`task_${taskID}`).classList.remove("rotate-task");
 }
 
-function generateAssignedToInitial(element, taskID) {
-  let initial = document.getElementById(`cardInitial_${taskID}`);
+function generateAssignedToInitial(
+  element,
+  taskID,
+  initialID,
+  divClass,
+  value
+) {
+  let initial = document.getElementById(`${initialID}_${taskID}`);
   let assignedArray = element["assignedTo"];
   let totalHTML = "";
 
   for (let i = 0; i < assignedArray.length; i++) {
     const element = assignedArray[i];
     const color = tasks[taskID]["assignedTo"][i]["initial_color"];
-    if (i < 5) {
-      totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element.initial}</div>`;
+    if (i < value) {
+      totalHTML += `<div class="${divClass}" style="background-color:${color}">${element.initial}</div>`;
     }
   }
-  if (assignedArray.length > 5) {
-    totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${
-      assignedArray.length - 5
+  if (assignedArray.length > value) {
+    totalHTML += `<div class="${divClass}" style="background-color: var(--grey)">+${
+      assignedArray.length - value
     }</div>`;
   }
   initial.innerHTML = totalHTML;
 }
 
-function generatePrioIcon(element, taskID) {
-  let prioIcon = document.getElementById(`prioArrow_${taskID}`);
+function generateAssignedToInitialName(element, taskID, nameID, value) {
+  let initial = document.getElementById(`${nameID}_${taskID}`);
+  let assignedArray = element["assignedTo"];
+  let totalHTML = "";
+
+  for (let i = 0; i < assignedArray.length; i++) {
+    const element = assignedArray[i];
+    const color = tasks[taskID]["assignedTo"][i]["name"];
+    if (i < value) {
+      totalHTML += `<div class="overlayTaskAssignedToName font-20-light">${element.name}</div>`;
+    }
+  }
+  if (assignedArray.length > value) {
+    totalHTML += `<div class="overlayTaskAssignedToName font-20-light">more users</div>`;
+  }
+  initial.innerHTML = totalHTML;
+}
+
+function generatePrioIcon(element, taskID, idElement) {
+  let prioIcon = document.getElementById(`${idElement}_${taskID}`);
   let prio = element["prio"];
   if (prio == "low") {
     prioIcon.src = "../img/symbol-low.svg";
@@ -251,3 +299,98 @@ document.addEventListener("click", function (event) {
     });
   }
 });
+
+function generateCard(taskID) {
+  let task = tasks[taskID];
+  overlayTask.innerHTML = /*HTML*/ `
+  <div class="overlayTaskWrapper">
+  <div class="overlayTaskHeader">
+      <div class="task-category font-21-light white">${task.category}</div>
+      <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()"
+          src="../img/close-btn-black.svg">
+  </div>
+  <div class="overlayTaskHeadline font-61">${task.title}</div>
+  <div class="overlayTaskDescription font-20-light">${task.description}</div>
+  <div class="overlayTaskDate font-20-light">
+      <div>Due Date:</div>
+      <div>${task.dueDate}</div>
+  </div>
+  <div class="overlayTaskPrio font-20-light">
+      <div>Priority:</div>
+      <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${taskID}"></div>
+  </div>
+  <div class="font-20-light">Assigned To:</div>
+  <div class="">
+      <div class="overlayTaskAssignedTo">
+          <div id="cardInitalCard_${taskID}" class="overlayTaskAssignedToInitial"></div>
+          <div id="cardInitalCardName_${taskID}"></div>
+      </div>
+  </div>
+  <div class="font-20-light">Subtasks:</div>
+  <div class="">
+      <div class="overlayTaskSubtasks">
+          <div>Check </div>
+          <div>Implement Recipe Recommendation</div>
+      </div>
+      <div class="overlayTaskSubtasks">
+          <div>Check </div>
+          <div>Implement Recipe Recommendation</div>
+      </div>
+      <div class="overlayTaskSubtasks">
+          <div>Check </div>
+          <div>Implement Recipe Recommendation</div>
+      </div>
+  </div>
+  <div class="overlayTaskFooter">
+      <div class="overlayTaskFooterWrapper">
+          <a onclick="" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
+          <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
+          <a onclick="" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+      </div>
+
+  </div>
+</div>
+  `;
+}
+
+function togglePopup(i) {
+  let overlay = document.getElementById("overlay");
+  let popup = document.getElementById("popup");
+  let element = tasks[i];
+
+  if (popupVisible(overlay, popup)) {
+    hidePopup(overlay, popup);
+  } else {
+    showPopup(overlay, popup);
+    generateCard(i);
+    console.log(element);
+    generatePrioIcon(element, i, "prioArrowCard");
+    generateAssignedToInitial(
+      element,
+      i,
+      "cardInitalCard",
+      "overlayTaskAssignedToInitial",
+      3
+    );
+    generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
+  }
+}
+
+function popupVisible(overlay, popup) {
+  return (
+    overlay.classList.contains("overlay-show") &&
+    popup.classList.contains("popup-slideIn")
+  );
+}
+
+function hidePopup(overlay, popup) {
+  overlay.classList.remove("overlay-show");
+  overlay.classList.add("d-none");
+  popup.classList.remove("popup-slideIn");
+}
+
+function showPopup(overlay, popup) {
+  overlay.classList.add("overlay-show");
+  overlay.classList.remove("d-none");
+  popup.classList.add("popup-slideIn");
+}

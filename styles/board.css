@@ -13,6 +13,179 @@ main {
     display: none;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    visibility: hidden;
+    transition: all 225ms ease-in-out;
+}
+
+.overlay-show {
+    visibility: visible;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transform: translateX(200%);
+    /* transform: translateX(0); */
+    transition: all 425ms ease-in-out;
+}
+
+.popup-slideIn {
+    transform: translateX(0);
+}
+
+.overlayTask {
+    position: relative;
+    display: flex;
+    width: 525px;
+    height: 931px;
+    border-radius: 38px;
+    padding: 48px 40px;
+    background-color: var(--white);
+}
+
+.overlayTaskWrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.overlayTaskHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overlayTaskClose {
+    position: absolute;
+    top: 48px;
+    right: 36px;
+    z-index: 1;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+.overlayTaskHeadline {
+    max-height: 190px;
+    padding-bottom: 6px;
+    /* etwa zwei Zeilen Text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Zeilenanzahl */
+    -webkit-box-orient: vertical;
+}
+
+.overlayTaskDescription {
+    max-height: 80px;
+    padding-bottom: 6px;
+    /* etwa zwei Zeilen Text */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* Zeilenanzahl */
+    -webkit-box-orient: vertical;
+}
+
+
+.overlayTaskDate {
+    display: flex;
+    gap: 16px;
+}
+
+.overlayTaskPrio {
+    display: flex;
+    gap: 36px;
+}
+
+.overlayTaskPrio div {
+    display: flex;
+    align-items: center;
+}
+
+.overlayTaskAssignedTo {
+    display: flex;
+    /* align-items: center; */
+    gap: 16px;
+    padding-left: 16px;
+    margin-bottom: 8px
+}
+
+.overlayTaskAssignedToInitial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 42px;
+    min-height: 42px;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 12px;
+    border: 2px solid var(--white);
+}
+
+.overlayTaskAssignedToName {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    min-width: 42px;
+    min-height: 42px;
+}
+
+.overlayTaskSubtasks {
+    display: flex;
+}
+
+.overlayTaskFooter {
+    position: absolute;
+    left: 0;
+    right: 40px;
+    bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.overlayTaskFooterWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.overlayTaskFooterWrapper a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.overlayTaskLine {
+    height: 20px;
+    width: 3px;
+}
+
+
 .board-headline {
     display: flex;
     justify-content: space-between;
@@ -232,7 +405,7 @@ main {
 
 
 .task-category {
-    padding: 4px 16px 4px 16px;
+    padding: 4px 24px 4px 24px;
     border-radius: 8px;
     background-color: blue;
     inline-size: fit-content;
