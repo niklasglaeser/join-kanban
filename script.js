@@ -29,6 +29,7 @@ function checkUserLogin() {
   }
 }
 
+/*
 async function checkRegUser() {
   return new Promise((resolve, reject) => {
     let backgroundNotLogin = document.getElementById("backgroundNotLogin");
@@ -45,6 +46,7 @@ async function checkRegUser() {
     }
   });
 }
+*/
 
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
@@ -107,7 +109,7 @@ function setActiveInitial() {
 async function prepareSummaryPage() {
   if (ACTIVEPATH.includes("summary.html")) {
     try {
-      await checkRegUser();
+      checkUserLogin();
       await activeLink();
       await welcomeMessage();
       await setActiveUsername();
@@ -131,6 +133,7 @@ function prepareAddtaskPage() {
 
 function prepareBoardPage() {
   if (ACTIVEPATH.includes("board.html")) {
+    checkUserLogin();
     setActiveInitial();
     activeLink();
     updateHTML();
@@ -139,6 +142,7 @@ function prepareBoardPage() {
 
 function prepareContactsPage() {
   if (ACTIVEPATH.includes("contacts.html")) {
+    checkUserLogin();
     contacts = activeUser["contacts"];
     renderContact();
     activeLink();
@@ -274,7 +278,6 @@ document.addEventListener("click", function (event) {
 });
 
 function logout() {
-  localStorage.removeItem("checkLogin");
-  localStorage.removeItem("activeUser");
   window.location.href = "./index.html";
+  localStorage.removeItem("activeUser");
 }
