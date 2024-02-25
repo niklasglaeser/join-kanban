@@ -22,6 +22,13 @@ async function init() {
   prepareHelpPage();
 }
 
+
+function checkUserLogin() {
+  if (!activeUser) {
+    window.location.href = "../index.html";
+  }
+}
+
 async function checkRegUser() {
   return new Promise((resolve, reject) => {
     let backgroundNotLogin = document.getElementById("backgroundNotLogin");
@@ -115,6 +122,7 @@ async function prepareSummaryPage() {
 
 function prepareAddtaskPage() {
   if (ACTIVEPATH.includes("addtask.html")) {
+    checkUserLogin();
     setActiveInitial();
     activeLink();
     renderAssignmentContacts(users);
