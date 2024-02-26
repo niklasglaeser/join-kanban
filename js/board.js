@@ -130,8 +130,8 @@ function filterTasks() {
   const searchText = document.getElementById("searchInput").value.toLowerCase();
   const filteredTasks = tasks.filter(
     (task) =>
-      task.title.toLowerCase().includes(searchText) ||
-      task.description.toLowerCase().includes(searchText)
+      (task.title && task.title.toLowerCase().includes(searchText)) ||
+      (task.description && task.description.toLowerCase().includes(searchText))
   );
   updateHTML(filteredTasks);
 }
