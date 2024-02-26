@@ -141,15 +141,15 @@ function startDragging(id) {
 }
 
 function generateTodoHTML(element, taskID) {
-  return `<div id="task_${taskID}" onclick="togglePopup(${taskID})" draggable="true" ondragstart="startDragging(${element["id"]})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
+  return `<div id="task_${taskID}" onclick="togglePopup(${taskID});stopPropagation(event);" draggable="true" ondragstart="startDragging(${element["id"]})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
   <div class="task-category-wrapper">
   <span class="task-category white">${element["category"]}</span>
-  <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID})"></img>
+  <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID});stopPropagation(event);"></img>
   <div id="taskDropdown_${taskID}" class="task-dropdown">
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'todo')"><img src="../img/arrow-left.svg"></img>ToDo</span>
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'inProgress')"><img src="../img/arrow-left.svg"></img>In Progress</span>
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'awaitFeedback')"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'done')"><img src="../img/arrow-left.svg"></img>Done</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'todo');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>ToDo</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'inProgress');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>In Progress</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'awaitFeedback');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
+  <span class="font-14-light white" onclick="moveToMobile(${taskID},'done');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>Done</span>
   </div>
   </div>
   <div class="task-description">
@@ -271,9 +271,7 @@ function generateSubTask(element, taskID) {
 }
 
 function taskOpenDropdown(taskID) {
-  console.log("click");
   let dropdownContent = document.getElementById(`taskDropdown_${taskID}`);
-  console.log(dropdownContent);
   if (dropdownContent.style.display === "flex") {
     dropdownContent.style.display = "none";
   } else {
@@ -298,6 +296,7 @@ document.addEventListener("click", function (event) {
       dropdownContent.style.display = "none";
     });
   }
+  event.preventDefault();
 });
 
 function generateCard(taskID) {
@@ -363,7 +362,6 @@ function togglePopup(i) {
   } else {
     showPopup(overlay, popup);
     generateCard(i);
-    console.log(element);
     generatePrioIcon(element, i, "prioArrowCard");
     generateAssignedToInitial(
       element,
@@ -405,6 +403,10 @@ function openAddTaskPopUp() {
     showPopup(overlay, addTaskPopUp);
     // addTaskPopUp.style.display = "flex";
   }
+}
+
+function stopPropagation(event) {
+  event.stopPropagation();
 }
 
 // function closeAddTaskPopUp() {
