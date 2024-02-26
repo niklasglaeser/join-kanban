@@ -11,6 +11,12 @@ main {
     align-self: flex-start;
     font-size: 61px;
     font-weight: bold;
+    padding-left: 125px;
+    padding-bottom: 50px;
+}
+
+.title:focus {
+    outline: none;
 }
 
 .mobile-title {
@@ -54,20 +60,21 @@ main {
 .left-column {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 45px;
     font-size: 20px;
 }
 
 
 
 #titleInput {
-    width: 420px;
+    width: 440px;
     background-color: white;
     border-radius: 10px;
     border: solid 1px;
     border-color: #D1D1D1;
     padding: 10px;
     margin-top: 8px;
+    font-size: 18px;
 }
 
 #errorTitle {
@@ -88,6 +95,10 @@ main {
     margin-top: 8px;
     font-size: 18px;
     font: inherit;
+}
+
+#descriptionInput {
+    outline: none;
 }
 
 #descriptionInput::placeholder {
@@ -224,17 +235,17 @@ main {
     flex-direction: column;
     gap: 50px;
     font-size: 20px;
-    padding-top: 100px;
 }
 
 
 #dueDateInput {
-    width: 420px;
+    width: 440px;
     background-color: white;
     border-radius: 10px;
     border: solid 1px #D1D1D1;
     padding: 10px;
     margin-top: 8px;
+    font-size: 18px;
 }
 
 
@@ -419,6 +430,12 @@ main {
 #subTaskInput {
     background-color: white;
     width: 100%;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+#subTaskInput:focus {
+    outline: none;
 }
 
 #imageContainer {
@@ -451,13 +468,14 @@ main {
 
 .subtasks-list-entry li {
     display: list-item;
-    /* height: 50px; */
+    height: 40px;
     padding-left: 30px;
-    /* padding-top: 7px; */
+    padding-top: 7px;
 }
 
 .subtasks-list-entry li input {
     padding: 5px;
+    background-color:#F6F7F8;
 }
 
 #subtaskIcons {
@@ -470,8 +488,9 @@ main {
 
 #subtaskEditInput {
     border-radius: 10px;
-    /* padding-left: 10px; */
+    padding-left: 10px;
     height: 25px;
+    width: 250px;
 }
 
 
@@ -589,7 +608,7 @@ main {
     }
 
     .title {
-        padding-left: 0px;
+        padding-left: 120px;
     }
 }
 
@@ -706,7 +725,7 @@ main {
     }
 
     #titleInput {
-        width: 260px;
+        width: 280px;
     }
 
     #descriptionInput {
@@ -742,7 +761,7 @@ main {
     }
 
     #dueDateInput {
-        width: 255px;
+        width: 280px;
     }
 
     .addTasksButtons {
