@@ -55,9 +55,11 @@ main {
     position: relative;
     display: flex;
     width: 525px;
-    height: 931px;
+    max-height: 931px;
+    height: 100%;
     border-radius: 38px;
     padding: 48px 40px;
+    margin: 16px;
     background-color: var(--white);
 }
 
@@ -86,12 +88,10 @@ main {
 .overlayTaskHeadline {
     max-height: 190px;
     padding-bottom: 6px;
-    /* etwa zwei Zeilen Text */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    /* Zeilenanzahl */
     -webkit-box-orient: vertical;
 }
 
@@ -565,6 +565,19 @@ main {
         display: none;
     }
 
+    .overlayTask {
+        padding: 32px 24px;
+        max-height: 931px;
+        height: 90%;
+    }
+
+    .overlayTaskWrapper {
+        gap: 16px;
+    }
+
+    .overlayTaskHeadline {
+        font-size: 36px;
+    }
 
 }
 
