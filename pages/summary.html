@@ -32,7 +32,7 @@
             <div id="welcomeMessageMobil" class="font-36"></div>
             <div id="setActiveUsernameMobil" class="font-36 blue-light"></div>
         </div>
-        <div class=" summary-left">
+        <div class="summary-left">
             <div class="content-header">
                 <div>Join 360</div>
                 <div class="content-header-right">
@@ -45,15 +45,15 @@
                 <div class="summary-container">
                     <div class="first-row">
                         <div class="first-row-div" onmouseenter="changePencilIcon()"
-                            onmouseleave="changePencilIconBack()">
+                            onmouseleave="changePencilIconBack()" onclick="openSummary()">
                             <img id="firstRowDivPencilIcon" src="../img/pencil-icon.svg">
                             <div>
                                 <div id="countTaskToDo" class="to-do-count">1</div>
                                 <div class="to-do-label">To-do</div>
                             </div>
                         </div>
-                        <div class="first-row-div" onmouseenter="changeHakenIcon()"
-                            onmouseleave="changeHakenIconBack()">
+                        <div class="first-row-div" onmouseenter="changeHakenIcon()" onmouseleave="changeHakenIconBack()"
+                            onclick="openSummary()">
                             <img id="firstRowDivHakenIcon" src="../img/haken-icon.svg">
                             <div>
                                 <div id="countTaskDone" class="done-count">1</div>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="second-row">
-                        <div class="second-row-div">
+                        <div class="second-row-div" onclick="openSummary()">
                             <div class="urgent-icon-div">
                                 <img src="../img/urgent-icon.svg">
                             </div>
@@ -78,17 +78,17 @@
                         </div>
                     </div>
                     <div class="third-row">
-                        <div class="third-row-div">
+                        <div class="third-row-div" onclick="openSummary()">
                             <div id="countTasks" class="tasks-in-board-count">5</div>
                             <div class="third-row-label">Tasks in</div>
                             <div class="third-row-label">Board</div>
                         </div>
-                        <div class="third-row-div">
+                        <div class="third-row-div" onclick="openSummary()">
                             <div id="countTaskInprogress" class="tasks-in-progress-count">2</div>
                             <div class="third-row-label">Tasks in</div>
                             <div class="third-row-label">Progress</div>
                         </div>
-                        <div class="third-row-div">
+                        <div class="third-row-div" onclick="openSummary()">
                             <div id="countTaskAwaitFeedback" class="awaiting-feedback-count">3</div>
                             <div class="third-row-label">Awaiting</div>
                             <div class="third-row-label">Feedback</div>

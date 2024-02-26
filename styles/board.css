@@ -214,6 +214,7 @@ main {
 
 .loginInputs input {
     flex: 1;
+    outline: none;
     border-right: 1px solid var(--grey-light);
 }
 

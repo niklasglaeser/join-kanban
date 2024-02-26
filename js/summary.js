@@ -65,3 +65,7 @@ function taskUrgentDeadline() {
   urgentDate.sort();
   taskUrgentDeadline.innerHTML = urgentDate[0];
 }
+
+function openSummary() {
+  window.location.href = "../pages/board.html";
+}
