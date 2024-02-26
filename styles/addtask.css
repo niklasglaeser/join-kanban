@@ -399,16 +399,6 @@ main {
 
 
 
-
-
-
-
-
-
-
-
-
-
 #subtasksInput {
     display: flex;
     flex-direction: row;
@@ -605,6 +595,7 @@ main {
     .task-form {
         padding-left: 0px;
         margin-left: 0px;
+        padding-bottom: 75px;
     }
 
     .title {

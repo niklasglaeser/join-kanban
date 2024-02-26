@@ -31,7 +31,7 @@ async function checkRegUser() {
       backgroundNotLogin.classList.add("backgroundNotLogin");
       setTimeout(() => {
         window.location.href = "../index.html";
-      }, 5000);
+      }, 500);
       reject(new Error("Benutzer nicht eingeloggt"));
     } else {
       backgroundNotLogin.innerHTML = "";
