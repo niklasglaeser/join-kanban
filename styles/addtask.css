@@ -196,7 +196,7 @@ main {
     border: solid 2px white;
 }
 
-.cardInitialAssignedTo {
+.cardInitialAssignedToAddTask {
     display: flex;
     justify-content: center;
     align-items: center;

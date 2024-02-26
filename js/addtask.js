@@ -69,11 +69,11 @@ function renderAssignedToArray() {
     const element = assignedTo[i];
     const color = assignedTo[i]["initial_color"];
     if (i < 5) {
-      totalHTML += `<div class="cardInitialAssignedTo" style="background-color:${color}">${element.initial}</div>`;
+      totalHTML += `<div class="cardInitialAssignedToAddTask" style="background-color:${color}">${element.initial}</div>`;
     }
   }
   if (assignedTo.length > 5) {
-    totalHTML += `<div class="cardInitialAssignedTo" style="background-color: var(--grey)">+${
+    totalHTML += `<div class="cardInitialAssignedToAddTask" style="background-color: var(--grey)">+${
       assignedTo.length - 5
     }</div>`;
   }
@@ -298,7 +298,7 @@ function saveSubtask(event) {
 
 function addHoverToSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
-  entryDiv.style.backgroundColor = "#f0f0f0";
+  entryDiv.style.backgroundColor = "";
 
   let deleteIcon = entryDiv.querySelector(".delete-icon");
   deleteIcon.style.display = "inline";
