@@ -296,7 +296,6 @@ document.addEventListener("click", function (event) {
       dropdownContent.style.display = "none";
     });
   }
-  event.preventDefault();
 });
 
 function generateCard(taskID) {
