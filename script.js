@@ -9,8 +9,8 @@ let checkLogin = JSON.parse(localStorage.getItem("checkLogin"));
 const ACTIVEPATH = window.location.href;
 
 async function init() {
-  await includeHTML();
   await loadUsers();
+  await includeHTML();
 
   prepareSummaryPage();
   prepareAddtaskPage();
