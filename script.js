@@ -23,13 +23,7 @@ async function init() {
 }
 
 
-function checkUserLogin() {
-  if (!activeUser) {
-    window.location.href = "../index.html";
-  }
-}
 
-/*
 async function checkRegUser() {
   return new Promise((resolve, reject) => {
     let backgroundNotLogin = document.getElementById("backgroundNotLogin");
@@ -46,7 +40,6 @@ async function checkRegUser() {
     }
   });
 }
-*/
 
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
@@ -109,7 +102,7 @@ function setActiveInitial() {
 async function prepareSummaryPage() {
   if (ACTIVEPATH.includes("summary.html")) {
     try {
-      checkUserLogin();
+      await checkRegUser();
       await activeLink();
       await welcomeMessage();
       await setActiveUsername();
@@ -124,7 +117,7 @@ async function prepareSummaryPage() {
 
 function prepareAddtaskPage() {
   if (ACTIVEPATH.includes("addtask.html")) {
-    checkUserLogin();
+    checkRegUser();
     setActiveInitial();
     activeLink();
     renderAssignmentContacts(users);
@@ -133,7 +126,7 @@ function prepareAddtaskPage() {
 
 function prepareBoardPage() {
   if (ACTIVEPATH.includes("board.html")) {
-    checkUserLogin();
+    checkRegUser();
     setActiveInitial();
     activeLink();
     updateHTML();
@@ -142,7 +135,7 @@ function prepareBoardPage() {
 
 function prepareContactsPage() {
   if (ACTIVEPATH.includes("contacts.html")) {
-    checkUserLogin();
+    checkRegUser();
     contacts = activeUser["contacts"];
     renderContact();
     activeLink();
@@ -280,4 +273,5 @@ document.addEventListener("click", function (event) {
 function logout() {
   window.location.href = "./index.html";
   localStorage.removeItem("activeUser");
+  localStorage.removeItem("checkLogin");
 }
