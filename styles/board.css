@@ -417,10 +417,6 @@ main {
     gap: 8px;
 }
 
-.task-title {
-    /* margin-bottom: 8px; */
-}
-
 
 .task-description-text {
     height: 33px;
@@ -475,6 +471,34 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
 }
+
+
+
+#popUpAddTaskContainer {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    left: 100px;
+    top: 20px;
+    height: 900px;
+    width: 1000px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+#closeButtonAddTaskPopUp {
+    height: 30px;
+    width: 50px;
+    align-self: flex-end;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+
+
+
+
+
 
 @media (max-width:1300px) {
     .board-headline {

@@ -394,3 +394,16 @@ function showPopup(overlay, popup) {
   overlay.classList.remove("d-none");
   popup.classList.add("popup-slideIn");
 }
+
+
+function openAddTaskPopUp() {
+  let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
+
+  addTaskPopUp.style.display = 'flex';
+}
+
+function closeAddTaskPopUp() {
+  let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
+
+  addTaskPopUp.style.display = 'none';
+}

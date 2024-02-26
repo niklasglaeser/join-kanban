@@ -211,7 +211,6 @@
 }
 
 .backgroundNotLogin {
-  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -283,7 +282,6 @@ main {
 
 input {
   border: 0;
-  /* all: unset; */
 }
 
 .pointer {

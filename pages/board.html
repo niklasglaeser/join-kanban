@@ -11,15 +11,25 @@
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/allpages.css">
     <link rel="stylesheet" href="../styles/board.css">
+    <link rel="stylesheet" href="../styles/addtask.css">
     <!-- <link rel="stylesheet" href="../styles/contacts.css"> -->
     <script src="../js/storage.js" defer></script>
     <script src="../script.js" defer></script>
     <script src="../js/board.js" defer></script>
+    <script src="../js/addtask.js" defer></script>
     <!-- <script src="../js/contacts.js" defer></script> -->
 </head>
 
 <body onload="init()">
-
+    
+    <div id="backgroundNotLogin" class="backgroundNotLogin">
+        <div class="">
+            <img src="../img/join-logo.svg" alt="">
+            <br>
+            <h1 class="font-27">Please Login First</h1>
+            <a href="../index.html" class="login-button white font-24-light">Login</a>
+        </div>
+    </div>
     <div w3-include-html="../templates/header.html"></div>
     <div w3-include-html="../templates/sidebar.html"></div>
 
@@ -27,7 +37,7 @@
         <div class="board-headline ">
             <div class="board-headline-mobil">
                 <p class="font-61">Board</p>
-                <button id="slideButton" onclick="togglePopup()" class="addTask-button-mobil font-21 white">
+                <button id="slideButton" onclick="openAddTaskPopUp()" class="addTask-button-mobil font-21 white">
                     <img src="../img/plus.svg" alt="">
                 </button>
             </div>
@@ -38,7 +48,7 @@
                         <img src="../img/search.svg">
                     </form>
                 </div>
-                <button id="slideButton" onclick="togglePopup()" class="addTask-button font-21 white">
+                <button id="slideButton" onclick="openAddTaskPopUp()" class="addTask-button font-21 white">
                     <span>Add task</span>
                     <img src="../img/plus.svg" alt="">
                 </button>
@@ -90,6 +100,106 @@
             <div id="overlayTask" class="overlayTask">
 
             </div>
+        </div>
+
+
+        <div id="popUpAddTaskContainer">
+            <button onclick="closeAddTaskPopUp()" id="closeButtonAddTaskPopUp">Close</button>
+            <form class="task-form" onsubmit="addNewTask(); return false;">
+                <div class="title">Add Task</div>
+                <div class="task-form-container">
+                    <div class="left-column">
+                        <div>
+                            <div>Title*</div>
+                            <input type="text" id="titleInput" placeholder="Enter a title">
+                            <div id="errorTitle"></div>
+                        </div>
+                        <div>
+                            <div>Description</div>
+                            <textarea id="descriptionInput" placeholder="Enter a Description"></textarea>
+                        </div>
+                        <div>
+                            <div>Assigned to</div>
+                            <div class="assignment-dropdown">
+                                <div id="assignmentSelect" onclick="toggleAssignmentDropdown()">
+                                    Select contacts to assign
+                                    <img src="../img/dropdown-icon.svg" id="dropdownIcon">
+                                </div>
+                                <div id="renderedAssignedToContacts"></div>
+                                <div id="assignmentDropdownList">
+                                    <div class="assignment-dropdown-list-entry"></div>
+                                </div>
+    
+                            </div>
+                            <div class="info-text">*This field is required</div>
+                        </div>
+                    </div>
+                    <img src="../img/add-task-seperation-line.svg" class="addTaskSeperationLine">
+                    <div class="right-column">
+                        <div>
+                            <div>Due date</div>
+                            <input type="date" id="dueDateInput">
+                        </div>
+                        <div>
+                            <div>Prio</div>
+                            <div class="prio-selection-container">
+                                <div id="urgentButton" onclick="changePriority('urgentButton', 'urgent')">Urgent <img
+                                        src="../img/urgent-button-icon.svg"></div>
+                                <div id="mediumButton" onclick="changePriority('mediumButton', 'medium')" class="medium">
+                                    Medium <img src="../img/medium-button-icon-active.svg"></div>
+                                <div id="lowButton" onclick="changePriority('lowButton', 'low')">Low <img
+                                        src="../img/low-button-icon.svg"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>Category*</div>
+                            <div class="category-dropdown">
+                                <div id="categorySelect" onclick="toggleCategoryDropdown()">
+                                    Select task category
+                                    <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
+                                </div>
+                                <div id="requiredCategoryMessage"></div>
+                                <div id="categoryDropdownList">
+                                    <div class="category-dropdown-list-entry" onclick="setCategory('User Story')">
+                                        User Story
+                                    </div>
+                                    <div class="category-dropdown-list-entry" onclick="setCategory('Technical Task')">
+                                        Technical Task
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>Subtasks</div>
+                            <div id="subtasksInput">
+                                <input type="text" placeholder="Add new subtask" id="subTaskInput"
+                                    oninput="acitivateSubtaskEditor()">
+                                <div id="imageContainer">
+                                    <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
+                                </div>
+                            </div>
+                            <div id="subtasksList"></div>
+                        </div>
+                        <div class="addTasksButtons">
+                            <button id="clearButton" onclick="resetAddTaskForm()" onmouseenter="changeClearButtonIcon()"
+                                onmouseleave="changeClearButtonIconBack()" type="reset">Clear <img
+                                    src="../img/clear-button-icon.svg" id="clearButtonIcon"></button>
+                            <button id="createTaskButton" type="submit">Create Task <img
+                                    src="../img/create-task-button-icon.svg"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-button">
+                    <div class="info-text-mobile">*This field is required</div>
+                    <div class="buttons">
+                        <button id="clearButtonMobile" onclick="resetAddTaskForm()"
+                            onmouseenter="changeClearButtonIconMobile()" onmouseleave="changeClearButtonIconBackMobile()"
+                            type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIconMobile"></button>
+                        <button id="createTaskButtonMobile" type="submit">Create Task <img
+                                src="../img/create-task-button-icon.svg"></button>
+                    </div>
+                </div>
+            </form>
         </div>
     </main>
     <div w3-include-html="../templates/footer.html"></div>

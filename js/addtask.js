@@ -378,16 +378,16 @@ function handleCategoryError() {
 
 
 function createNewTask(title, description, dueDate) {
-  let sanitizedTitle = title.trim() === "" ? null : title;
-  let sanitizedDescription = description.trim() === "" ? null : description;
-  let sanitizedDueDate = dueDate.trim() === "" ? null : dueDate;
+  let cleanedTitle = title.trim() === "" ? null : title;
+  let cleanedDescription = description.trim() === "" ? null : description;
+  let cleanedDueDate = dueDate.trim() === "" ? null : dueDate;
 
   return {
     id: tasks.length,
-    title: sanitizedTitle,
-    description: sanitizedDescription,
+    title: cleanedTitle,
+    description: cleanedDescription,
     assignedTo,
-    dueDate: sanitizedDueDate,
+    dueDate: cleanedDueDate,
     prio,
     category,
     subtasks,
@@ -395,6 +395,7 @@ function createNewTask(title, description, dueDate) {
     progress: "todo",
   };
 }
+
 
 
 async function saveTask(task) {
@@ -483,9 +484,6 @@ function resetAddTaskForm() {
   resetAssignmentDropdownList();
   resetCategoryDropdownList();
 }
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
