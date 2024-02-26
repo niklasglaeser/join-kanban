@@ -1,3 +1,4 @@
+console.log("we");
 let currentContact = [];
 let mobileStatus = false;
 let resizeTimer;
@@ -55,6 +56,7 @@ function getInitialColor() {
 }
 
 async function renderContact() {
+  contacts = activeUser["contacts"];
   let contactList = document.getElementById("contact-list");
   let contactYou = document.getElementById("contactYou");
   contactList.innerHTML = "";

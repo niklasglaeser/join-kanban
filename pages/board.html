@@ -21,8 +21,7 @@
 </head>
 
 <body onload="init()">
-    
-    <div id="backgroundNotLogin" class="backgroundNotLogin">
+    <div id="backgroundNotLogin" class="backgroundNotLogin d-none">
         <div class="">
             <img src="../img/join-logo.svg" alt="">
             <br>
@@ -97,14 +96,10 @@
         </div>
         <div id="overlay" class="overlay"></div>
         <div id="popup" class="popup">
-            <div id="overlayTask" class="overlayTask">
-
-            </div>
+            <div id="overlayTask" class="overlayTask"></div>
         </div>
-
-
-        <div id="popUpAddTaskContainer">
-            <button onclick="closeAddTaskPopUp()" id="closeButtonAddTaskPopUp">Close</button>
+        <div id="popUpAddTaskContainer" class="popup">
+            <button onclick="openAddTaskPopUp()" id="closeButtonAddTaskPopUp">Close</button>
             <form class="task-form" onsubmit="addNewTask(); return false;">
                 <div class="title">Add Task</div>
                 <div class="task-form-container">
@@ -129,7 +124,7 @@
                                 <div id="assignmentDropdownList">
                                     <div class="assignment-dropdown-list-entry"></div>
                                 </div>
-    
+
                             </div>
                             <div class="info-text">*This field is required</div>
                         </div>
@@ -145,7 +140,8 @@
                             <div class="prio-selection-container">
                                 <div id="urgentButton" onclick="changePriority('urgentButton', 'urgent')">Urgent <img
                                         src="../img/urgent-button-icon.svg"></div>
-                                <div id="mediumButton" onclick="changePriority('mediumButton', 'medium')" class="medium">
+                                <div id="mediumButton" onclick="changePriority('mediumButton', 'medium')"
+                                    class="medium">
                                     Medium <img src="../img/medium-button-icon-active.svg"></div>
                                 <div id="lowButton" onclick="changePriority('lowButton', 'low')">Low <img
                                         src="../img/low-button-icon.svg"></div>
@@ -193,8 +189,9 @@
                     <div class="info-text-mobile">*This field is required</div>
                     <div class="buttons">
                         <button id="clearButtonMobile" onclick="resetAddTaskForm()"
-                            onmouseenter="changeClearButtonIconMobile()" onmouseleave="changeClearButtonIconBackMobile()"
-                            type="reset">Clear <img src="../img/clear-button-icon.svg" id="clearButtonIconMobile"></button>
+                            onmouseenter="changeClearButtonIconMobile()"
+                            onmouseleave="changeClearButtonIconBackMobile()" type="reset">Clear <img
+                                src="../img/clear-button-icon.svg" id="clearButtonIconMobile"></button>
                         <button id="createTaskButtonMobile" type="submit">Create Task <img
                                 src="../img/create-task-button-icon.svg"></button>
                     </div>

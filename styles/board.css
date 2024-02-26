@@ -475,7 +475,7 @@ main {
 
 
 #popUpAddTaskContainer {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: absolute;
     left: 100px;

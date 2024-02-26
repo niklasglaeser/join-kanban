@@ -395,15 +395,20 @@ function showPopup(overlay, popup) {
   popup.classList.add("popup-slideIn");
 }
 
-
 function openAddTaskPopUp() {
+  let overlay = document.getElementById("overlay");
   let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
 
-  addTaskPopUp.style.display = 'flex';
+  if (popupVisible(overlay, addTaskPopUp)) {
+    hidePopup(overlay, addTaskPopUp);
+  } else {
+    showPopup(overlay, addTaskPopUp);
+    // addTaskPopUp.style.display = "flex";
+  }
 }
 
-function closeAddTaskPopUp() {
-  let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
+// function closeAddTaskPopUp() {
+//   let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
 
-  addTaskPopUp.style.display = 'none';
-}
+//   addTaskPopUp.style.display = "none";
+// }

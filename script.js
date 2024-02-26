@@ -9,7 +9,6 @@ let checkLogin = JSON.parse(localStorage.getItem("checkLogin"));
 const ACTIVEPATH = window.location.href;
 
 async function init() {
-  console.log("%cJoin by GROUP28", "color:blue; font-size:24px");
   await includeHTML();
   await loadUsers();
 
@@ -22,20 +21,16 @@ async function init() {
   prepareHelpPage();
 }
 
-
-
 async function checkRegUser() {
   return new Promise((resolve, reject) => {
     let backgroundNotLogin = document.getElementById("backgroundNotLogin");
     if (!checkLogin) {
-      backgroundNotLogin.classList.add("backgroundNotLogin");
       setTimeout(() => {
         window.location.href = "../index.html";
-      }, 500);
-      reject(new Error("Benutzer nicht eingeloggt"));
+      }, 5000);
+      backgroundNotLogin.classList.remove("d-none");
+      reject();
     } else {
-      backgroundNotLogin.innerHTML = "";
-      backgroundNotLogin.classList.remove("backgroundNotLogin");
       resolve();
     }
   });
@@ -109,44 +104,46 @@ async function prepareSummaryPage() {
       await setActiveInitial();
       await loadOpenTodos();
       await taskUrgentDeadline();
-    } catch (error) {
-      console.error(error.message);
-    }
+    } catch {}
   }
 }
 
-function prepareAddtaskPage() {
+async function prepareAddtaskPage() {
   if (ACTIVEPATH.includes("addtask.html")) {
-    checkRegUser();
-    setActiveInitial();
-    activeLink();
-    renderAssignmentContacts(users);
+    try {
+      await checkRegUser();
+      await setActiveInitial();
+      await activeLink();
+      await renderAssignmentContacts(users);
+    } catch {}
   }
 }
 
-function prepareBoardPage() {
+async function prepareBoardPage() {
   if (ACTIVEPATH.includes("board.html")) {
-    checkRegUser();
-    setActiveInitial();
-    activeLink();
-    updateHTML();
+    try {
+      await checkRegUser();
+      await setActiveInitial();
+      await activeLink();
+      await updateHTML();
+    } catch {}
   }
 }
 
-function prepareContactsPage() {
+async function prepareContactsPage() {
   if (ACTIVEPATH.includes("contacts.html")) {
-    checkRegUser();
-    contacts = activeUser["contacts"];
-    renderContact();
-    activeLink();
-    setActiveInitial();
-    checkWindowSize();
+    try {
+      await checkRegUser();
+      await renderContact();
+      await activeLink();
+      await setActiveInitial();
+      await checkWindowSize();
+    } catch {}
   }
 }
 
 function preparePrivacyPage() {
   if (ACTIVEPATH.includes("privacypolicy.html")) {
-    contacts = activeUser["contacts"];
     setActiveInitial();
     activeLink();
   }
@@ -154,7 +151,6 @@ function preparePrivacyPage() {
 
 function prepareLegalPage() {
   if (ACTIVEPATH.includes("legalnotice.html")) {
-    contacts = activeUser["contacts"];
     setActiveInitial();
     activeLink();
   }
@@ -162,7 +158,6 @@ function prepareLegalPage() {
 
 function prepareHelpPage() {
   if (ACTIVEPATH.includes("help.html")) {
-    contacts = activeUser["contacts"];
     setActiveInitial();
     activeLink();
   }
