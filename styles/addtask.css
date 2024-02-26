@@ -11,8 +11,6 @@ main {
     align-self: flex-start;
     font-size: 61px;
     font-weight: bold;
-    padding-left: 125px;
-    padding-bottom: 50px;
 }
 
 .title:focus {
@@ -235,6 +233,7 @@ main {
     flex-direction: column;
     gap: 50px;
     font-size: 20px;
+    margin-top: 105px;
 }
 
 
@@ -465,7 +464,6 @@ main {
 
 .subtasks-list-entry li input {
     padding: 5px;
-    background-color: #F6F7F8;
 }
 
 #subtaskIcons {
@@ -481,6 +479,7 @@ main {
     padding-left: 10px;
     height: 25px;
     width: 250px;
+    background-color: transparent;
 }
 
 
@@ -599,7 +598,9 @@ main {
     }
 
     .title {
-        padding-left: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -663,7 +664,7 @@ main {
     }
 
     .right-column {
-        padding-top: 0px;
+        margin-top: 0;
         gap: 30px;
     }
 
