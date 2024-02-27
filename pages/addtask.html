@@ -132,3 +132,19 @@
 </body>
 
 </html>
+
+<div id="taskPopupEdit" class="overlayTaskWrappeEdit d-none">
+    <div class="overlayTaskHeader">
+        <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
+    </div>
+    <form class="task-form" onsubmit="saveEditTask(); return false;">
+        <div>Title*</div>
+        <input type="text" id="titleInput" placeholder="Enter a title">
+        <div id="errorTitle"></div>
+        <div>
+            <div>Description</div>
+            <textarea id="descriptionInput" placeholder="Enter a Description"></textarea>
+        </div>
+    </form>
+
+</div>

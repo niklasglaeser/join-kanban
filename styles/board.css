@@ -493,7 +493,46 @@ main {
     margin-right: 30px;
 }
 
+.overlayTaskWrapperEdit {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
 
+.overlayTaskEditForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.overlayTaskEditForm input {
+    width: 100;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px;
+    border-color: #D1D1D1;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.overlayTaskEditForm textarea {
+    width: 100%;
+    height: 150px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    padding: 10px;
+    margin-top: 8px;
+    font-size: 18px;
+    font: inherit;
+}
+
+.prio-selection-container-edit {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
 
 
 
