@@ -367,42 +367,7 @@ function generateCard(taskID) {
         </div>
         <div class="font-21-light">Due Date</div>
         <input type="date" id="dueDateInput" value='${task.dueDate}'>
-    <div>
-      <div class="font-21-light">Priority</div>
-      <div class="prio-selection-container-edit">
-          <div id="urgentButton" onclick="changePriority('urgentButton', 'urgent')">Urgent <img
-                  src="../img/urgent-button-icon.svg"></div>
-          <div id="mediumButton" onclick="changePriority('mediumButton', 'medium')" class="medium">
-              Medium <img src="../img/medium-button-icon-active.svg"></div>
-          <div id="lowButton" onclick="changePriority('lowButton', 'low')">Low <img
-                  src="../img/low-button-icon.svg"></div>
-      </div>
-      <div class="font-21-light">Category</div>
-        <div class="category-dropdown">
-            <div id="categorySelect" onclick="toggleCategoryDropdown()">
-                ${task.category}
-                <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
-            </div>
-            <div id="requiredCategoryMessage"></div>
-            <div id="categoryDropdownList">
-                <div class="category-dropdown-list-entry" onclick="setCategory('User Story')">
-                    User Story
-                </div>
-                <div class="category-dropdown-list-entry" onclick="setCategory('Technical Task')">
-                    Technical Task
-                </div>
-            </div>
-        </div>
-        <div>Subtasks</div>
-                        <div id="subtasksInput">
-                            <input type="text" placeholder="Add new subtask" id="subTaskInput"
-                                oninput="acitivateSubtaskEditor()">
-                            <div id="imageContainer">
-                                <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">
-                            </div>
-                        </div>
-                        <div id="subtasksList"></div>
-
+        <div>
         </div>
     </form>
 </div>
