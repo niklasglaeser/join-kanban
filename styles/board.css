@@ -606,7 +606,7 @@ main {
     overflow-y: scroll;
 }
 
-.assignment-dropdown-list-entry {
+.assignment-dropdown-list-entry-edit {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -634,7 +634,7 @@ main {
 }
 
 
-.contact-option {
+.contact-option-edit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -642,7 +642,7 @@ main {
     margin-left: 15px;
 }
 
-.contact-option div {
+.contact-option-edit div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -656,7 +656,7 @@ main {
     border: solid 2px white;
 }
 
-.cardInitialAssignedToAddTask {
+.cardInitialAssignedToAddTaskEdit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -669,7 +669,7 @@ main {
 
 }
 
-#renderedAssignedToContacts {
+#renderedAssignedToContactsEdit {
     position: absolute;
     display: flex;
     gap: 5px;

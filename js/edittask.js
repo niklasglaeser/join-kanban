@@ -2,7 +2,6 @@ function toggleAssignmentDropdownEdit() {
     let assignmentDropdownEdit = document.getElementById("assignmentDropdownListEdit");
     if (assignmentDropdownEdit.style.display === "flex") {
       assignmentDropdownEdit.style.display = "none";
-      renderAssignedToArrayEdit();
     } else {
       assignmentDropdownEdit.style.display = "flex";
     }
@@ -21,33 +20,33 @@ document.addEventListener("click", function (event) {
       !event.target.classList.contains("assignment-dropdown-list-entry-edit")
     ) {
       assignmentDropdownEdit.style.display = "none";
-      renderAssignedToArrayEdit();
     }
 });
 
-function renderAssignedToArrayEdit() {
-    let totalHTML = "";
-
-    tasks.forEach(task => {
-        task.assignedTo.forEach((element, index) => {
-            const color = element.initial_color;
-            if (index < 5) {
-                totalHTML += `<div class="cardInitialAssignedToAddTask" style="background-color:${color}">${element.initial}</div>`;
-            }
-        });
-
-        if (task.assignedTo.length > 5) {
-            totalHTML += `<div class="cardInitialAssignedToAddTask" style="background-color: var(--grey)">+${task.assignedTo.length - 5}</div>`;
-        }
-    });
-
+function renderAssignedToArrayEdit(tasks, i) {
     let initial = document.getElementById("renderedAssignedToContactsEdit");
+    let totalHTML = "";
+    
+    if (tasks[i] && tasks[i].assignedTo) {
+      const assignedTo = tasks[i].assignedTo;
+      for (let j = 0; j < assignedTo.length; j++) {
+        const element = assignedTo[j];
+        const color = assignedTo[j]["initial_color"];
+        if (j < 5) {
+          totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color:${color}">${element.initial}</div>`;
+        }
+      }
+      if (assignedTo.length > 5) {
+        totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color: var(--grey)">+${assignedTo.length - 5}</div>`;
+      }
+    }
     initial.innerHTML = totalHTML;
-}
+  }
+  
 
 
 
-function assignemtContactsTemplateEdit(name, initial, initial_color, id) {
+function assignmentContactsTemplateEdit(name, initial, initial_color, id) {
     return `
       <div class="assignment-dropdown-list-entry-edit" onclick="selectAssignment(this, ${id})">
           <div class="contact-option-edit">
@@ -58,22 +57,27 @@ function assignemtContactsTemplateEdit(name, initial, initial_color, id) {
       </div>
     `;
   }
+
   
   
-async function renderAssignmentContactsEdit(tasks) {
+async function renderAssignmentContactsEdit(i) {
     let assignmentDropdownListEdit = document.getElementById("assignmentDropdownListEdit");
     assignmentDropdownListEdit.innerHTML = "";
-
-    tasks.forEach(task => {
-        task.assignedTo.forEach(user => {
-            const { name, initial, initial_color, id } = user;
-            const userHtml = assignemtContactsTemplateEdit(
-                name,
-                initial,
-                initial_color,
-                id
-            );
-            assignmentDropdownListEdit.innerHTML += userHtml;
-        });
+  
+    users.forEach((user) => {
+      const { name, initial, initial_color, id } = user;
+      const userHtml = assignmentContactsTemplateEdit(
+        name,
+        initial,
+        initial_color,
+        id
+      );
+      assignmentDropdownListEdit.innerHTML += userHtml;
     });
-}
+  }
+
+
+
+  
+  
+  

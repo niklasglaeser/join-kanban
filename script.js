@@ -127,7 +127,6 @@ async function prepareBoardPage() {
       await activeLink();
       await updateHTML();
       await renderAssignmentContacts(users);
-      await renderAssignmentContactsEdit(users);
     } catch {}
   }
 }

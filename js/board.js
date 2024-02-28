@@ -388,6 +388,7 @@ function generateCard(taskID) {
   buttonId = task.prio + "Button";
   priority = task.prio;
   changePriority(buttonId, priority);
+
 }
 
 function editTask() {
@@ -417,6 +418,8 @@ function togglePopup(i) {
       3
     );
     generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
+    renderAssignmentContactsEdit(i);
+    renderAssignedToArrayEdit(tasks, i);
   }
 }
 
