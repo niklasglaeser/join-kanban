@@ -348,41 +348,42 @@ function generateCard(taskID) {
 
     </div>
   </div>
+
+
   <div id="taskPopupEdit" class="d-none">
     <div class="overlayTaskHeader">
         <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
     </div>
     <form class="overlayTaskEditForm" onsubmit="saveEditTask(); return false;">
       <div>
-      <div class="font-21-light">Title</div>
-      <input type="text" id="titleInput" value='${task.title}'>
-    </div>
-        <div id="errorTitle"></div>
-        <div>
+        <div class="font-21-light">Title</div>
+        <input type="text" id="titleInput" value='${task.title}'>
+      </div>
+      <div id="errorTitle"></div>
+      <div>
         <div class="font-21-light">Description</div>
-            <textarea id="descriptionInput1" placeholder="Enter a Description">${task.description}</textarea>
-        </div>
+        <textarea id="descriptionInput1" placeholder="Enter a Description">${task.description}</textarea>
+      </div>
+      <div>
         <div class="font-21-light">Due Date</div>
         <input type="date" id="dueDateInput" value='${task.dueDate}'>
-      <div class="font-21-light">Category</div>
-        <div class="category-dropdown">
-            <div id="categorySelect" onclick="toggleCategoryDropdown()">
-                ${task.category}
-                <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
-            </div>
-            <div id="requiredCategoryMessage"></div>
-            <div id="categoryDropdownList">
-                <div class="category-dropdown-list-entry" onclick="setCategory('User Story')">
-                    User Story
-                </div>
-                <div class="category-dropdown-list-entry" onclick="setCategory('Technical Task')">
-                    Technical Task
-                </div>
-            </div>
+      </div>
+      <div>
+        <div>Assigned to</div>
+        <div class="assignment-dropdown-edit">
+          <div id="assignmentSelectEdit" onclick="toggleAssignmentDropdownEdit()">
+            Select contacts to assign
+            <img src="../img/dropdown-icon.svg" id="dropdownIconEdit">
+          </div>
+          <div id="renderedAssignedToContactsEdit"></div>
+          <div id="assignmentDropdownListEdit">
+            <div class="assignment-dropdown-list-entry-edit"></div>
+          </div>
         </div>
       </div>
     </form>
-</div>
+  </div>
+
   `;
   buttonId = task.prio + "Button";
   priority = task.prio;
@@ -459,3 +460,8 @@ function stopPropagation(event) {
 
 //   addTaskPopUp.style.display = "none";
 // }
+
+
+function openAddTaskPage() {
+    window.location.href = "../pages/addtask.html";
+}
