@@ -301,54 +301,100 @@ document.addEventListener("click", function (event) {
 function generateCard(taskID) {
   let task = tasks[taskID];
   overlayTask.innerHTML = /*HTML*/ `
-  <div class="overlayTaskWrapper">
-  <div class="overlayTaskHeader">
-      <div class="task-category font-21-light white">${task.category}</div>
-      <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()"
-          src="../img/close-btn-black.svg">
-  </div>
-  <div class="overlayTaskHeadline font-61">${task.title}</div>
-  <div class="overlayTaskDescription font-20-light">${task.description}</div>
-  <div class="overlayTaskDate font-20-light">
-      <div>Due Date:</div>
-      <div>${task.dueDate}</div>
-  </div>
-  <div class="overlayTaskPrio font-20-light">
-      <div>Priority:</div>
-      <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${taskID}"></div>
-  </div>
-  <div class="font-20-light">Assigned To:</div>
-  <div class="">
-      <div class="overlayTaskAssignedTo">
-          <div id="cardInitalCard_${taskID}" class="overlayTaskAssignedToInitial"></div>
-          <div id="cardInitalCardName_${taskID}"></div>
-      </div>
-  </div>
-  <div class="font-20-light">Subtasks:</div>
-  <div class="">
-      <div class="overlayTaskSubtasks">
-          <div>Check </div>
-          <div>Implement Recipe Recommendation</div>
-      </div>
-      <div class="overlayTaskSubtasks">
-          <div>Check </div>
-          <div>Implement Recipe Recommendation</div>
-      </div>
-      <div class="overlayTaskSubtasks">
-          <div>Check </div>
-          <div>Implement Recipe Recommendation</div>
-      </div>
-  </div>
-  <div class="overlayTaskFooter">
-      <div class="overlayTaskFooterWrapper">
-          <a onclick="" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
-          <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-          <a onclick="" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
-      </div>
+    <div id="taskPopup" class="overlayTaskWrapper">
+    <div class="overlayTaskHeader">
+        <div class="task-category font-21-light white">${task.category}</div>
+        <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()"
+            src="../img/close-btn-black.svg">
+    </div>
+    <div class="overlayTaskHeadline font-61">${task.title}</div>
+    <div class="overlayTaskDescription font-20-light">${task.description}</div>
+    <div class="overlayTaskDate font-20-light">
+        <div>Due Date:</div>
+        <div>${task.dueDate}</div>
+    </div>
+    <div class="overlayTaskPrio font-20-light">
+        <div>Priority:</div>
+        <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${taskID}"></div>
+    </div>
+    <div class="font-20-light">Assigned To:</div>
+    <div class="">
+        <div class="overlayTaskAssignedTo">
+            <div id="cardInitalCard_${taskID}" class="overlayTaskAssignedToInitial"></div>
+            <div id="cardInitalCardName_${taskID}"></div>
+        </div>
+    </div>
+    <div class="font-20-light">Subtasks:</div>
+    <div class="">
+        <div class="overlayTaskSubtasks">
+            <div>Check </div>
+            <div>Implement Recipe Recommendation</div>
+        </div>
+        <div class="overlayTaskSubtasks">
+            <div>Check </div>
+            <div>Implement Recipe Recommendation</div>
+        </div>
+        <div class="overlayTaskSubtasks">
+            <div>Check </div>
+            <div>Implement Recipe Recommendation</div>
+        </div>
+    </div>
+    <div class="overlayTaskFooter">
+        <div class="overlayTaskFooterWrapper">
+            <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
+            <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
+            <a onclick="deleteTask(taskID)" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+        </div>
 
+    </div>
   </div>
+  <div id="taskPopupEdit" class="d-none">
+    <div class="overlayTaskHeader">
+        <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
+    </div>
+    <form class="overlayTaskEditForm" onsubmit="saveEditTask(); return false;">
+      <div>
+      <div class="font-21-light">Title</div>
+      <input type="text" id="titleInput" value='${task.title}'>
+    </div>
+        <div id="errorTitle"></div>
+        <div>
+        <div class="font-21-light">Description</div>
+            <textarea id="descriptionInput1" placeholder="Enter a Description">${task.description}</textarea>
+        </div>
+        <div class="font-21-light">Due Date</div>
+        <input type="date" id="dueDateInput" value='${task.dueDate}'>
+      <div class="font-21-light">Category</div>
+        <div class="category-dropdown">
+            <div id="categorySelect" onclick="toggleCategoryDropdown()">
+                ${task.category}
+                <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">
+            </div>
+            <div id="requiredCategoryMessage"></div>
+            <div id="categoryDropdownList">
+                <div class="category-dropdown-list-entry" onclick="setCategory('User Story')">
+                    User Story
+                </div>
+                <div class="category-dropdown-list-entry" onclick="setCategory('Technical Task')">
+                    Technical Task
+                </div>
+            </div>
+        </div>
+      </div>
+    </form>
 </div>
   `;
+  buttonId = task.prio + "Button";
+  priority = task.prio;
+  changePriority(buttonId, priority);
+}
+
+function editTask() {
+  let popup = document.getElementById("taskPopup");
+  let popupEdit = document.getElementById("taskPopupEdit");
+
+  popup.style.display = "none";
+  popupEdit.classList.remove("d-none");
 }
 
 function togglePopup(i) {
