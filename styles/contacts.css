@@ -182,14 +182,32 @@
   z-index: 1;
 }
 
+.slide-in-from-right {
+  animation-name: slide-in-from-right;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.2s;
+  animation-delay: 0.1s;
+}
 
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 
 .contact-right-container {
   display: flex;
   gap: 54px;
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 3.5s ease-in-out;
 }
 
 .contactInitial {

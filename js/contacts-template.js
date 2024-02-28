@@ -63,7 +63,7 @@ function generateUserDetailsHTML(i, contact, array) {
   }
 
   return `
-<div class="contact-right-container">
+  <div class="contact-right-container slide-in-from-right">
   <div class="contactInitial" >
     <div style="background-color: ${contact.initial_color}">${contact.initial}</div>
   </div>
@@ -75,8 +75,8 @@ function generateUserDetailsHTML(i, contact, array) {
     </div>
   </div>
 </div>
-<div>
-  <div class="contact-right-details-headline">Contact Information</div>
+<div class="slide-in-from-right">
+  <div class="contact-right-details-headline slide-in-from-right">Contact Information</div>
   <div class="font-16 black">Email</div>
   <div class="contact-right-details-email"><a href='mailto:${contact.email}'>${contact.email}</a></div>
   <div class="font-16 black">Phone</div>

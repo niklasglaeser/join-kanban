@@ -388,7 +388,6 @@ function generateCard(taskID) {
   buttonId = task.prio + "Button";
   priority = task.prio;
   changePriority(buttonId, priority);
-
 }
 
 function editTask() {
@@ -406,6 +405,7 @@ function togglePopup(i) {
 
   if (popupVisible(overlay, popup)) {
     hidePopup(overlay, popup);
+    changePriority("mediumButton", "medium");
   } else {
     showPopup(overlay, popup);
     generateCard(i);
@@ -464,7 +464,6 @@ function stopPropagation(event) {
 //   addTaskPopUp.style.display = "none";
 // }
 
-
 function openAddTaskPage() {
-    window.location.href = "../pages/addtask.html";
+  window.location.href = "../pages/addtask.html";
 }
