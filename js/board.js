@@ -362,8 +362,9 @@ function generateCard(taskID) {
       <div id="errorTitle"></div>
       <div>
         <div class="font-21-light">Description</div>
-            <textarea id="descriptionInput1" placeholder="Enter a Description">${task.description}</textarea>
-        </div>
+        <textarea id="descriptionInput1" placeholder="Enter a Description">${task.description}</textarea>
+      </div>
+      <div>
         <div class="font-21-light">Due Date</div>
         <input type="date" id="dueDateInput" value='${task.dueDate}'>
       </div>
@@ -376,12 +377,12 @@ function generateCard(taskID) {
           </div>
           <div id="renderedAssignedToContactsEdit"></div>
           <div id="assignmentDropdownListEdit">
-              <div class="assignment-dropdown-list-entry-edit"></div>
+            <div class="assignment-dropdown-list-entry-edit"></div>
           </div>
         </div>
       </div>
     </form>
-</div>
+  </div>
 
   `;
   buttonId = task.prio + "Button";
