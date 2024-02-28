@@ -477,25 +477,53 @@ main {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 1116px;
-    height: 870px;
+    width: 1080px;
+    height: 750px;
     border-radius: 38px;
-    padding: 48px 40px;
     background-color: var(--white);
 }
 
 
 #closeButtonAddTaskPopUp {
-    height: 30px;
-    width: 50px;
+    position: relative;
     align-self: flex-end;
+    margin-right: 17px;
     margin-top: 20px;
-    margin-right: 30px;
+}
+
+.task-form-board {
+    padding: 0;
 }
 
 
+.task-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.left-column {
+    gap: 16px !important;
+}
 
+.right-column {
+    margin-top: 0px !important;
+    padding-top: 77px;
+    gap: 24px !important;
+}
+
+.info-text {
+    padding-top: 150px !important;
+}
+
+.title {
+    margin-top: -50px !important;
+    margin-bottom: 20px;
+}
+
+#mobileSlideButton {
+    display: none;
+}
 
 
 
@@ -512,6 +540,28 @@ main {
         overflow-y: auto;
         padding-bottom: 80px;
     }
+
+    #slideButton {
+        display: none;
+    }
+
+    #mobileSlideButton {
+        display: flex;
+    }
+
+    #popUpAddTaskContainer {
+        display: none;
+    }
+
+    #popup {
+        display: none;
+    }
+
+    #overlay {
+        display: none;
+    }
+
+
 }
 
 @media (max-width:990px) {
@@ -592,4 +642,22 @@ main {
     }
 
 
+}
+
+
+@media (max-width: 1100px) {
+
+    .mobile-button {
+    display: none !important;
+    }
+
+    .overlayTaskAddTask {
+        display: none !important;
+        height: 700px;
+        width: 700px;
+    }
+
+    .task-form-board {
+        overflow-y: scroll;
+    }
 }

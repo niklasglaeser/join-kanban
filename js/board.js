@@ -413,3 +413,8 @@ function stopPropagation(event) {
 
 //   addTaskPopUp.style.display = "none";
 // }
+
+
+function openAddTaskPage() {
+    window.location.href = "../pages/addtask.html";
+}
