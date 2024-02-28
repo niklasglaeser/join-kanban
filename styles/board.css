@@ -521,6 +521,10 @@ main {
     margin-bottom: 20px;
 }
 
+#mobileSlideButton {
+    display: none;
+}
+
 .overlayTaskWrapperEdit {
     flex-grow: 1;
     display: flex;
