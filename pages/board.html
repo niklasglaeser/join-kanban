@@ -51,6 +51,10 @@
                     <span>Add task</span>
                     <img src="../img/plus.svg" alt="">
                 </button>
+                <button id="mobileSlideButton" onclick="openAddTaskPage()" class="addTask-button font-21 white">
+                    <span>Add task</span>
+                    <img src="../img/plus.svg" alt="">
+                </button>
             </div>
         </div>
         <div class="task-main">
@@ -100,11 +104,12 @@
         </div>
         <div id="popUpAddTaskContainer" class="popup">
             <div class="overlayTaskAddTask">
-                <button onclick="openAddTaskPopUp()" id="closeButtonAddTaskPopUp">Close</button>
-                <form class="task-form" onsubmit="addNewTask(); return false;">
-                    <div class="title">Add Task</div>
+                <img src="../img/close-btn-black.svg" onclick="openAddTaskPopUp()" id="closeButtonAddTaskPopUp" height="40px" width="40px">
+                <form class="task-form-board" onsubmit="addNewTask(); return false;">
+                    <div class="mobile-title">Add Task</div>
                     <div class="task-form-container">
                         <div class="left-column">
+                            <div class="title">Add Task</div>
                             <div>
                                 <div>Title*</div>
                                 <input type="text" id="titleInput" placeholder="Enter a title">
