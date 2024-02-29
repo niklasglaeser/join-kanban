@@ -165,6 +165,7 @@ main {
 .selected {
     border-radius: 10px;
     color: white;
+    background-color: #2A3647;
 }
 
 .selected:hover {

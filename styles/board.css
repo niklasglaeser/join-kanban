@@ -737,6 +737,10 @@ main {
     .loginInputs {
         width: 100%;
     }
+
+    #mobileSlideButton {
+        display: none;
+    }
 }
 
 

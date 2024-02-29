@@ -106,7 +106,7 @@ document.addEventListener("click", function (event) {
 });
 
 
-function assignemtContactsTemplate(name, initial, initial_color, id) {
+function assignmentContactsTemplate(name, initial, initial_color, id) {
   return `
     <div class="assignment-dropdown-list-entry" onclick="selectAssignment(this, ${id})">
         <div class="contact-option">
@@ -125,7 +125,7 @@ async function renderAssignmentContacts(users) {
 
   users.forEach((user) => {
     const { name, initial, initial_color, id } = user;
-    const userHtml = assignemtContactsTemplate(
+    const userHtml = assignmentContactsTemplate(
       name,
       initial,
       initial_color,
@@ -140,12 +140,13 @@ function selectAssignment(entry, id) {
   let isSelected = entry.classList.toggle("selected");
   id = id - 1;
   let { initial_color } = users[id];
+  id = id + 1;
   let name = entry.querySelector(".contact-option span").textContent;
   let initial = entry.querySelector(".contact-option div").textContent;
   let index = assignedTo.findIndex((user) => user.name === name && user.initial === initial);
 
   if (isSelected) {
-    assignedTo.push({ name, initial, initial_color });
+    assignedTo.push({ name, initial, initial_color, id});
     entry.style.backgroundColor = "#2A3647";
     entry.querySelector("img").src = "../img/checked-button.svg";
   } else {
