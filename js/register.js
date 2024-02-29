@@ -1,7 +1,5 @@
-// let users = [];
-// let contacts = [];
-// let tasks = [];
-
+let demoJsonContacts;
+let demoContacts = [];
 async function register() {
   signUpFormButton.disabled = true;
   let nextId = getNextId();
@@ -16,6 +14,7 @@ async function register() {
     tasks: [],
   };
   users.push(newUser);
+  await generateDemoContacts(nextId);
   await setItem("users", JSON.stringify(users));
   window.location.href = "index.html";
   resetForm();
@@ -76,4 +75,20 @@ function getContactsTemplate(nextId) {
     email: "",
     phone: "",
   };
+}
+
+async function generateDemoContacts(userId) {
+  await loadDemoContacts();
+  demoJsonContacts.forEach((contact) => {
+    let { name, email, phone } = contact;
+    users
+      .find((user) => user.id === userId)
+      .contacts.push({
+        name: name,
+        initial: getInitial(name),
+        initial_color: getInitialColor(),
+        email: email,
+        phone: phone,
+      });
+  });
 }

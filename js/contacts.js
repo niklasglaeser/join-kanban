@@ -1,4 +1,3 @@
-console.log("we");
 let currentContact = [];
 let mobileStatus = false;
 let resizeTimer;

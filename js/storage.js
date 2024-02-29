@@ -21,6 +21,11 @@ async function getItem(key) {
     });
 }
 
+async function loadDemoContacts() {
+  const response = await fetch("../js/demoContacts.json");
+  demoJsonContacts = await response.json();
+}
+
 /*TESTING*/
 
 async function pushArrayToRemoteStorage(array) {
