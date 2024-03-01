@@ -1,6 +1,7 @@
 let assignedToEdit = [];
 let prioEdit = "";
 let buttonIdEdit = "";
+let subtasksEdit = [];
 
 
 function changePriorityEdit(buttonIdEdit, priority) {
@@ -226,3 +227,157 @@ function selectAssignmentEdit(entry, id) {
   }
 
 
+
+function acitivateSubtaskEditorEdit() {
+    let imageContainerEdit = document.getElementById("imageContainerEdit");
+    let subTaskInputEdit = document.getElementById("subTaskInputEdit");
+  
+    if (subTaskInputEdit.value.trim() !== "") {
+      imageContainerEdit.innerHTML = `<img src="../img/x-icon-subtasks.svg" onclick="clearSubtaskInputEdit()"> <img src="../img/check-icon-subtasks.svg" onclick="addSubtaskToListEdit()">`;
+    } else {
+      imageContainerEdit.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEdit()">`;
+    }
+  
+    subTaskInputEdit.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addSubtaskToListEdit();
+      }
+    });
+  }
+
+
+
+function focusSubtaskInputEdit() {
+    let subTaskInputEdit = document.getElementById("subTaskInputEdit");
+    subTaskInputEdit.focus();
+  }
+  
+function clearSubtaskInputEdit() {
+    let subTaskInputEdit = document.getElementById("subTaskInputEdit");
+    subTaskInputEdit.value = "";
+  
+    let imageContainerEdit = document.getElementById("imageContainerEdit");
+    imageContainerEdit.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">`;
+  }
+  
+  
+function addSubtaskToListEdit() {
+    let subTaskInputEdit = document.getElementById("subTaskInputEdit");
+    let subTaskValueEdit = subTaskInputEdit.value.trim();
+  
+    if (subTaskValueEdit !== "") {
+      let subtasksListEdit = document.getElementById("subtasksListEdit");
+      addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit);
+  
+      subtasksEdit.push(subTaskValueEdit);
+  
+      subTaskInputEdit.value = "";
+      let imageContainerEdit = document.getElementById("imageContainerEdit");
+      imageContainerEdit.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEdit()">`;
+    }
+  }
+
+
+function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
+    subtasksListEdit.innerHTML += `
+      <div class="subtasks-list-entry-edit" onmouseenter="addHoverToSubtaskEdit(event)" onmouseleave="removeHoverFromSubtaskEdit(event)">
+          <li><input type="text" value="${subTaskValueEdit}" readonly id="subtaskEditInputEdit"></li>
+          <div id="subtaskIconsEdit">
+              <img onclick="editSubtaskEdit(event)" class="edit-icon-edit" src="../img/edit-subtasks-icon.svg" style="display: none;">
+              <img onclick="deleteSubtaskEdit(event)" class="delete-icon-edit" src="../img/delete-subtask-icon.svg" style="display: none;">
+              <img onclick="saveSubtaskEdit(event)" class="save-icon-edit" src="../img/save-subtask-icon.svg" style="display: none;">
+          </div>
+      </div>
+    `;
+}
+
+
+function renderSubtasks(i) {
+    let subtasksListEdit = document.getElementById("subtasksListEdit");
+    subtasksListEdit.innerHTML = "";
+  
+    if (tasks[i] && tasks[i].subtasks) {
+      tasks[i].subtasks.forEach(subTaskValueEdit => {
+        addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit);
+      });
+    }
+  }
+  
+
+
+
+function editSubtaskEdit(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+    let subTaskInputEdit = entryDiv.querySelector("li input");
+    entryDiv.onmouseenter = null;
+    entryDiv.onmouseleave = null;
+  
+    subTaskInputEdit.style.backgroundColor = "white";
+    subTaskInputEdit.readOnly = false;
+    subTaskInputEdit.focus();
+  
+    let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
+    editIconEdit.style.display = "none";
+    let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
+    deleteIconEdit.style.display = "inline";
+    let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
+    saveIconEdit.style.display = "inline";
+  }
+
+
+function saveSubtaskEdit(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+    let subTaskInputEdit = entryDiv.querySelector("li input");
+    let subTaskValueEdit = subTaskInput.value.trim();
+  
+    entryDiv.onmouseenter = addHoverToSubtaskEdit;
+    entryDiv.onmouseleave = removeHoverFromSubtaskEdit;
+  
+    const index = subtasksEdit.indexOf(subTaskInputEdit.value);
+    if (index !== -1) {subtasksEdit[index] = subTaskValueEdit;}
+  
+    subTaskInputEdit.readOnly = true;
+    subTaskInputEdit.style.backgroundColor = "";
+  
+    let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
+    saveIconEdit.style.display = "none";
+    let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
+    editIconEdit.style.display = "inline";
+  }
+
+
+
+function addHoverToSubtaskEdit(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+    entryDiv.style.backgroundColor = "";
+  
+    let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
+    deleteIconEdit.style.display = "inline";
+  
+    let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
+    editIconEdit.style.display = "inline";
+  }
+  
+  function removeHoverFromSubtaskEdit(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+    entryDiv.style.backgroundColor = "";
+  
+    let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
+    deleteIconEdit.style.display = "none";
+  
+    let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
+    editIconEdit.style.display = "none";
+  }
+  
+function deleteSubtaskEdit(event) {
+    let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+    let subTaskValueEdit = entryDiv.querySelector("li input").value;
+  
+    const index = subtasksEdit.indexOf(subTaskValueEdit);
+    if (index !== -1) {
+      subtasksEdit.splice(index, 1);
+    }
+  
+    entryDiv.parentNode.removeChild(entryDiv);
+  }
