@@ -124,7 +124,7 @@ function generateEditCardHTML(i, contact) {
         <img src="../img/mail.svg" alt="">
       </div>
       <div class="addContactInput">
-        <input id="phone${i}" type="tel" placeholder="Phone" value="${contact.phone}" class="contact-input">
+        <input id="phone${i}" type="number" placeholder="Phone" value="${contact.phone}" class="contact-input">
         <img src="../img/phone.svg" alt="">
       </div>
       <div class="addContactBtn">
