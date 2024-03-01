@@ -1,4 +1,30 @@
 let assignedToEdit = [];
+let prioEdit = "";
+let buttonIdEdit = "";
+
+
+function changePriorityEdit(buttonIdEdit, priority) {
+    let img;
+    let buttons = document.querySelectorAll(".prio-selection-container-edit div");
+    let button = document.getElementById(buttonIdEdit);
+    let isActive = button.classList.contains(priority);
+  
+    buttons.forEach(btn => {
+      btn.classList.remove("urgent", "medium", "low");
+      img = btn.querySelector("img");
+      img.src = `../img/${btn.id.split("ButtonEdit")[0]}-button-icon.svg`;
+    });
+  
+    if (!isActive) {
+      button.classList.add(priority);
+      img = button.querySelector("img");
+      img.src = `../img/${priority}-button-icon-active.svg`;
+      prioEdit = priority;
+    }
+}
+
+
+
 
 
 function toggleAssignmentDropdownEdit() {
@@ -178,7 +204,6 @@ function assignmentContactsTemplateEdit(name, initial, initial_color, id, isSele
       `;
   }
   
-  
 
 function selectAssignmentEdit(entry, id) {
     let isSelected = entry.classList.toggle("selected");
@@ -199,4 +224,5 @@ function selectAssignmentEdit(entry, id) {
       entry.querySelector("img").src = "../img/check-button.svg";
     }
   }
+
 

@@ -185,7 +185,7 @@ function setCategory(selectedCategory) {
 
   if (category === "User Story") {
     categorySelect.innerHTML =
-      'User Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+      'User Story <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
   } else if (category === "Technical Task") {
     categorySelect.innerHTML =
       'Technical Task <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
