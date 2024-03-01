@@ -670,7 +670,7 @@ main {
 }
 
 #renderedAssignedToContactsEdit {
-    position: absolute;
+    position: relative;
     display: flex;
     gap: 5px;
     padding-top: 10px;
