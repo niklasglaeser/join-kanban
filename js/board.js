@@ -407,9 +407,6 @@ function editTask() {
   popupEdit.classList.remove("d-none");
 }
 
-
-
-
 function togglePopup(i) {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
@@ -479,3 +476,13 @@ function stopPropagation(event) {
 function openAddTaskPage() {
   window.location.href = "../pages/addtask.html";
 }
+
+document.addEventListener("click", (event) => {
+  if (
+    event.target.id === "popup" ||
+    event.target.id === "popUpAddTaskContainer"
+  ) {
+    hidePopup(overlay, popup);
+    hidePopup(overlay, popUpAddTaskContainer);
+  }
+});

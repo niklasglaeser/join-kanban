@@ -248,3 +248,10 @@ async function deleteUser(id) {
   generateUserDetails(0);
   setCardActive(0);
 }
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "popup" || event.target.id === "popupEdit") {
+    hidePopup(overlay, popup);
+    hidePopup(overlay, popupEdit);
+  }
+});

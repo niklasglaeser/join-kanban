@@ -8,6 +8,11 @@ async function register() {
       "errorConfirmPassword"
     )
   ) {
+    if (checkEmail()) {
+      errorConfirmEmail.innerText =
+        "This E-mail address is already registered.";
+      return;
+    }
     signUpFormButton.disabled = true;
     let nextId = getNextId();
     let newUser = {
@@ -26,6 +31,10 @@ async function register() {
     window.location.href = "index.html";
     resetForm();
   }
+}
+
+function checkEmail() {
+  if (users.find((user) => user.email == emailInputSignup.value)) return true;
 }
 
 function resetForm() {
