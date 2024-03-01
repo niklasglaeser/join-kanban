@@ -223,18 +223,25 @@ function comparePasswords(
 
   if (confirmPasswordInput.value.trim() === "") {
     errorMessage.innerHTML = "";
-    return;
+    return false;
   }
 
   if (passwordInput.value !== confirmPasswordInput.value) {
     errorMessage.innerHTML = "Ups! your password don't match";
+    return false;
   } else {
     errorMessage.innerHTML = "";
+    return true;
   }
 }
 
 async function deleteAllUser() {
   users.splice(0, users.length);
+  await setItem("users", JSON.stringify(users));
+}
+
+async function deleteOneUser(x) {
+  users.splice(x, 1);
   await setItem("users", JSON.stringify(users));
 }
 
@@ -249,7 +256,6 @@ async function deleteOneTask(index) {
   await updateHTML();
   togglePopup();
 }
-
 
 async function deleteAllContacts() {
   contacts.splice(0, contacts.length);

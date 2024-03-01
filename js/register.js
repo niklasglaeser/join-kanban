@@ -1,23 +1,31 @@
 let demoJsonContacts;
 let demoContacts = [];
 async function register() {
-  signUpFormButton.disabled = true;
-  let nextId = getNextId();
-  let newUser = {
-    id: nextId,
-    name: nameInputSignup.value,
-    email: emailInputSignup.value,
-    password: passwordInputSignup.value,
-    initial: getInitial(nameInputSignup.value),
-    initial_color: getInitialColor(),
-    contacts: [],
-    tasks: [],
-  };
-  users.push(newUser);
-  await generateDemoContacts(nextId);
-  await setItem("users", JSON.stringify(users));
-  window.location.href = "index.html";
-  resetForm();
+  if (
+    comparePasswords(
+      "passwordInputSignup",
+      "confirmPasswordInputSignup",
+      "errorConfirmPassword"
+    )
+  ) {
+    signUpFormButton.disabled = true;
+    let nextId = getNextId();
+    let newUser = {
+      id: nextId,
+      name: nameInputSignup.value,
+      email: emailInputSignup.value,
+      password: passwordInputSignup.value,
+      initial: getInitial(nameInputSignup.value),
+      initial_color: getInitialColor(),
+      contacts: [],
+      tasks: [],
+    };
+    users.push(newUser);
+    await generateDemoContacts(nextId);
+    await setItem("users", JSON.stringify(users));
+    window.location.href = "index.html";
+    resetForm();
+  }
 }
 
 function resetForm() {
