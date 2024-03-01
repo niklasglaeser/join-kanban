@@ -22,7 +22,7 @@ async function getItem(key) {
 }
 
 async function loadDemoContacts() {
-  const response = await fetch("../js/demoContacts.json");
+  const response = await fetch("js/demoContacts.json");
   demoJsonContacts = await response.json();
 }
 

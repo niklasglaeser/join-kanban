@@ -86,14 +86,16 @@ main {
 }
 
 .overlayTaskHeadline {
-    max-height: 190px;
+    max-height: 187px;
     padding-bottom: 6px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    word-break: break-word;
 }
+
 
 .overlayTaskDescription {
     max-height: 80px;
@@ -417,15 +419,21 @@ main {
     gap: 8px;
 }
 
+.task-title {
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 
 .task-description-text {
     height: 33px;
-    /* etwa zwei Zeilen Text */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    /* Zeilenanzahl */
     -webkit-box-orient: vertical;
 }
 
