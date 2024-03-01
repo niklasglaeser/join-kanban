@@ -187,7 +187,7 @@ function selectAssignmentEdit(entry, id) {
     id = id + 1;
     let name = entry.querySelector(".contact-option-edit span").textContent;
     let initial = entry.querySelector(".contact-option-edit div").textContent;
-    let index = assignedToEdit.findIndex((user) => user.name === name && user.initial === initial);
+    let index = assignedToEdit.findIndex((user) => user.id === id);
   
     if (isSelected) {
       assignedToEdit.push({ name, initial, initial_color, id });
@@ -199,3 +199,4 @@ function selectAssignmentEdit(entry, id) {
       entry.querySelector("img").src = "../img/check-button.svg";
     }
   }
+
