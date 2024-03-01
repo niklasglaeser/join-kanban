@@ -343,7 +343,7 @@ function generateCard(taskID) {
         <div class="overlayTaskFooterWrapper">
             <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
             <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-            <a onclick="deleteOneTask(${taskID})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+            <a onclick="deleteOneTaskgone(${taskID})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
         </div>
 
     </div>
