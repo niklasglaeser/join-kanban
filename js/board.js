@@ -343,7 +343,7 @@ function generateCard(taskID) {
         <div class="overlayTaskFooterWrapper">
             <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
             <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-            <a onclick="deleteOneTask(${taskID})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+            <a onclick="deleteOneTaskgone(${taskID})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
         </div>
 
     </div>
@@ -389,7 +389,16 @@ function generateCard(taskID) {
           </div>
         </div>
       </div>
-      <div></div>
+      <div>
+        <div>Subtasks</div>
+        <div id="subtasksInputEdit">
+          <input type="text" placeholder="Add new subtask" id="subTaskInputEdit" oninput="acitivateSubtaskEditorEdit()">
+          <div id="imageContainerEdit">
+            <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEditor()">
+          </div>
+          </div>
+            <div id="subtasksListEdit"></div>
+          </div>
     </form>
   </div>
 
@@ -432,6 +441,7 @@ function togglePopup(i) {
     generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
+    renderSubtasks(i);
   }
 }
 
