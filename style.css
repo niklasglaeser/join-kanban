@@ -393,6 +393,13 @@ footer a:hover {
     margin-left: 20px;
 }
 
+#errorConfirmEmail {
+    color: red;
+    align-self: flex-start;
+    margin-top: -15px;
+    margin-left: 20px;
+}
+
 #errorLogin {
     color: red;
     align-self: flex-start;
