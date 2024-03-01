@@ -343,7 +343,7 @@ function generateCard(taskID) {
         <div class="overlayTaskFooterWrapper">
             <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
             <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-            <a onclick="deleteTask(taskID)" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+            <a onclick="deleteOneTask(${taskID})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
         </div>
 
     </div>
@@ -369,6 +369,14 @@ function generateCard(taskID) {
         <input type="date" id="dueDateInput" value='${task.dueDate}'>
       </div>
       <div>
+        <div>Prio</div>
+        <div class="prio-selection-container-edit">
+          <div id="urgentButtonEdit" onclick="changePriorityEdit('urgentButtonEdit', 'urgent')">Urgent<img src="../img/urgent-button-icon.svg"></div>
+          <div id="mediumButtonEdit" onclick="changePriorityEdit('mediumButtonEdit', 'medium')">Medium<img src="../img/medium-button-icon.svg"></div>
+          <div id="lowButtonEdit" onclick="changePriorityEdit('lowButtonEdit', 'low')">Low <img src="../img/low-button-icon.svg"></div>
+        </div>
+      </div>
+      <div>
         <div>Assigned to</div>
         <div class="assignment-dropdown-edit">
           <div id="assignmentSelectEdit" onclick="toggleAssignmentDropdownEdit()">
@@ -381,13 +389,14 @@ function generateCard(taskID) {
           </div>
         </div>
       </div>
+      <div></div>
     </form>
   </div>
 
   `;
-  buttonId = task.prio + "Button";
+  buttonIdEdit = task.prio + "ButtonEdit";
   priority = task.prio;
-  changePriority(buttonId, priority);
+  changePriorityEdit(buttonIdEdit, priority);
 }
 
 function editTask() {
@@ -398,6 +407,9 @@ function editTask() {
   popupEdit.classList.remove("d-none");
 }
 
+
+
+
 function togglePopup(i) {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
@@ -405,7 +417,7 @@ function togglePopup(i) {
 
   if (popupVisible(overlay, popup)) {
     hidePopup(overlay, popup);
-    changePriority("mediumButton", "medium");
+    // changePriority("mediumButton", "medium");
   } else {
     showPopup(overlay, popup);
     generateCard(i);

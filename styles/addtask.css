@@ -51,6 +51,13 @@ main {
     margin-top: 8px;
 }
 
+.prio-selection-container-edit {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+
 .addTaskSeperationLine {
     margin-top: -140px;
 }
@@ -301,6 +308,56 @@ main {
     cursor: pointer;
 }
 
+
+#urgentButtonEdit {
+    height: 56px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    cursor: pointer;
+}
+
+#mediumButtonEdit {
+    height: 56px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    cursor: pointer;
+}
+
+#lowButtonEdit {
+    height: 56px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px 16px 10px 16px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px #D1D1D1;
+    gap: 8px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    cursor: pointer;
+}
 
 
 .urgent {
