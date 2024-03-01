@@ -379,9 +379,9 @@ function handleCategoryError() {
 
 
 function createNewTask(title, description, dueDate) {
-  let cleanedTitle = title.trim() === "" ? null : title;
-  let cleanedDescription = description.trim() === "" ? null : description;
-  let cleanedDueDate = dueDate.trim() === "" ? null : dueDate;
+  let cleanedTitle = title.trim() === "" ? "" : title;
+  let cleanedDescription = description.trim() === "" ? "" : description;
+  let cleanedDueDate = dueDate.trim() === "" ? "" : dueDate;
 
   return {
     id: tasks.length,
