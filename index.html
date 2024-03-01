@@ -39,6 +39,7 @@
             oninput="changePasswordIcon('passwordInputSignup', 'signUpPasswordIcon')" required>
           <img id="signUpPasswordIcon" src="img/lock.svg">
         </div>
+        <div id="errorConfirmEmail"></div>
         <div class="signUpInputs">
           <input type="password" placeholder="Confirm Password" id="confirmPasswordInputSignup"
             oninput="changePasswordIcon('confirmPasswordInputSignup', 'signUpPasswordConfirmIcon'); comparePasswords('passwordInputSignup', 'confirmPasswordInputSignup', 'errorConfirmPassword')"

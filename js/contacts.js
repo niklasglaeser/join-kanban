@@ -255,3 +255,10 @@ document.addEventListener("click", (event) => {
     hidePopup(overlay, popupEdit);
   }
 });
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "popup" || event.target.id === "popupEdit") {
+    hidePopup(overlay, popup);
+    hidePopup(overlay, popupEdit);
+  }
+});
