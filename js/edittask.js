@@ -203,6 +203,8 @@ function assignmentContactsTemplateEdit(
       `;
 }
 
+
+
 function selectAssignmentEdit(entry, id) {
   let isSelected = entry.classList.toggle("selected");
   id = id - 1;
@@ -283,7 +285,7 @@ function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
     `;
 }
 
-function renderSubtasks(i) {
+function renderSubtasksEdit(i) {
   let subtasksListEdit = document.getElementById("subtasksListEdit");
   subtasksListEdit.innerHTML = "";
 

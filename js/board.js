@@ -322,29 +322,12 @@ function generateCard(i) {
         </div>
     </div>
     <div class="font-20-light">Subtasks:</div>
-    <div class="">
-        <div class="overlayTaskSubtasks">
-            <div>Check </div>
-            <div>Implement Recipe Recommendation</div>
-        </div>
-        <div class="overlayTaskSubtasks">
-            <div>Check </div>
-            <div>Implement Recipe Recommendation</div>
-        </div>
-        <div class="overlayTaskSubtasks">
-            <div>Check </div>
-            <div>Implement Recipe Recommendation</div>
-        </div>
-    </div>
+    
     <div class="overlayTaskFooter">
         <div class="overlayTaskFooterWrapper">
             <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
             <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-<<<<<<< HEAD
-            <a onclick="deleteOneTask()" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
-=======
             <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
->>>>>>> main
         </div>
 
     </div>
