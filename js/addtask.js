@@ -346,7 +346,7 @@ async function addNewTask() {
     return;
   }
 
-  let newTask = createNewTask(title, description, dueDate);
+  let newTask = createNewTask(title, description, dueDate,);
   await saveTask(newTask);
   redirectToBoardPage();
 }
@@ -378,7 +378,7 @@ function handleCategoryError() {
 }
 
 
-function createNewTask(title, description, dueDate) {
+function createNewTask(title, description, dueDate,) {
   let cleanedTitle = title.trim() === "" ? "" : title;
   let cleanedDescription = description.trim() === "" ? "" : description;
   let cleanedDueDate = dueDate.trim() === "" ? "" : dueDate;
