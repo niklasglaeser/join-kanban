@@ -11,13 +11,11 @@ function changeClearButtonIcon() {
   icon.src = "../img/clear-button-icon-alternative.svg";
 }
 
-
 function changeClearButtonIconBack() {
   let icon = document.getElementById("clearButtonIcon");
 
   icon.src = "../img/clear-button-icon.svg";
 }
-
 
 function changeClearButtonIconMobile() {
   let icon = document.getElementById("clearButtonIconMobile");
@@ -25,13 +23,11 @@ function changeClearButtonIconMobile() {
   icon.src = "../img/clear-button-icon-alternative.svg";
 }
 
-
 function changeClearButtonIconBackMobile() {
   let icon = document.getElementById("clearButtonIconMobile");
 
   icon.src = "../img/clear-button-icon.svg";
 }
-
 
 function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
@@ -42,7 +38,6 @@ function toggleAssignmentDropdown() {
     assignmentDropdown.style.display = "flex";
   }
 }
-
 
 document.addEventListener("click", function (event) {
   let assignmentSelect = document.getElementById("assignmentSelect");
@@ -59,7 +54,6 @@ document.addEventListener("click", function (event) {
     renderAssignedToArray();
   }
 });
-
 
 function renderAssignedToArray() {
   let initial = document.getElementById("renderedAssignedToContacts");
@@ -80,7 +74,6 @@ function renderAssignedToArray() {
   initial.innerHTML = totalHTML;
 }
 
-
 function toggleCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdownList");
   if (categoryDropdown.style.display === "flex") {
@@ -89,7 +82,6 @@ function toggleCategoryDropdown() {
     categoryDropdown.style.display = "flex";
   }
 }
-
 
 document.addEventListener("click", function (event) {
   let categorySelect = document.getElementById("categorySelect");
@@ -105,7 +97,6 @@ document.addEventListener("click", function (event) {
   }
 });
 
-
 function assignmentContactsTemplate(name, initial, initial_color, id) {
   return `
     <div class="assignment-dropdown-list-entry" onclick="selectAssignment(this, ${id})">
@@ -118,9 +109,10 @@ function assignmentContactsTemplate(name, initial, initial_color, id) {
   `;
 }
 
-
 async function renderAssignmentContacts(users) {
-  let assignmentDropdownList = document.getElementById("assignmentDropdownList");
+  let assignmentDropdownList = document.getElementById(
+    "assignmentDropdownList"
+  );
   assignmentDropdownList.innerHTML = "";
 
   users.forEach((user) => {
@@ -135,7 +127,6 @@ async function renderAssignmentContacts(users) {
   });
 }
 
-
 function selectAssignment(entry, id) {
   let isSelected = entry.classList.toggle("selected");
   id = id - 1;
@@ -143,10 +134,12 @@ function selectAssignment(entry, id) {
   id = id + 1;
   let name = entry.querySelector(".contact-option span").textContent;
   let initial = entry.querySelector(".contact-option div").textContent;
-  let index = assignedTo.findIndex((user) => user.name === name && user.initial === initial);
+  let index = assignedTo.findIndex(
+    (user) => user.name === name && user.initial === initial
+  );
 
   if (isSelected) {
-    assignedTo.push({ name, initial, initial_color, id});
+    assignedTo.push({ name, initial, initial_color, id });
     entry.style.backgroundColor = "#2A3647";
     entry.querySelector("img").src = "../img/checked-button.svg";
   } else {
@@ -156,14 +149,13 @@ function selectAssignment(entry, id) {
   }
 }
 
-
 function changePriority(buttonId, priority) {
   let img;
   let buttons = document.querySelectorAll(".prio-selection-container div");
   let button = document.getElementById(buttonId);
   let isActive = button.classList.contains(priority);
 
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     btn.classList.remove("urgent", "medium", "low");
     img = btn.querySelector("img");
     img.src = `../img/${btn.id.split("Button")[0]}-button-icon.svg`;
@@ -176,7 +168,6 @@ function changePriority(buttonId, priority) {
     prio = priority;
   }
 }
-
 
 function setCategory(selectedCategory) {
   category = selectedCategory;
@@ -193,7 +184,6 @@ function setCategory(selectedCategory) {
 
   toggleCategoryDropdown();
 }
-
 
 function acitivateSubtaskEditor() {
   let imageContainer = document.getElementById("imageContainer");
@@ -213,7 +203,6 @@ function acitivateSubtaskEditor() {
   });
 }
 
-
 function focusSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
   subTaskInput.focus();
@@ -226,7 +215,6 @@ function clearSubtaskInput() {
   let imageContainer = document.getElementById("imageContainer");
   imageContainer.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">`;
 }
-
 
 function addSubtaskToList() {
   let subTaskInput = document.getElementById("subTaskInput");
@@ -244,7 +232,6 @@ function addSubtaskToList() {
   }
 }
 
-
 function addSubtaskEntry(subtasksList, subTaskValue) {
   subtasksList.innerHTML += `
     <div class="subtasks-list-entry" onmouseenter="addHoverToSubtask(event)" onmouseleave="removeHoverFromSubtask(event)">
@@ -257,7 +244,6 @@ function addSubtaskEntry(subtasksList, subTaskValue) {
     </div>
   `;
 }
-
 
 function editSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
@@ -286,7 +272,9 @@ function saveSubtask(event) {
   entryDiv.onmouseleave = removeHoverFromSubtask;
 
   const index = subtasks.indexOf(subTaskInput.value);
-  if (index !== -1) {subtasks[index] = subTaskValue;}
+  if (index !== -1) {
+    subtasks[index] = subTaskValue;
+  }
 
   subTaskInput.readOnly = true;
   subTaskInput.style.backgroundColor = "";
@@ -331,7 +319,6 @@ function deleteSubtask(event) {
   entryDiv.parentNode.removeChild(entryDiv);
 }
 
-
 async function addNewTask() {
   let title = document.getElementById("titleInput").value;
   let description = document.getElementById("descriptionInput").value;
@@ -348,9 +335,9 @@ async function addNewTask() {
 
   let newTask = createNewTask(title, description, dueDate,);
   await saveTask(newTask);
-  redirectToBoardPage();
+  resetAddTaskForm();
+  // redirectToBoardPage();
 }
-
 
 function handleTitleError() {
   let errorTitle = document.getElementById("errorTitle");
@@ -364,7 +351,6 @@ function handleTitleError() {
   categoryInput.style.borderColor = "#D1D1D1";
 }
 
-
 function handleCategoryError() {
   let errorTitle = document.getElementById("errorTitle");
   let titleInput = document.getElementById("titleInput");
@@ -377,14 +363,13 @@ function handleCategoryError() {
   categoryInput.style.borderColor = "red";
 }
 
-
-function createNewTask(title, description, dueDate,) {
+function createNewTask(title, description, dueDate) {
   let cleanedTitle = title.trim() === "" ? "" : title;
   let cleanedDescription = description.trim() === "" ? "" : description;
   let cleanedDueDate = dueDate.trim() === "" ? "" : dueDate;
 
   return {
-    id: tasks.length,
+    id: Date.now(),
     title: cleanedTitle,
     description: cleanedDescription,
     assignedTo,
@@ -397,18 +382,14 @@ function createNewTask(title, description, dueDate,) {
   };
 }
 
-
-
 async function saveTask(task) {
   tasks.push(task);
   await setItem("tasks", JSON.stringify(tasks));
 }
 
-
 function redirectToBoardPage() {
   window.location.href = "/pages/board.html";
 }
-
 
 function resetTitleInput() {
   let titleInput = document.getElementById("titleInput");
@@ -417,50 +398,49 @@ function resetTitleInput() {
   document.getElementById("errorTitle").innerHTML = "";
 }
 
-
 function resetDescriptionInput() {
   document.getElementById("descriptionInput").value = "";
 }
-
 
 function resetAssignedTo() {
   assignedTo = [];
   renderAssignedToArray();
 }
 
-
 function resetDueDateInput() {
   document.getElementById("dueDateInput").value = "";
 }
-
 
 function resetPriority() {
   changePriority("mediumButton", "medium");
   let mediumButton = document.getElementById("mediumButton");
   mediumButton.classList.add("medium");
-  mediumButton.querySelector("img").src = "../img/medium-button-icon-active.svg";
+  mediumButton.querySelector("img").src =
+    "../img/medium-button-icon-active.svg";
 }
-
 
 function resetCategory() {
   category = "";
   let categorySelect = document.getElementById("categorySelect");
-  categorySelect.innerHTML = 'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+  categorySelect.innerHTML =
+    'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
   document.getElementById("requiredCategoryMessage").innerHTML = "";
   categorySelect.style.borderColor = "#D1D1D1";
 }
-
 
 function resetSubtasks() {
   subtasks = [];
   document.getElementById("subtasksList").innerHTML = "";
 }
 
-
 function resetAssignmentDropdownList() {
-  let assignmentDropdownList = document.getElementById("assignmentDropdownList");
+  let assignmentDropdownList = document.getElementById(
+    "assignmentDropdownList"
+  );
   assignmentDropdownList.style.display = "none";
-  let contactOptions = document.querySelectorAll(".assignment-dropdown-list-entry");
+  let contactOptions = document.querySelectorAll(
+    ".assignment-dropdown-list-entry"
+  );
   contactOptions.forEach((option) => {
     option.classList.remove("selected");
     option.style.backgroundColor = "";
@@ -468,11 +448,9 @@ function resetAssignmentDropdownList() {
   });
 }
 
-
 function resetCategoryDropdownList() {
   document.getElementById("categoryDropdownList").style.display = "none";
 }
-
 
 function resetAddTaskForm() {
   resetTitleInput();
@@ -486,7 +464,6 @@ function resetAddTaskForm() {
   resetCategoryDropdownList();
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -494,7 +471,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
   let descriptionInput = document.getElementById("descriptionInput");
@@ -511,6 +487,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-
-

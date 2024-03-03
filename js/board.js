@@ -136,12 +136,12 @@ function filterTasks() {
   updateHTML(filteredTasks);
 }
 
-function startDragging(id) {
-  currentDraggedElement = id;
+function startDragging(taskID) {
+  currentDraggedElement = taskID;
 }
 
 function generateTodoHTML(element, taskID) {
-  return `<div id="task_${taskID}" onclick="togglePopup(${taskID});stopPropagation(event);" draggable="true" ondragstart="startDragging(${element["id"]})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
+  return `<div id="task_${taskID}" onclick="togglePopup(${taskID});stopPropagation(event);" draggable="true" ondragstart="startDragging(${taskID})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
   <div class="task-category-wrapper">
   <span class="task-category white">${element["category"]}</span>
   <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID});stopPropagation(event);"></img>
@@ -174,7 +174,11 @@ function allowDrop(ev) {
 }
 
 function moveTo(progress) {
-  tasks[currentDraggedElement]["progress"] = progress;
+  let index = tasks.findIndex(
+    (element) => element.id === currentDraggedElement
+  );
+  console.log(index);
+  tasks[index]["progress"] = progress;
   updateHTML();
 }
 
@@ -185,7 +189,6 @@ function moveToMobile(taskID, progress) {
 
 function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
-  // document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
 function removeHighlight(id) {
@@ -202,20 +205,14 @@ function rotateTaskEnd(taskID) {
   document.getElementById(`task_${taskID}`).classList.remove("rotate-task");
 }
 
-function generateAssignedToInitial(
-  element,
-  taskID,
-  initialID,
-  divClass,
-  value
-) {
-  let initial = document.getElementById(`${initialID}_${taskID}`);
+function generateAssignedToInitial(element, i, initialID, divClass, value) {
+  let initial = document.getElementById(`${initialID}_${i}`);
   let assignedArray = element["assignedTo"];
   let totalHTML = "";
 
   for (let i = 0; i < assignedArray.length; i++) {
     const element = assignedArray[i];
-    const color = tasks[taskID]["assignedTo"][i]["initial_color"];
+    const color = element["initial_color"];
     if (i < value) {
       totalHTML += `<div class="${divClass}" style="background-color:${color}">${element.initial}</div>`;
     }
@@ -246,8 +243,8 @@ function generateAssignedToInitialName(element, taskID, nameID, value) {
   initial.innerHTML = totalHTML;
 }
 
-function generatePrioIcon(element, taskID, idElement) {
-  let prioIcon = document.getElementById(`${idElement}_${taskID}`);
+function generatePrioIcon(element, i, idElement) {
+  let prioIcon = document.getElementById(`${idElement}_${i}`);
   let prio = element["prio"];
   if (prio == "low") {
     prioIcon.src = "../img/symbol-low.svg";
@@ -298,8 +295,8 @@ document.addEventListener("click", function (event) {
   }
 });
 
-function generateCard(taskID) {
-  let task = tasks[taskID];
+function generateCard(i) {
+  let task = tasks[i];
   overlayTask.innerHTML = /*HTML*/ `
     <div id="taskPopup" class="overlayTaskWrapper">
     <div class="overlayTaskHeader">
@@ -315,13 +312,13 @@ function generateCard(taskID) {
     </div>
     <div class="overlayTaskPrio font-20-light">
         <div>Priority:</div>
-        <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${taskID}"></div>
+        <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${i}"></div>
     </div>
     <div class="font-20-light">Assigned To:</div>
     <div class="">
         <div class="overlayTaskAssignedTo">
-            <div id="cardInitalCard_${taskID}" class="overlayTaskAssignedToInitial"></div>
-            <div id="cardInitalCardName_${taskID}"></div>
+            <div id="cardInitalCard_${i}" class="overlayTaskAssignedToInitial"></div>
+            <div id="cardInitalCardName_${i}"></div>
         </div>
     </div>
     <div class="font-20-light">Subtasks:</div>
@@ -343,7 +340,11 @@ function generateCard(taskID) {
         <div class="overlayTaskFooterWrapper">
             <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
             <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
+<<<<<<< HEAD
             <a onclick="deleteOneTask()" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+=======
+            <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+>>>>>>> main
         </div>
 
     </div>
@@ -357,16 +358,16 @@ function generateCard(taskID) {
     <form class="overlayTaskEditForm" onsubmit="saveEditTask(); return false;">
       <div>
         <div class="font-21-light">Title</div>
-        <input type="text" id="titleInput" value='${task.title}'>
+        <input type="text" id="titleInputEdit" value='${task.title}'>
       </div>
       <div id="errorTitle"></div>
       <div>
         <div class="font-21-light">Description</div>
-        <textarea id="descriptionInput1" placeholder="Enter a Description">${task.description}</textarea>
+        <textarea id="descriptionInputEdit" placeholder="Enter a Description">${task.description}</textarea>
       </div>
       <div>
         <div class="font-21-light">Due Date</div>
-        <input type="date" id="dueDateInput" value='${task.dueDate}'>
+        <input type="date" id="dueDateInputEdit" value='${task.dueDate}'>
       </div>
       <div>
         <div>Prio</div>
@@ -416,9 +417,10 @@ function editTask() {
   popupEdit.classList.remove("d-none");
 }
 
-function togglePopup(i) {
+function togglePopup(taskID) {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
+  let i = tasks.findIndex((element) => element.id === taskID);
   let element = tasks[i];
 
   if (popupVisible(overlay, popup)) {
