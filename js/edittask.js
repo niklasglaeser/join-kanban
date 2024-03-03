@@ -95,64 +95,6 @@ function renderAssignedToEdit() {
   initial.innerHTML = totalHTML;
 }
 
-/*
-function assignmentContactsTemplateEdit(name, initial, initial_color, id) {
-  return `
-      <div class="assignment-dropdown-list-entry-edit" onclick="selectAssignmentEdit(this, ${id})">
-          <div class="contact-option-edit">
-              <div id="${id}" style="background-color:${initial_color}">${initial}</div>
-              <span>${name}</span>
-          </div>
-          <img src="../img/check-button.svg">
-      </div>
-    `;
-}
-
-async function renderAssignmentContactsEdit(i) {
-  let assignmentDropdownListEdit = document.getElementById(
-    "assignmentDropdownListEdit"
-  );
-  assignmentDropdownListEdit.innerHTML = "";
-
-  users.forEach((user) => {
-    const { name, initial, initial_color, id } = user;
-    const userHtml = assignmentContactsTemplateEdit(
-      name,
-      initial,
-      initial_color,
-      id
-    );
-    assignmentDropdownListEdit.innerHTML += userHtml;
-  });
-}
-
-*/
-
-/*
-async function renderAssignmentContactsEdit(i) {
-    let assignmentDropdownListEdit = document.getElementById(
-      "assignmentDropdownListEdit"
-    );
-    assignmentDropdownListEdit.innerHTML = "";
-  
-    for (const user of users) {
-      const { name, initial, initial_color, id } = user;
-      const assignedTasks = tasks[i].assignedTo;
-      const isAssigned = assignedTasks.some(task => task.id === id);
-      const isSelected = isAssigned ? 'selected' : '';
-  
-      const userHtml = assignmentContactsTemplateEdit(
-        name,
-        initial,
-        initial_color,
-        id,
-        isSelected
-      );
-      assignmentDropdownListEdit.innerHTML += userHtml;
-    }
-  }
-
-*/
 
 async function renderAssignmentContactsEdit(i) {
   let assignmentDropdownListEdit = document.getElementById(
@@ -202,8 +144,6 @@ function assignmentContactsTemplateEdit(
         </div>
       `;
 }
-
-
 
 function selectAssignmentEdit(entry, id) {
   let isSelected = entry.classList.toggle("selected");

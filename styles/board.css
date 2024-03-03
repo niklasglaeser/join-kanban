@@ -598,6 +598,7 @@ main {
     border-radius: 20px;
 }
 
+
 #assignmentDropdownListEdit {
     display: none;
     position: absolute;
@@ -683,6 +684,20 @@ main {
     gap: 5px;
     padding-top: 10px;
     padding-left: 10px;
+}
+
+
+.subtask-list-task-entry {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.subtask-list-task-entry:hover {
+    cursor: pointer;
+    background-color: rgb(222, 222, 222);
 }
 
 @media (max-width:1300px) {

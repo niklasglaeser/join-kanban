@@ -261,7 +261,7 @@ function generateSubTask(element, taskID) {
   let progress = document.getElementById(`subtasks_${taskID}`);
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
   subtask = element["subtasks"];
-  subtaskdone = element["subtaskdone"];
+  subtaskdone = element["subtasksdone"];
   subtaskLabel.innerHTML = `<span>${subtaskdone.length}/${subtask.length} Subtasks</span>`;
   progress.value = subtaskdone.length;
   progress.max = subtask.length;
@@ -322,7 +322,7 @@ function generateCard(i) {
         </div>
     </div>
     <div class="font-20-light">Subtasks:</div>
-    
+    <div id="subtasksListTask"></div>
     <div class="overlayTaskFooter">
         <div class="overlayTaskFooterWrapper">
             <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
@@ -392,6 +392,55 @@ function generateCard(i) {
   changePriorityEdit(buttonIdEdit, priority);
 }
 
+
+function renderSubtasksTask(i) {
+  const subtasksListTaskDiv = document.getElementById("subtasksListTask");
+  subtasksListTaskDiv.innerHTML = "";
+  const subtasksRender = tasks[i].subtasks;
+  const subtasksDoneRender = tasks[i].subtasksdone;
+
+  for (let j = 0; j < subtasksRender.length; j++) {
+    const subtask = subtasksRender[j];
+    const isSelected = subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
+    const selectedClass = isSelected ? "selectedTask" : "";
+
+    subtasksListTaskDiv.innerHTML += `
+      <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
+        <img src="../img/${isSelected ? "checkedtask" : "check"}-button.svg"> <!-- Change img based on selection -->
+        <div>${subtask}</div>
+      </div>
+    `;
+  }
+}
+
+
+
+async function selectSubtask(entry, taskId, subtaskIndex) {
+  let isSelected = entry.classList.toggle("selectedTask");
+  let subtask = tasks[taskId].subtasks[subtaskIndex];
+
+  if (isSelected) {
+    tasks[taskId].subtasksdone.push(subtask);
+    await setItem("tasks", JSON.stringify(tasks));
+    entry.style.backgroundColor = "";
+    entry.querySelector("img").src = "../img/checkedtask-button.svg";
+  } else {
+    let index = tasks[taskId].subtasksdone.findIndex(
+      (item) => item === subtask
+    );
+    tasks[taskId].subtasksdone.splice(index, 1);
+    await setItem("tasks", JSON.stringify(tasks));
+    entry.style.backgroundColor = "";
+    entry.querySelector("img").src = "../img/check-button.svg";
+  }
+}
+
+
+
+
+
+
+
 function editTask() {
   let popup = document.getElementById("taskPopup");
   let popupEdit = document.getElementById("taskPopupEdit");
@@ -407,11 +456,14 @@ function togglePopup(taskID) {
   let element = tasks[i];
 
   if (popupVisible(overlay, popup)) {
+    updateHTML();
     hidePopup(overlay, popup);
     // changePriority("mediumButton", "medium");
+    subtasks = [];
   } else {
     showPopup(overlay, popup);
     generateCard(i);
+    renderSubtasksTask(i);
     generatePrioIcon(element, i, "prioArrowCard");
     generateAssignedToInitial(
       element,
@@ -423,7 +475,7 @@ function togglePopup(taskID) {
     generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
-    renderSubtasks(i);
+    renderSubtasksEdit(i);
   }
 }
 
@@ -434,7 +486,7 @@ function popupVisible(overlay, popup) {
   );
 }
 
-function hidePopup(overlay, popup) {
+async function hidePopup(overlay, popup) {
   overlay.classList.remove("overlay-show");
   overlay.classList.add("d-none");
   popup.classList.remove("popup-slideIn");
@@ -479,5 +531,6 @@ document.addEventListener("click", (event) => {
   ) {
     hidePopup(overlay, popup);
     hidePopup(overlay, popUpAddTaskContainer);
+    updateHTML();
   }
 });

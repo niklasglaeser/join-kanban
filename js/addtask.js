@@ -336,6 +336,29 @@ async function addNewTask() {
   let newTask = createNewTask(title, description, dueDate,);
   await saveTask(newTask);
   resetAddTaskForm();
+  redirectToBoardPage();
+}
+
+async function addNewTaskBoard() {
+  let title = document.getElementById("titleInput").value;
+  let description = document.getElementById("descriptionInput").value;
+  let dueDate = document.getElementById("dueDateInput").value;
+
+  if (!title) {
+    handleTitleError();
+    return;
+  }
+  if (!category) {
+    handleCategoryError();
+    return;
+  }
+
+  let newTask = createNewTask(title, description, dueDate,);
+  await saveTask(newTask);
+  resetAddTaskForm();
+  openAddTaskPopUp();
+  // hidePopup(popup, popUpAddTaskContainer);
+  updateHTML();
   // redirectToBoardPage();
 }
 
@@ -377,7 +400,7 @@ function createNewTask(title, description, dueDate) {
     prio,
     category,
     subtasks,
-    subtaskdone: [],
+    subtasksdone: [],
     progress: "todo",
   };
 }

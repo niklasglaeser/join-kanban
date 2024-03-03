@@ -250,6 +250,12 @@ async function deleteAllTasks() {
   await setItem("tasks", JSON.stringify(tasks));
 }
 
+async function deleteOneTask(index) {
+  tasks.splice(index, 1);
+  await setItem("tasks", JSON.stringify(tasks));
+  await updateHTML();
+  togglePopup();
+}
 
 async function deleteAllContacts() {
   contacts.splice(0, contacts.length);
