@@ -1,123 +1,33 @@
 let currentDraggedElement;
 
 async function updateHTML(filteredTasks) {
-  let tasksFilter = [];
-  if (filteredTasks) {
-    tasksFilter = filteredTasks;
-  } else {
-    tasksFilter = tasks;
-  }
-
   let progress = ["todo", "inProgress", "awaitFeedback", "done"];
 
-  progress.forEach((element) => {
-    document.getElementById(`${element}`).innerHTML = "";
+  progress.forEach((status) => {
+    let filtered = filteredTasks
+      ? filteredTasks.filter((task) => task.progress === status)
+      : tasks.filter((task) => task.progress === status);
+    let element = document.getElementById(status);
+    element.innerHTML = "";
+    if (filtered.length < 1) {
+      element.innerHTML = `<div id="area_${status}" class="noTask">No task in ${status}</div>`;
+    } else {
+      filtered.forEach((task) => {
+        let taskID = task.id;
+        let generateHTML = generateTodoHTML(task, taskID);
+        element.innerHTML += generateHTML;
+        generateAssignedToInitial(
+          task,
+          taskID,
+          "cardInitial",
+          "cardInitialAssignedTo",
+          5
+        );
+        generatePrioIcon(task, taskID, "prioArrow");
+        generateSubTask(task, taskID);
+      });
+    }
   });
-
-  let task = tasksFilter.filter((t) => t["progress"] == "todo");
-
-  document.getElementById("todo").innerHTML = "";
-
-  for (let index = 0; index < task.length; index++) {
-    const element = task[index];
-    const taskID = task[index]["id"];
-    let generateHTML = generateTodoHTML(element, taskID);
-    document.getElementById("todo").innerHTML += generateHTML;
-    generateAssignedToInitial(
-      element,
-      taskID,
-      "cardInitial",
-      "cardInitialAssignedTo",
-      5
-    );
-    generatePrioIcon(element, taskID, "prioArrow");
-    generateSubTask(element, taskID);
-  }
-
-  if (task.length < 1) {
-    document.getElementById(
-      "todo"
-    ).innerHTML = `<div id="area_todo" class="noTask">No task in todo</div>`;
-  }
-
-  let inProgress = tasksFilter.filter((t) => t["progress"] == "inProgress");
-
-  document.getElementById("inProgress").innerHTML = "";
-
-  for (let index = 0; index < inProgress.length; index++) {
-    const element = inProgress[index];
-    const taskID = inProgress[index]["id"];
-    let generateHTML = generateTodoHTML(element, taskID);
-    document.getElementById("inProgress").innerHTML += generateHTML;
-    generateAssignedToInitial(
-      element,
-      taskID,
-      "cardInitial",
-      "cardInitialAssignedTo",
-      5
-    );
-    generatePrioIcon(element, taskID, "prioArrow");
-    generateSubTask(element, taskID);
-  }
-
-  if (inProgress.length < 1) {
-    document.getElementById(
-      "inProgress"
-    ).innerHTML = `<div id="area_inProgress" class="noTask">No task in progress</div>`;
-  }
-
-  let awaitFeedback = tasksFilter.filter(
-    (t) => t["progress"] == "awaitFeedback"
-  );
-
-  document.getElementById("awaitFeedback").innerHTML = "";
-
-  for (let index = 0; index < awaitFeedback.length; index++) {
-    const element = awaitFeedback[index];
-    const taskID = awaitFeedback[index]["id"];
-    let generateHTML = generateTodoHTML(element, taskID);
-    document.getElementById("awaitFeedback").innerHTML += generateHTML;
-    generateAssignedToInitial(
-      element,
-      taskID,
-      "cardInitial",
-      "cardInitialAssignedTo",
-      5
-    );
-    generatePrioIcon(element, taskID, "prioArrow");
-    generateSubTask(element, taskID);
-  }
-
-  if (awaitFeedback.length < 1) {
-    document.getElementById(
-      "awaitFeedback"
-    ).innerHTML = `<div id="area_awaitFeedback" class="noTask">No task in Await feedback</div>`;
-  }
-
-  let done = tasksFilter.filter((t) => t["progress"] == "done");
-
-  document.getElementById("done").innerHTML = "";
-
-  for (let index = 0; index < done.length; index++) {
-    const element = done[index];
-    const taskID = done[index]["id"];
-    let generateHTML = generateTodoHTML(element, taskID);
-    document.getElementById("done").innerHTML += generateHTML;
-    generateAssignedToInitial(
-      element,
-      taskID,
-      "cardInitial",
-      "cardInitialAssignedTo",
-      5
-    );
-    generatePrioIcon(element, taskID, "prioArrow");
-    generateSubTask(element, taskID);
-  }
-  if (done.length < 1) {
-    document.getElementById(
-      "done"
-    ).innerHTML = `<div id="area_done" class="noTask">No task in done</div>`;
-  }
 
   try {
     await setItem("tasks", JSON.stringify(tasks));
