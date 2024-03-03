@@ -71,7 +71,8 @@ main {
 
 
 
-#titleInput {
+#titleInput,
+#titleInputEdit {
     width: 440px;
     background-color: white;
     border-radius: 10px;
@@ -90,7 +91,8 @@ main {
     font-size: 15px;
 }
 
-#descriptionInput {
+#descriptionInput,
+#descriptionInputEdit {
     width: 440px;
     height: 150px;
     background-color: white;
@@ -245,7 +247,8 @@ main {
 }
 
 
-#dueDateInput {
+#dueDateInput,
+#dueDateInputEdit {
     width: 440px;
     background-color: white;
     border-radius: 10px;
