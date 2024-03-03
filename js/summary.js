@@ -57,13 +57,19 @@ function loadOpenTodos() {
 
 function taskUrgentDeadline() {
   let taskUrgentDeadline = document.getElementById("taskUrgentDeadline");
-  let urgentDate = [];
+  let urgentDates = [];
   for (let i = 0; i < tasks.length; i++) {
-    const date = tasks[i]["dueDate"];
-    urgentDate.push(date);
+    if (tasks[i]["prio"] === "urgent" && tasks[i]["dueDate"]) {
+      let date = tasks[i]["dueDate"];
+      urgentDates.push(date);
+    }
   }
-  urgentDate.sort();
-  taskUrgentDeadline.innerHTML = urgentDate[0];
+  urgentDates.sort();
+  if (urgentDates.length > 0) {
+    taskUrgentDeadline.innerHTML = urgentDates[0];
+  } else {
+    taskUrgentDeadline.innerHTML = "No date found for urgent task";
+  }
 }
 
 function openSummary() {
