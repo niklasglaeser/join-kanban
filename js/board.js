@@ -293,6 +293,7 @@ function generateCard(i) {
           </div>
             <div id="subtasksListEdit"></div>
           </div>
+      </div>
     </form>
   </div>
 

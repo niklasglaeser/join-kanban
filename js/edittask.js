@@ -309,3 +309,10 @@ function deleteSubtaskEdit(event) {
 
   entryDiv.parentNode.removeChild(entryDiv);
 }
+
+
+
+
+
+// SAVE TASK
+
