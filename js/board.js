@@ -87,13 +87,13 @@ function moveTo(progress) {
   let index = tasks.findIndex(
     (element) => element.id === currentDraggedElement
   );
-  console.log(index);
   tasks[index]["progress"] = progress;
   updateHTML();
 }
 
 function moveToMobile(taskID, progress) {
-  tasks[taskID]["progress"] = progress;
+  let index = tasks.findIndex((element) => element.id === taskID);
+  tasks[index]["progress"] = progress;
   updateHTML();
 }
 
@@ -253,6 +253,7 @@ function generateCard(i) {
     <div class="overlayTaskHeader">
         <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
     </div>
+    <div class="overlayTaskEditWrapper">
     <form class="overlayTaskEditForm">
       <div>
         <div class="font-21-light">Title</div>
@@ -282,10 +283,10 @@ function generateCard(i) {
             Select contacts to assign
             <img src="../img/dropdown-icon.svg" id="dropdownIconEdit">
           </div>
-          <div id="renderedAssignedToContactsEdit"></div>
           <div id="assignmentDropdownListEdit">
             <div class="assignment-dropdown-list-entry-edit"></div>
           </div>
+          <div id="renderedAssignedToContactsEdit"></div>
         </div>
       </div>
       <div>
@@ -300,6 +301,7 @@ function generateCard(i) {
           </div>
       <button type="button" id="editOkButton" onclick="saveEditTask(${i})"><div>OK</div><img src="../img/white-checkmark.svg"></button>    
     </form>
+</div>
   </div>
 
   `;
@@ -369,6 +371,7 @@ function editTask(i) {
   if (popup.style.display !== "none") {
     popup.style.display = "none";
     popupEdit.classList.remove("d-none");
+    popupEdit.style.display = "flex";
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
     renderSubtasksEdit(i);
@@ -384,9 +387,9 @@ function editTask(i) {
       i,
       "cardInitalCard",
       "overlayTaskAssignedToInitial",
-      3
+      2
     );
-    generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
+    generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
   }
 }
 
@@ -413,9 +416,9 @@ function togglePopup(taskID) {
       i,
       "cardInitalCard",
       "overlayTaskAssignedToInitial",
-      3
+      2
     );
-    generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
+    generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
     renderSubtasksEdit(i);
@@ -445,9 +448,9 @@ function togglePopup(taskID) {
       i,
       "cardInitalCard",
       "overlayTaskAssignedToInitial",
-      3
+      2
     );
-    generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
+    generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
   }
 }
 

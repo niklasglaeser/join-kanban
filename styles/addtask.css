@@ -602,11 +602,11 @@ main {
     display: flex;
     position: absolute;
     width: 440px;
-    height: 110px;
+    height: 140px;
     flex-direction: column;
     overflow-y: auto;
-    gap: 5px;
-    margin-top: 5px;
+    /* gap: 5px; */
+    /* margin-top: 5px; */
     overflow-x: hidden;
 }
 
