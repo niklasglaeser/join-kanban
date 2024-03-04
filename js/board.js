@@ -350,8 +350,13 @@ function editTask() {
   let popup = document.getElementById("taskPopup");
   let popupEdit = document.getElementById("taskPopupEdit");
 
-  popup.style.display = "none";
-  popupEdit.classList.remove("d-none");
+  if (popup.style.display !== "none") {
+    popup.style.display = "none";
+    popupEdit.classList.remove("d-none");
+  } else {
+    popup.style.display = "flex"; // oder "inline-block", je nach dem, wie es ursprünglich eingestellt war
+    popupEdit.classList.add("d-none");
+  }
 }
 
 function togglePopup(taskID) {
