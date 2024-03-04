@@ -48,7 +48,7 @@
                         <img src="../img/search.svg">
                     </form>
                 </div>
-                <button id="slideButton" onclick="openAddTaskPopUp()" class="addTask-button font-21 white">
+                <button id="slideButton" onclick="openAddTaskPopUp('todo')" class="addTask-button font-21 white">
                     <span>Add task</span>
                     <img src="../img/plus.svg" alt="">
                 </button>
@@ -62,7 +62,8 @@
             <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">To Do</span>
-                    <img src="../img/plus-icon.svg" alt="">
+                    <img class="desktop-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPopUp('todo')">
+                    <img class="mobile-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPage()">
                 </div>
                 <div id="todo" class="drag-area" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
                     onmouseleave="removeHighlight('todo')" ondragover="allowDrop(event); highlight('todo')">
@@ -71,7 +72,8 @@
             <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">In progress</span>
-                    <img src="../img/plus-icon.svg" alt="">
+                    <img class="desktop-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPopUp('inProgress')">
+                    <img class="mobile-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPage()">
                 </div>
                 <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')"
                     ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress');"
@@ -82,7 +84,8 @@
             <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">Await feeback</span>
-                    <img src="../img/plus-icon.svg" alt="">
+                    <img class="desktop-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPopUp('awaitFeedback')">
+                    <img class="mobile-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPage()">
                 </div>
                 <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')"
                     ondragleave="removeHighlight('awaitFeedback')" onmouseleave="removeHighlight('awaitFeedback')"

@@ -2,6 +2,7 @@ let assignedTo = [];
 let prio = "medium";
 let category = "";
 let subtasks = [];
+let progress = "todo";
 
 dueDateInput.min = new Date().toISOString().split("T")[0];
 
@@ -401,7 +402,7 @@ function createNewTask(title, description, dueDate) {
     category,
     subtasks,
     subtasksdone: [],
-    progress: "todo",
+    progress,
   };
 }
 
