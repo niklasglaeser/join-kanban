@@ -95,7 +95,6 @@ function renderAssignedToEdit() {
   initial.innerHTML = totalHTML;
 }
 
-
 async function renderAssignmentContactsEdit(i) {
   let assignmentDropdownListEdit = document.getElementById(
     "assignmentDropdownListEdit"
@@ -319,11 +318,6 @@ function deleteSubtaskEdit(event) {
   entryDiv.parentNode.removeChild(entryDiv);
 }
 
-
-
-
-
-
 // SAVE TASK
 
 async function saveEditTask(i) {
@@ -333,8 +327,9 @@ async function saveEditTask(i) {
   savePrioEditChange(i);
   saveAssignedToChangeInput(i);
   saveSubtasksChangeInput(i);
-  togglePopup(i);
+  // togglePopup(i);
   await setItem("tasks", JSON.stringify(tasks));
+  editTask(i);
 }
 
 function saveTitleChange(i) {
@@ -343,7 +338,9 @@ function saveTitleChange(i) {
 }
 
 function saveDescriptionChange(i) {
-  let descriptionChangeInput = document.getElementById("descriptionInputEdit").value;
+  let descriptionChangeInput = document.getElementById(
+    "descriptionInputEdit"
+  ).value;
   tasks[i].description = descriptionChangeInput;
 }
 
@@ -363,8 +360,3 @@ function saveAssignedToChangeInput(i) {
 function saveSubtasksChangeInput(i) {
   tasks[i].subtasks = subtasksEdit;
 }
-
-
-
-
-

@@ -170,11 +170,16 @@ function generatePrioIcon(element, i, idElement) {
 function generateSubTask(element, taskID) {
   let progress = document.getElementById(`subtasks_${taskID}`);
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
-  subtask = element["subtasks"];
-  subtaskdone = element["subtasksdone"];
-  subtaskLabel.innerHTML = `<span>${subtaskdone.length}/${subtask.length} Subtasks</span>`;
-  progress.value = subtaskdone.length;
-  progress.max = subtask.length;
+  let progressBar = document.querySelector(".progressSubtask");
+  if (element["subtasks"].length > 0) {
+    subtask = element["subtasks"];
+    subtaskdone = element["subtasksdone"];
+    subtaskLabel.innerHTML = `<span>${subtaskdone.length}/${subtask.length} Subtasks</span>`;
+    progress.value = subtaskdone.length;
+    progress.max = subtask.length;
+  } else {
+    progressBar.style.visibility = "hidden";
+  }
 }
 
 function taskOpenDropdown(taskID) {
@@ -235,7 +240,7 @@ function generateCard(i) {
     <div id="subtasksListTask"></div>
     <div class="overlayTaskFooter">
         <div class="overlayTaskFooterWrapper">
-            <a onclick="editTask()" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
+            <a onclick="editTask(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
             <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
             <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
         </div>
@@ -346,19 +351,46 @@ async function selectSubtask(entry, taskId, subtaskIndex) {
   }
 }
 
-function editTask() {
+/* BACKUP editTask()*/
+// function editTask() {
+//   let popup = document.getElementById("taskPopup");
+//   let popupEdit = document.getElementById("taskPopupEdit");
+
+//   popup.style.display = "none";
+//   popupEdit.classList.remove("d-none");
+// }
+/* BACKUP editTask()*/
+
+function editTask(i) {
   let popup = document.getElementById("taskPopup");
   let popupEdit = document.getElementById("taskPopupEdit");
+  let element = tasks[i];
 
   if (popup.style.display !== "none") {
     popup.style.display = "none";
     popupEdit.classList.remove("d-none");
+    renderAssignmentContactsEdit(i);
+    renderAssignedToArrayEdit(tasks, i);
+    renderSubtasksEdit(i);
   } else {
-    popup.style.display = "flex"; // oder "inline-block", je nach dem, wie es ursprünglich eingestellt war
+    popup.style.display = "flex";
     popupEdit.classList.add("d-none");
+    subtasksEdit = [];
+    generateCard(i);
+    renderSubtasksTask(i);
+    generatePrioIcon(element, i, "prioArrowCard");
+    generateAssignedToInitial(
+      element,
+      i,
+      "cardInitalCard",
+      "overlayTaskAssignedToInitial",
+      3
+    );
+    generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
   }
 }
 
+/* BACKUP togglePopup()*/
 function togglePopup(taskID) {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
@@ -387,6 +419,35 @@ function togglePopup(taskID) {
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
     renderSubtasksEdit(i);
+  }
+}
+/* BACKUP togglePopup()*/
+
+function togglePopup(taskID) {
+  let overlay = document.getElementById("overlay");
+  let popup = document.getElementById("popup");
+  let i = tasks.findIndex((element) => element.id === taskID);
+  let element = tasks[i];
+
+  if (popupVisible(overlay, popup)) {
+    updateHTML();
+    hidePopup(overlay, popup);
+    // changePriority("mediumButton", "medium");
+
+    subtasks = [];
+  } else {
+    showPopup(overlay, popup);
+    generateCard(i);
+    renderSubtasksTask(i);
+    generatePrioIcon(element, i, "prioArrowCard");
+    generateAssignedToInitial(
+      element,
+      i,
+      "cardInitalCard",
+      "overlayTaskAssignedToInitial",
+      3
+    );
+    generateAssignedToInitialName(element, i, "cardInitalCardName", 3);
   }
 }
 
@@ -432,8 +493,6 @@ function stopPropagation(event) {
 
 //   addTaskPopUp.style.display = "none";
 // }
-
-
 
 document.addEventListener("click", (event) => {
   if (
