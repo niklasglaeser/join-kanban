@@ -3,6 +3,9 @@ let queryString = window.location.search;
 let urlParams = new URLSearchParams(queryString);
 let extern = urlParams.get("extern");
 
+/**
+ * hide sidebar and header user icon if user not login
+ */
 window.addEventListener("load", () => {
   if (extern == "yes") {
     setTimeout(function () {

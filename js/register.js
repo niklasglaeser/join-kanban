@@ -103,7 +103,7 @@ function getInitialColor() {
 }
 
 /**
- * get democotnacts from json and copy to user -> contacts
+ * get democontacts from json and copy to user -> contacts
  * @param {number} userId
  */
 async function generateDemoContacts(userId) {

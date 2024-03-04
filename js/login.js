@@ -1,3 +1,6 @@
+/**
+ * check email/password the same in json. set UserId to localStorage
+ */
 function login() {
   let email = document.getElementById("emailInputLogin");
   let password = document.getElementById("passwordInputLogin");
@@ -16,12 +19,21 @@ function login() {
   }
 }
 
+/**
+ * get the index from active User
+ * @param {object}
+ * @returns index
+ */
 function getUserId(user) {
-  let activeUser = user.email;
-
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].email === activeUser) {
-      return i;
-    }
-  }
+  return users.findIndex((u) => u.email === user.email);
 }
+
+// function getUserId(user) {
+//   let activeUser = user.email;
+
+//   for (let i = 0; i < users.length; i++) {
+//     if (users[i].email === activeUser) {
+//       return i;
+//     }
+//   }
+// }

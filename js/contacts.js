@@ -4,7 +4,7 @@ let resizeTimer;
 let innerWidth = window.innerWidth;
 
 /**
- * Check Window Wize for mobileStatus
+ * Check Window size for mobileStatus
  */
 async function checkWindowSize() {
   innerWidth = window.innerWidth;
@@ -43,7 +43,7 @@ async function addContact() {
 
 /**
  * get firstletter from username
- * @param {string} username
+ * @param {string}
  * @returns
  */
 function getInitial(username) {
@@ -89,7 +89,7 @@ async function renderContact() {
     let firstLetter = currentContact.name.charAt(0).toUpperCase();
 
     if (currentSign !== firstLetter) {
-      generateHeadline(i, firstLetter);
+      generateHeadline(firstLetter);
       currentSign = firstLetter;
     }
     generateCard(i, currentContact, firstLetter);
@@ -107,7 +107,7 @@ function sortContacts() {
 
 /**
  * Find index of a contact in array based on the contacts name
- * @param {string} currentContact
+ * @param {string}
  * @returns {number} the index of the contact
  */
 function getIdFromContact(currentContact) {
@@ -125,9 +125,9 @@ function generateHeadline(letter) {
 
 /**
  * generate card for contact in first letter section
- * @param {number} i
- * @param {object} contact
- * @param {string} firstLetter
+ * @param {number}
+ * @param {object}
+ * @param {string}
  */
 function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
@@ -136,7 +136,7 @@ function generateCard(i, contact, firstLetter) {
 
 /**
  * generate card details for contact
- * @param {number} i
+ * @param {number}
  */
 function generateUserDetails(i) {
   let details = document.getElementById("contactDetails");
@@ -152,8 +152,8 @@ function generateUserDetails(i) {
 }
 
 /**
- * set current contact ti "active"
- * @param {number} i
+ * set current contact to "active"
+ * @param {number}
  */
 function setCardActive(i) {
   let allContactNames = document.querySelectorAll(".contactNameWrapperActive");
@@ -221,7 +221,7 @@ function toogleInfo(message) {
 
 /**
  * slide in delete warn user
- * @param {number} i
+ * @param {number}
  */
 function toogleDeleteWarn(i) {
   let info = document.getElementById("info");
@@ -247,8 +247,8 @@ function toogleInfoEditMobile() {
 
 /**
  * Checks if the popup and overlay visible.
- * @param {HTMLElement} overlay
- * @param {HTMLElement} popup
+ * @param {HTMLElement}
+ * @param {HTMLElement}
  * @returns {boolean} True or false
  */
 function popupVisible(overlay, popup) {
@@ -260,8 +260,8 @@ function popupVisible(overlay, popup) {
 
 /**
  * Hides the popup and overlay.
- * @param {HTMLElement} overlay
- * @param {HTMLElement} popup
+ * @param {HTMLElement}
+ * @param {HTMLElement}
  */
 function hidePopup(overlay, popup) {
   overlay.classList.remove("overlay-show");
@@ -271,8 +271,8 @@ function hidePopup(overlay, popup) {
 
 /**
  * Shows the popup and overlay.
- * @param {HTMLElement} overlay
- * @param {HTMLElement} popup
+ * @param {HTMLElement}
+ * @param {HTMLElement}
  */
 function showPopup(overlay, popup) {
   overlay.classList.add("overlay-show");
@@ -282,7 +282,7 @@ function showPopup(overlay, popup) {
 
 /**
  * delete contact und hide popup
- * @param {number} i
+ * @param {number}
  */
 function confirmDeleteUser(i) {
   deleteUser(i);
@@ -300,7 +300,7 @@ function cancelDelete() {
 
 /**
  * render contact in edit popup
- * @param {number} i
+ * @param {number}
  */
 function generateEditCard(i) {
   let editContact = document.getElementById("editContact");
@@ -311,7 +311,7 @@ function generateEditCard(i) {
 
 /**
  * save changes from contact and push to array, close popup
- * @param {number} i
+ * @param {number}
  */
 async function saveEdit(i) {
   let newUser = document.getElementById(`contact${i}`).value;
@@ -334,7 +334,7 @@ async function saveEdit(i) {
 
 /**
  * delete contact
- * @param {number} id
+ * @param {number}
  */
 async function deleteUser(id) {
   contacts.splice(id, 1);

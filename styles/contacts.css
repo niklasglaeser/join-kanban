@@ -202,7 +202,6 @@
   }
 }
 
-
 .contact-right-container {
   display: flex;
   gap: 54px;
@@ -720,7 +719,6 @@ input[type=number] {
     right: 20px;
   }
 
-
   .addContactFormCloseMobil {
     position: absolute;
     top: 20px;
@@ -741,7 +739,6 @@ input[type=number] {
     height: 100%;
     object-fit: contain;
   }
-
 
   .overlay-add-contact-left span:first-child {
     font-size: 32px;
@@ -841,7 +838,6 @@ input[type=number] {
     padding-bottom: 100px
   }
 }
-
 
 @media (max-width:320px) {
   .overlayAddContact {
