@@ -704,8 +704,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 56px;
-    width: 70px;
+    height: 50px;
+    width: 80px;
     border-radius: 10px;
     border: none;
     background-color: #2A3647;
@@ -716,6 +716,11 @@ main {
     position: absolute;
     bottom: 40px;
     right: 40px;
+    gap: 5px;
+}
+
+#editOkButton img {
+    padding-bottom: 5px;
 }
 
 #editOkButton:hover {

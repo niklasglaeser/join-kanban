@@ -183,7 +183,7 @@ function acitivateSubtaskEditorEdit() {
   });
 }
 
-function focusSubtaskInputEdit() {
+function focusSubtaskInputEditor() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
   subTaskInputEdit.focus();
 }
@@ -232,6 +232,7 @@ function renderSubtasksEdit(i) {
   if (tasks[i] && tasks[i].subtasks) {
     tasks[i].subtasks.forEach((subTaskValueEdit) => {
       addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit);
+      subtasksEdit.push(subTaskValueEdit);
     });
   }
 }
@@ -307,6 +308,14 @@ function deleteSubtaskEdit(event) {
     subtasksEdit.splice(index, 1);
   }
 
+  for (let i = 0; i < tasks.length; i++) {
+    const subtasksDone = tasks[i].subtasksdone;
+    const subtaskIndex = subtasksDone.indexOf(subTaskValueEdit);
+    if (subtaskIndex !== -1) {
+      subtasksDone.splice(subtaskIndex, 1);
+    }
+  }
+
   entryDiv.parentNode.removeChild(entryDiv);
 }
 
@@ -314,5 +323,48 @@ function deleteSubtaskEdit(event) {
 
 
 
+
 // SAVE TASK
+
+async function saveEditTask(i) {
+  saveTitleChange(i);
+  saveDescriptionChange(i);
+  saveDueDateChange(i);
+  savePrioEditChange(i);
+  saveAssignedToChangeInput(i);
+  saveSubtasksChangeInput(i);
+  togglePopup(i);
+  await setItem("tasks", JSON.stringify(tasks));
+}
+
+function saveTitleChange(i) {
+  let titleChangeInput = document.getElementById("titleInputEdit").value;
+  tasks[i].title = titleChangeInput;
+}
+
+function saveDescriptionChange(i) {
+  let descriptionChangeInput = document.getElementById("descriptionInputEdit").value;
+  tasks[i].description = descriptionChangeInput;
+}
+
+function saveDueDateChange(i) {
+  let dueDateChangeInput = document.getElementById("dueDateInputEdit").value;
+  tasks[i].dueDate = dueDateChangeInput;
+}
+
+function savePrioEditChange(i) {
+  tasks[i].prio = prioEdit;
+}
+
+function saveAssignedToChangeInput(i) {
+  tasks[i].assignedTo = assignedToEdit;
+}
+
+function saveSubtasksChangeInput(i) {
+  tasks[i].subtasks = subtasksEdit;
+}
+
+
+
+
 

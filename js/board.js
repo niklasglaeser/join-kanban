@@ -248,7 +248,7 @@ function generateCard(i) {
     <div class="overlayTaskHeader">
         <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
     </div>
-    <form class="overlayTaskEditForm" onsubmit="saveEditTask(); return false;">
+    <form class="overlayTaskEditForm">
       <div>
         <div class="font-21-light">Title</div>
         <input type="text" id="titleInputEdit" value='${task.title}'>
@@ -293,7 +293,7 @@ function generateCard(i) {
           </div>
             <div id="subtasksListEdit"></div>
           </div>
-      <div id="editOkButton" class="">OK</div>    
+      <button type="button" id="editOkButton" onclick="saveEditTask(${i})"><div>OK</div><img src="../img/white-checkmark.svg"></button>    
     </form>
   </div>
 
@@ -364,6 +364,7 @@ function togglePopup(taskID) {
     updateHTML();
     hidePopup(overlay, popup);
     // changePriority("mediumButton", "medium");
+    subtasksEdit = [];
     subtasks = [];
   } else {
     showPopup(overlay, popup);
@@ -437,5 +438,6 @@ document.addEventListener("click", (event) => {
     hidePopup(overlay, popup);
     hidePopup(overlay, popUpAddTaskContainer);
     updateHTML();
+    subtasksEdit = [];
   }
 });
