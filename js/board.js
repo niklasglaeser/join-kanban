@@ -248,7 +248,7 @@ function generateCard(i) {
     <div class="overlayTaskHeader">
         <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
     </div>
-    <form class="overlayTaskEditForm" onsubmit="saveEditTask(); return false;">
+    <form class="overlayTaskEditForm">
       <div>
         <div class="font-21-light">Title</div>
         <input type="text" id="titleInputEdit" value='${task.title}'>
@@ -293,6 +293,7 @@ function generateCard(i) {
           </div>
             <div id="subtasksListEdit"></div>
           </div>
+      <button type="button" id="editOkButton" onclick="saveEditTask(${i})"><div>OK</div><img src="../img/white-checkmark.svg"></button>    
     </form>
   </div>
 
@@ -302,7 +303,6 @@ function generateCard(i) {
   changePriorityEdit(buttonIdEdit, priority);
 }
 
-
 function renderSubtasksTask(i) {
   const subtasksListTaskDiv = document.getElementById("subtasksListTask");
   subtasksListTaskDiv.innerHTML = "";
@@ -311,19 +311,20 @@ function renderSubtasksTask(i) {
 
   for (let j = 0; j < subtasksRender.length; j++) {
     const subtask = subtasksRender[j];
-    const isSelected = subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
+    const isSelected =
+      subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
     const selectedClass = isSelected ? "selectedTask" : "";
 
     subtasksListTaskDiv.innerHTML += `
       <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
-        <img src="../img/${isSelected ? "checkedtask" : "check"}-button.svg"> <!-- Change img based on selection -->
+        <img src="../img/${
+          isSelected ? "checkedtask" : "check"
+        }-button.svg"> <!-- Change img based on selection -->
         <div>${subtask}</div>
       </div>
     `;
   }
 }
-
-
 
 async function selectSubtask(entry, taskId, subtaskIndex) {
   let isSelected = entry.classList.toggle("selectedTask");
@@ -345,12 +346,6 @@ async function selectSubtask(entry, taskId, subtaskIndex) {
   }
 }
 
-
-
-
-
-
-
 function editTask() {
   let popup = document.getElementById("taskPopup");
   let popupEdit = document.getElementById("taskPopupEdit");
@@ -369,6 +364,7 @@ function togglePopup(taskID) {
     updateHTML();
     hidePopup(overlay, popup);
     // changePriority("mediumButton", "medium");
+    subtasksEdit = [];
     subtasks = [];
   } else {
     showPopup(overlay, popup);
@@ -442,5 +438,6 @@ document.addEventListener("click", (event) => {
     hidePopup(overlay, popup);
     hidePopup(overlay, popUpAddTaskContainer);
     updateHTML();
+    subtasksEdit = [];
   }
 });
