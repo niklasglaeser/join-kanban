@@ -375,8 +375,8 @@ main {
 } */
 
 .moveToIcon {
-    width: 30px;
-    height: 30px;
+    height: 24px;
+    padding-left: 16px;
     cursor: pointer;
 }
 
