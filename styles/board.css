@@ -261,6 +261,11 @@ main {
     cursor: pointer;
 }
 
+.addTask-button-mobil:hover {
+    background-color: #29ABE2;
+    border: none;
+}
+
 
 .task-main {
     display: flex;
@@ -729,6 +734,11 @@ main {
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
 }
 
+
+.mobile-plus {
+    display: none !important;
+}
+
 @media (max-width:1300px) {
     .board-headline {
         flex-direction: column;
@@ -764,6 +774,16 @@ main {
     } */
 
 
+}
+
+@media (max-width: 1300px) {
+    .desktop-plus {
+        display: none !important;
+    }
+
+    .mobile-plus {
+        display: flex !important;
+    }
 }
 
 @media (max-width:990px) {

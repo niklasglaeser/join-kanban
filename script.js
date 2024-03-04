@@ -285,3 +285,13 @@ function logout() {
   localStorage.removeItem("activeUser");
   localStorage.removeItem("checkLogin");
 }
+
+
+function defaultProgress() {
+  progress = "inProgress";
+}
+
+function openAddTaskPage() {
+  window.location.href = "../pages/addtask.html";
+  progress = "inProgress";
+}

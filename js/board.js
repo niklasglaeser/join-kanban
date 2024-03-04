@@ -404,9 +404,11 @@ function showPopup(overlay, popup) {
   popup.classList.add("popup-slideIn");
 }
 
-function openAddTaskPopUp() {
+function openAddTaskPopUp(progressType) {
   let overlay = document.getElementById("overlay");
   let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
+
+  progress = progressType;
 
   if (popupVisible(overlay, addTaskPopUp)) {
     hidePopup(overlay, addTaskPopUp);
@@ -426,9 +428,7 @@ function stopPropagation(event) {
 //   addTaskPopUp.style.display = "none";
 // }
 
-function openAddTaskPage() {
-  window.location.href = "../pages/addtask.html";
-}
+
 
 document.addEventListener("click", (event) => {
   if (
