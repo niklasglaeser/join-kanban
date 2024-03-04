@@ -293,6 +293,7 @@ function generateCard(i) {
           </div>
             <div id="subtasksListEdit"></div>
           </div>
+      <div id="editOkButton" class="">OK</div>    
     </form>
   </div>
 
@@ -302,7 +303,6 @@ function generateCard(i) {
   changePriorityEdit(buttonIdEdit, priority);
 }
 
-
 function renderSubtasksTask(i) {
   const subtasksListTaskDiv = document.getElementById("subtasksListTask");
   subtasksListTaskDiv.innerHTML = "";
@@ -311,19 +311,20 @@ function renderSubtasksTask(i) {
 
   for (let j = 0; j < subtasksRender.length; j++) {
     const subtask = subtasksRender[j];
-    const isSelected = subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
+    const isSelected =
+      subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
     const selectedClass = isSelected ? "selectedTask" : "";
 
     subtasksListTaskDiv.innerHTML += `
       <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
-        <img src="../img/${isSelected ? "checkedtask" : "check"}-button.svg"> <!-- Change img based on selection -->
+        <img src="../img/${
+          isSelected ? "checkedtask" : "check"
+        }-button.svg"> <!-- Change img based on selection -->
         <div>${subtask}</div>
       </div>
     `;
   }
 }
-
-
 
 async function selectSubtask(entry, taskId, subtaskIndex) {
   let isSelected = entry.classList.toggle("selectedTask");
@@ -344,12 +345,6 @@ async function selectSubtask(entry, taskId, subtaskIndex) {
     entry.querySelector("img").src = "../img/check-button.svg";
   }
 }
-
-
-
-
-
-
 
 function editTask() {
   let popup = document.getElementById("taskPopup");
