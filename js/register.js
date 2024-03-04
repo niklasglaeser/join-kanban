@@ -1,5 +1,26 @@
 let demoJsonContacts;
 let demoContacts = [];
+const AVATAR_COLORS = [
+  "#FF7A00",
+  "#FF5EB3",
+  "#6E52FF",
+  "#9327FF",
+  "#00BEE8",
+  "#00BEE8",
+  "#FF745E",
+  "#FFA35E",
+  "#FC71FF",
+  "#FFC701",
+  "#0038FF",
+  "#C3FF2B",
+  "#FFE62B",
+  "#FF4646",
+  "#FFBB2B",
+];
+
+/**
+ * compare password, check email is not registered, generate User und psuh to array
+ */
 async function register() {
   if (
     comparePasswords(
@@ -33,10 +54,17 @@ async function register() {
   }
 }
 
+/**
+ * checks if email is already registered
+ * @returns true or false
+ */
 function checkEmail() {
   if (users.find((user) => user.email == emailInputSignup.value)) return true;
 }
 
+/**
+ * reset input form
+ */
 function resetForm() {
   nameInputSignup.value = "";
   emailInputSignup.value = "";
@@ -44,12 +72,19 @@ function resetForm() {
   signUpFormButton.disabled = false;
 }
 
+/**
+ * get next id
+ * @returns number
+ */
 function getNextId() {
   return users.length + 1;
 }
 
-/*AUCH IN contact.js*/
-
+/**
+ * get firstletter from username
+ * @param {string} username
+ * @returns
+ */
 function getInitial(username) {
   let name = username.split(" ");
   let initial = name[1]
@@ -58,42 +93,19 @@ function getInitial(username) {
   return initial;
 }
 
+/**
+ * get random color from AVATAR_COLORS array
+ * @returns hex farbcode
+ */
 function getInitialColor() {
   let randomColor = Math.floor(Math.random() * AVATAR_COLORS.length);
   return AVATAR_COLORS[randomColor];
 }
 
-const AVATAR_COLORS = [
-  "#FF7A00",
-  "#FF5EB3",
-  "#6E52FF",
-  "#9327FF",
-  "#00BEE8",
-  "#00BEE8",
-  "#FF745E",
-  "#FFA35E",
-  "#FC71FF",
-  "#FFC701",
-  "#0038FF",
-  "#C3FF2B",
-  "#FFE62B",
-  "#FF4646",
-  "#FFBB2B",
-];
-
-/*AUCH IN contact.js*/
-
-function getContactsTemplate(nextId) {
-  return {
-    id: nextId,
-    contact: "",
-    initial: "",
-    initial_color: "",
-    email: "",
-    phone: "",
-  };
-}
-
+/**
+ * get democotnacts from json and copy to user -> contacts
+ * @param {number} userId
+ */
 async function generateDemoContacts(userId) {
   await loadDemoContacts();
   demoJsonContacts.forEach((contact) => {
@@ -109,3 +121,14 @@ async function generateDemoContacts(userId) {
       });
   });
 }
+
+// function getContactsTemplate(nextId) {
+//   return {
+//     id: nextId,
+//     contact: "",
+//     initial: "",
+//     initial_color: "",
+//     email: "",
+//     phone: "",
+//   };
+// }

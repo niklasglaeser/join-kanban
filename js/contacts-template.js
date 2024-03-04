@@ -25,21 +25,6 @@ function generateHeadlineHTML(letter) {
 `;
 }
 
-function generateCardYouHTML(activeUserId) {
-  let user = users[activeUserId];
-  return `
-   <a onclick="generateUserDetails(${activeUserId}, users)" >
-   <div class="contactNameWrapper" id="contactId">
-   <div class="contactName-Initial" style="background-color:${user.initial_color}"> ${user.initial}</div>
-   <div class="contactInfo">
-     <p class="contactName">${user.name}</p>
-     <p class="contactEmail">${user.email}</p>
-   </div>
-   </div>
-   </a>
-   `;
-}
-
 function generateCardHTML(i, contact) {
   return `
   <a onclick="generateUserDetails(${i}); setCardActive(${i})" >

@@ -3,6 +3,9 @@ let mobileStatus = false;
 let resizeTimer;
 let innerWidth = window.innerWidth;
 
+/**
+ * Check Window Wize for mobileStatus
+ */
 async function checkWindowSize() {
   innerWidth = window.innerWidth;
   if (innerWidth < 990) {
@@ -18,6 +21,9 @@ window.onresize = function () {
   resizeTimer = setTimeout(checkWindowSize, 450);
 };
 
+/**
+ * push new contact to user json - reset form and set new contact to "active"
+ */
 async function addContact() {
   contacts.push({
     name: contact.value,
@@ -35,6 +41,11 @@ async function addContact() {
   setCardActive(getIdFromContact(currentContact));
 }
 
+/**
+ * get firstletter from username
+ * @param {string} username
+ * @returns
+ */
 function getInitial(username) {
   let name = username.split(" ");
   let initial = name[1]
@@ -43,26 +54,35 @@ function getInitial(username) {
   return initial;
 }
 
+/**
+ * get random color from AVATAR_COLORS array
+ * @returns hex farbcode
+ */
+function getInitialColor() {
+  let randomColor = Math.floor(Math.random() * AVATAR_COLORS.length);
+  return AVATAR_COLORS[randomColor];
+}
+
+/**
+ * reset input form
+ */
+
 function resetForm() {
   name.value = "";
   email.value = "";
   phone.value = "";
 }
 
-function getInitialColor() {
-  let randomColor = Math.floor(Math.random() * AVATAR_COLORS.length);
-  return AVATAR_COLORS[randomColor];
-}
-
+/**
+ * sort and render contactlist with firstletter headline
+ */
 async function renderContact() {
   contacts = activeUser["contacts"];
   let contactList = document.getElementById("contact-list");
-  let contactYou = document.getElementById("contactYou");
   contactList.innerHTML = "";
   sortContacts();
 
   let currentSign = null;
-  // contactYou.innerHTML = generateCardYouHTML(activeUserId);
 
   for (let i = 0; i < contacts.length; i++) {
     let currentContact = contacts[i];
@@ -76,38 +96,54 @@ async function renderContact() {
   }
 }
 
+/**
+ * sort contacts by alphabet
+ */
 function sortContacts() {
   contacts.sort(function (a, b) {
     return a.name.charAt(0).localeCompare(b.name.charAt(0));
   });
 }
 
+/**
+ * Find index of a contact in array based on the contacts name
+ * @param {string} currentContact
+ * @returns {number} the index of the contact
+ */
 function getIdFromContact(currentContact) {
   return contacts.findIndex((obj) => obj.name == `${currentContact}`);
 }
 
-function generateHeadline(i, letter) {
+/**
+ * generate headline for contactlist
+ * @param {string}
+ */
+function generateHeadline(letter) {
   let contactList = document.getElementById("contact-list");
   contactList.innerHTML += generateHeadlineHTML(letter);
 }
 
+/**
+ * generate card for contact in first letter section
+ * @param {number} i
+ * @param {object} contact
+ * @param {string} firstLetter
+ */
 function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
   card.innerHTML += generateCardHTML(i, contact);
 }
 
-function generateUserDetails(i, array) {
+/**
+ * generate card details for contact
+ * @param {number} i
+ */
+function generateUserDetails(i) {
   let details = document.getElementById("contactDetails");
   let contactRight = document.getElementById("contact-right");
-  if (array) {
-    let contact = users[i];
-    details.innerHTML = "";
-    details.innerHTML = generateUserDetailsHTML(i, contact, array);
-  } else {
-    let contact = activeUser["contacts"][i];
-    details.innerHTML = "";
-    details.innerHTML = generateUserDetailsHTML(i, contact);
-  }
+  let contact = activeUser["contacts"][i];
+  details.innerHTML = "";
+  details.innerHTML = generateUserDetailsHTML(i, contact);
 
   if (mobileStatus) {
     contactRight.style.display = "block";
@@ -115,12 +151,10 @@ function generateUserDetails(i, array) {
   }
 }
 
-function generateUserDetailsClose() {
-  let contactRight = document.getElementById("contact-right");
-  contactRight.style.display = "";
-  contactRight.style.position = "";
-}
-
+/**
+ * set current contact ti "active"
+ * @param {number} i
+ */
 function setCardActive(i) {
   let allContactNames = document.querySelectorAll(".contactNameWrapperActive");
   if (window.innerWidth > 990) {
@@ -134,6 +168,18 @@ function setCardActive(i) {
   }
 }
 
+/**
+ * close details page
+ */
+function generateUserDetailsClose() {
+  let contactRight = document.getElementById("contact-right");
+  contactRight.style.display = "";
+  contactRight.style.position = "";
+}
+
+/**
+ * toggle popup and overlay.
+ */
 function togglePopup() {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
@@ -145,25 +191,9 @@ function togglePopup() {
   }
 }
 
-function popupVisible(overlay, popup) {
-  return (
-    overlay.classList.contains("overlay-show") &&
-    popup.classList.contains("popup-slideIn")
-  );
-}
-
-function hidePopup(overlay, popup) {
-  overlay.classList.remove("overlay-show");
-  overlay.classList.add("d-none");
-  popup.classList.remove("popup-slideIn");
-}
-
-function showPopup(overlay, popup) {
-  overlay.classList.add("overlay-show");
-  overlay.classList.remove("d-none");
-  popup.classList.add("popup-slideIn");
-}
-
+/**
+ * toggle popupEdit and overlay.
+ */
 function togglePopupEdit(i) {
   let overlay = document.getElementById("overlay");
   let popupEdit = document.getElementById("popupEdit");
@@ -176,6 +206,10 @@ function togglePopupEdit(i) {
   }
 }
 
+/**
+ * slide in message
+ * @param {string} message
+ */
 function toogleInfo(message) {
   let info = document.getElementById("info");
   info.innerHTML = `<div class="infoButton">${message}</div>`;
@@ -185,12 +219,19 @@ function toogleInfo(message) {
   }, 2000);
 }
 
+/**
+ * slide in delete warn user
+ * @param {number} i
+ */
 function toogleDeleteWarn(i) {
   let info = document.getElementById("info");
   info.innerHTML = toogleDeleteWarnHTML(i);
   info.classList.add("info-slideIn");
 }
 
+/**
+ * slide in edit contact info
+ */
 function toogleInfoEditMobile() {
   let editPopup = document.getElementById("edit-more");
   let popupHelper = document.getElementById("popupHelper");
@@ -204,17 +245,63 @@ function toogleInfoEditMobile() {
   }
 }
 
+/**
+ * Checks if the popup and overlay visible.
+ * @param {HTMLElement} overlay
+ * @param {HTMLElement} popup
+ * @returns {boolean} True or false
+ */
+function popupVisible(overlay, popup) {
+  return (
+    overlay.classList.contains("overlay-show") &&
+    popup.classList.contains("popup-slideIn")
+  );
+}
+
+/**
+ * Hides the popup and overlay.
+ * @param {HTMLElement} overlay
+ * @param {HTMLElement} popup
+ */
+function hidePopup(overlay, popup) {
+  overlay.classList.remove("overlay-show");
+  overlay.classList.add("d-none");
+  popup.classList.remove("popup-slideIn");
+}
+
+/**
+ * Shows the popup and overlay.
+ * @param {HTMLElement} overlay
+ * @param {HTMLElement} popup
+ */
+function showPopup(overlay, popup) {
+  overlay.classList.add("overlay-show");
+  overlay.classList.remove("d-none");
+  popup.classList.add("popup-slideIn");
+}
+
+/**
+ * delete contact und hide popup
+ * @param {number} i
+ */
 function confirmDeleteUser(i) {
   deleteUser(i);
   info.classList.remove("info-slideIn");
   hidePopup(overlay, popupEdit);
 }
 
+/**
+ * close delete popup
+ */
 function cancelDelete() {
   let info = document.getElementById("info");
   info.classList.remove("info-slideIn");
 }
 
+/**
+ * render contact in edit popup
+ * @param {number} i
+ */
 function generateEditCard(i) {
   let editContact = document.getElementById("editContact");
   let contact = activeUser["contacts"][i];
@@ -222,6 +309,10 @@ function generateEditCard(i) {
   editContact.innerHTML = generateEditCardHTML(i, contact);
 }
 
+/**
+ * save changes from contact and push to array, close popup
+ * @param {number} i
+ */
 async function saveEdit(i) {
   let newUser = document.getElementById(`contact${i}`).value;
   let newEmail = document.getElementById(`email${i}`).value;
@@ -241,6 +332,10 @@ async function saveEdit(i) {
   togglePopupEdit(i);
 }
 
+/**
+ * delete contact
+ * @param {number} id
+ */
 async function deleteUser(id) {
   contacts.splice(id, 1);
   await setItem("users", JSON.stringify(users));
@@ -248,13 +343,6 @@ async function deleteUser(id) {
   generateUserDetails(0);
   setCardActive(0);
 }
-
-document.addEventListener("click", (event) => {
-  if (event.target.id === "popup" || event.target.id === "popupEdit") {
-    hidePopup(overlay, popup);
-    hidePopup(overlay, popupEdit);
-  }
-});
 
 document.addEventListener("click", (event) => {
   if (event.target.id === "popup" || event.target.id === "popupEdit") {
