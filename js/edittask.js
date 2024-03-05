@@ -254,17 +254,25 @@ function editSubtaskEdit(event) {
   saveIconEdit.style.display = "inline";
 }
 
+
 function saveSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   let subTaskInputEdit = entryDiv.querySelector("li input");
-  let subTaskValueEdit = subTaskInput.value.trim();
+  let subTaskValueEdit = subTaskInputEdit.value.trim();
 
-  entryDiv.onmouseenter = addHoverToSubtaskEdit;
-  entryDiv.onmouseleave = removeHoverFromSubtaskEdit;
+  let originalSubtaskValueEdit = subTaskInputEdit.defaultValue.trim();
 
-  const index = subtasksEdit.indexOf(subTaskInputEdit.value);
+  const index = subtasksEdit.indexOf(originalSubtaskValueEdit);
   if (index !== -1) {
     subtasksEdit[index] = subTaskValueEdit;
+  }
+
+  for (let i = 0; i < tasks.length; i++) {
+    const subtasksDone = tasks[i].subtasksdone;
+    const subtaskIndex = subtasksDone.indexOf(originalSubtaskValueEdit);
+    if (subtaskIndex !== -1) {
+      subtasksDone[subtaskIndex] = subTaskValueEdit;
+    }
   }
 
   subTaskInputEdit.readOnly = true;
@@ -275,6 +283,9 @@ function saveSubtaskEdit(event) {
   let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
   editIconEdit.style.display = "inline";
 }
+
+
+
 
 function addHoverToSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
@@ -298,11 +309,11 @@ function removeHoverFromSubtaskEdit(event) {
   editIconEdit.style.display = "none";
 }
 
-function deleteSubtaskEdit(event) {
+function deleteSubtaskEdittest(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   let subTaskValueEdit = entryDiv.querySelector("li input").value;
 
-  const index = subtasksEdit.indexOf(subTaskValueEdit);
+  const index = subtasksEdit.indexOf(subTaskValueEdit.value);
   if (index !== -1) {
     subtasksEdit.splice(index, 1);
   }
@@ -317,6 +328,27 @@ function deleteSubtaskEdit(event) {
 
   entryDiv.parentNode.removeChild(entryDiv);
 }
+
+function deleteSubtaskEdit(event) {
+  let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+  let subTaskValueEdit = entryDiv.querySelector("li input").value;
+
+  const index = subtasksEdit.indexOf(subTaskValueEdit); // Corrected: Removed .value from subTaskValueEdit
+  if (index !== -1) {
+    subtasksEdit.splice(index, 1);
+  }
+
+  for (let i = 0; i < tasks.length; i++) {
+    const subtasksDone = tasks[i].subtasksdone;
+    const subtaskIndex = subtasksDone.indexOf(subTaskValueEdit); // Corrected: Removed .value from subTaskValueEdit
+    if (subtaskIndex !== -1) {
+      subtasksDone.splice(subtaskIndex, 1);
+    }
+  }
+
+  entryDiv.parentNode.removeChild(entryDiv);
+}
+
 
 // SAVE TASK
 

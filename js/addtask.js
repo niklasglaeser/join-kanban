@@ -264,6 +264,7 @@ function editSubtask(event) {
   saveIcon.style.display = "inline";
 }
 
+
 function saveSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
   let subTaskInput = entryDiv.querySelector("li input");
@@ -272,7 +273,9 @@ function saveSubtask(event) {
   entryDiv.onmouseenter = addHoverToSubtask;
   entryDiv.onmouseleave = removeHoverFromSubtask;
 
-  const index = subtasks.indexOf(subTaskInput.value);
+  let originalSubtaskValue = subTaskInput.defaultValue.trim();
+
+  const index = subtasks.indexOf(originalSubtaskValue);
   if (index !== -1) {
     subtasks[index] = subTaskValue;
   }
@@ -285,6 +288,12 @@ function saveSubtask(event) {
   let editIcon = entryDiv.querySelector(".edit-icon");
   editIcon.style.display = "inline";
 }
+
+
+
+
+
+
 
 function addHoverToSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
