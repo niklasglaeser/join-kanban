@@ -269,7 +269,7 @@ function generateCard(i) {
         <input type="date" id="dueDateInputEdit" value='${task.dueDate}'>
       </div>
       <div>
-        <div>Prio</div>
+        <div class="font-21-light">Prio</div>
         <div class="prio-selection-container-edit">
           <div id="urgentButtonEdit" onclick="changePriorityEdit('urgentButtonEdit', 'urgent')">Urgent<img src="../img/urgent-button-icon.svg"></div>
           <div id="mediumButtonEdit" onclick="changePriorityEdit('mediumButtonEdit', 'medium')">Medium<img src="../img/medium-button-icon.svg"></div>
@@ -277,7 +277,7 @@ function generateCard(i) {
         </div>
       </div>
       <div>
-        <div>Assigned to</div>
+        <div class="font-21-light">Assigned to</div>
         <div class="assignment-dropdown-edit">
           <div id="assignmentSelectEdit" onclick="toggleAssignmentDropdownEdit()">
             Select contacts to assign
@@ -290,7 +290,7 @@ function generateCard(i) {
         </div>
       </div>
       <div>
-        <div>Subtasks</div>
+        <div class="font-21-light">Subtasks</div>
         <div id="subtasksInputEdit">
           <input type="text" placeholder="Add new subtask" id="subTaskInputEdit" oninput="acitivateSubtaskEditorEdit()">
           <div id="imageContainerEdit">

@@ -293,8 +293,6 @@ function saveSubtask(event) {
 
 
 
-
-
 function addHoverToSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
   entryDiv.style.backgroundColor = "";

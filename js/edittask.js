@@ -45,10 +45,10 @@ document.addEventListener("click", function (event) {
     event.target !== assignmentSelectEdit &&
     event.target !== assignmentDropdownEdit &&
     event.target !== dropdownIconEdit &&
-    !assignmentDropdownEdit.contains(event.target) &&
+    // !assignmentDropdownEdit.contains(event.target) &&
     !event.target.classList.contains("assignment-dropdown-list-entry-edit")
   ) {
-    assignmentDropdownEdit.style.display = "none";
+    // assignmentDropdownEdit.style.display = "none";
     renderAssignedToEdit();
   }
 });
@@ -260,6 +260,9 @@ function saveSubtaskEdit(event) {
   let subTaskInputEdit = entryDiv.querySelector("li input");
   let subTaskValueEdit = subTaskInputEdit.value.trim();
 
+  entryDiv.onmouseenter = addHoverToSubtaskEdit;
+  entryDiv.onmouseleave = removeHoverFromSubtaskEdit;
+
   let originalSubtaskValueEdit = subTaskInputEdit.defaultValue.trim();
 
   const index = subtasksEdit.indexOf(originalSubtaskValueEdit);
@@ -281,7 +284,10 @@ function saveSubtaskEdit(event) {
   let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
   saveIconEdit.style.display = "none";
   let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
-  editIconEdit.style.display = "inline";
+  editIconEdit.style.display = "none";
+  let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
+  deleteIconEdit.style.display = "none";
+  
 }
 
 
