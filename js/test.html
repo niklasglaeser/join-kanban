@@ -1,0 +1,59 @@
+<div id="taskPopupEdit" class="d-none">
+  <div class="overlayTaskWrapper">
+    <div class="overlayTaskHeaderEdit">
+      <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
+    </div>
+    <form class="overlayTaskEditForm">
+      <div>
+        <div class="font-21-light">Title</div>
+        <input type="text" id="titleInputEdit" value='${task.title}'>
+      </div>
+      <div id="errorTitle"></div>
+      <div>
+        <div class="font-21-light">Description</div>
+        <textarea id="descriptionInputEdit" placeholder="Enter a Description">${task.description}</textarea>
+      </div>
+      <div>
+        <div class="font-21-light">Due Date</div>
+        <input type="date" id="dueDateInputEdit" value='${task.dueDate}'>
+      </div>
+      <div>
+        <div class="font-21-light">Prio</div>
+        <div class="prio-selection-container-edit">
+          <div id="urgentButtonEdit" onclick="changePriorityEdit('urgentButtonEdit', 'urgent')">Urgent<img
+              src="../img/urgent-button-icon.svg"></div>
+          <div id="mediumButtonEdit" onclick="changePriorityEdit('mediumButtonEdit', 'medium')">Medium<img
+              src="../img/medium-button-icon.svg"></div>
+          <div id="lowButtonEdit" onclick="changePriorityEdit('lowButtonEdit', 'low')">Low <img
+              src="../img/low-button-icon.svg"></div>
+        </div>
+      </div>
+      <div>
+        <div class="font-21-light">Assigned to</div>
+        <div class="assignment-dropdown-edit">
+          <div id="assignmentSelectEdit" onclick="toggleAssignmentDropdownEdit()">
+            Select contacts to assign
+            <img src="../img/dropdown-icon.svg" id="dropdownIconEdit">
+          </div>
+          <div id="assignmentDropdownListEdit">
+            <div class="assignment-dropdown-list-entry-edit"></div>
+          </div>
+          <div id="renderedAssignedToContactsEdit"></div>
+        </div>
+      </div>
+      <div>
+        <div class="font-21-light">Subtasks</div>
+        <div id="subtasksInputEdit">
+          <input type="text" placeholder="Add new subtask" id="subTaskInputEdit" oninput="acitivateSubtaskEditorEdit()">
+          <div id="imageContainerEdit">
+            <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEditor()">
+          </div>
+        </div>
+        <div id="subtasksListEdit"></div>
+      </div>
+      <button type="button" id="editOkButton" onclick="saveEditTask(${i})">
+        <div>OK</div><img src="../img/white-checkmark.svg">
+      </button>
+    </form>
+  </div>
+</div>

@@ -24,9 +24,7 @@ function changePriorityEdit(buttonIdEdit, priority) {
 }
 
 function toggleAssignmentDropdownEdit() {
-  let assignmentDropdownEdit = document.getElementById(
-    "assignmentDropdownListEdit"
-  );
+  let assignmentDropdownEdit = document.getElementById("assignmentDropdownListEdit");
   if (assignmentDropdownEdit.style.display === "flex") {
     assignmentDropdownEdit.style.display = "none";
     renderAssignedToEdit();
@@ -37,9 +35,7 @@ function toggleAssignmentDropdownEdit() {
 
 document.addEventListener("click", function (event) {
   let assignmentSelectEdit = document.getElementById("assignmentSelectEdit");
-  let assignmentDropdownEdit = document.getElementById(
-    "assignmentDropdownListEdit"
-  );
+  let assignmentDropdownEdit = document.getElementById("assignmentDropdownListEdit");
   let dropdownIconEdit = document.getElementById("dropdownIconEdit");
   if (
     event.target !== assignmentSelectEdit &&
@@ -67,9 +63,7 @@ function renderAssignedToArrayEdit(tasks, i) {
       }
     }
     if (assignedTo.length > 5) {
-      totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color: var(--grey)">+${
-        assignedTo.length - 5
-      }</div>`;
+      totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color: var(--grey)">+${assignedTo.length - 5}</div>`;
     }
   }
   initial.innerHTML = totalHTML;
@@ -87,18 +81,14 @@ function renderAssignedToEdit() {
   });
 
   if (assignedToEdit.length > 5) {
-    totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color: var(--grey)">+${
-      assignedToEdit.length - 5
-    }</div>`;
+    totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color: var(--grey)">+${assignedToEdit.length - 5}</div>`;
   }
 
   initial.innerHTML = totalHTML;
 }
 
 async function renderAssignmentContactsEdit(i) {
-  let assignmentDropdownListEdit = document.getElementById(
-    "assignmentDropdownListEdit"
-  );
+  let assignmentDropdownListEdit = document.getElementById("assignmentDropdownListEdit");
   assignmentDropdownListEdit.innerHTML = "";
 
   assignedToEdit = [];
@@ -113,33 +103,19 @@ async function renderAssignmentContactsEdit(i) {
       assignedToEdit.push(assignedTasks.find((task) => task.id === id));
     }
 
-    const userHtml = assignmentContactsTemplateEdit(
-      name,
-      initial,
-      initial_color,
-      id,
-      isSelected
-    );
+    const userHtml = assignmentContactsTemplateEdit(name, initial, initial_color, id, isSelected);
     assignmentDropdownListEdit.innerHTML += userHtml;
   }
 }
 
-function assignmentContactsTemplateEdit(
-  name,
-  initial,
-  initial_color,
-  id,
-  isSelected
-) {
+function assignmentContactsTemplateEdit(name, initial, initial_color, id, isSelected) {
   return `
         <div class="assignment-dropdown-list-entry-edit ${isSelected}" onclick="selectAssignmentEdit(this, ${id})">
             <div class="contact-option-edit">
                 <div id="${id}" style="background-color:${initial_color}">${initial}</div>
                 <span>${name}</span>
             </div>
-            <img src="../img/${
-              isSelected ? "checked-button" : "check-button"
-            }.svg">
+            <img src="../img/${isSelected ? "checked-button" : "check-button"}.svg">
         </div>
       `;
 }
@@ -254,7 +230,6 @@ function editSubtaskEdit(event) {
   saveIconEdit.style.display = "inline";
 }
 
-
 function saveSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   let subTaskInputEdit = entryDiv.querySelector("li input");
@@ -287,11 +262,7 @@ function saveSubtaskEdit(event) {
   editIconEdit.style.display = "none";
   let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
   deleteIconEdit.style.display = "none";
-  
 }
-
-
-
 
 function addHoverToSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
@@ -355,7 +326,6 @@ function deleteSubtaskEdit(event) {
   entryDiv.parentNode.removeChild(entryDiv);
 }
 
-
 // SAVE TASK
 
 async function saveEditTask(i) {
@@ -376,9 +346,7 @@ function saveTitleChange(i) {
 }
 
 function saveDescriptionChange(i) {
-  let descriptionChangeInput = document.getElementById(
-    "descriptionInputEdit"
-  ).value;
+  let descriptionChangeInput = document.getElementById("descriptionInputEdit").value;
   tasks[i].description = descriptionChangeInput;
 }
 

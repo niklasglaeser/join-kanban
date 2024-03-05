@@ -67,7 +67,16 @@ main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    height: 100%;
     gap: 24px;
+}
+
+.overlayTaskWrapperMain {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: scroll;
+    flex: 1;
 }
 
 .overlayTaskHeader {
@@ -76,17 +85,17 @@ main {
 }
 
 .overlayTaskClose {
-    position: absolute;
+    /* position: absolute;
     top: 48px;
-    right: 36px;
+    right: 36px; */
     z-index: 1;
     cursor: pointer;
     width: 32px;
     height: 32px;
 }
 
-.overlayTaskHeadline {
-    /* max-height: 187px; */
+/* .overlayTaskHeadline {
+    max-height: 187px;
     padding-bottom: 6px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -94,21 +103,17 @@ main {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     word-break: break-word;
-}
+} */
 
 
 .overlayTaskDescription {
-    max-height: 80px;
-    padding-bottom: 6px;
-    /* etwa zwei Zeilen Text */
-    overflow: hidden;
+    /* max-height: 80px; */
+    /* overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
-    /* Zeilenanzahl */
-    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; */
 }
-
 
 .overlayTaskDate {
     display: flex;
@@ -160,10 +165,10 @@ main {
 }
 
 .overlayTaskFooter {
-    position: absolute;
+    /* position: absolute;
     left: 0;
     right: 40px;
-    bottom: 40px;
+    bottom: 40px; */
     display: flex;
     align-items: center;
     justify-content: end;
@@ -538,6 +543,15 @@ main {
     display: none;
 }
 
+#taskPopupEdit {
+    flex: 1;
+}
+
+.overlayTaskHeaderEdit {
+    display: flex;
+    justify-content: end;
+}
+
 .overlayTaskWrapperEdit {
     flex-grow: 1;
     display: flex;
@@ -554,12 +568,12 @@ main {
 .overlayTaskEditForm {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 24px;
     overflow: scroll;
 }
 
 .overlayTaskEditForm input {
-    width: 100;
+    /* width: 100; */
     background-color: white;
     border-radius: 10px;
     border: solid 1px;
@@ -588,14 +602,16 @@ main {
 
 
 .assignment-dropdown-edit {
-    width: 440px;
+    /* width: 440px; */
+    width: 100%;
     position: relative;
     margin-top: 8px;
 }
 
 #assignmentSelectEdit {
     display: flex;
-    width: 440px;
+    /* width: 440px; */
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     background-color: white;
@@ -698,10 +714,10 @@ main {
     padding-left: 10px;
 }
 
-#subtasksListTask {
+/* #subtasksListTask {
     overflow: scroll;
     max-height: 150px;
-}
+} */
 
 
 .subtask-list-task-entry {
@@ -717,6 +733,11 @@ main {
     background-color: rgb(222, 222, 222);
 }
 
+.editOkButtonWrapper {
+    display: flex;
+    justify-content: end;
+}
+
 #editOkButton {
     display: flex;
     justify-content: center;
@@ -730,7 +751,7 @@ main {
     font-size: 20px;
     font-weight: normal;
     color: white;
-    position: absolute;
+    /* position: absolute; */
     bottom: 40px;
     right: 40px;
     gap: 5px;
@@ -864,7 +885,7 @@ main {
     }
 
     .overlayTaskHeadline {
-        font-size: 36px;
+        font-size: 45px;
     }
 
 }
@@ -879,7 +900,9 @@ main {
         display: none;
     }
 
-
+    .overlayTaskHeadline {
+        font-size: 36px;
+    }
 }
 
 
@@ -903,15 +926,15 @@ main {
 
 @media (max-width: 700px) {
 
-    .overlayTask {
+    /* .overlayTask {
         width: 300px;
-    }
+    } */
 
-    .font-21-light {
+    /* .font-21-light {
         font-size: 15px;
-    }
+    } */
 
-    #titleInputEdit {
+    /* #titleInputEdit {
         width: 250px !important;
         font-size: 14px !important;
     }
@@ -924,10 +947,10 @@ main {
     #dueDateInputEdit {
         width: 250px !important;
         font-size: 13px !important;
-    }
+    } */
 
 
-    #urgentButtonEdit {
+    /* #urgentButtonEdit {
         width: 76px !important;
         height: 40px !important;
         font-size: 12px !important;
@@ -958,14 +981,9 @@ main {
     #lowButtonEdit img {
         height: 15px;
         width: 15px;
-    }
+    } */
 
-    #assignmentSelectEdit {
-        width: 250px;
-        font-size: 14px;
-    }
-
-    .cardInitialAssignedToAddTaskEdit {
+    /* .cardInitialAssignedToAddTaskEdit {
         width: 35px;
         height: 35px;
         font-size: 15px;
@@ -974,10 +992,56 @@ main {
     #renderedAssignedToContactsEdit {
         padding-left: 5px !important;
         padding-top: 5px !important;
+    } */
+
+    /* .assignment-dropdown-edit {
+        width: 250px;
+    } */
+
+
+
+}
+
+@media (max-width: 500px) {
+
+
+    #urgentButtonEdit {
+        width: 100px !important;
+        height: 40px !important;
+        font-size: 12px !important;
     }
 
-    .assignment-dropdown-edit {
-        width: 250px;
+    #urgentButtonEdit img {
+        height: 15px;
+        width: 15px;
+    }
+
+    #mediumButtonEdit {
+        width: 100px !important;
+        height: 40px !important;
+        font-size: 12px !important;
+    }
+
+    #mediumButtonEdit img {
+        height: 15px;
+        width: 15px;
+    }
+
+    #lowButtonEdit {
+        width: 100px !important;
+        height: 40px !important;
+        font-size: 12px !important;
+    }
+
+    #lowButtonEdit img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .cardInitialAssignedToAddTaskEdit {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
     }
 
     .contact-option-edit div {
@@ -1003,15 +1067,15 @@ main {
     }
 
     #subtasksListEdit {
-        width: 250px !important;
+        /* width: 80% !important; */
     }
 
     .subtasks-list-entry-edit {
-        width: 250px !important;
+        width: 100% !important;
     }
 
     #subtaskEditInputEdit {
-        width: 100px !important;
+        /* width: 100% !important; */
         font-size: 14px;
     }
 
@@ -1019,4 +1083,43 @@ main {
         padding-left: 10px !important;
     }
 
+}
+
+@media (max-width: 400px) {
+    .overlayTask {
+        padding: 32px 16px;
+    }
+
+    #urgentButtonEdit {
+        width: 80px !important;
+        height: 40px !important;
+        font-size: 12px !important;
+    }
+
+    #urgentButtonEdit img {
+        height: 15px;
+        width: 15px;
+    }
+
+    #mediumButtonEdit {
+        width: 80px !important;
+        height: 40px !important;
+        font-size: 12px !important;
+    }
+
+    #mediumButtonEdit img {
+        height: 15px;
+        width: 15px;
+    }
+
+    #lowButtonEdit {
+        width: 80px !important;
+        height: 40px !important;
+        font-size: 12px !important;
+    }
+
+    #lowButtonEdit img {
+        height: 15px;
+        width: 15px;
+    }
 }
