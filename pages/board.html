@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <title>Board</title>
     <link rel="stylesheet" href="../styles/cssreset.css">
     <link rel="stylesheet" href="../styles/header.css">
@@ -12,12 +13,13 @@
     <link rel="stylesheet" href="../styles/allpages.css">
     <link rel="stylesheet" href="../styles/board.css">
     <link rel="stylesheet" href="../styles/addtask.css">
-    <!-- <link rel="stylesheet" href="../styles/contacts.css"> -->
     <script src="../js/storage.js" defer></script>
     <script src="../script.js" defer></script>
     <script src="../js/addtask.js" defer></script>
     <script src="../js/addtask2.js" defer></script>
     <script src="../js/board.js" defer></script>
+    <script src="../js/board-template.js" defer></script>
+    <script src="../js/draganddrop.js" defer></script>
     <script src="../js/edittask.js" defer></script>
     <script src="../js/savetask.js" defer></script>
     <!-- <script src="../js/contacts.js" defer></script> -->
@@ -74,7 +76,8 @@
             <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">In progress</span>
-                    <img class="desktop-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPopUp('inProgress')">
+                    <img class="desktop-plus" src="../img/plus-icon.svg" alt=""
+                        onclick="openAddTaskPopUp('inProgress')">
                     <img class="mobile-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPage()">
                 </div>
                 <div id="inProgress" class="drag-area" ondrop="moveTo('inProgress')"
@@ -86,7 +89,8 @@
             <div id="" class="task-wrapper  ">
                 <div class="task-main-headline ">
                     <span class="font-20">Await feeback</span>
-                    <img class="desktop-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPopUp('awaitFeedback')">
+                    <img class="desktop-plus" src="../img/plus-icon.svg" alt=""
+                        onclick="openAddTaskPopUp('awaitFeedback')">
                     <img class="mobile-plus" src="../img/plus-icon.svg" alt="" onclick="openAddTaskPage()">
                 </div>
                 <div id="awaitFeedback" class="drag-area" ondrop="moveTo('awaitFeedback')"

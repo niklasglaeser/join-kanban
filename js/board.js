@@ -1,5 +1,7 @@
-let currentDraggedElement;
-
+/**
+ * Update Cards on Dashboard - all tasks or filtered tasks
+ * @param {object} filteredTasks
+ */
 async function updateHTML(filteredTasks) {
   let progress = ["todo", "inProgress", "awaitFeedback", "done"];
   let statusText = ["To Do", "In Progress", "Await feedback", "Done"];
@@ -29,86 +31,33 @@ async function updateHTML(filteredTasks) {
   }
 }
 
+
+/**
+ * read search input (title/description) and update cards
+ */
 function filterTasks() {
-  const searchText = document.getElementById("searchInput").value.toLowerCase();
-  const filteredTasks = tasks.filter((task) => (task.title && task.title.toLowerCase().includes(searchText)) || (task.description && task.description.toLowerCase().includes(searchText)));
+  let searchText = document.getElementById("searchInput").value.toLowerCase();
+  let filteredTasks = tasks.filter((task) => (task.title && task.title.toLowerCase().includes(searchText)) || (task.description && task.description.toLowerCase().includes(searchText)));
   updateHTML(filteredTasks);
 }
 
-function startDragging(taskID) {
-  currentDraggedElement = taskID;
-}
 
-function generateTodoHTML(element, taskID) {
-  return `<div id="task_${taskID}" onclick="togglePopup(${taskID});stopPropagation(event);" draggable="true" ondragstart="startDragging(${taskID})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
-  <div class="task-category-wrapper">
-    <span class="task-category white">${element["category"]}</span>
-    <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID});stopPropagation(event);"></img>
-    <div id="taskDropdown_${taskID}" class="task-dropdown">
-      <span class="font-14-light white ${element["progress"] === "todo" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "todo" ? `moveToMobile(${taskID},'todo');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>ToDo</span>
-      <span class="font-14-light white ${element["progress"] === "inProgress" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "inProgress" ? `moveToMobile(${taskID},'inProgress');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>In Progress</span>
-      <span class="font-14-light white ${element["progress"] === "awaitFeedback" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "awaitFeedback" ? `moveToMobile(${taskID},'awaitFeedback');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
-      <span class="font-14-light white ${element["progress"] === "done" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "done" ? `moveToMobile(${taskID},'done');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Done</span>
-    </div>
-  </div>
-  <div class="task-description">
-    <span class="task-title font-16">${element["title"]}</span>
-    <span class="task-description-text font-16-light grey">${element["description"]}</span>
-  </div>
-  <div class="progressSubtask" id="progressSubtask_${taskID}">
-    <progress id="subtasks_${taskID}" value="" max=""></progress><label for="subtasks_${taskID}"></label>
-  </div>
-  <div class="task-footer">
-    <div id="cardInitial_${taskID}" class="cardInitial">
-    </div>
-    <img id="prioArrow_${taskID}"></img>
-  </div>
-</div>
-`;
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function moveTo(progress) {
-  let index = tasks.findIndex((element) => element.id === currentDraggedElement);
-  tasks[index]["progress"] = progress;
-  updateHTML();
-}
-
-function moveToMobile(taskID, progress) {
-  let index = tasks.findIndex((element) => element.id === taskID);
-  tasks[index]["progress"] = progress;
-  updateHTML();
-}
-
-function highlight(id) {
-  document.getElementById(id).classList.add("drag-area-highlight");
-}
-
-function removeHighlight(id) {
-  document.getElementById(id).classList.remove("drag-area-highlight");
-}
-
-function rotateTask(taskID) {
-  currentCardDragged = taskID;
-  document.getElementById(`task_${taskID}`).classList.add("rotate-task");
-}
-
-function rotateTaskEnd(taskID) {
-  currentCardDragged = taskID;
-  document.getElementById(`task_${taskID}`).classList.remove("rotate-task");
-}
-
+/**
+ * Generates initials of assigned users for a task
+ * @param {Object} element The task object with assigned user information.
+ * @param {number} i index of the task.
+ * @param {string} initialID ID of the element.
+ * @param {string} divClass CSS class for styling initials.
+ * @param {number} value maximum number of initials to display.
+ */
 function generateAssignedToInitial(element, i, initialID, divClass, value) {
   let initial = document.getElementById(`${initialID}_${i}`);
   let assignedArray = element["assignedTo"];
   let totalHTML = "";
 
   for (let i = 0; i < assignedArray.length; i++) {
-    const element = assignedArray[i];
-    const color = element["initial_color"];
+    let element = assignedArray[i];
+    let color = element["initial_color"];
     if (i < value) {
       totalHTML += `<div class="${divClass}" style="background-color:${color}">${element.initial}</div>`;
     }
@@ -119,38 +68,54 @@ function generateAssignedToInitial(element, i, initialID, divClass, value) {
   initial.innerHTML = totalHTML;
 }
 
+
+/**
+ *  Generates initials of assigned users for a task
+ * @param {Object} element task object with assigned user information.
+ * @param {string} taskID ID of the task.
+ * @param {string} nameID ID of the element.
+ * @param {number} value maximum number of names to display.
+ */
 function generateAssignedToInitialName(element, taskID, nameID, value) {
   let initial = document.getElementById(`${nameID}_${taskID}`);
   let assignedArray = element["assignedTo"];
-  let totalHTML = "";
+  let renderHTML = "";
 
   for (let i = 0; i < assignedArray.length; i++) {
-    const element = assignedArray[i];
-    const color = tasks[taskID]["assignedTo"][i]["name"];
+    let element = assignedArray[i];
     if (i < value) {
-      totalHTML += `<div class="overlayTaskAssignedToName font-20-light">${element.name}</div>`;
+      renderHTML += `<div class="overlayTaskAssignedToName font-20-light">${element.name}</div>`;
     }
   }
   if (assignedArray.length > value) {
-    totalHTML += `<div class="overlayTaskAssignedToName font-20-light">more users</div>`;
+    renderHTML += `<div class="overlayTaskAssignedToName font-20-light">more users</div>`;
   }
-  initial.innerHTML = totalHTML;
+  initial.innerHTML = renderHTML;
 }
 
+
+/**
+ * Generates priority icons of the task.
+ * @param {Object} element task object with prio information.
+ * @param {number} i index of the task.
+ * @param {string} idElement ID of the task.
+ */
 function generatePrioIcon(element, i, idElement) {
+  let icons = {
+    low: "../img/symbol-low.svg",
+    medium: "../img/symbol-medium.svg",
+    urgent: "../img/symbol-urgent.svg",
+  };
   let prioIcon = document.getElementById(`${idElement}_${i}`);
-  let prio = element["prio"];
-  if (prio == "low") {
-    prioIcon.src = "../img/symbol-low.svg";
-  }
-  if (prio == "medium") {
-    prioIcon.src = "../img/symbol-medium.svg";
-  }
-  if (prio == "urgent") {
-    prioIcon.src = "../img/symbol-urgent.svg";
-  }
+  prioIcon.src = icons[element["prio"]];
 }
 
+
+/**
+ * Generates subtasks progress information and updates the display accordingly.
+ * @param {Object} element The task object containing subtask information.
+ * @param {string} taskID The ID of the task.
+ */
 function generateSubTask(element, taskID) {
   let progress = document.getElementById(`subtasks_${taskID}`);
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
@@ -168,6 +133,11 @@ function generateSubTask(element, taskID) {
   }
 }
 
+
+/**
+ * toggle the move to progress mobile popup.
+ * @param {string} taskID ID of the task.
+ */
 function taskOpenDropdown(taskID) {
   let dropdownContent = document.getElementById(`taskDropdown_${taskID}`);
   if (dropdownContent.style.display === "flex") {
@@ -177,6 +147,11 @@ function taskOpenDropdown(taskID) {
   }
 }
 
+
+/**
+ * click event outside of task dropdowns and hides them.
+ * @param {Event} event The click event.
+ */
 document.addEventListener("click", function (event) {
   let isClickInsideDropdown = false;
   let dropdownContents = document.querySelectorAll('[id^="taskDropdown_"]');
@@ -196,133 +171,32 @@ document.addEventListener("click", function (event) {
   }
 });
 
-function generateCard(i) {
-  let task = tasks[i];
-  overlayTask.innerHTML = /*HTML*/ `
-<div id="taskPopup" class="overlayTaskWrapper">
-  <div class="overlayTaskHeader">
-    <div class="task-category font-21-light white">${task.category}</div>
-    <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
-  </div>
-  <div class="overlayTaskWrapperMain">
-    <div class="overlayTaskHeadline font-61">${task.title}</div>
-    <div class="overlayTaskDescription font-20-light">${task.description}</div>
-    <div class="overlayTaskDate font-20-light">
-      <div>Due Date:</div>
-      <div>${task.dueDate}</div>
-    </div>
-    <div class="overlayTaskPrio font-20-light">
-      <div>Priority:</div>
-      <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${i}"></div>
-    </div>
-    <div class="font-20-light">Assigned To:</div>
-    <div class="">
-      <div class="overlayTaskAssignedTo">
-        <div id="cardInitalCard_${i}" class="overlayTaskAssignedToInitial"></div>
-        <div id="cardInitalCardName_${i}"></div>
-      </div>
-    </div>
-    <div class="font-20-light">Subtasks:</div>
-    <div id="subtasksListTask"></div>
-  </div>
-  <div class="overlayTaskFooter">
-    <div class="overlayTaskFooterWrapper">
-      <a onclick="editTask(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
-      <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-      <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
-    </div>
-  </div>
-</div>
 
-
-<div id="taskPopupEdit" class="d-none">
-  <div class="overlayTaskWrapper">
-    <div class="overlayTaskHeaderEdit">
-      <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
-    </div>
-    <form class="overlayTaskEditForm">
-      <div>
-        <div class="font-21-light">Title</div>
-        <input type="text" id="titleInputEdit" value='${task.title}'>
-      </div>
-      <div id="errorTitle"></div>
-      <div>
-        <div class="font-21-light">Description</div>
-        <textarea id="descriptionInputEdit" placeholder="Enter a Description">${task.description}</textarea>
-      </div>
-      <div>
-        <div class="font-21-light">Due Date</div>
-        <input type="date" id="dueDateInputEdit" value='${task.dueDate}'>
-      </div>
-      <div>
-        <div class="font-21-light">Prio</div>
-        <div class="prio-selection-container-edit">
-          <div id="urgentButtonEdit" onclick="changePriorityEdit('urgentButtonEdit', 'urgent')">Urgent<img
-              src="../img/urgent-button-icon.svg"></div>
-          <div id="mediumButtonEdit" onclick="changePriorityEdit('mediumButtonEdit', 'medium')">Medium<img
-              src="../img/medium-button-icon.svg"></div>
-          <div id="lowButtonEdit" onclick="changePriorityEdit('lowButtonEdit', 'low')">Low <img
-              src="../img/low-button-icon.svg"></div>
-        </div>
-      </div>
-      <div>
-        <div class="font-21-light">Assigned to</div>
-        <div class="assignment-dropdown-edit">
-          <div id="assignmentSelectEdit" onclick="toggleAssignmentDropdownEdit()">
-            Select contacts to assign
-            <img src="../img/dropdown-icon.svg" id="dropdownIconEdit">
-          </div>
-          <div id="assignmentDropdownListEdit">
-            <div class="assignment-dropdown-list-entry-edit"></div>
-          </div>
-          <div id="renderedAssignedToContactsEdit"></div>
-        </div>
-      </div>
-      <div>
-        <div class="font-21-light">Subtasks</div>
-        <div id="subtasksInputEdit">
-          <input type="text" placeholder="Add new subtask" id="subTaskInputEdit" oninput="acitivateSubtaskEditorEdit()">
-          <div id="imageContainerEdit">
-            <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEditor()">
-          </div>
-        </div>
-        <div id="subtasksListEdit"></div>
-      </div>
-    </form>
-    <div class="editOkButtonWrapper">
-      <button type="button" id="editOkButton" onclick="saveEditTask(${i})">
-        <div>OK</div><img src="../img/white-checkmark.svg">
-      </button>
-    </div>
-  </div>
-</div>
-
-  `;
-  buttonIdEdit = task.prio + "ButtonEdit";
-  priority = task.prio;
-  changePriorityEdit(buttonIdEdit, priority);
-}
-
+/**
+ * render subtasks for the task .
+ * @param {number} i sindex of the task.
+ */
 function renderSubtasksTask(i) {
-  const subtasksListTaskDiv = document.getElementById("subtasksListTask");
+  let subtasksListTaskDiv = document.getElementById("subtasksListTask");
   subtasksListTaskDiv.innerHTML = "";
-  const subtasksRender = tasks[i].subtasks;
-  const subtasksDoneRender = tasks[i].subtasksdone;
+  let subtasksRender = tasks[i].subtasks;
+  let subtasksDoneRender = tasks[i].subtasksdone;
 
   for (let j = 0; j < subtasksRender.length; j++) {
-    const subtask = subtasksRender[j];
-    const isSelected = subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
-    const selectedClass = isSelected ? "selectedTask" : "";
-
-    subtasksListTaskDiv.innerHTML += `
-      <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
-        <img src="../img/${isSelected ? "checkedtask" : "check"}-button.svg"> <!-- Change img based on selection -->
-        <div>${subtask}</div>
-      </div>
-    `;
+    let subtask = subtasksRender[j];
+    let isSelected = subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
+    let selectedClass = isSelected ? "selectedTask" : "";
+    subtasksListTaskDiv.innerHTML += renderSubtasksTaskHTML(i, j, subtask, selectedClass, isSelected);
   }
 }
 
+
+/**
+ * Toggles the selection state of a subtask.
+ * @param {HTMLElement} entry element of the subtask entry.
+ * @param {number} taskId ID of the task.
+ * @param {number} subtaskIndex index of the subtask .
+ */
 async function selectSubtask(entry, taskId, subtaskIndex) {
   let isSelected = entry.classList.toggle("selectedTask");
   let subtask = tasks[taskId].subtasks[subtaskIndex];
@@ -341,16 +215,11 @@ async function selectSubtask(entry, taskId, subtaskIndex) {
   }
 }
 
-/* BACKUP editTask()*/
-// function editTask() {
-//   let popup = document.getElementById("taskPopup");
-//   let popupEdit = document.getElementById("taskPopupEdit");
 
-//   popup.style.display = "none";
-//   popupEdit.classList.remove("d-none");
-// }
-/* BACKUP editTask()*/
-
+/**
+ * show/hide edit popup and render editcard.
+ * @param {number} i index of the task .
+ */
 function editTask(i) {
   let popup = document.getElementById("taskPopup");
   let popupEdit = document.getElementById("taskPopupEdit");
@@ -375,7 +244,11 @@ function editTask(i) {
   }
 }
 
-/* BACKUP togglePopup()*/
+
+/**
+ * show/hide popup and render card.
+ * @param {number} i index of the task .
+ */
 function togglePopup(taskID) {
   let overlay = document.getElementById("overlay");
   let popup = document.getElementById("popup");
@@ -385,34 +258,6 @@ function togglePopup(taskID) {
   if (popupVisible(overlay, popup)) {
     updateHTML();
     hidePopup(overlay, popup);
-    // changePriority("mediumButton", "medium");
-    subtasksEdit = [];
-    subtasks = [];
-  } else {
-    showPopup(overlay, popup);
-    generateCard(i);
-    renderSubtasksTask(i);
-    generatePrioIcon(element, i, "prioArrowCard");
-    generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
-    generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
-    renderAssignmentContactsEdit(i);
-    renderAssignedToArrayEdit(tasks, i);
-    renderSubtasksEdit(i);
-  }
-}
-/* BACKUP togglePopup()*/
-
-function togglePopup(taskID) {
-  let overlay = document.getElementById("overlay");
-  let popup = document.getElementById("popup");
-  let i = tasks.findIndex((element) => element.id === taskID);
-  let element = tasks[i];
-
-  if (popupVisible(overlay, popup)) {
-    updateHTML();
-    hidePopup(overlay, popup);
-    // changePriority("mediumButton", "medium");
-
     subtasks = [];
   } else {
     showPopup(overlay, popup);
@@ -424,46 +269,72 @@ function togglePopup(taskID) {
   }
 }
 
+
+/**
+ * Checks if the overlay and popup elements are visible.
+ * @param {HTMLElement} overlay overlay element.
+ * @param {HTMLElement} popup popup element.
+ * @returns {boolean} True if both overlay and popup are visible, otherwise false.
+ */
 function popupVisible(overlay, popup) {
   return overlay.classList.contains("overlay-show") && popup.classList.contains("popup-slideIn");
 }
 
+
+/**
+ * Hides the overlay and popup elements.
+ * @param {HTMLElement} overlay overlay element.
+ * @param {HTMLElement} popup popup element.
+ */
 async function hidePopup(overlay, popup) {
   overlay.classList.remove("overlay-show");
   overlay.classList.add("d-none");
   popup.classList.remove("popup-slideIn");
 }
 
+
+/**
+ * Shows the overlay and popup elements.
+ * @param {HTMLElement} overlay overlay element.
+ * @param {HTMLElement} popup popup element.
+ */
 function showPopup(overlay, popup) {
   overlay.classList.add("overlay-show");
   overlay.classList.remove("d-none");
   popup.classList.add("popup-slideIn");
 }
 
+
+/**
+ * Opens add task popup .
+ * @param {string} progressType progress of the task.
+ */
 function openAddTaskPopUp(progressType) {
   let overlay = document.getElementById("overlay");
   let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
-
   progress = progressType;
 
   if (popupVisible(overlay, addTaskPopUp)) {
     hidePopup(overlay, addTaskPopUp);
   } else {
     showPopup(overlay, addTaskPopUp);
-    // addTaskPopUp.style.display = "flex";
   }
 }
 
+
+/**
+ * Stops the propagation of the event.
+ * @param {Event} event event to stop propagation.
+ */
 function stopPropagation(event) {
   event.stopPropagation();
 }
 
-// function closeAddTaskPopUp() {
-//   let addTaskPopUp = document.getElementById("popUpAddTaskContainer");
 
-//   addTaskPopUp.style.display = "none";
-// }
-
+/**
+ * click outside the card - close the card - update cards and clear helper array
+ * @param {Event} event click event.
+ */
 document.addEventListener("click", (event) => {
   if (event.target.id === "popup" || event.target.id === "popUpAddTaskContainer") {
     hidePopup(overlay, popup);

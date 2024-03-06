@@ -1,3 +1,39 @@
+<div id="taskPopup" class="overlayTaskWrapper">
+  <div class="overlayTaskHeader">
+    <div class="task-category font-21-light white">${task.category}</div>
+    <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
+  </div>
+  <div class="overlayTaskWrapperMain">
+    <div class="overlayTaskHeadline font-61">${task.title}</div>
+    <div class="overlayTaskDescription font-20-light">${task.description}</div>
+    <div class="overlayTaskDate font-20-light">
+      <div>Due Date:</div>
+      <div>${task.dueDate}</div>
+    </div>
+    <div class="overlayTaskPrio font-20-light">
+      <div>Priority:</div>
+      <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${i}"></div>
+    </div>
+    <div class="font-20-light">Assigned To:</div>
+    <div class="">
+      <div class="overlayTaskAssignedTo">
+        <div id="cardInitalCard_${i}" class="overlayTaskAssignedToInitial"></div>
+        <div id="cardInitalCardName_${i}"></div>
+      </div>
+    </div>
+    <div class="font-20-light">Subtasks:</div>
+    <div id="subtasksListTask"></div>
+  </div>
+  <div class="overlayTaskFooter">
+    <div class="overlayTaskFooterWrapper">
+      <a onclick="editTask(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
+      <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
+      <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
+    </div>
+  </div>
+</div>
+
+
 <div id="taskPopupEdit" class="d-none">
   <div class="overlayTaskWrapper">
     <div class="overlayTaskHeaderEdit">
@@ -51,9 +87,11 @@
         </div>
         <div id="subtasksListEdit"></div>
       </div>
+    </form>
+    <div class="editOkButtonWrapper">
       <button type="button" id="editOkButton" onclick="saveEditTask(${i})">
         <div>OK</div><img src="../img/white-checkmark.svg">
       </button>
-    </form>
+    </div>
   </div>
 </div>
