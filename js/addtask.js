@@ -6,14 +6,14 @@ let assignedTo = [];
 
 
 /**
- * Priority of the task.
+ * set standard Priority of the task.
  * @type {string}
  */
 let prio = "medium";
 
 
 /**
- * Category of the task.
+ * initiate Category of the task.
  * @type {string}
  */
 let category = "";
@@ -27,7 +27,7 @@ let subtasks = [];
 
 
 /**
- * Progress status of the task.
+ * defualt Progress status of the task.
  * @type {string}
  */
 let progress = "todo";
@@ -40,7 +40,7 @@ dueDateInput.min = new Date().toISOString().split("T")[0];
 
 
 /**
- * Change the clear button icon to an alternative one.
+ * Change the clear button icon to an alternative one on hover.
  */
 function changeClearButtonIcon() {
   let icon = document.getElementById("clearButtonIcon");
@@ -58,7 +58,7 @@ function changeClearButtonIconBack() {
 
 
 /**
- * Change the clear button icon to an alternative one for mobile view.
+ * Change the clear button icon to an alternative one on hover for mobile view.
  */
 function changeClearButtonIconMobile() {
   let icon = document.getElementById("clearButtonIconMobile");
@@ -76,7 +76,7 @@ function changeClearButtonIconBackMobile() {
 
 
 /**
- * Toggle the assignment dropdown menu.
+ * Toggle the assignment dropdown menu on Click
  */
 function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
@@ -111,7 +111,7 @@ document.addEventListener("click", function (event) {
 
 
 /**
- * Render assigned contacts to array.
+ * Render assigned contacts as initials when the assignment dropdown is closed
  */
 function renderAssignedToArray() {
   let initial = document.getElementById("renderedAssignedToContacts");
@@ -134,7 +134,7 @@ function renderAssignedToArray() {
 
 
 /**
- * Toggle the category dropdown menu.
+ * Toggle the category dropdown menu on Click
  */
 function toggleCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdownList");
@@ -166,12 +166,12 @@ document.addEventListener("click", function (event) {
 
 
 /**
- * Generates HTML template for assignment contacts dropdown list entry.
+ * Generates HTML template for the Assignment Dropdown
  * @param {string} name - The name of the contact.
  * @param {string} initial - The initial of the contact.
  * @param {string} initial_color - The background color of the initial.
  * @param {number} id - The ID of the contact.
- * @returns {string} The HTML template for assignment contacts dropdown list entry.
+ * @returns {string} The HTML template for Assignment Dropdown
  */
 function assignmentContactsTemplate(name, initial, initial_color, id) {
   return `
@@ -187,7 +187,7 @@ function assignmentContactsTemplate(name, initial, initial_color, id) {
 
 
 /**
- * Renders assignment contacts dropdown list.
+ * Renders all the Users in to the Assignment Dropdown when the page is loaded
  * @param {Array<Object>} users - An array of user objects.
  */
 async function renderAssignmentContacts(users) {
