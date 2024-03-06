@@ -16,13 +16,7 @@ async function updateHTML(filteredTasks) {
         let taskID = task.id;
         let generateHTML = generateTodoHTML(task, taskID);
         element.innerHTML += generateHTML;
-        generateAssignedToInitial(
-          task,
-          taskID,
-          "cardInitial",
-          "cardInitialAssignedTo",
-          5
-        );
+        generateAssignedToInitial(task, taskID, "cardInitial", "cardInitialAssignedTo", 5);
         generatePrioIcon(task, taskID, "prioArrow");
         generateSubTask(task, taskID);
       });
@@ -324,9 +318,7 @@ function renderSubtasksTask(i) {
 
     subtasksListTaskDiv.innerHTML += `
       <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
-        <img src="../img/${
-          isSelected ? "checkedtask" : "check"
-        }-button.svg"> <!-- Change img based on selection -->
+        <img src="../img/${ isSelected ? "checkedtask" : "check"}-button.svg">
         <div>${subtask}</div>
       </div>
     `;
