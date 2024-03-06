@@ -55,13 +55,11 @@ function generateTodoHTML(element, taskID) {
   <span class="task-title font-16">${element["title"]}</span>
   <span class="task-description-text font-16-light grey">${element["description"]}</span>
   </div>
-
-  <div class="progressSubtask">
+  <div class="progressSubtask" id="progressSubtask_${taskID}">
   <progress id="subtasks_${taskID}" value="" max=""></progress><label for="subtasks_${taskID}"></label>
   </div>
   <div class="task-footer">
     <div id="cardInitial_${taskID}" class="cardInitial">
-
     </div>
     <img id="prioArrow_${taskID}"></img>
   </div>
@@ -152,10 +150,12 @@ function generatePrioIcon(element, i, idElement) {
   }
 }
 
+
 function generateSubTask(element, taskID) {
   let progress = document.getElementById(`subtasks_${taskID}`);
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
-  let progressBar = document.querySelector(".progressSubtask");
+  let progressBar = document.getElementById(`progressSubtask_${taskID}`);
+
   if (element["subtasks"].length > 0) {
     progressBar.style.display = "flex";
     subtask = element["subtasks"];
@@ -163,6 +163,8 @@ function generateSubTask(element, taskID) {
     subtaskLabel.innerHTML = `<span>${subtaskdone.length}/${subtask.length} Subtasks</span>`;
     progress.value = subtaskdone.length;
     progress.max = subtask.length;
+  } else {
+    progressBar.style.display = "none";
   }
 }
 

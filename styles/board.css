@@ -448,7 +448,6 @@ main {
 }
 
 .progressSubtask {
-    display: flex;
     justify-content: space-between;
 }
 
