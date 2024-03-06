@@ -30,6 +30,7 @@ function changeClearButtonIconBackMobile() {
   icon.src = "../img/clear-button-icon.svg";
 }
 
+
 function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
   if (assignmentDropdown.style.display === "flex") {
