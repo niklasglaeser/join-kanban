@@ -42,28 +42,29 @@ function startDragging(taskID) {
 function generateTodoHTML(element, taskID) {
   return `<div id="task_${taskID}" onclick="togglePopup(${taskID});stopPropagation(event);" draggable="true" ondragstart="startDragging(${taskID})" onmousedown="rotateTask(${taskID})" onmouseup="rotateTaskEnd(${taskID})" class="task">
   <div class="task-category-wrapper">
-  <span class="task-category white">${element["category"]}</span>
-  <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID});stopPropagation(event);"></img>
-  <div id="taskDropdown_${taskID}" class="task-dropdown">
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'todo');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>ToDo</span>
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'inProgress');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>In Progress</span>
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'awaitFeedback');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
-  <span class="font-14-light white" onclick="moveToMobile(${taskID},'done');stopPropagation(event);"><img src="../img/arrow-left.svg"></img>Done</span>
-  </div>
+    <span class="task-category white">${element["category"]}</span>
+    <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID});stopPropagation(event);"></img>
+    <div id="taskDropdown_${taskID}" class="task-dropdown">
+      <span class="font-14-light white ${element["progress"] === "todo" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "todo" ? `moveToMobile(${taskID},'todo');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>ToDo</span>
+      <span class="font-14-light white ${element["progress"] === "inProgress" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "inProgress" ? `moveToMobile(${taskID},'inProgress');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>In Progress</span>
+      <span class="font-14-light white ${element["progress"] === "awaitFeedback" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "awaitFeedback" ? `moveToMobile(${taskID},'awaitFeedback');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
+      <span class="font-14-light white ${element["progress"] === "done" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "done" ? `moveToMobile(${taskID},'done');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Done</span>
+    </div>
   </div>
   <div class="task-description">
-  <span class="task-title font-16">${element["title"]}</span>
-  <span class="task-description-text font-16-light grey">${element["description"]}</span>
+    <span class="task-title font-16">${element["title"]}</span>
+    <span class="task-description-text font-16-light grey">${element["description"]}</span>
   </div>
   <div class="progressSubtask" id="progressSubtask_${taskID}">
-  <progress id="subtasks_${taskID}" value="" max=""></progress><label for="subtasks_${taskID}"></label>
+    <progress id="subtasks_${taskID}" value="" max=""></progress><label for="subtasks_${taskID}"></label>
   </div>
   <div class="task-footer">
     <div id="cardInitial_${taskID}" class="cardInitial">
     </div>
     <img id="prioArrow_${taskID}"></img>
   </div>
-  </div>`;
+</div>
+`;
 }
 
 function allowDrop(ev) {
@@ -149,7 +150,6 @@ function generatePrioIcon(element, i, idElement) {
     prioIcon.src = "../img/symbol-urgent.svg";
   }
 }
-
 
 function generateSubTask(element, taskID) {
   let progress = document.getElementById(`subtasks_${taskID}`);
