@@ -1,6 +1,6 @@
 /**
- * Saves the edited subtask.
- * @param {Event} event - The click event triggering the save action.
+ * Saves the changes made to the subtask after editing it
+ * @param {Event} event - The click event triggering the save action
  */
 function saveSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
@@ -25,8 +25,8 @@ function saveSubtask(event) {
 
 
 /**
- * Adds hover effect to a subtask entry.
- * @param {Event} event - The mouseenter event triggering the hover effect.
+ * Adds hover effect to subtask entry
+ * @param {Event} event - The mouseenter event triggering the hover effect
  */
 function addHoverToSubtask(event) {
     let entryDiv = event.target.closest(".subtasks-list-entry");
@@ -42,8 +42,8 @@ function addHoverToSubtask(event) {
   
 
 /**
-   * Removes hover effect from a subtask entry.
-   * @param {Event} event - The mouseleave event removing the hover effect.
+   * Removes hover effect from subtask entry
+   * @param {Event} event - The mouseleave event removing the hover effect
    */
 function removeHoverFromSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
@@ -58,8 +58,8 @@ function removeHoverFromSubtask(event) {
 
 
 /**
- * Deletes a subtask entry.
- * @param {Event} event - The click event triggering the delete action.
+ * Deletes a subtask entry
+ * @param {Event} event - The click event triggering the delete action
  */
 function deleteSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
@@ -75,7 +75,7 @@ function deleteSubtask(event) {
 
 
 /**
- * Adds a new task and performs necessary actions.
+ * Checks for value of title and category and then adds a new task
  */
 async function addNewTask() {
   let title = document.getElementById("titleInput").value;
@@ -99,7 +99,7 @@ async function addNewTask() {
 
 
 /**
- * Adds a new task on the board and performs necessary actions.
+ * Checks for value of title and category and then adds a new task for the Board AddTaskPopup
  */
 async function addNewTaskBoard() {
   let title = document.getElementById("titleInput").value;
@@ -124,7 +124,7 @@ async function addNewTaskBoard() {
 
 
 /**
- * Handles error when no title is provided.
+ * Handles error when no title is provided
  */
 function handleTitleError() {
   let errorTitle = document.getElementById("errorTitle");
@@ -140,7 +140,7 @@ function handleTitleError() {
 
 
 /**
- * Handles error when no category is selected.
+ * Handles error when no category is selected
  */
 function handleCategoryError() {
   let errorTitle = document.getElementById("errorTitle");
@@ -156,11 +156,11 @@ function handleCategoryError() {
 
 
 /**
- * Creates a new task object.
- * @param {string} title - The title of the task.
- * @param {string} description - The description of the task.
- * @param {string} dueDate - The due date of the task.
- * @returns {Object} The new task object.
+ * Creates a new task object by getting all the values from the addtask options
+ * @param {string} title - The title of the task
+ * @param {string} description - The description of the task
+ * @param {string} dueDate - The due date of the task
+ * @returns {Object} The new task object
  */
 function createNewTask(title, description, dueDate) {
   let cleanedTitle = title.trim() === "" ? "" : title;
@@ -183,8 +183,8 @@ function createNewTask(title, description, dueDate) {
 
 
 /**
- * Saves a task to the tasks list.
- * @param {Object} task - The task to be saved.
+ * Saves a task to the remote Storage
+ * @param {Object} task - The task to be saved
  */
 async function saveTask(task) {
   tasks.push(task);
@@ -193,7 +193,7 @@ async function saveTask(task) {
 
 
 /**
- * Redirects to the board page.
+ * Redirects to the board page
  */
 function redirectToBoardPage() {
   window.location.href = "/pages/board.html";
@@ -201,7 +201,7 @@ function redirectToBoardPage() {
 
 
 /**
- * Resets the title input field.
+ * Resets the title input field
  */
 function resetTitleInput() {
   let titleInput = document.getElementById("titleInput");
@@ -212,7 +212,7 @@ function resetTitleInput() {
 
 
 /**
- * Resets the description input field.
+ * Resets the description input field
  */
 function resetDescriptionInput() {
   document.getElementById("descriptionInput").value = "";
@@ -220,7 +220,7 @@ function resetDescriptionInput() {
 
 
 /**
- * Resets the assignedTo array and updates UI.
+ * Resets the assignedTo array and updates the Initials
  */
 function resetAssignedTo() {
   assignedTo = [];
@@ -229,7 +229,7 @@ function resetAssignedTo() {
 
 
 /**
- * Resets the due date input field.
+ * Resets the due date input field
  */
 function resetDueDateInput() {
   document.getElementById("dueDateInput").value = "";
@@ -237,7 +237,7 @@ function resetDueDateInput() {
 
 
 /**
- * Resets the priority to medium and updates UI.
+ * Resets the priority to the defualt medium and updates the buttons
  */
 function resetPriority() {
   changePriority("mediumButton", "medium");
@@ -249,7 +249,7 @@ function resetPriority() {
 
 
 /**
- * Resets the category to empty and updates UI.
+ * Resets the category to empty and update the placeholder
  */
 function resetCategory() {
   category = "";
@@ -261,7 +261,7 @@ function resetCategory() {
 }
 
 /**
- * Resets the subtasks array and updates UI.
+ * Resets the subtasks array and updates the subtasks List
  */
 function resetSubtasks() {
   subtasks = [];
@@ -269,7 +269,7 @@ function resetSubtasks() {
 }
 
 /**
- * Resets the assignment dropdown list and updates UI.
+ * Resets the assignment List and updates the assignment Dropdown
  */
 function resetAssignmentDropdownList() {
   let assignmentDropdownList = document.getElementById(
@@ -288,7 +288,7 @@ function resetAssignmentDropdownList() {
 
 
 /**
- * Resets the category dropdown list and updates UI.
+ * Hides the Category Dropdown list
  */
 function resetCategoryDropdownList() {
   document.getElementById("categoryDropdownList").style.display = "none";
@@ -296,7 +296,7 @@ function resetCategoryDropdownList() {
 
 
 /**
- * Resets the add task form by calling individual reset functions.
+ * Resets the add task form by calling individual reset functions
  */
 function resetAddTaskForm() {
   resetTitleInput();
@@ -312,7 +312,7 @@ function resetAddTaskForm() {
 
 
 /**
- * Handles the keydown event when the DOM content is loaded.
+ * Prevents the Form from submitting by pressing enter by disabling default behaviour
  */
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("keydown", function (event) {
@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
- * Handles the keydown event for the description input when the DOM content is loaded.
+ * Provides the ability to press Enter when in the description to go to a new line
  */
 document.addEventListener("DOMContentLoaded", function () {
   let descriptionInput = document.getElementById("descriptionInput");

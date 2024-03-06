@@ -1,32 +1,32 @@
 /**
- * Array to store assigned contacts for editing.
+ * Array to store assigned contacts for editing
  * @type {Array}
  */
 let assignedToEdit = [];
 
 /**
- * Stores the priority for editing.
+ * Stores the priority for editing
  * @type {string}
  */
 let prioEdit = "";
 
 /**
- * Stores the button ID for editing.
+ * Stores the button ID for editing
  * @type {string}
  */
 let buttonIdEdit = "";
 
 /**
- * Array to store subtasks for editing.
+ * Array to store subtasks for editing
  * @type {Array}
  */
 let subtasksEdit = [];
 
 
 /**
- * Changes the priority of a task.
- * @param {string} buttonIdEdit - The id of the button.
- * @param {string} priority - The priority value.
+ * Changes the priority of a task for editing
+ * @param {string} buttonIdEdit - The id of the button
+ * @param {string} priority - The priority value
  */
 function changePriorityEdit(buttonIdEdit, priority) {
   let img;
@@ -50,7 +50,7 @@ function changePriorityEdit(buttonIdEdit, priority) {
 
 
 /**
- * Toggles the assignment dropdown menu.
+ * Toggles the assignment dropdown menu on Click
  */
 function toggleAssignmentDropdownEdit() {
   let assignmentDropdownEdit = document.getElementById("assignmentDropdownListEdit");
@@ -64,9 +64,9 @@ function toggleAssignmentDropdownEdit() {
 
 
 /**
- * Renders assigned contacts to an array.
- * @param {Array} tasks - The tasks array.
- * @param {number} i - The index of the task.
+ * Render the Initials for the task that is being edited
+ * @param {Array} tasks - The tasks array
+ * @param {number} i - The index of the task
  */
 function renderAssignedToArrayEdit(tasks, i) {
   let initial = document.getElementById("renderedAssignedToContactsEdit");
@@ -90,7 +90,7 @@ function renderAssignedToArrayEdit(tasks, i) {
 
 
 /**
- * Renders assigned contacts.
+ * Render the Initials for the task that is being edited after it was edited
  */
 function renderAssignedToEdit() {
   let initial = document.getElementById("renderedAssignedToContactsEdit");
@@ -111,7 +111,7 @@ function renderAssignedToEdit() {
 
 
 /**
- * Renders assignment contacts for editing.
+ * Renders assigned contacts of the task for editing.
  * @param {number} i - The index of the task.
  */
 async function renderAssignmentContactsEdit(i) {
@@ -137,13 +137,13 @@ async function renderAssignmentContactsEdit(i) {
 
 
 /**
- * Generates HTML template for assignment contacts.
- * @param {string} name - The name of the contact.
- * @param {string} initial - The initial of the contact.
- * @param {string} initial_color - The color of the initial.
- * @param {number} id - The ID of the contact.
- * @param {string} isSelected - The selected status.
- * @returns {string} - The generated HTML template.
+ * Generates HTML template for contacts in the Assignment Dropdown
+ * @param {string} name - The name of the contact
+ * @param {string} initial - The initial of the contact
+ * @param {string} initial_color - The color for the contact
+ * @param {number} id - The ID of the contact
+ * @param {string} isSelected - The selected status
+ * @returns {string} - The generated HTML template
  */
 function assignmentContactsTemplateEdit(name, initial, initial_color, id, isSelected) {
   return `
@@ -159,9 +159,9 @@ function assignmentContactsTemplateEdit(name, initial, initial_color, id, isSele
 
 
 /**
- * Selects or deselects an assignment.
- * @param {HTMLElement} entry - The entry element.
- * @param {number} id - The ID of the contact.
+ * Selects or deselects an assignment
+ * @param {HTMLElement} entry - The entry element
+ * @param {number} id - The ID of the contact
  */
 function selectAssignmentEdit(entry, id) {
   let isSelected = entry.classList.toggle("selected");
@@ -185,7 +185,7 @@ function selectAssignmentEdit(entry, id) {
 
 
 /**
- * Activates subtask editor.
+ * Activates subtask editor for adding new subtasks to the task
  */
 function acitivateSubtaskEditorEdit() {
   let imageContainerEdit = document.getElementById("imageContainerEdit");
@@ -207,7 +207,7 @@ function acitivateSubtaskEditorEdit() {
 
 
 /**
- * Focuses on the subtask input.
+ * Focuses on the subtask input
  */
 function focusSubtaskInputEditor() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
@@ -216,7 +216,7 @@ function focusSubtaskInputEditor() {
 
 
 /**
- * Clears the subtask input.
+ * Clears the subtask input in the Edit
  */
 function clearSubtaskInputEdit() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
@@ -228,7 +228,7 @@ function clearSubtaskInputEdit() {
 
 
 /**
- * Adds a subtask to the list.
+ * Adds a subtask to the list and updates the subtaskEdit array
  */
 function addSubtaskToListEdit() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
@@ -248,9 +248,9 @@ function addSubtaskToListEdit() {
 
 
 /**
- * Adds a subtask entry to the list.
- * @param {HTMLElement} subtasksListEdit - The subtasks list element.
- * @param {string} subTaskValueEdit - The value of the subtask.
+ * Generates HTMl for adding a subtask entry to the list in the edit Popup
+ * @param {HTMLElement} subtasksListEdit - The subtasks list element
+ * @param {string} subTaskValueEdit - The value of the subtask
  */
 function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
   subtasksListEdit.innerHTML += `
@@ -267,7 +267,7 @@ function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
 
 
 /**
- * Renders subtasks for editing.
+ * Renders subtasks of the opened task for editing
  * @param {number} i - The index of the task.
  */
 function renderSubtasksEdit(i) {
@@ -284,8 +284,8 @@ function renderSubtasksEdit(i) {
 
 
 /**
- * Edits a subtask.
- * @param {Event} event - The event object.
+ * Activate the Edit Task popup after clicking on the edit option
+ * @param {Event} event - The click event
  */
 function editSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
@@ -307,8 +307,8 @@ function editSubtaskEdit(event) {
 
 
 /**
- * Adds hover effect to a subtask.
- * @param {Event} event - The event object.
+ * Adds hover effect to a subtask in the Edit Popup
+ * @param {Event} event - The click event
  */
 function addHoverToSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
@@ -323,8 +323,8 @@ function addHoverToSubtaskEdit(event) {
 
 
 /**
- * Removes hover effect from a subtask.
- * @param {Event} event - The event object.
+ * Removes hover effect from a subtask in the Edit Popup
+ * @param {Event} event - The click event
  */
 function removeHoverFromSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
@@ -339,8 +339,8 @@ function removeHoverFromSubtaskEdit(event) {
 
 
 /**
- * Deletes a subtask.
- * @param {Event} event - The event object.
+ * Deletes a subtask in the Edit Popup onClick
+ * @param {Event} event - The click Event
  */
 function deleteSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");

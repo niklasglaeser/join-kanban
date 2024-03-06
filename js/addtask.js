@@ -203,9 +203,9 @@ async function renderAssignmentContacts(users) {
 
 
 /**
- * Handles selection of assignment contact.
- * @param {HTMLElement} entry - The clicked assignment dropdown list entry.
- * @param {number} id - The ID of the selected contact.
+ * Handles selection of assignment contact and adds/removes from the assignedTo Array
+ * @param {HTMLElement} entry - The clicked Assignment Dropdown list entry
+ * @param {number} id - The ID of the selected contact
  */
 function selectAssignment(entry, id) {
   let isSelected = entry.classList.toggle("selected");
@@ -231,9 +231,9 @@ function selectAssignment(entry, id) {
 
 
 /**
- * Changes priority and updates UI.
- * @param {string} buttonId - The ID of the clicked priority button.
- * @param {string} priority - The priority level.
+ * Changes priority and updates the buttons accordingly
+ * @param {string} buttonId - The ID of the clicked priority button
+ * @param {string} priority - The priority selection
  */
 function changePriority(buttonId, priority) {
   let img;
@@ -257,8 +257,8 @@ function changePriority(buttonId, priority) {
 
 
 /**
- * Sets category and updates UI.
- * @param {string} selectedCategory - The selected category.
+ * Sets category and updates placeholder
+ * @param {string} selectedCategory - The selected category
  */
 function setCategory(selectedCategory) {
   category = selectedCategory;
@@ -278,7 +278,7 @@ function setCategory(selectedCategory) {
 
 
 /**
- * Activates subtask editor.
+ * Activates the Subtask Input Field and changes the Icons in the Input Field
  */
 function activateSubtaskEditor() {
   let imageContainer = document.getElementById("imageContainer");
@@ -300,7 +300,7 @@ function activateSubtaskEditor() {
 
 
 /**
- * Focuses on subtask input field.
+ * Focuses on subtask input field
  */
 function focusSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
@@ -309,7 +309,7 @@ function focusSubtaskInput() {
 
 
 /**
- * Clears subtask input field.
+ * Clears subtask input field
  */
 function clearSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
@@ -321,7 +321,7 @@ function clearSubtaskInput() {
 
 
 /**
- * Adds subtask to the subtask list.
+ * Adds subtask to the subtask list
  */
 function addSubtaskToList() {
   let subTaskInput = document.getElementById("subTaskInput");
@@ -341,9 +341,9 @@ function addSubtaskToList() {
 
 
 /**
- * Adds a new subtask entry to the subtasks list.
- * @param {HTMLElement} subtasksList - The list element where the subtask entry will be added.
- * @param {string} subTaskValue - The value of the subtask.
+ * Generates the HTML for adding a new subtask entry to the subtasks list
+ * @param {HTMLElement} subtasksList - The list element where the subtask entry will be added
+ * @param {string} subTaskValue - The value of the subtask
  */
 function addSubtaskEntry(subtasksList, subTaskValue) {
   subtasksList.innerHTML += `
@@ -360,7 +360,7 @@ function addSubtaskEntry(subtasksList, subTaskValue) {
 
 
 /**
- * Allows editing of a subtask.
+ * Activates editing of a subtask
  * @param {Event} event - The click event triggering the edit action.
  */
 function editSubtask(event) {
