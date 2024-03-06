@@ -385,6 +385,13 @@ main {
     cursor: pointer;
 }
 
+.disabledMoveToIcon {
+    color: var(--blue-light);
+    background-color: var(--grey-light);
+    pointer-events: none;
+}
+
+
 .task-dropdown {
     position: absolute;
     display: none;
@@ -448,7 +455,6 @@ main {
 }
 
 .progressSubtask {
-    display: flex;
     justify-content: space-between;
 }
 
