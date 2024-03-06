@@ -2,15 +2,14 @@ let currentDraggedElement;
 
 async function updateHTML(filteredTasks) {
   let progress = ["todo", "inProgress", "awaitFeedback", "done"];
+  let statusText = ["To Do", "In Progress", "Await feedback", "Done"];
 
-  progress.forEach((status) => {
-    let filtered = filteredTasks
-      ? filteredTasks.filter((task) => task.progress === status)
-      : tasks.filter((task) => task.progress === status);
+  progress.forEach((status, i) => {
+    let filtered = filteredTasks ? filteredTasks.filter((task) => task.progress === status) : tasks.filter((task) => task.progress === status);
     let element = document.getElementById(status);
     element.innerHTML = "";
     if (filtered.length < 1) {
-      element.innerHTML = `<div id="area_${status}" class="noTask">No task in ${status}</div>`;
+      element.innerHTML = `<div id="area_${status}" class="noTask">No task in ${statusText[i]}</div>`;
     } else {
       filtered.forEach((task) => {
         let taskID = task.id;
@@ -32,11 +31,7 @@ async function updateHTML(filteredTasks) {
 
 function filterTasks() {
   const searchText = document.getElementById("searchInput").value.toLowerCase();
-  const filteredTasks = tasks.filter(
-    (task) =>
-      (task.title && task.title.toLowerCase().includes(searchText)) ||
-      (task.description && task.description.toLowerCase().includes(searchText))
-  );
+  const filteredTasks = tasks.filter((task) => (task.title && task.title.toLowerCase().includes(searchText)) || (task.description && task.description.toLowerCase().includes(searchText)));
   updateHTML(filteredTasks);
 }
 
@@ -78,9 +73,7 @@ function allowDrop(ev) {
 }
 
 function moveTo(progress) {
-  let index = tasks.findIndex(
-    (element) => element.id === currentDraggedElement
-  );
+  let index = tasks.findIndex((element) => element.id === currentDraggedElement);
   tasks[index]["progress"] = progress;
   updateHTML();
 }
@@ -122,9 +115,7 @@ function generateAssignedToInitial(element, i, initialID, divClass, value) {
     }
   }
   if (assignedArray.length > value) {
-    totalHTML += `<div class="${divClass}" style="background-color: var(--grey)">+${
-      assignedArray.length - value
-    }</div>`;
+    totalHTML += `<div class="${divClass}" style="background-color: var(--grey)">+${assignedArray.length - value}</div>`;
   }
   initial.innerHTML = totalHTML;
 }
@@ -166,13 +157,12 @@ function generateSubTask(element, taskID) {
   let subtaskLabel = document.querySelector(`label[for="subtasks_${taskID}"]`);
   let progressBar = document.querySelector(".progressSubtask");
   if (element["subtasks"].length > 0) {
+    progressBar.style.display = "flex";
     subtask = element["subtasks"];
     subtaskdone = element["subtasksdone"];
     subtaskLabel.innerHTML = `<span>${subtaskdone.length}/${subtask.length} Subtasks</span>`;
     progress.value = subtaskdone.length;
     progress.max = subtask.length;
-  } else {
-    progressBar.style.visibility = "hidden";
   }
 }
 
@@ -207,47 +197,47 @@ document.addEventListener("click", function (event) {
 function generateCard(i) {
   let task = tasks[i];
   overlayTask.innerHTML = /*HTML*/ `
-    <div id="taskPopup" class="overlayTaskWrapper">
-    <div class="overlayTaskHeader">
-        <div class="task-category font-21-light white">${task.category}</div>
-        <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()"
-            src="../img/close-btn-black.svg">
-    </div>
+<div id="taskPopup" class="overlayTaskWrapper">
+  <div class="overlayTaskHeader">
+    <div class="task-category font-21-light white">${task.category}</div>
+    <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
+  </div>
+  <div class="overlayTaskWrapperMain">
     <div class="overlayTaskHeadline font-61">${task.title}</div>
     <div class="overlayTaskDescription font-20-light">${task.description}</div>
     <div class="overlayTaskDate font-20-light">
-        <div>Due Date:</div>
-        <div>${task.dueDate}</div>
+      <div>Due Date:</div>
+      <div>${task.dueDate}</div>
     </div>
     <div class="overlayTaskPrio font-20-light">
-        <div>Priority:</div>
-        <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${i}"></div>
+      <div>Priority:</div>
+      <div style="text-transform: capitalize;">${task.prio}<img id="prioArrowCard_${i}"></div>
     </div>
     <div class="font-20-light">Assigned To:</div>
     <div class="">
-        <div class="overlayTaskAssignedTo">
-            <div id="cardInitalCard_${i}" class="overlayTaskAssignedToInitial"></div>
-            <div id="cardInitalCardName_${i}"></div>
-        </div>
+      <div class="overlayTaskAssignedTo">
+        <div id="cardInitalCard_${i}" class="overlayTaskAssignedToInitial"></div>
+        <div id="cardInitalCardName_${i}"></div>
+      </div>
     </div>
     <div class="font-20-light">Subtasks:</div>
     <div id="subtasksListTask"></div>
-    <div class="overlayTaskFooter">
-        <div class="overlayTaskFooterWrapper">
-            <a onclick="editTask(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
-            <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
-            <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
-        </div>
-
+  </div>
+  <div class="overlayTaskFooter">
+    <div class="overlayTaskFooterWrapper">
+      <a onclick="editTask(${i})" class="pointer"><img src="../img/edit.svg" alt="">EDIT</a>
+      <img src="../img/stroke-horizontal-grey.svg" class="overlayTaskLine">
+      <a onclick="deleteOneTask(${i})" class="pointer"><img src="../img/delete.svg" alt="">DELETE</a>
     </div>
   </div>
+</div>
 
 
-  <div id="taskPopupEdit" class="d-none">
-    <div class="overlayTaskHeader">
-        <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
+<div id="taskPopupEdit" class="d-none">
+  <div class="overlayTaskWrapper">
+    <div class="overlayTaskHeaderEdit">
+      <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
     </div>
-    <div class="overlayTaskEditWrapper">
     <form class="overlayTaskEditForm">
       <div>
         <div class="font-21-light">Title</div>
@@ -265,9 +255,12 @@ function generateCard(i) {
       <div>
         <div class="font-21-light">Prio</div>
         <div class="prio-selection-container-edit">
-          <div id="urgentButtonEdit" onclick="changePriorityEdit('urgentButtonEdit', 'urgent')">Urgent<img src="../img/urgent-button-icon.svg"></div>
-          <div id="mediumButtonEdit" onclick="changePriorityEdit('mediumButtonEdit', 'medium')">Medium<img src="../img/medium-button-icon.svg"></div>
-          <div id="lowButtonEdit" onclick="changePriorityEdit('lowButtonEdit', 'low')">Low <img src="../img/low-button-icon.svg"></div>
+          <div id="urgentButtonEdit" onclick="changePriorityEdit('urgentButtonEdit', 'urgent')">Urgent<img
+              src="../img/urgent-button-icon.svg"></div>
+          <div id="mediumButtonEdit" onclick="changePriorityEdit('mediumButtonEdit', 'medium')">Medium<img
+              src="../img/medium-button-icon.svg"></div>
+          <div id="lowButtonEdit" onclick="changePriorityEdit('lowButtonEdit', 'low')">Low <img
+              src="../img/low-button-icon.svg"></div>
         </div>
       </div>
       <div>
@@ -290,13 +283,17 @@ function generateCard(i) {
           <div id="imageContainerEdit">
             <img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEditor()">
           </div>
-          </div>
-            <div id="subtasksListEdit"></div>
-          </div>
-      <button type="button" id="editOkButton" onclick="saveEditTask(${i})"><div>OK</div><img src="../img/white-checkmark.svg"></button>    
+        </div>
+        <div id="subtasksListEdit"></div>
+      </div>
     </form>
-</div>
+    <div class="editOkButtonWrapper">
+      <button type="button" id="editOkButton" onclick="saveEditTask(${i})">
+        <div>OK</div><img src="../img/white-checkmark.svg">
+      </button>
+    </div>
   </div>
+</div>
 
   `;
   buttonIdEdit = task.prio + "ButtonEdit";
@@ -312,13 +309,12 @@ function renderSubtasksTask(i) {
 
   for (let j = 0; j < subtasksRender.length; j++) {
     const subtask = subtasksRender[j];
-    const isSelected =
-      subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
+    const isSelected = subtasksRender.includes(subtask) && subtasksDoneRender.includes(subtask);
     const selectedClass = isSelected ? "selectedTask" : "";
 
     subtasksListTaskDiv.innerHTML += `
       <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
-        <img src="../img/${ isSelected ? "checkedtask" : "check"}-button.svg">
+        <img src="../img/${isSelected ? "checkedtask" : "check"}-button.svg"> <!-- Change img based on selection -->
         <div>${subtask}</div>
       </div>
     `;
@@ -335,9 +331,7 @@ async function selectSubtask(entry, taskId, subtaskIndex) {
     entry.style.backgroundColor = "";
     entry.querySelector("img").src = "../img/checkedtask-button.svg";
   } else {
-    let index = tasks[taskId].subtasksdone.findIndex(
-      (item) => item === subtask
-    );
+    let index = tasks[taskId].subtasksdone.findIndex((item) => item === subtask);
     tasks[taskId].subtasksdone.splice(index, 1);
     await setItem("tasks", JSON.stringify(tasks));
     entry.style.backgroundColor = "";
@@ -374,13 +368,7 @@ function editTask(i) {
     generateCard(i);
     renderSubtasksTask(i);
     generatePrioIcon(element, i, "prioArrowCard");
-    generateAssignedToInitial(
-      element,
-      i,
-      "cardInitalCard",
-      "overlayTaskAssignedToInitial",
-      2
-    );
+    generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
     generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
   }
 }
@@ -403,13 +391,7 @@ function togglePopup(taskID) {
     generateCard(i);
     renderSubtasksTask(i);
     generatePrioIcon(element, i, "prioArrowCard");
-    generateAssignedToInitial(
-      element,
-      i,
-      "cardInitalCard",
-      "overlayTaskAssignedToInitial",
-      2
-    );
+    generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
     generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
@@ -435,22 +417,13 @@ function togglePopup(taskID) {
     generateCard(i);
     renderSubtasksTask(i);
     generatePrioIcon(element, i, "prioArrowCard");
-    generateAssignedToInitial(
-      element,
-      i,
-      "cardInitalCard",
-      "overlayTaskAssignedToInitial",
-      2
-    );
+    generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
     generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
   }
 }
 
 function popupVisible(overlay, popup) {
-  return (
-    overlay.classList.contains("overlay-show") &&
-    popup.classList.contains("popup-slideIn")
-  );
+  return overlay.classList.contains("overlay-show") && popup.classList.contains("popup-slideIn");
 }
 
 async function hidePopup(overlay, popup) {
@@ -490,10 +463,7 @@ function stopPropagation(event) {
 // }
 
 document.addEventListener("click", (event) => {
-  if (
-    event.target.id === "popup" ||
-    event.target.id === "popUpAddTaskContainer"
-  ) {
+  if (event.target.id === "popup" || event.target.id === "popUpAddTaskContainer") {
     hidePopup(overlay, popup);
     hidePopup(overlay, popUpAddTaskContainer);
     updateHTML();
