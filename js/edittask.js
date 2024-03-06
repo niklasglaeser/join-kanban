@@ -1,8 +1,33 @@
+/**
+ * Array to store assigned contacts for editing.
+ * @type {Array}
+ */
 let assignedToEdit = [];
+
+/**
+ * Stores the priority for editing.
+ * @type {string}
+ */
 let prioEdit = "";
+
+/**
+ * Stores the button ID for editing.
+ * @type {string}
+ */
 let buttonIdEdit = "";
+
+/**
+ * Array to store subtasks for editing.
+ * @type {Array}
+ */
 let subtasksEdit = [];
 
+
+/**
+ * Changes the priority of a task.
+ * @param {string} buttonIdEdit - The id of the button.
+ * @param {string} priority - The priority value.
+ */
 function changePriorityEdit(buttonIdEdit, priority) {
   let img;
   let buttons = document.querySelectorAll(".prio-selection-container-edit div");
@@ -23,6 +48,10 @@ function changePriorityEdit(buttonIdEdit, priority) {
   }
 }
 
+
+/**
+ * Toggles the assignment dropdown menu.
+ */
 function toggleAssignmentDropdownEdit() {
   let assignmentDropdownEdit = document.getElementById("assignmentDropdownListEdit");
   if (assignmentDropdownEdit.style.display === "flex") {
@@ -33,22 +62,12 @@ function toggleAssignmentDropdownEdit() {
   }
 }
 
-document.addEventListener("click", function (event) {
-  let assignmentSelectEdit = document.getElementById("assignmentSelectEdit");
-  let assignmentDropdownEdit = document.getElementById("assignmentDropdownListEdit");
-  let dropdownIconEdit = document.getElementById("dropdownIconEdit");
-  if (
-    event.target !== assignmentSelectEdit &&
-    event.target !== assignmentDropdownEdit &&
-    event.target !== dropdownIconEdit &&
-    // !assignmentDropdownEdit.contains(event.target) &&
-    !event.target.classList.contains("assignment-dropdown-list-entry-edit")
-  ) {
-    // assignmentDropdownEdit.style.display = "none";
-    renderAssignedToEdit();
-  }
-});
 
+/**
+ * Renders assigned contacts to an array.
+ * @param {Array} tasks - The tasks array.
+ * @param {number} i - The index of the task.
+ */
 function renderAssignedToArrayEdit(tasks, i) {
   let initial = document.getElementById("renderedAssignedToContactsEdit");
   let totalHTML = "";
@@ -69,6 +88,10 @@ function renderAssignedToArrayEdit(tasks, i) {
   initial.innerHTML = totalHTML;
 }
 
+
+/**
+ * Renders assigned contacts.
+ */
 function renderAssignedToEdit() {
   let initial = document.getElementById("renderedAssignedToContactsEdit");
   let totalHTML = "";
@@ -83,10 +106,14 @@ function renderAssignedToEdit() {
   if (assignedToEdit.length > 5) {
     totalHTML += `<div class="cardInitialAssignedToAddTaskEdit" style="background-color: var(--grey)">+${assignedToEdit.length - 5}</div>`;
   }
-
   initial.innerHTML = totalHTML;
 }
 
+
+/**
+ * Renders assignment contacts for editing.
+ * @param {number} i - The index of the task.
+ */
 async function renderAssignmentContactsEdit(i) {
   let assignmentDropdownListEdit = document.getElementById("assignmentDropdownListEdit");
   assignmentDropdownListEdit.innerHTML = "";
@@ -108,6 +135,16 @@ async function renderAssignmentContactsEdit(i) {
   }
 }
 
+
+/**
+ * Generates HTML template for assignment contacts.
+ * @param {string} name - The name of the contact.
+ * @param {string} initial - The initial of the contact.
+ * @param {string} initial_color - The color of the initial.
+ * @param {number} id - The ID of the contact.
+ * @param {string} isSelected - The selected status.
+ * @returns {string} - The generated HTML template.
+ */
 function assignmentContactsTemplateEdit(name, initial, initial_color, id, isSelected) {
   return `
         <div class="assignment-dropdown-list-entry-edit ${isSelected}" onclick="selectAssignmentEdit(this, ${id})">
@@ -120,6 +157,12 @@ function assignmentContactsTemplateEdit(name, initial, initial_color, id, isSele
       `;
 }
 
+
+/**
+ * Selects or deselects an assignment.
+ * @param {HTMLElement} entry - The entry element.
+ * @param {number} id - The ID of the contact.
+ */
 function selectAssignmentEdit(entry, id) {
   let isSelected = entry.classList.toggle("selected");
   id = id - 1;
@@ -140,6 +183,10 @@ function selectAssignmentEdit(entry, id) {
   }
 }
 
+
+/**
+ * Activates subtask editor.
+ */
 function acitivateSubtaskEditorEdit() {
   let imageContainerEdit = document.getElementById("imageContainerEdit");
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
@@ -158,11 +205,19 @@ function acitivateSubtaskEditorEdit() {
   });
 }
 
+
+/**
+ * Focuses on the subtask input.
+ */
 function focusSubtaskInputEditor() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
   subTaskInputEdit.focus();
 }
 
+
+/**
+ * Clears the subtask input.
+ */
 function clearSubtaskInputEdit() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
   subTaskInputEdit.value = "";
@@ -171,6 +226,10 @@ function clearSubtaskInputEdit() {
   imageContainerEdit.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">`;
 }
 
+
+/**
+ * Adds a subtask to the list.
+ */
 function addSubtaskToListEdit() {
   let subTaskInputEdit = document.getElementById("subTaskInputEdit");
   let subTaskValueEdit = subTaskInputEdit.value.trim();
@@ -187,6 +246,12 @@ function addSubtaskToListEdit() {
   }
 }
 
+
+/**
+ * Adds a subtask entry to the list.
+ * @param {HTMLElement} subtasksListEdit - The subtasks list element.
+ * @param {string} subTaskValueEdit - The value of the subtask.
+ */
 function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
   subtasksListEdit.innerHTML += `
       <div class="subtasks-list-entry-edit" onmouseenter="addHoverToSubtaskEdit(event)" onmouseleave="removeHoverFromSubtaskEdit(event)">
@@ -200,6 +265,11 @@ function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
     `;
 }
 
+
+/**
+ * Renders subtasks for editing.
+ * @param {number} i - The index of the task.
+ */
 function renderSubtasksEdit(i) {
   let subtasksListEdit = document.getElementById("subtasksListEdit");
   subtasksListEdit.innerHTML = "";
@@ -212,6 +282,11 @@ function renderSubtasksEdit(i) {
   }
 }
 
+
+/**
+ * Edits a subtask.
+ * @param {Event} event - The event object.
+ */
 function editSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   let subTaskInputEdit = entryDiv.querySelector("li input");
@@ -230,40 +305,11 @@ function editSubtaskEdit(event) {
   saveIconEdit.style.display = "inline";
 }
 
-function saveSubtaskEdit(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry-edit");
-  let subTaskInputEdit = entryDiv.querySelector("li input");
-  let subTaskValueEdit = subTaskInputEdit.value.trim();
 
-  entryDiv.onmouseenter = addHoverToSubtaskEdit;
-  entryDiv.onmouseleave = removeHoverFromSubtaskEdit;
-
-  let originalSubtaskValueEdit = subTaskInputEdit.defaultValue.trim();
-
-  const index = subtasksEdit.indexOf(originalSubtaskValueEdit);
-  if (index !== -1) {
-    subtasksEdit[index] = subTaskValueEdit;
-  }
-
-  for (let i = 0; i < tasks.length; i++) {
-    const subtasksDone = tasks[i].subtasksdone;
-    const subtaskIndex = subtasksDone.indexOf(originalSubtaskValueEdit);
-    if (subtaskIndex !== -1) {
-      subtasksDone[subtaskIndex] = subTaskValueEdit;
-    }
-  }
-
-  subTaskInputEdit.readOnly = true;
-  subTaskInputEdit.style.backgroundColor = "";
-
-  let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
-  saveIconEdit.style.display = "none";
-  let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
-  editIconEdit.style.display = "none";
-  let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
-  deleteIconEdit.style.display = "none";
-}
-
+/**
+ * Adds hover effect to a subtask.
+ * @param {Event} event - The event object.
+ */
 function addHoverToSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   entryDiv.style.backgroundColor = "";
@@ -275,6 +321,11 @@ function addHoverToSubtaskEdit(event) {
   editIconEdit.style.display = "inline";
 }
 
+
+/**
+ * Removes hover effect from a subtask.
+ * @param {Event} event - The event object.
+ */
 function removeHoverFromSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   entryDiv.style.backgroundColor = "";
@@ -286,11 +337,16 @@ function removeHoverFromSubtaskEdit(event) {
   editIconEdit.style.display = "none";
 }
 
-function deleteSubtaskEdittest(event) {
+
+/**
+ * Deletes a subtask.
+ * @param {Event} event - The event object.
+ */
+function deleteSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
   let subTaskValueEdit = entryDiv.querySelector("li input").value;
 
-  const index = subtasksEdit.indexOf(subTaskValueEdit.value);
+  const index = subtasksEdit.indexOf(subTaskValueEdit);
   if (index !== -1) {
     subtasksEdit.splice(index, 1);
   }
@@ -302,67 +358,5 @@ function deleteSubtaskEdittest(event) {
       subtasksDone.splice(subtaskIndex, 1);
     }
   }
-
   entryDiv.parentNode.removeChild(entryDiv);
-}
-
-function deleteSubtaskEdit(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry-edit");
-  let subTaskValueEdit = entryDiv.querySelector("li input").value;
-
-  const index = subtasksEdit.indexOf(subTaskValueEdit); // Corrected: Removed .value from subTaskValueEdit
-  if (index !== -1) {
-    subtasksEdit.splice(index, 1);
-  }
-
-  for (let i = 0; i < tasks.length; i++) {
-    const subtasksDone = tasks[i].subtasksdone;
-    const subtaskIndex = subtasksDone.indexOf(subTaskValueEdit); // Corrected: Removed .value from subTaskValueEdit
-    if (subtaskIndex !== -1) {
-      subtasksDone.splice(subtaskIndex, 1);
-    }
-  }
-
-  entryDiv.parentNode.removeChild(entryDiv);
-}
-
-// SAVE TASK
-
-async function saveEditTask(i) {
-  saveTitleChange(i);
-  saveDescriptionChange(i);
-  saveDueDateChange(i);
-  savePrioEditChange(i);
-  saveAssignedToChangeInput(i);
-  saveSubtasksChangeInput(i);
-  // togglePopup(i);
-  await setItem("tasks", JSON.stringify(tasks));
-  editTask(i);
-}
-
-function saveTitleChange(i) {
-  let titleChangeInput = document.getElementById("titleInputEdit").value;
-  tasks[i].title = titleChangeInput;
-}
-
-function saveDescriptionChange(i) {
-  let descriptionChangeInput = document.getElementById("descriptionInputEdit").value;
-  tasks[i].description = descriptionChangeInput;
-}
-
-function saveDueDateChange(i) {
-  let dueDateChangeInput = document.getElementById("dueDateInputEdit").value;
-  tasks[i].dueDate = dueDateChangeInput;
-}
-
-function savePrioEditChange(i) {
-  tasks[i].prio = prioEdit;
-}
-
-function saveAssignedToChangeInput(i) {
-  tasks[i].assignedTo = assignedToEdit;
-}
-
-function saveSubtasksChangeInput(i) {
-  tasks[i].subtasks = subtasksEdit;
 }

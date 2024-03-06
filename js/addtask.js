@@ -1,36 +1,83 @@
+/**
+ * Array to store assigned contacts.
+ * @type {Array}
+ */
 let assignedTo = [];
+
+
+/**
+ * Priority of the task.
+ * @type {string}
+ */
 let prio = "medium";
+
+
+/**
+ * Category of the task.
+ * @type {string}
+ */
 let category = "";
+
+
+/**
+ * Array to store subtasks.
+ * @type {Array}
+ */
 let subtasks = [];
+
+
+/**
+ * Progress status of the task.
+ * @type {string}
+ */
 let progress = "todo";
 
+
+/**
+ * Set minimum date for due date input field to current date.
+ */
 dueDateInput.min = new Date().toISOString().split("T")[0];
 
+
+/**
+ * Change the clear button icon to an alternative one.
+ */
 function changeClearButtonIcon() {
   let icon = document.getElementById("clearButtonIcon");
-
   icon.src = "../img/clear-button-icon-alternative.svg";
 }
 
+
+/**
+ * Change the clear button icon back to the original one.
+ */
 function changeClearButtonIconBack() {
   let icon = document.getElementById("clearButtonIcon");
-
   icon.src = "../img/clear-button-icon.svg";
 }
 
+
+/**
+ * Change the clear button icon to an alternative one for mobile view.
+ */
 function changeClearButtonIconMobile() {
   let icon = document.getElementById("clearButtonIconMobile");
-
   icon.src = "../img/clear-button-icon-alternative.svg";
 }
 
+
+/**
+ * Change the clear button icon back to the original one for mobile view.
+ */
 function changeClearButtonIconBackMobile() {
   let icon = document.getElementById("clearButtonIconMobile");
-
   icon.src = "../img/clear-button-icon.svg";
 }
 
 
+/**
+ * Toggle the assignment dropdown menu.
+ */
 function toggleAssignmentDropdown() {
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
   if (assignmentDropdown.style.display === "flex") {
@@ -41,6 +88,11 @@ function toggleAssignmentDropdown() {
   }
 }
 
+
+/**
+ * Close assignment dropdown menu when clicking outside.
+ * @param {Event} event - The click event.
+ */
 document.addEventListener("click", function (event) {
   let assignmentSelect = document.getElementById("assignmentSelect");
   let assignmentDropdown = document.getElementById("assignmentDropdownList");
@@ -57,6 +109,10 @@ document.addEventListener("click", function (event) {
   }
 });
 
+
+/**
+ * Render assigned contacts to array.
+ */
 function renderAssignedToArray() {
   let initial = document.getElementById("renderedAssignedToContacts");
   let totalHTML = "";
@@ -76,6 +132,10 @@ function renderAssignedToArray() {
   initial.innerHTML = totalHTML;
 }
 
+
+/**
+ * Toggle the category dropdown menu.
+ */
 function toggleCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdownList");
   if (categoryDropdown.style.display === "flex") {
@@ -85,6 +145,11 @@ function toggleCategoryDropdown() {
   }
 }
 
+
+/**
+ * Close category dropdown menu when clicking outside.
+ * @param {Event} event - The click event.
+ */
 document.addEventListener("click", function (event) {
   let categorySelect = document.getElementById("categorySelect");
   let categoryDropdown = document.getElementById("categoryDropdownList");
@@ -99,6 +164,15 @@ document.addEventListener("click", function (event) {
   }
 });
 
+
+/**
+ * Generates HTML template for assignment contacts dropdown list entry.
+ * @param {string} name - The name of the contact.
+ * @param {string} initial - The initial of the contact.
+ * @param {string} initial_color - The background color of the initial.
+ * @param {number} id - The ID of the contact.
+ * @returns {string} The HTML template for assignment contacts dropdown list entry.
+ */
 function assignmentContactsTemplate(name, initial, initial_color, id) {
   return `
     <div class="assignment-dropdown-list-entry" onclick="selectAssignment(this, ${id})">
@@ -111,24 +185,28 @@ function assignmentContactsTemplate(name, initial, initial_color, id) {
   `;
 }
 
+
+/**
+ * Renders assignment contacts dropdown list.
+ * @param {Array<Object>} users - An array of user objects.
+ */
 async function renderAssignmentContacts(users) {
-  let assignmentDropdownList = document.getElementById(
-    "assignmentDropdownList"
-  );
+  let assignmentDropdownList = document.getElementById("assignmentDropdownList");
   assignmentDropdownList.innerHTML = "";
 
   users.forEach((user) => {
     const { name, initial, initial_color, id } = user;
-    const userHtml = assignmentContactsTemplate(
-      name,
-      initial,
-      initial_color,
-      id
-    );
+    const userHtml = assignmentContactsTemplate(name, initial, initial_color, id);
     assignmentDropdownList.innerHTML += userHtml;
   });
 }
 
+
+/**
+ * Handles selection of assignment contact.
+ * @param {HTMLElement} entry - The clicked assignment dropdown list entry.
+ * @param {number} id - The ID of the selected contact.
+ */
 function selectAssignment(entry, id) {
   let isSelected = entry.classList.toggle("selected");
   id = id - 1;
@@ -151,6 +229,12 @@ function selectAssignment(entry, id) {
   }
 }
 
+
+/**
+ * Changes priority and updates UI.
+ * @param {string} buttonId - The ID of the clicked priority button.
+ * @param {string} priority - The priority level.
+ */
 function changePriority(buttonId, priority) {
   let img;
   let buttons = document.querySelectorAll(".prio-selection-container div");
@@ -171,6 +255,11 @@ function changePriority(buttonId, priority) {
   }
 }
 
+
+/**
+ * Sets category and updates UI.
+ * @param {string} selectedCategory - The selected category.
+ */
 function setCategory(selectedCategory) {
   category = selectedCategory;
 
@@ -187,7 +276,11 @@ function setCategory(selectedCategory) {
   toggleCategoryDropdown();
 }
 
-function acitivateSubtaskEditor() {
+
+/**
+ * Activates subtask editor.
+ */
+function activateSubtaskEditor() {
   let imageContainer = document.getElementById("imageContainer");
   let subTaskInput = document.getElementById("subTaskInput");
 
@@ -205,11 +298,19 @@ function acitivateSubtaskEditor() {
   });
 }
 
+
+/**
+ * Focuses on subtask input field.
+ */
 function focusSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
   subTaskInput.focus();
 }
 
+
+/**
+ * Clears subtask input field.
+ */
 function clearSubtaskInput() {
   let subTaskInput = document.getElementById("subTaskInput");
   subTaskInput.value = "";
@@ -218,6 +319,10 @@ function clearSubtaskInput() {
   imageContainer.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInput()">`;
 }
 
+
+/**
+ * Adds subtask to the subtask list.
+ */
 function addSubtaskToList() {
   let subTaskInput = document.getElementById("subTaskInput");
   let subTaskValue = subTaskInput.value.trim();
@@ -234,6 +339,12 @@ function addSubtaskToList() {
   }
 }
 
+
+/**
+ * Adds a new subtask entry to the subtasks list.
+ * @param {HTMLElement} subtasksList - The list element where the subtask entry will be added.
+ * @param {string} subTaskValue - The value of the subtask.
+ */
 function addSubtaskEntry(subtasksList, subTaskValue) {
   subtasksList.innerHTML += `
     <div class="subtasks-list-entry" onmouseenter="addHoverToSubtask(event)" onmouseleave="removeHoverFromSubtask(event)">
@@ -247,6 +358,11 @@ function addSubtaskEntry(subtasksList, subTaskValue) {
   `;
 }
 
+
+/**
+ * Allows editing of a subtask.
+ * @param {Event} event - The click event triggering the edit action.
+ */
 function editSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");
   let subTaskInput = entryDiv.querySelector("li input");
@@ -264,258 +380,3 @@ function editSubtask(event) {
   let saveIcon = entryDiv.querySelector(".save-icon");
   saveIcon.style.display = "inline";
 }
-
-
-function saveSubtask(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry");
-  let subTaskInput = entryDiv.querySelector("li input");
-  let subTaskValue = subTaskInput.value.trim();
-
-  entryDiv.onmouseenter = addHoverToSubtask;
-  entryDiv.onmouseleave = removeHoverFromSubtask;
-
-  let originalSubtaskValue = subTaskInput.defaultValue.trim();
-
-  const index = subtasks.indexOf(originalSubtaskValue);
-  if (index !== -1) {
-    subtasks[index] = subTaskValue;
-  }
-
-  subTaskInput.readOnly = true;
-  subTaskInput.style.backgroundColor = "";
-
-  let saveIcon = entryDiv.querySelector(".save-icon");
-  saveIcon.style.display = "none";
-  let editIcon = entryDiv.querySelector(".edit-icon");
-  editIcon.style.display = "inline";
-}
-
-
-
-
-
-function addHoverToSubtask(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry");
-  entryDiv.style.backgroundColor = "";
-
-  let deleteIcon = entryDiv.querySelector(".delete-icon");
-  deleteIcon.style.display = "inline";
-
-  let editIcon = entryDiv.querySelector(".edit-icon");
-  editIcon.style.display = "inline";
-}
-
-function removeHoverFromSubtask(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry");
-  entryDiv.style.backgroundColor = "";
-
-  let deleteIcon = entryDiv.querySelector(".delete-icon");
-  deleteIcon.style.display = "none";
-
-  let editIcon = entryDiv.querySelector(".edit-icon");
-  editIcon.style.display = "none";
-}
-
-function deleteSubtask(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry");
-  let subTaskValue = entryDiv.querySelector("li input").value;
-
-  const index = subtasks.indexOf(subTaskValue);
-  if (index !== -1) {
-    subtasks.splice(index, 1);
-  }
-
-  entryDiv.parentNode.removeChild(entryDiv);
-}
-
-async function addNewTask() {
-  let title = document.getElementById("titleInput").value;
-  let description = document.getElementById("descriptionInput").value;
-  let dueDate = document.getElementById("dueDateInput").value;
-
-  if (!title) {
-    handleTitleError();
-    return;
-  }
-  if (!category) {
-    handleCategoryError();
-    return;
-  }
-
-  let newTask = createNewTask(title, description, dueDate,);
-  await saveTask(newTask);
-  resetAddTaskForm();
-  redirectToBoardPage();
-}
-
-async function addNewTaskBoard() {
-  let title = document.getElementById("titleInput").value;
-  let description = document.getElementById("descriptionInput").value;
-  let dueDate = document.getElementById("dueDateInput").value;
-
-  if (!title) {
-    handleTitleError();
-    return;
-  }
-  if (!category) {
-    handleCategoryError();
-    return;
-  }
-
-  let newTask = createNewTask(title, description, dueDate,);
-  await saveTask(newTask);
-  resetAddTaskForm();
-  openAddTaskPopUp();
-  // hidePopup(popup, popUpAddTaskContainer);
-  updateHTML();
-  // redirectToBoardPage();
-}
-
-function handleTitleError() {
-  let errorTitle = document.getElementById("errorTitle");
-  let titleInput = document.getElementById("titleInput");
-  let errorCategory = document.getElementById("requiredCategoryMessage");
-  let categoryInput = document.getElementById("categorySelect");
-
-  errorTitle.innerHTML = `A Title is required!`;
-  titleInput.style.borderColor = "red";
-  errorCategory.innerHTML = ``;
-  categoryInput.style.borderColor = "#D1D1D1";
-}
-
-function handleCategoryError() {
-  let errorTitle = document.getElementById("errorTitle");
-  let titleInput = document.getElementById("titleInput");
-  let errorCategory = document.getElementById("requiredCategoryMessage");
-  let categoryInput = document.getElementById("categorySelect");
-
-  errorTitle.innerHTML = ``;
-  titleInput.style.borderColor = "#D1D1D1";
-  errorCategory.innerHTML = `A Category must be selected!`;
-  categoryInput.style.borderColor = "red";
-}
-
-function createNewTask(title, description, dueDate) {
-  let cleanedTitle = title.trim() === "" ? "" : title;
-  let cleanedDescription = description.trim() === "" ? "" : description;
-  let cleanedDueDate = dueDate.trim() === "" ? "" : dueDate;
-
-  return {
-    id: Date.now(),
-    title: cleanedTitle,
-    description: cleanedDescription,
-    assignedTo,
-    dueDate: cleanedDueDate,
-    prio,
-    category,
-    subtasks,
-    subtasksdone: [],
-    progress,
-  };
-}
-
-async function saveTask(task) {
-  tasks.push(task);
-  await setItem("tasks", JSON.stringify(tasks));
-}
-
-function redirectToBoardPage() {
-  window.location.href = "/pages/board.html";
-}
-
-function resetTitleInput() {
-  let titleInput = document.getElementById("titleInput");
-  titleInput.value = "";
-  titleInput.style.borderColor = "#D1D1D1";
-  document.getElementById("errorTitle").innerHTML = "";
-}
-
-function resetDescriptionInput() {
-  document.getElementById("descriptionInput").value = "";
-}
-
-function resetAssignedTo() {
-  assignedTo = [];
-  renderAssignedToArray();
-}
-
-function resetDueDateInput() {
-  document.getElementById("dueDateInput").value = "";
-}
-
-function resetPriority() {
-  changePriority("mediumButton", "medium");
-  let mediumButton = document.getElementById("mediumButton");
-  mediumButton.classList.add("medium");
-  mediumButton.querySelector("img").src =
-    "../img/medium-button-icon-active.svg";
-}
-
-function resetCategory() {
-  category = "";
-  let categorySelect = document.getElementById("categorySelect");
-  categorySelect.innerHTML =
-    'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
-  document.getElementById("requiredCategoryMessage").innerHTML = "";
-  categorySelect.style.borderColor = "#D1D1D1";
-}
-
-function resetSubtasks() {
-  subtasks = [];
-  document.getElementById("subtasksList").innerHTML = "";
-}
-
-function resetAssignmentDropdownList() {
-  let assignmentDropdownList = document.getElementById(
-    "assignmentDropdownList"
-  );
-  assignmentDropdownList.style.display = "none";
-  let contactOptions = document.querySelectorAll(
-    ".assignment-dropdown-list-entry"
-  );
-  contactOptions.forEach((option) => {
-    option.classList.remove("selected");
-    option.style.backgroundColor = "";
-    option.querySelector("img").src = "../img/check-button.svg";
-  });
-}
-
-function resetCategoryDropdownList() {
-  document.getElementById("categoryDropdownList").style.display = "none";
-}
-
-function resetAddTaskForm() {
-  resetTitleInput();
-  resetDescriptionInput();
-  resetAssignedTo();
-  resetDueDateInput();
-  resetPriority();
-  resetCategory();
-  resetSubtasks();
-  resetAssignmentDropdownList();
-  resetCategoryDropdownList();
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  let descriptionInput = document.getElementById("descriptionInput");
-
-  descriptionInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-
-      let cursorPos = this.selectionStart;
-      let newValue =
-        this.value.slice(0, cursorPos) + "\n" + this.value.slice(cursorPos);
-      this.value = newValue;
-      this.setSelectionRange(cursorPos + 1, cursorPos + 1);
-    }
-  });
-});
