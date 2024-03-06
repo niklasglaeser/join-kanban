@@ -340,9 +340,22 @@ main {
     padding: 16px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     width: 100%;
-    height: 100vh;
-    z-index: 20;
+    /* height: 100vh; */
+}
 
+.drag-area-drop-here {
+    min-width: 222px;
+    max-width: 222px;
+    min-height: 60px;
+    max-height: 222px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    color: var(--blue-light);
 
 }
 
@@ -372,12 +385,6 @@ main {
     position: relative;
 }
 
-/* .task-category-wrapper img {
-    width: 16px;
-    height: 16px;
-    margin: 4px;
-    cursor: pointer;
-} */
 
 .moveToIcon {
     height: 24px;
@@ -386,27 +393,27 @@ main {
 }
 
 .disabledMoveToIcon {
-    color: var(--blue-light);
-    background-color: var(--grey-light);
+    color: var(--grey);
+    background-color: var(--grey);
     pointer-events: none;
+    display: none;
 }
-
 
 .task-dropdown {
     position: absolute;
     display: none;
     flex-direction: column;
-    justify-content: center;
     gap: 6px;
     background-color: var(--grey);
     width: 145px;
-    height: 190px;
+    height: 140px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 0;
     right: 0;
     border-radius: 12px 0px 12px 12px;
     padding-left: 8px;
+    padding-top: 8px;
 }
 
 .task-dropdown span {

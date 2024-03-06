@@ -3,6 +3,7 @@ let mobileStatus = false;
 let resizeTimer;
 let innerWidth = window.innerWidth;
 
+
 /**
  * Check Window size for mobileStatus
  */
@@ -20,6 +21,7 @@ window.onresize = function () {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(checkWindowSize, 450);
 };
+
 
 /**
  * push new contact to user json - reset form and set new contact to "active"
@@ -41,6 +43,7 @@ async function addContact() {
   setCardActive(getIdFromContact(currentContact));
 }
 
+
 /**
  * get firstletter from username
  * @param {string}
@@ -54,6 +57,7 @@ function getInitial(username) {
   return initial;
 }
 
+
 /**
  * get random color from AVATAR_COLORS array
  * @returns hex farbcode
@@ -62,6 +66,7 @@ function getInitialColor() {
   let randomColor = Math.floor(Math.random() * AVATAR_COLORS.length);
   return AVATAR_COLORS[randomColor];
 }
+
 
 /**
  * reset input form
@@ -72,6 +77,7 @@ function resetForm() {
   email.value = "";
   phone.value = "";
 }
+
 
 /**
  * sort and render contactlist with firstletter headline
@@ -96,6 +102,7 @@ async function renderContact() {
   }
 }
 
+
 /**
  * sort contacts by alphabet
  */
@@ -104,6 +111,7 @@ function sortContacts() {
     return a.name.charAt(0).localeCompare(b.name.charAt(0));
   });
 }
+
 
 /**
  * Find index of a contact in array based on the contacts name
@@ -114,6 +122,7 @@ function getIdFromContact(currentContact) {
   return contacts.findIndex((obj) => obj.name == `${currentContact}`);
 }
 
+
 /**
  * generate headline for contactlist
  * @param {string}
@@ -122,6 +131,7 @@ function generateHeadline(letter) {
   let contactList = document.getElementById("contact-list");
   contactList.innerHTML += generateHeadlineHTML(letter);
 }
+
 
 /**
  * generate card for contact in first letter section
@@ -133,6 +143,7 @@ function generateCard(i, contact, firstLetter) {
   let card = document.getElementById(firstLetter);
   card.innerHTML += generateCardHTML(i, contact);
 }
+
 
 /**
  * generate card details for contact
@@ -151,6 +162,7 @@ function generateUserDetails(i) {
   }
 }
 
+
 /**
  * set current contact to "active"
  * @param {number}
@@ -168,6 +180,7 @@ function setCardActive(i) {
   }
 }
 
+
 /**
  * close details page
  */
@@ -176,6 +189,7 @@ function generateUserDetailsClose() {
   contactRight.style.display = "";
   contactRight.style.position = "";
 }
+
 
 /**
  * toggle popup and overlay.
@@ -190,6 +204,7 @@ function togglePopup() {
     showPopup(overlay, popup);
   }
 }
+
 
 /**
  * toggle popupEdit and overlay.
@@ -206,6 +221,7 @@ function togglePopupEdit(i) {
   }
 }
 
+
 /**
  * slide in message
  * @param {string} message
@@ -219,6 +235,7 @@ function toogleInfo(message) {
   }, 2000);
 }
 
+
 /**
  * slide in delete warn user
  * @param {number}
@@ -228,6 +245,7 @@ function toogleDeleteWarn(i) {
   info.innerHTML = toogleDeleteWarnHTML(i);
   info.classList.add("info-slideIn");
 }
+
 
 /**
  * slide in edit contact info
@@ -245,6 +263,7 @@ function toogleInfoEditMobile() {
   }
 }
 
+
 /**
  * Checks if the popup and overlay visible.
  * @param {HTMLElement}
@@ -258,6 +277,7 @@ function popupVisible(overlay, popup) {
   );
 }
 
+
 /**
  * Hides the popup and overlay.
  * @param {HTMLElement}
@@ -268,6 +288,7 @@ function hidePopup(overlay, popup) {
   overlay.classList.add("d-none");
   popup.classList.remove("popup-slideIn");
 }
+
 
 /**
  * Shows the popup and overlay.
@@ -280,6 +301,7 @@ function showPopup(overlay, popup) {
   popup.classList.add("popup-slideIn");
 }
 
+
 /**
  * delete contact und hide popup
  * @param {number}
@@ -290,6 +312,7 @@ function confirmDeleteUser(i) {
   hidePopup(overlay, popupEdit);
 }
 
+
 /**
  * close delete popup
  */
@@ -297,6 +320,7 @@ function cancelDelete() {
   let info = document.getElementById("info");
   info.classList.remove("info-slideIn");
 }
+
 
 /**
  * render contact in edit popup
@@ -308,6 +332,7 @@ function generateEditCard(i) {
   editContact.innerHTML = "";
   editContact.innerHTML = generateEditCardHTML(i, contact);
 }
+
 
 /**
  * save changes from contact and push to array, close popup
@@ -331,6 +356,7 @@ async function saveEdit(i) {
   setCardActive(getIdFromContact(currentContact));
   togglePopupEdit(i);
 }
+
 
 /**
  * delete contact

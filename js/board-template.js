@@ -10,10 +10,10 @@ function generateTodoHTML(element, taskID) {
     <span class="task-category white">${element["category"]}</span>
     <img id="taskDropdownIcon_${taskID}" class="moveToIcon" src="../img/move-category.svg" onclick="taskOpenDropdown(${taskID});stopPropagation(event);"></img>
     <div id="taskDropdown_${taskID}" class="task-dropdown">
-      <span class="font-14-light white ${element["progress"] === "todo" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "todo" ? `moveToMobile(${taskID},'todo');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>ToDo</span>
-      <span class="font-14-light white ${element["progress"] === "inProgress" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "inProgress" ? `moveToMobile(${taskID},'inProgress');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>In Progress</span>
-      <span class="font-14-light white ${element["progress"] === "awaitFeedback" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "awaitFeedback" ? `moveToMobile(${taskID},'awaitFeedback');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
-      <span class="font-14-light white ${element["progress"] === "done" ? "disabledMoveToIcon" : ""}" onclick="${element["progress"] !== "done" ? `moveToMobile(${taskID},'done');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Done</span>
+      <span class="font-14-light white ${element["progress"] === "todo" ? "disabledMoveToIcon" : ""}" style="${element["progress"] === "todo" ? "display: none;" : ""}" onclick="${element["progress"] !== "todo" ? `moveToMobile(${taskID},'todo');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>ToDo</span>
+      <span class="font-14-light white ${element["progress"] === "inProgress" ? "disabledMoveToIcon" : ""}" style="${element["progress"] === "inProgress" ? "display: none;" : ""}" onclick="${element["progress"] !== "inProgress" ? `moveToMobile(${taskID},'inProgress');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>In Progress</span>
+      <span class="font-14-light white ${element["progress"] === "awaitFeedback" ? "disabledMoveToIcon" : ""}" style="${element["progress"] === "awaitFeedback" ? "display: none;" : ""}" onclick="${element["progress"] !== "awaitFeedback" ? `moveToMobile(${taskID},'awaitFeedback');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Await Feedback</span>
+      <span class="font-14-light white ${element["progress"] === "done" ? "disabledMoveToIcon" : ""}" style="${element["progress"] === "done" ? "display: none;" : ""}" onclick="${element["progress"] !== "done" ? `moveToMobile(${taskID},'done');stopPropagation(event);` : ""}"><img src="../img/arrow-left.svg"></img>Done</span>
     </div>
   </div>
   <div class="task-description">

@@ -1,13 +1,55 @@
+/**
+ * Array to store user data.
+ * @type {Array}
+ */
 let users = [];
+
+
+/**
+ * Array to store contact data.
+ * @type {Array}
+ */
 let contacts = [];
+
+
+/**
+ * Array to store task data.
+ * @type {Array}
+ */
 let tasks = [];
 
+
+/**
+ * ID of the active user retrieved from local storage.
+ * @type {string}
+ */
 let activeUserId = JSON.parse(localStorage.getItem("activeUser"));
+
+
+/**
+ * Details of the active user.
+ * @type {string}
+ */
 let activeUser = "";
-let animationMobil = false;
+
+
+/**
+ * Login status from local storage.
+ * @type {boolean}
+ */
 let checkLogin = JSON.parse(localStorage.getItem("checkLogin"));
+
+
+/**
+ * Current path of the page.
+ * @constant {string}
+ */
 const ACTIVEPATH = window.location.href;
 
+
+/**
+ * Init the page by loading users and preparing various pages.
+ */
 async function init() {
   await loadUsers();
   await includeHTML();
@@ -21,6 +63,10 @@ async function init() {
   prepareHelpPage();
 }
 
+/**
+ * Checks if a registered user is logged in.
+ * @returns {Promise<void>} A promise that resolves if a registered user is logged in, and rejects otherwise.
+ */
 async function checkRegUser() {
   return new Promise((resolve, reject) => {
     let backgroundNotLogin = document.getElementById("backgroundNotLogin");
@@ -36,6 +82,10 @@ async function checkRegUser() {
   });
 }
 
+/**
+ * Includes HTML files into the document based on the elements with the attribute 'w3-include-html'.
+ * @returns {Promise<void>} A promise that resolves when all HTML files are successfully included, or rejects if any file is not found.
+ */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {

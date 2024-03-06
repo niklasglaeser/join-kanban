@@ -45,8 +45,20 @@ function moveToMobile(taskID, progress) {
  * @param {string} id The ID of the drag area to highlight.
  */
 function highlight(id) {
-  document.getElementById(id).classList.add("drag-area-highlight");
+  let element = document.getElementById(id);
+  
+  if (!element.querySelector('.drag-area-drop-here')) {
+    let dropCard = document.createElement("div");
+    dropCard.textContent = "Drop";
+    dropCard.id= "dropHere";
+    dropCard.classList.add("drag-area-drop-here","font-21-light");
+    element.appendChild(dropCard);
+  }
+  element.classList.add("drag-area-highlight");
 }
+
+
+
 
 /**
  * Removes the highlight from a drag area.
@@ -54,6 +66,10 @@ function highlight(id) {
  */
 function removeHighlight(id) {
   document.getElementById(id).classList.remove("drag-area-highlight");
+  let elementToRemove = document.getElementById("dropHere");
+elementToRemove.parentNode.removeChild(elementToRemove);
+
+  // document.querySelector('.drag-area-drop-here').classList.remove("drag-area-drop-here");
 }
 
 /**

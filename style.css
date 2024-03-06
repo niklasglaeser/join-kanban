@@ -5,7 +5,6 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Inter, sans-serif;
-    /* overflow: hidden; */
 }
 
 header {
@@ -78,9 +77,6 @@ main {
 #joinLogo {
     position: absolute;
     width: 100.03px;
-    /* height: 121.97px; */
-    /* margin-top: 80px;
-    margin-left: 77px; */
     animation: forwards 1;
     animation-name: moving-to-target;
     animation-duration: 1.5s;
@@ -115,11 +111,8 @@ main {
     border-radius: 30px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     background-color: #FFF;
-    /* border: solid 30px; */
     box-sizing: border-box;
     border-color: #FFF;
-    /* margin-top: 30px; */
-    /* margin-bottom: 100px; */
 }
 
 #loginContainer h1 {
@@ -456,8 +449,6 @@ footer a:hover {
         }
     }
 
-
-
     #loginContainer h1 {
         font-size: 42px;
     }
@@ -568,22 +559,9 @@ footer a:hover {
         font-size: 21px;
     }
 
-    /* #signUpContainer {
-        width: 280px;
-        height: 590px;
-        margin-bottom: 30px;
-        margin-top: 30px;
-    } */
-
     #signUpContainer h1 {
         font-size: 32px;
     }
-
-    /* 
-    .signUpInputs {
-        width: 200px;
-
-    } */
 
     #joinLogo {
         position: absolute;

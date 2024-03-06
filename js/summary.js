@@ -68,7 +68,7 @@ function taskUrgentDeadline() {
   if (urgentDates.length > 0) {
     taskUrgentDeadline.innerHTML = urgentDates[0];
   } else {
-    taskUrgentDeadline.innerHTML = "No date found for urgent task";
+    taskUrgentDeadline.innerHTML = "No date found";
   }
 }
 

@@ -231,19 +231,6 @@ main {
     padding-left: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .right-column {
     display: flex;
     flex-direction: column;
@@ -255,7 +242,6 @@ main {
 
 #dueDateInput,
 #dueDateInputEdit {
-    /* width: 440px; */
     width: 100%;
     background-color: white;
     border-radius: 10px;
@@ -264,9 +250,6 @@ main {
     margin-top: 8px;
     font-size: 18px;
 }
-
-
-
 
 #urgentButton {
     height: 56px;
@@ -1004,6 +987,11 @@ main {
         padding: 12px;
     }
 
+    .cardInitialAssignedToAddTask {
+        height: 30px;
+        width: 30px;
+        font-size: 12px;
+    }
 
 
 }
