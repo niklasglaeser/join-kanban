@@ -3,6 +3,7 @@
  */
 let currentDraggedElement;
 
+
 /**
  * Prevents the default behavior of an event.
  * @param {Event} ev The event object.
@@ -19,6 +20,7 @@ function startDragging(taskID) {
   currentDraggedElement = taskID;
 }
 
+
 /**
  * Moves a task to a new progress status and updates the dashboard.
  * @param {string} progress The progress status to move the task to.
@@ -28,6 +30,7 @@ function moveTo(progress) {
   tasks[index]["progress"] = progress;
   updateHTML();
 }
+
 
 /**
  * Moves a task to a new progress status on mobile devices and updates the dashboard.
@@ -39,6 +42,7 @@ function moveToMobile(taskID, progress) {
   tasks[index]["progress"] = progress;
   updateHTML();
 }
+
 
 /**
  * Highlights a drag area.
@@ -58,19 +62,22 @@ function highlight(id) {
 }
 
 
-
-
 /**
  * Removes the highlight from a drag area.
  * @param {string} id The ID of the drag area to remove the highlight from.
  */
 function removeHighlight(id) {
-  document.getElementById(id).classList.remove("drag-area-highlight");
-  let elementToRemove = document.getElementById("dropHere");
-elementToRemove.parentNode.removeChild(elementToRemove);
+  let highlightedElement = document.getElementById(id);
+  if (highlightedElement) {
+    highlightedElement.classList.remove("drag-area-highlight");
+  }
 
-  // document.querySelector('.drag-area-drop-here').classList.remove("drag-area-drop-here");
+  let elementToRemove = document.getElementById("dropHere");
+  if (elementToRemove && elementToRemove.parentNode) {
+    elementToRemove.parentNode.removeChild(elementToRemove);
+  }
 }
+
 
 /**
  * Rotates a task card for dragging.
@@ -80,6 +87,7 @@ function rotateTask(taskID) {
   currentCardDragged = taskID;
   document.getElementById(`task_${taskID}`).classList.add("rotate-task");
 }
+
 
 /**
  * Reverts the rotation of a task card after dragging.

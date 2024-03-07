@@ -4,17 +4,20 @@
  */
 let assignedToEdit = [];
 
+
 /**
  * Stores the priority for editing
  * @type {string}
  */
 let prioEdit = "";
 
+
 /**
  * Stores the button ID for editing
  * @type {string}
  */
 let buttonIdEdit = "";
+
 
 /**
  * Array to store subtasks for editing
@@ -256,7 +259,7 @@ function addSubtaskToListEdit() {
 
 
 /**
- * Generates HTMl for adding a subtask entry to the list in the edit Popup
+ * HTMl for adding a subtask entry to the list in the edit Popup
  * @param {HTMLElement} subtasksListEdit - The subtasks list element
  * @param {string} subTaskValueEdit - The value of the subtask
  */
@@ -402,6 +405,7 @@ function deleteSubtaskEdit(event) {
   }
   entryDiv.parentNode.removeChild(entryDiv);
 }
+
 
 /**
  * Enables the Enter key to create a new line in the description input field of the task edit form.
