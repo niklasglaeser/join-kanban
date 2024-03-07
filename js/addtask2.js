@@ -195,7 +195,7 @@ async function saveTask(task) {
  * Redirects to the board page
  */
 function redirectToBoardPage() {
-  window.location.href = "/pages/board.html";
+  window.location.href = "../pages/board.html";
 }
 
 
