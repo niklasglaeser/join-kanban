@@ -1,4 +1,45 @@
 /**
+ * Deletes a subtask in the Edit Popup onClick
+ * @param {Event} event - The click Event
+ */
+function deleteSubtaskEdit(event) {
+  let entryDiv = event.target.closest(".subtasks-list-entry-edit");
+  let subTaskValueEdit = entryDiv.querySelector("li input").value;
+
+  const index = subtasksEdit.indexOf(subTaskValueEdit);
+  if (index !== -1) {
+    subtasksEdit.splice(index, 1);
+  }
+
+  for (let i = 0; i < tasks.length; i++) {
+    const subtasksDoneEditArray = subtasksDoneEdit;
+    const subtaskIndex = subtasksDoneEditArray.indexOf(subTaskValueEdit);
+    if (subtaskIndex !== -1) {
+      subtasksDoneEditArray.splice(subtaskIndex, 1);
+    }
+  }
+  entryDiv.parentNode.removeChild(entryDiv);
+}
+
+
+/**
+ * Enables the Enter key to create a new line in the description input field of the task edit form.
+ */
+function enableEnterForNewLineEditTask() {
+  document.getElementById("descriptionInputEdit").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const cursorPosition = this.selectionStart;
+      const value = this.value;
+      const newValue = value.slice(0, cursorPosition) + '\n' + value.slice(cursorPosition);
+      this.value = newValue;
+      this.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
+    }
+  });
+}
+
+
+/**
  * Saves edited task
  * @param {number} i - The index of the task
  */
