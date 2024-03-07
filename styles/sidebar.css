@@ -68,6 +68,10 @@ nav {
   fill: var(--white);
 }
 
+a.active>img {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
 .nav-imprint {
   display: flex;
   padding: 243px 0px 0px 0;

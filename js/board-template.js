@@ -32,7 +32,6 @@ function generateTodoHTML(element, taskID) {
 `;
 }
 
-
 /**
  * Generates card of a task.
  * @param {number} i index of the task.

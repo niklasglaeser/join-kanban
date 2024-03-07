@@ -17,6 +17,7 @@ async function updateHTML(filteredTasks) {
         let taskID = task.id;
         let generateHTML = generateTodoHTML(task, taskID);
         element.innerHTML += generateHTML;
+        updateCategoryStyles();
         generateAssignedToInitial(task, taskID, "cardInitial", "cardInitialAssignedTo", 5);
         generatePrioIcon(task, taskID, "prioArrow");
         generateSubTask(task, taskID);
@@ -344,3 +345,14 @@ document.addEventListener("click", (event) => {
     subtasksEdit = [];
   }
 });
+
+
+function updateCategoryStyles() {
+  document.querySelectorAll('.task-category').forEach(function(categorySpan) {
+    if (categorySpan.textContent === "User Story") {
+      categorySpan.style.backgroundColor = '#0038FF';
+    } else {
+      categorySpan.style.backgroundColor = '#1FD7C1';
+    }
+  });
+}
