@@ -41,7 +41,7 @@ function generateCard(i) {
   overlayTask.innerHTML = /*HTML*/ `
   <div id="taskPopup" class="overlayTaskWrapper">
     <div class="overlayTaskHeader">
-      <div class="task-category font-21-light white">${task.category}</div>
+    <div class="task-category font-21-light white ${task.category === 'User Story' ? 'categoryTechnicalTask' : 'categoryUserStory'}">${task.category}</div>
       <img id="closeBtn" class="overlayTaskClose" onclick="togglePopup()" src="../img/close-btn-black.svg">
     </div>
     <div class="overlayTaskWrapperMain">
