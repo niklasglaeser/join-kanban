@@ -1003,4 +1003,7 @@ main {
         font-size: 12px;
     }
 
+    #subtaskEditInputEdit {
+        width: 220px;
+    }
 }
