@@ -379,4 +379,12 @@ function editSubtask(event) {
   deleteIcon.style.display = "inline";
   let saveIcon = entryDiv.querySelector(".save-icon");
   saveIcon.style.display = "inline";
+
+  subTaskInput.addEventListener("input", function() {
+    if (subTaskInput.value.trim() === "") {
+      saveIcon.style.display = "none";
+    } else {
+      saveIcon.style.display = "inline";
+    }
+  });
 }

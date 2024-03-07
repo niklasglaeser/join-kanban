@@ -68,6 +68,7 @@ function saveAssignedToChangeInput(i) {
 */
 function saveSubtasksChangeInput(i) {
     tasks[i].subtasks = subtasksEdit;
+    tasks[i].subtasksdone = subtasksDoneEdit;
 }
 
 
@@ -91,10 +92,10 @@ function updateSubtaskInList(originalValue, newValue) {
  */
 function updateSubtaskInTasks(originalValue, newValue) {
   for (let i = 0; i < tasks.length; i++) {
-    const subtasksDone = tasks[i].subtasksdone;
-    const subtaskIndex = subtasksDone.indexOf(originalValue);
+    const subtasksDoneEditArray = subtasksDoneEdit;
+    const subtaskIndex = subtasksDoneEditArray.indexOf(originalValue);
     if (subtaskIndex !== -1) {
-      subtasksDone[subtaskIndex] = newValue;
+      subtasksDoneEditArray[subtaskIndex] = newValue;
     }
   }
 }
@@ -122,7 +123,7 @@ function hideIcons(entryDiv) {
 
 
 /**
- * Saves a subtask after editing
+ * Saves a subtask edit
  * @param {Event} event - the click on the checkmark that triggers the event
  */
 function saveSubtaskEdit(event) {

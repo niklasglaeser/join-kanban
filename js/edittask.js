@@ -22,6 +22,14 @@ let buttonIdEdit = "";
  */
 let subtasksEdit = [];
 
+/**
+ * Array to store subtasksdone for editing
+ * @type {Array}
+ */
+let subtasksDoneEdit = [];
+
+
+
 
 /**
  * Changes the priority of a task for editing
@@ -270,7 +278,7 @@ function addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit) {
  * Renders subtasks of the opened task for editing
  * @param {number} i - The index of the task.
  */
-function renderSubtasksEdit(i) {
+function renderSubtasksEditTest(i) {
   let subtasksListEdit = document.getElementById("subtasksListEdit");
   subtasksListEdit.innerHTML = "";
 
@@ -281,6 +289,32 @@ function renderSubtasksEdit(i) {
     });
   }
 }
+
+/**
+ * Renders subtasks of the opened task for editing
+ * @param {number} i - The index of the task.
+ */
+function renderSubtasksEdit(i) {
+  let subtasksListEdit = document.getElementById("subtasksListEdit");
+  subtasksListEdit.innerHTML = "";
+
+  subtasksEdit = [];
+  subtasksDoneEdit = [];
+
+  if (tasks[i] && tasks[i].subtasks) {
+    tasks[i].subtasks.forEach((subTaskValueEdit) => {
+      addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit);
+      subtasksEdit.push(subTaskValueEdit);
+    });
+  }
+
+  if (tasks[i] && tasks[i].subtasksdone) {
+    tasks[i].subtasksdone.forEach((subTaskDoneValueEdit) => {
+      subtasksDoneEdit.push(subTaskDoneValueEdit);
+    });
+  }
+}
+
 
 
 /**
@@ -303,6 +337,14 @@ function editSubtaskEdit(event) {
   deleteIconEdit.style.display = "inline";
   let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
   saveIconEdit.style.display = "inline";
+
+  subTaskInputEdit.addEventListener("input", function() {
+    if (subTaskInputEdit.value.trim() === "") {
+      saveIconEdit.style.display = "none";
+    } else {
+      saveIconEdit.style.display = "inline";
+    }
+  });
 }
 
 
