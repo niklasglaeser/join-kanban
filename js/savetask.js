@@ -1,6 +1,6 @@
 /**
- * Saves edited task.
- * @param {number} i - The index of the task.
+ * Saves edited task
+ * @param {number} i - The index of the task
  */
 async function saveEditTask(i) {
     saveTitleChange(i);
@@ -25,8 +25,8 @@ function saveTitleChange(i) {
   
   
 /**
-* Saves changes to the description of the task.
-* @param {number} i - The index of the task.
+* Saves changes to the description of the task
+* @param {number} i - The index of the task
 */
 function saveDescriptionChange(i) {
     let descriptionChangeInput = document.getElementById("descriptionInputEdit").value;
@@ -35,8 +35,8 @@ function saveDescriptionChange(i) {
   
   
 /**
-* Saves changes to the due date of the task.
-* @param {number} i - The index of the task.
+* Saves changes to the due date of the task
+* @param {number} i - The index of the task
 */
 function saveDueDateChange(i) {
     let dueDateChangeInput = document.getElementById("dueDateInputEdit").value;
@@ -45,8 +45,8 @@ function saveDueDateChange(i) {
   
   
 /**
-* Saves changes to the priority of the task.
-* @param {number} i - The index of the task.
+* Saves changes to the priority of the task
+* @param {number} i - The index of the task
 */
 function savePrioEditChange(i) {
     tasks[i].prio = prioEdit;
@@ -54,8 +54,8 @@ function savePrioEditChange(i) {
   
   
 /**
-* Saves changes to the assigned contacts of the task.
-* @param {number} i - The index of the task.
+* Saves changes to the assigned contacts of the task
+* @param {number} i - The index of the task
 */
 function saveAssignedToChangeInput(i) {
     tasks[i].assignedTo = assignedToEdit;
@@ -63,8 +63,8 @@ function saveAssignedToChangeInput(i) {
   
   
 /**
-* Saves changes to the subtasks of the task.
-* @param {number} i - The index of the task.
+* Saves changes to the subtasks of the task
+* @param {number} i - The index of the task
 */
 function saveSubtasksChangeInput(i) {
     tasks[i].subtasks = subtasksEdit;
@@ -72,9 +72,9 @@ function saveSubtasksChangeInput(i) {
 
 
 /**
- * Updates a subtask in the list.
- * @param {string} originalValue - The original value of the subtask.
- * @param {string} newValue - The new value of the subtask.
+ * Updates a subtask in the list
+ * @param {string} originalValue - The original value of the subtask
+ * @param {string} newValue - The edited value of the subtask
  */
 function updateSubtaskInList(originalValue, newValue) {
   const index = subtasksEdit.indexOf(originalValue);
@@ -85,9 +85,9 @@ function updateSubtaskInList(originalValue, newValue) {
 
 
 /**
- * Updates a subtask in tasks.
- * @param {string} originalValue - The original value of the subtask.
- * @param {string} newValue - The new value of the subtask.
+ * Updates a subtask in tasks
+ * @param {string} originalValue - The original value of the subtask
+ * @param {string} newValue - The new value of the subtask
  */
 function updateSubtaskInTasks(originalValue, newValue) {
   for (let i = 0; i < tasks.length; i++) {
@@ -101,8 +101,8 @@ function updateSubtaskInTasks(originalValue, newValue) {
 
 
 /**
- * Disables the subtask input.
- * @param {HTMLElement} inputElement - The input element.
+ * Disables the subtask input
+ * @param {HTMLElement} inputElement - The input element
  */
 function disableSubtaskEditInput(inputElement) {
   inputElement.readOnly = true;
@@ -111,8 +111,8 @@ function disableSubtaskEditInput(inputElement) {
 
 
 /**
- * Hides icons for editing subtask.
- * @param {HTMLElement} entryDiv - The entry div element.
+ * Hides icons for editing subtask
+ * @param {HTMLElement} entryDiv - The entry div element
  */
 function hideIcons(entryDiv) {
   entryDiv.querySelector(".save-icon-edit").style.display = "none";
@@ -122,8 +122,8 @@ function hideIcons(entryDiv) {
 
 
 /**
- * Saves a subtask after editing.
- * @param {Event} event - The event object.
+ * Saves a subtask after editing
+ * @param {Event} event - the click on the checkmark that triggers the event
  */
 function saveSubtaskEdit(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry-edit");
