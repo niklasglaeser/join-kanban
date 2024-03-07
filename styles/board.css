@@ -3,10 +3,6 @@ main {
     justify-content: start;
     flex-direction: column;
     position: relative;
-    /* min-height: 100%; */
-
-    /* overflow: scroll; */
-    /* background-color: var(--background); */
 }
 
 .d-none {
@@ -43,7 +39,6 @@ main {
     align-items: center;
     z-index: 1000;
     transform: translateX(200%);
-    /* transform: translateX(0); */
     transition: all 425ms ease-in-out;
 }
 
@@ -85,34 +80,10 @@ main {
 }
 
 .overlayTaskClose {
-    /* position: absolute;
-    top: 48px;
-    right: 36px; */
     z-index: 1;
     cursor: pointer;
     width: 32px;
     height: 32px;
-}
-
-/* .overlayTaskHeadline {
-    max-height: 187px;
-    padding-bottom: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    word-break: break-word;
-} */
-
-
-.overlayTaskDescription {
-    /* max-height: 80px; */
-    /* overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; */
 }
 
 .overlayTaskDate {
@@ -132,7 +103,6 @@ main {
 
 .overlayTaskAssignedTo {
     display: flex;
-    /* align-items: center; */
     gap: 16px;
     padding-left: 16px;
     margin-bottom: 8px
@@ -154,7 +124,6 @@ main {
 .overlayTaskAssignedToName {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     flex-direction: column;
     min-width: 42px;
     min-height: 42px;
@@ -165,10 +134,6 @@ main {
 }
 
 .overlayTaskFooter {
-    /* position: absolute;
-    left: 0;
-    right: 40px;
-    bottom: 40px; */
     display: flex;
     align-items: center;
     justify-content: end;
@@ -274,7 +239,6 @@ main {
 
 .task-main {
     display: flex;
-    /* justify-content: space-between; */
     align-items: start;
     flex-direction: row;
     flex-wrap: wrap;
@@ -290,13 +254,9 @@ main {
 
 .task-wrapper {
     min-width: 252px;
-    /* max-width: 252px; */
-    /* margin-bottom: 60px; */
     display: flex;
     flex-direction: column;
     flex: 1 0 0;
-    /* align-self: stretch; */
-    /* height: 100vh; */
 }
 
 .noTask {
@@ -340,7 +300,6 @@ main {
     padding: 16px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
     width: 100%;
-    /* height: 100vh; */
 }
 
 .drag-area-drop-here {
@@ -429,7 +388,6 @@ main {
     cursor: pointer;
 }
 
-
 .task-category {
     padding: 4px 24px 4px 24px;
     border-radius: 8px;
@@ -514,7 +472,6 @@ main {
     background-color: var(--white);
 }
 
-
 #closeButtonAddTaskPopUp {
     position: relative;
     align-self: flex-end;
@@ -574,7 +531,6 @@ main {
 
 .overlayTaskEditWrapper {
     display: flex;
-    /* flex-grow: 1; */
 }
 
 
@@ -586,7 +542,6 @@ main {
 }
 
 .overlayTaskEditForm input {
-    /* width: 100; */
     background-color: white;
     border-radius: 10px;
     border: solid 1px;
@@ -615,7 +570,6 @@ main {
 
 
 .assignment-dropdown-edit {
-    /* width: 440px; */
     width: 100%;
     position: relative;
     margin-top: 8px;
@@ -623,7 +577,6 @@ main {
 
 #assignmentSelectEdit {
     display: flex;
-    /* width: 440px; */
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -727,12 +680,6 @@ main {
     padding-left: 10px;
 }
 
-/* #subtasksListTask {
-    overflow: scroll;
-    max-height: 150px;
-} */
-
-
 .subtask-list-task-entry {
     display: flex;
     align-items: center;
@@ -764,7 +711,6 @@ main {
     font-size: 20px;
     font-weight: normal;
     color: white;
-    /* position: absolute; */
     bottom: 40px;
     right: 40px;
     gap: 5px;
@@ -810,16 +756,6 @@ main {
     #popUpAddTaskContainer {
         display: none;
     }
-
-    /* #popup {
-        display: none;
-    }
-
-    #overlay {
-        display: none;
-    } */
-
-
 }
 
 @media (max-width: 1300px) {
@@ -874,9 +810,6 @@ main {
 
 }
 
-
-
-
 @media (max-width:575px) {
     .drag-area {
         flex-direction: row;
@@ -917,7 +850,6 @@ main {
         font-size: 36px;
     }
 }
-
 
 @media (max-width: 1100px) {
 
