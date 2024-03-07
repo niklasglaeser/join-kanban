@@ -12,7 +12,6 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-
 /**
  * Initiates the dragging process by setting the current dragged element.
  * @param {string} taskID The ID of the task being dragged.
@@ -68,11 +67,15 @@ function highlight(id) {
  * @param {string} id The ID of the drag area to remove the highlight from.
  */
 function removeHighlight(id) {
-  document.getElementById(id).classList.remove("drag-area-highlight");
-  let elementToRemove = document.getElementById("dropHere");
-elementToRemove.parentNode.removeChild(elementToRemove);
+  let highlightedElement = document.getElementById(id);
+  if (highlightedElement) {
+    highlightedElement.classList.remove("drag-area-highlight");
+  }
 
-  // document.querySelector('.drag-area-drop-here').classList.remove("drag-area-drop-here");
+  let elementToRemove = document.getElementById("dropHere");
+  if (elementToRemove && elementToRemove.parentNode) {
+    elementToRemove.parentNode.removeChild(elementToRemove);
+  }
 }
 
 

@@ -437,9 +437,10 @@ function toggleDropdown() {
 document.addEventListener("click", function (event) {
   let userProfile = document.getElementById("userProfile");
   let dropdownContent = document.getElementById("dropdownContent");
-
-  if (event.target !== userProfile && event.target !== dropdownContent) {
-    dropdownContent.style.display = "none";
+  if (dropdownContent && userProfile) {
+    if (event.target !== userProfile && event.target !== dropdownContent) {
+      dropdownContent.style.display = "none";
+    }
   }
 });
 

@@ -389,9 +389,11 @@ async function deleteUser(id) {
   contacts.splice(id, 1);
   await setItem("users", JSON.stringify(users));
   await init();
-  generateUserDetails(0);
-  setCardActive(0);
+  await generateUserDetails(0);
+  await new Promise(resolve => setTimeout(resolve, 500)); 
+  await setCardActive(0);
 }
+
 
 document.addEventListener("click", (event) => {
   if (event.target.id === "popup" || event.target.id === "popupEdit") {
