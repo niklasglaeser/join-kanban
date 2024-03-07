@@ -1,6 +1,25 @@
+/**
+ * Temp array for current contact
+ * @type {Array}
+ */
 let currentContact = [];
+
+/**
+ * toggle mobile status.
+ * @type {boolean}
+ */
 let mobileStatus = false;
+
+/**
+ * Timer used for handling window resize events.
+ * @type {number}
+ */
 let resizeTimer;
+
+/**
+ * Stores the inner width of the window.
+ * @type {number}
+ */
 let innerWidth = window.innerWidth;
 
 
@@ -17,6 +36,10 @@ async function checkWindowSize() {
   }
 }
 
+
+/**
+ * Function called when the window is resized.
+ */
 window.onresize = function () {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(checkWindowSize, 450);

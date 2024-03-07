@@ -244,14 +244,11 @@
   border: 1px solid var(--blue-dark);
   background: var(--blue-dark);
   cursor: pointer;
-
   margin-top: 40px;
 }
 
-
 html,
 body {
-  /* margin: 200px; */
   height: 100%;
   font-family: 'Inter', Arial, sans-serif;
   background-color: var(--background);
@@ -271,7 +268,6 @@ main {
   display: flex;
   position: relative;
   margin: 0 0 0 232px;
-  /* height: calc(100vh - 100px); */
   flex-grow: 1;
   overflow-y: auto;
 }
@@ -291,7 +287,6 @@ input {
 .d-none {
   display: none;
 }
-
 
 @media (max-width: 1300px) {
   header {

@@ -1,3 +1,7 @@
+/**
+ * These colors are used to assign colors to user avatars.
+ * @type {string[]}
+ */
 const AVATAR_COLORS = [
   "#FF7A00",
   "#FF5EB3",
@@ -16,6 +20,7 @@ const AVATAR_COLORS = [
   "#FFBB2B",
 ];
 
+
 function generateHeadlineHTML(letter) {
   return `
   <div class="" id=${letter}>
@@ -25,6 +30,13 @@ function generateHeadlineHTML(letter) {
 `;
 }
 
+
+/**
+ * HTML code for the contact card.
+ * @param {number} i - The index of the contact.
+ * @param {Object} contact - The contact objec
+ * @returns {string} The HTML code for the contact card.
+ */
 function generateCardHTML(i, contact) {
   return `
   <a onclick="generateUserDetails(${i}); setCardActive(${i})" >
@@ -40,6 +52,13 @@ function generateCardHTML(i, contact) {
 }
 
 
+/**
+ * HTML code for contact details.
+ * @param {number} i - index of the contact.
+ * @param {Object} contact - The contact object .
+ * @param {Object[]} array - Optional array of contacts.
+ * @returns {string} The HTML code for the contact details.
+ */
 function generateUserDetailsHTML(i, contact, array) {
   let person;
   if (array) {
@@ -82,6 +101,12 @@ function generateUserDetailsHTML(i, contact, array) {
 `;
 }
 
+
+/**
+ * HTML code for displaying a warning message for deleting a contact.
+ * @param {number} i - The index of the contact.
+ * @returns {string} The HTML code for the delete warning message.
+ */
 function toogleDeleteWarnHTML(i) {
   return `
   <div id="infoDelete" class="infoButtonDelete">
@@ -94,6 +119,13 @@ function toogleDeleteWarnHTML(i) {
   </div>`;
 }
 
+
+/**
+ * HTML code for displaying an editable contact card.
+ * @param {number} i - The index of the contact.
+ * @param {Object} contact - The contact object containing information like name, email, etc.
+ * @returns {string} The HTML code for the editable contact card.
+ */
 function generateEditCardHTML(i, contact) {
   return `
   <div class="overlay-add-contact-person" >

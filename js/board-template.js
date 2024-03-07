@@ -141,6 +141,15 @@ function generateCard(i) {
 }
 
 
+/**
+ * Generates subtask in the task list.
+ * @param {number} i - index of the task.
+ * @param {number} j - index of the subtask.
+ * @param {string} subtask - text content of the subtask.
+ * @param {string} selectedClass - The CSS class to apply for selected state.
+ * @param {boolean} isSelected - subtask is selected.
+ * @returns {string} subtask entry.
+ */
 function renderSubtasksTaskHTML(i, j, subtask, selectedClass, isSelected) {
   return `
   <div class="subtask-list-task-entry ${selectedClass}" onclick="selectSubtask(this, ${i}, ${j})">
@@ -149,3 +158,4 @@ function renderSubtasksTaskHTML(i, j, subtask, selectedClass, isSelected) {
   </div>
 `;
 }
+

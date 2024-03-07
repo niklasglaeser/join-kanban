@@ -121,14 +121,3 @@ async function generateDemoContacts(userId) {
       });
   });
 }
-
-// function getContactsTemplate(nextId) {
-//   return {
-//     id: nextId,
-//     contact: "",
-//     initial: "",
-//     initial_color: "",
-//     email: "",
-//     phone: "",
-//   };
-// }

@@ -1,7 +1,16 @@
-// const STORAGE_TOKEN = "48MM27ZRQRQNPI2VAZ8OT9E7APUZQNZ0F4HGX0KF"; //TEST MARCO
+/**
+ * token and url for remote storage
+ */
 const STORAGE_TOKEN = "2M8CK50K3XEI4YZ1I8QPBAQNFXIY1ZXEOAGB3EE5";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
+
+/**
+ * async set the item in the remote storage.
+ * @param {string} key - The key under which to store the item.
+ * @param {string} value - The value to store.
+ * @returns {Promise} A Promise that resolves when the item is successfully set.
+ */
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {
@@ -10,6 +19,13 @@ async function setItem(key, value) {
   }).then((res) => res.json());
 }
 
+
+/**
+ * async get the item from the remote storage.
+ * @param {string} key - The key of the item to retrieve.
+ * @returns {Promise} A Promise that resolves with the retrieved value.
+ * If the item is not found, the Promise will be rejected.
+ */
 async function getItem(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   return fetch(url)
@@ -22,32 +38,11 @@ async function getItem(key) {
     });
 }
 
+
+/**
+ * Loads demo contacts from a JSON file.
+ */
 async function loadDemoContacts() {
   const response = await fetch("js/demoContacts.json");
   demoJsonContacts = await response.json();
 }
-
-/*TESTING*/
-
-async function pushArrayToRemoteStorage(array) {
-  try {
-    const response = await setItem("users", array);
-
-    if (response.ok) {
-      console.log(
-        "Array erfolgreich auf Remote-Speicher übertragen:",
-        response
-      );
-    } else {
-      console.error(
-        "Fehler beim Übertragen des Arrays auf den Remote-Speicher:",
-        response.statusText
-      );
-    }
-  } catch (error) {
-    console.error("Fehler beim Senden der Anforderung:", error);
-  }
-}
-
-// pushArrayToRemoteStorage(users);
-/*TESTING*/

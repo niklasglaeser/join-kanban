@@ -1,10 +1,5 @@
  main {
-     /* display: flex; */
      justify-content: center;
-     /* position: relative; */
-     /* height: 100vh; */
-     /* padding-bottom: 80px; */
-     /* background-color: var(--background); */
      overflow: auto;
  }
 
@@ -20,8 +15,6 @@
      display: flex;
      gap: 30px;
      align-items: center;
-     /* padding-left: 348px;
-    padding-top: 100px; */
  }
 
  .content-header div {
@@ -47,7 +40,6 @@
      display: flex;
      align-items: center;
      gap: 60px;
-     /* padding-left: 348px; */
  }
 
  .summary-container {
@@ -111,7 +103,6 @@
 
  .to-do-label {
      font-size: 20px;
-     /* font-weight: lighter; */
  }
 
  .done-count {
@@ -121,10 +112,7 @@
 
  .done-label {
      font-size: 20px;
-     /* font-weight: lighter; */
  }
-
-
 
  .second-row-div {
      display: flex;
@@ -168,7 +156,6 @@
 
  .urgent-label {
      font-size: 16px;
-     /* font-weight: lighter; */
  }
 
  .urgent-seperation {
@@ -204,7 +191,6 @@
      justify-content: center;
      align-items: center;
      font-size: 20px;
-     /* font-weight: lighter; */
  }
 
  .third-row-div {
@@ -236,7 +222,6 @@
  @media (max-width:1300px) {
      main {
          margin: 0 0 0 0;
-         /* padding-bottom: 180px; */
      }
  }
 
@@ -266,7 +251,6 @@
          animation-fill-mode: forwards;
          animation-timing-function: ease-in-out;
          animation-iteration-count: 1;
-         /* Nur einmal ausführen */
      }
 
      @keyframes welcomeMobil {
@@ -376,10 +360,6 @@
          font-size: 14px;
      }
  }
-
-
- @media (max-width:550px) {}
-
 
  @media (max-width:420px) {
      .first-row-div {
