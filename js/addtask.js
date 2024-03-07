@@ -361,7 +361,7 @@ function addSubtaskEntry(subtasksList, subTaskValue) {
 
 /**
  * Activates editing of a subtask
- * @param {Event} event - The click event triggering the edit action.
+ * @param {Event} event - The click on the edit icon
  */
 function editSubtask(event) {
   let entryDiv = event.target.closest(".subtasks-list-entry");

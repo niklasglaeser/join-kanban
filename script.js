@@ -403,6 +403,8 @@ function toggleDropdown() {
   }
 }
 
+
+
 /**
  * close the dropdown popup.
  * @param {MouseEvent} event - The click event object.

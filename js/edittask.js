@@ -360,3 +360,20 @@ function deleteSubtaskEdit(event) {
   }
   entryDiv.parentNode.removeChild(entryDiv);
 }
+
+/**
+ * Enables the Enter key to create a new line in the description input field of the task edit form.
+ */
+function enableEnterForNewLineEditTask() {
+  document.getElementById("descriptionInputEdit").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const cursorPosition = this.selectionStart;
+      const value = this.value;
+      const newValue = value.slice(0, cursorPosition) + '\n' + value.slice(cursorPosition);
+      this.value = newValue;
+      this.setSelectionRange(cursorPosition + 1, cursorPosition + 1);
+    }
+  });
+}
+

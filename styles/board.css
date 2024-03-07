@@ -1011,10 +1011,6 @@ main {
         font-size: 14px;
     }
 
-    #subtasksListEdit {
-        /* width: 80% !important; */
-    }
-
     .subtasks-list-entry-edit {
         width: 100% !important;
     }

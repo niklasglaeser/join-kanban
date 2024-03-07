@@ -232,6 +232,7 @@ function editTask(i) {
     renderAssignmentContactsEdit(i);
     renderAssignedToArrayEdit(tasks, i);
     renderSubtasksEdit(i);
+    enableEnterForNewLineEditTask();
   } else {
     popup.style.display = "flex";
     popupEdit.classList.add("d-none");

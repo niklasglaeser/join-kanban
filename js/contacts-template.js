@@ -25,7 +25,7 @@ function generateHeadlineHTML(letter) {
 `;
 }
 
-function generateCardHTMLTESST(i, contact) {
+function generateCardHTML(i, contact) {
   return `
   <a onclick="generateUserDetails(${i}); setCardActive(${i})" >
   <div class="contactNameWrapper" id="contactId${i}">
@@ -38,27 +38,6 @@ function generateCardHTMLTESST(i, contact) {
   </a>
   `;
 }
-
-
-function generateCardHTML(i, contact) {
-  let userIndex = users.findIndex((user) => user.email === contact.email);
-  let name = contact.name;
-  if (userIndex !== -1) {
-    name += " U"; // Append "U" if the contact exists in the users array
-  }
-  return `
-  <a onclick="generateUserDetails(${i}); setCardActive(${i})" >
-  <div class="contactNameWrapper" id="contactId${i}">
-  <div class="contactName-Initial" style="background-color:${contact.initial_color}"> ${contact.initial}</div>
-  <div class="contactInfo">
-    <p class="contactName">${name}</p> <!-- Append "U" here -->
-    <p class="contactEmail">${contact.email}</p>
-  </div>
-  </div>
-  </a>
-  `;
-}
-
 
 
 function generateUserDetailsHTML(i, contact, array) {
