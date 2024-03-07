@@ -1,0 +1,241 @@
+[
+    {
+        "id": 1709829600129,
+        "title": "Fix User Reported Bug",
+        "description": "Users reported that they can't change passwords anymore.",
+        "assignedTo": [
+            {
+                "name": "Kevin Fischer",
+                "initial": "KF",
+                "initial_color": "#00BEE8",
+                "id": 5
+            },
+            {
+                "name": "Marco Engelhardt",
+                "initial": "ME",
+                "initial_color": "#FF5EB3",
+                "id": 6
+            }
+        ],
+        "dueDate": "2024-03-08",
+        "prio": "urgent",
+        "category": "Technical Task",
+        "subtasks": [
+            "check if e-mail to reset works properly",
+            "look into server logs to see when the problem occured"
+        ],
+        "subtasksdone": [
+            "check if e-mail to reset works properly"
+        ],
+        "progress": "inProgress"
+    },
+    {
+        "id": 1709830202959,
+        "title": "Make the Login Page responsive",
+        "description": "The page should be responsive for mobile and tablets.",
+        "assignedTo": [
+            {
+                "name": "Daniel Schulz",
+                "initial": "DS",
+                "initial_color": "#FFC701",
+                "id": 4
+            },
+            {
+                "name": "Niklas Gläser",
+                "initial": "NG",
+                "initial_color": "#FFBB2B",
+                "id": 2
+            },
+            {
+                "name": "Anna Schmidt",
+                "initial": "AS",
+                "initial_color": "#0038FF",
+                "id": 3
+            }
+        ],
+        "dueDate": "2024-03-25",
+        "prio": "medium",
+        "category": "Technical Task",
+        "subtasks": [
+            "check if the usual browsers support it",
+            "add support for landscape mode"
+        ],
+        "subtasksdone": [
+            "add support for landscape mode",
+            "check if the usual browsers support it"
+        ],
+        "progress": "done"
+    },
+    {
+        "id": 1709830302686,
+        "title": "Profile Page can't be accessed",
+        "description": "Users reported that they can't access there personal profile pages.",
+        "assignedTo": [
+            {
+                "name": "Marco Engelhardt",
+                "initial": "ME",
+                "initial_color": "#FF5EB3",
+                "id": 6
+            },
+            {
+                "name": "Kevin Fischer",
+                "initial": "KF",
+                "initial_color": "#00BEE8",
+                "id": 5
+            },
+            {
+                "name": "Anna Schmidt",
+                "initial": "AS",
+                "initial_color": "#0038FF",
+                "id": 3
+            }
+        ],
+        "dueDate": "2024-03-12",
+        "prio": "urgent",
+        "category": "User Story",
+        "subtasks": [],
+        "subtasksdone": [],
+        "progress": "awaitFeedback"
+    },
+    {
+        "id": 1709830478059,
+        "title": "Test New Feature",
+        "description": "Test if the new page which allows User to form a community works properly.",
+        "assignedTo": [
+            {
+                "name": "Guest User",
+                "initial": "GU",
+                "initial_color": "#FFA35E",
+                "id": 1
+            },
+            {
+                "name": "Niklas Gläser",
+                "initial": "NG",
+                "initial_color": "#FFBB2B",
+                "id": 2
+            },
+            {
+                "name": "Daniel Schulz",
+                "initial": "DS",
+                "initial_color": "#FFC701",
+                "id": 4
+            }
+        ],
+        "dueDate": "2024-03-19",
+        "prio": "low",
+        "category": "Technical Task",
+        "subtasks": [
+            "check for bugs",
+            "check responsiveness"
+        ],
+        "subtasksdone": [],
+        "progress": "todo"
+    },
+    {
+        "id": 1709830716996,
+        "title": "Fix Sign Up",
+        "description": "Users reported that when they click Sign Up the Form just loads and nothing happens.",
+        "assignedTo": [
+            {
+                "name": "Guest User",
+                "initial": "GU",
+                "initial_color": "#FFA35E",
+                "id": 1
+            },
+            {
+                "name": "Niklas Gläser",
+                "initial": "NG",
+                "initial_color": "#FFBB2B",
+                "id": 2
+            },
+            {
+                "name": "Anna Schmidt",
+                "initial": "AS",
+                "initial_color": "#0038FF",
+                "id": 3
+            }
+        ],
+        "dueDate": "2024-03-19",
+        "prio": "low",
+        "category": "User Story",
+        "subtasks": [
+            "Check Server for Data of failed Sign Ups",
+            "Test the Sign up Form"
+        ],
+        "subtasksdone": [],
+        "progress": "awaitFeedback"
+    },
+    {
+        "id": 1709830860649,
+        "title": "Check Privacy Policy Page",
+        "description": "Users reported that the Privacy Policy Page is not accessible.",
+        "assignedTo": [
+            {
+                "name": "Niklas Gläser",
+                "initial": "NG",
+                "initial_color": "#FFBB2B",
+                "id": 2
+            },
+            {
+                "name": "Kevin Fischer",
+                "initial": "KF",
+                "initial_color": "#00BEE8",
+                "id": 5
+            },
+            {
+                "name": "Marco Engelhardt",
+                "initial": "ME",
+                "initial_color": "#FF5EB3",
+                "id": 6
+            }
+        ],
+        "dueDate": "2024-03-20",
+        "prio": "urgent",
+        "category": "User Story",
+        "subtasks": [],
+        "subtasksdone": [],
+        "progress": "awaitFeedback"
+    },
+    {
+        "id": 1709831064888,
+        "title": "Create a Help Page",
+        "description": "Users wish for a Help page which explains all the features of our Website.",
+        "assignedTo": [
+            {
+                "name": "Kevin Fischer",
+                "initial": "KF",
+                "initial_color": "#00BEE8",
+                "id": 5
+            },
+            {
+                "name": "Daniel Schulz",
+                "initial": "DS",
+                "initial_color": "#FFC701",
+                "id": 4
+            },
+            {
+                "name": "Niklas Gläser",
+                "initial": "NG",
+                "initial_color": "#FFBB2B",
+                "id": 2
+            },
+            {
+                "name": "Anna Schmidt",
+                "initial": "AS",
+                "initial_color": "#0038FF",
+                "id": 3
+            }
+        ],
+        "dueDate": "2024-03-30",
+        "prio": "low",
+        "category": "User Story",
+        "subtasks": [
+            "detailed explanation of every feature our website",
+            "make the help page look aesthetically pleasing"
+        ],
+        "subtasksdone": [
+            "make the help page look aesthetically pleasing"
+        ],
+        "progress": "todo"
+    }
+]
