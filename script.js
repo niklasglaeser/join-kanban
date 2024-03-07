@@ -4,17 +4,20 @@
  */
 let users = [];
 
+
 /**
  * Array to store contact data.
  * @type {Array}
  */
 let contacts = [];
 
+
 /**
  * Array to store task data.
  * @type {Array}
  */
 let tasks = [];
+
 
 /**
  * ID of the active user retrieved from local storage.
@@ -93,6 +96,7 @@ async function includeHTML() {
   }
 }
 
+
 /**
  * set 'active' class to the navigation and footer links based on the current active path.
  */
@@ -111,6 +115,7 @@ function activeLink() {
   }
 }
 
+
 /**
  * Loads users and tasks data from remote storage and sets the active user.
  */
@@ -124,6 +129,7 @@ async function loadUsers() {
   }
 }
 
+
 /**
  * Retrieves the active user from the 'users' array based on the 'activeUserId'.
  * @returns {Object} The active user object.
@@ -132,6 +138,7 @@ async function getActiveUser() {
   activeUser = users[activeUserId];
   return activeUser;
 }
+
 
 /**
  * Sets the active user's name on summary page
@@ -144,6 +151,7 @@ function setActiveUsername() {
   userMobil.innerHTML = activeUser["name"];
 }
 
+
 /**
  * Sets the active user's initial in header.
  */
@@ -152,6 +160,7 @@ function setActiveInitial() {
   userProfile.innerHTML = "";
   userProfile.innerHTML = activeUser["initial"];
 }
+
 
 /**
  * Prepares loading  summary page
@@ -171,6 +180,7 @@ async function prepareSummaryPage() {
   }
 }
 
+
 /**
  * Prepares loading  addtask page
  *
@@ -185,6 +195,7 @@ async function prepareAddtaskPage() {
     } catch {}
   }
 }
+
 
 /**
  * Prepares loading  board page
@@ -202,6 +213,7 @@ async function prepareBoardPage() {
   }
 }
 
+
 /**
  * Prepares loading  contacts page
  *
@@ -218,6 +230,7 @@ async function prepareContactsPage() {
   }
 }
 
+
 /**
  * Prepares loading  privacy page
  *
@@ -228,6 +241,7 @@ function preparePrivacyPage() {
     activeLink();
   }
 }
+
 
 /**
  * Prepares loading  legal page
@@ -240,6 +254,7 @@ function prepareLegalPage() {
   }
 }
 
+
 /**
  * Prepares loading  help page
  *
@@ -251,6 +266,7 @@ function prepareHelpPage() {
   }
 }
 
+
 /**
  * set guestUser index grom users array
  */
@@ -259,6 +275,7 @@ async function guestLogin() {
   await localStorage.setItem("activeUser", JSON.stringify(0));
   window.location.href = "pages/summary.html";
 }
+
 
 /**
  * open SignUp Form
@@ -271,6 +288,7 @@ function openSignUpForm() {
   signUpForm.style.display = "flex";
 }
 
+
 /**
  * close signup form
  */
@@ -281,6 +299,7 @@ function closeSignUpForm() {
   loginForm.style.display = "flex";
   signUpForm.style.display = "none";
 }
+
 
 /**
  * Changes the password input field's icon based on its value and toggles the visibility of the password.
@@ -314,6 +333,7 @@ function changePasswordIcon(inputId, iconId) {
   });
 }
 
+
 /**
  * Compares two password input fields to check if they match.
  * If the confirmation password field is empty, no error message is displayed.
@@ -346,6 +366,7 @@ function comparePasswords(
   }
 }
 
+
 /**
  * Deletes all users from the users array and updates the remote storage.
  * @returns {Promise<void>}
@@ -354,6 +375,7 @@ async function deleteAllUser() {
   users.splice(0, users.length);
   await setItem("users", JSON.stringify(users));
 }
+
 
 /**
  * Deletes a single user from the users array at the specified index and updates the remote storage.
@@ -364,6 +386,7 @@ async function deleteOneUser(x) {
   await setItem("users", JSON.stringify(users));
 }
 
+
 /**
  * Deletes all tasks from the tasks array and updates the remote storage.
  */
@@ -371,6 +394,7 @@ async function deleteAllTasks() {
   tasks.splice(0, tasks.length);
   await setItem("tasks", JSON.stringify(tasks));
 }
+
 
 /**
  * Deletes a single task from the tasks array at the specified index, updates the remote storage, toogle  popup.
@@ -383,6 +407,7 @@ async function deleteOneTask(index) {
   togglePopup();
 }
 
+
 /**
  * Deletes all contacts from the contacts array and updates the remote storage.
  */
@@ -390,6 +415,7 @@ async function deleteAllContacts() {
   contacts.splice(0, contacts.length);
   await setItem("contacts", JSON.stringify(contacts));
 }
+
 
 /**
  * Toggles the dropdown popup.
@@ -402,7 +428,6 @@ function toggleDropdown() {
     dropdownContent.style.display = "flex";
   }
 }
-
 
 
 /**
@@ -418,6 +443,7 @@ document.addEventListener("click", function (event) {
   }
 });
 
+
 /**
  * Logout the user by removing userdata from remote storage and redirecting to the index page.
  */
@@ -430,6 +456,7 @@ function logout() {
 function defaultProgress() {
   progress = "inProgress";
 }
+
 
 /**
  * Redirects the user to the add task page and sets the progress to "inProgress".

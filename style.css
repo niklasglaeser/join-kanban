@@ -519,10 +519,6 @@ footer a:hover {
 
 @media (max-width: 550px) {
 
-    #loginContainer {
-        /* width: 280px; */
-    }
-
     #loginContainer h1 {
         font-size: 38px;
     }
@@ -531,9 +527,6 @@ footer a:hover {
         gap: 24px;
     }
 
-    .loginInputs {
-        /* width: 200px; */
-    }
 
     #signUpButtonMobile {
         font-size: 15px;
@@ -595,23 +588,23 @@ footer a:hover {
 
 @media (max-width: 480px) {
     #loginContainer {
-        width: 320px;
-        padding: 48px 0px;
+        width: 290px;
+        padding: 24px 0px;
         margin-top: 130px;
     }
 
     #signUpContainer {
-        width: 320px;
-        padding: 48px 0px;
+        width: 290px;
+        padding: 24px 0px;
         margin-top: 130px;
     }
 
     .loginInputs {
-        width: 250px;
+        width: 210px;
     }
 
     .signUpInputs {
-        width: 250px;
+        width: 210px;
     }
 
 }

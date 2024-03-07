@@ -39,7 +39,6 @@ function addHoverToSubtask(event) {
     editIcon.style.display = "inline";
 }
 
-  
 
 /**
    * Removes hover effect from subtask entry
@@ -260,6 +259,7 @@ function resetCategory() {
   categorySelect.style.borderColor = "#D1D1D1";
 }
 
+
 /**
  * Resets the subtasks array and updates the subtasks List
  */
@@ -267,6 +267,7 @@ function resetSubtasks() {
   subtasks = [];
   document.getElementById("subtasksList").innerHTML = "";
 }
+
 
 /**
  * Resets the assignment List and updates the assignment Dropdown
