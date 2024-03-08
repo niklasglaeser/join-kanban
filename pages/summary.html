@@ -26,78 +26,80 @@
     <div w3-include-html="../templates/header.html" class=""></div>
     <div w3-include-html="../templates/sidebar.html" class=""></div>
     <main class="">
-        <div class="welcomeMobil">
-            <div id="welcomeMessageMobil" class="font-36"></div>
-            <div id="setActiveUsernameMobil" class="font-36 blue-light"></div>
-        </div>
-        <div class="summary-left">
-            <div class="content-header">
-                <div>Join 360</div>
-                <div class="content-header-right">
-                    <img src="../img/stroke-horizontal.svg" class="horizontal-line"></img>
-                    <img src="../img/stroke-vertikal.svg" class="vertical-line"></img>
-                    <span>Key Metrics at a Glance</span>
-                </div>
+        <div class="summary-wrapper">
+            <div class="welcomeMobil">
+                <div id="welcomeMessageMobil" class="font-36"></div>
+                <div id="setActiveUsernameMobil" class="font-36 blue-light"></div>
             </div>
-            <div class="summary-section">
-                <div class="summary-container">
-                    <div class="first-row">
-                        <div class="first-row-div" onmouseenter="changePencilIcon()"
-                            onmouseleave="changePencilIconBack()" onclick="openSummary()">
-                            <img id="firstRowDivPencilIcon" src="../img/pencil-icon.svg">
-                            <div>
-                                <div id="countTaskToDo" class="to-do-count">1</div>
-                                <div class="to-do-label">To-do</div>
-                            </div>
-                        </div>
-                        <div class="first-row-div" onmouseenter="changeHakenIcon()" onmouseleave="changeHakenIconBack()"
-                            onclick="openSummary()">
-                            <img id="firstRowDivHakenIcon" src="../img/haken-icon.svg">
-                            <div>
-                                <div id="countTaskDone" class="done-count">1</div>
-                                <div class="done-label">Done</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="second-row">
-                        <div class="second-row-div" onclick="openSummary()">
-                            <div class="urgent-icon-div">
-                                <img src="../img/urgent-icon.svg">
-                            </div>
-                            <div>
-                                <div id="countTaskUrgent" class="urgent-count">1</div>
-                                <div class="urgent-label">Urgent</div>
-                            </div>
-                            <img src="../img/summary-seperation-line.svg" class="urgent-seperation">
-                            <div class="deadline-label">
-                                <div id="taskUrgentDeadline" class="deadline-date"></div>
-                                <div class="upcoming-deadline">Upcoming Deadline</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="third-row">
-                        <div class="third-row-div" onclick="openSummary()">
-                            <div id="countTasks" class="tasks-in-board-count">5</div>
-                            <div class="third-row-label">Tasks in</div>
-                            <div class="third-row-label">Board</div>
-                        </div>
-                        <div class="third-row-div" onclick="openSummary()">
-                            <div id="countTaskInprogress" class="tasks-in-progress-count">2</div>
-                            <div class="third-row-label">Tasks in</div>
-                            <div class="third-row-label">Progress</div>
-                        </div>
-                        <div class="third-row-div" onclick="openSummary()">
-                            <div id="countTaskAwaitFeedback" class="awaiting-feedback-count">3</div>
-                            <div class="third-row-label">Awaiting</div>
-                            <div class="third-row-label">Feedback</div>
-                        </div>
+            <div class="summary-left">
+                <div class="content-header">
+                    <div>Join 360</div>
+                    <div class="content-header-right">
+                        <img src="../img/stroke-horizontal.svg" class="horizontal-line"></img>
+                        <img src="../img/stroke-vertikal.svg" class="vertical-line"></img>
+                        <span>Key Metrics at a Glance</span>
                     </div>
                 </div>
+                <div class="summary-section">
+                    <div class="summary-container">
+                        <div class="first-row">
+                            <div class="first-row-div" onmouseenter="changePencilIcon()"
+                                onmouseleave="changePencilIconBack()" onclick="openSummary()">
+                                <img id="firstRowDivPencilIcon" src="../img/pencil-icon.svg">
+                                <div>
+                                    <div id="countTaskToDo" class="to-do-count">1</div>
+                                    <div class="to-do-label">To-do</div>
+                                </div>
+                            </div>
+                            <div class="first-row-div" onmouseenter="changeHakenIcon()"
+                                onmouseleave="changeHakenIconBack()" onclick="openSummary()">
+                                <img id="firstRowDivHakenIcon" src="../img/haken-icon.svg">
+                                <div>
+                                    <div id="countTaskDone" class="done-count">1</div>
+                                    <div class="done-label">Done</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="second-row">
+                            <div class="second-row-div" onclick="openSummary()">
+                                <div class="urgent-icon-div">
+                                    <img src="../img/urgent-icon.svg">
+                                </div>
+                                <div>
+                                    <div id="countTaskUrgent" class="urgent-count">1</div>
+                                    <div class="urgent-label">Urgent</div>
+                                </div>
+                                <img src="../img/summary-seperation-line.svg" class="urgent-seperation">
+                                <div class="deadline-label">
+                                    <div id="taskUrgentDeadline" class="deadline-date"></div>
+                                    <div class="upcoming-deadline">Upcoming Deadline</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="third-row">
+                            <div class="third-row-div" onclick="openSummary()">
+                                <div id="countTasks" class="tasks-in-board-count">5</div>
+                                <div class="third-row-label">Tasks in</div>
+                                <div class="third-row-label">Board</div>
+                            </div>
+                            <div class="third-row-div" onclick="openSummary()">
+                                <div id="countTaskInprogress" class="tasks-in-progress-count">2</div>
+                                <div class="third-row-label">Tasks in</div>
+                                <div class="third-row-label">Progress</div>
+                            </div>
+                            <div class="third-row-div" onclick="openSummary()">
+                                <div id="countTaskAwaitFeedback" class="awaiting-feedback-count">3</div>
+                                <div class="third-row-label">Awaiting</div>
+                                <div class="third-row-label">Feedback</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="summary-right">
-            <div id="welcomeMessage" class="welcome-message"></div>
-            <div id="setActiveUsername" class="font-64 blue-light"></div>
+            <div class="summary-right">
+                <div id="welcomeMessage" class="welcome-message"></div>
+                <div id="setActiveUsername" class="font-64 blue-light"></div>
+            </div>
         </div>
     </main>
     <div w3-include-html="../templates/footer.html"></div>
