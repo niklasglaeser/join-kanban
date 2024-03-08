@@ -236,19 +236,22 @@ async function prepareContactsPage() {
  *
  */
 function preparePrivacyPage() {
-  if (ACTIVEPATH.includes("privacypolicy.html")) {
+  if (ACTIVEPATH.includes("privacypolicy.html?extern=yes")) {
+    updatePageForExternal();
+  } else if (ACTIVEPATH.includes("privacypolicy.html")) {
     setActiveInitial();
     activeLink();
   }
 }
-
 
 /**
  * Prepares loading  legal page
  *
  */
 function prepareLegalPage() {
-  if (ACTIVEPATH.includes("legalnotice.html")) {
+  if (ACTIVEPATH.includes("legalnotice.html?extern=yes")) {
+    updatePageForExternal();
+  } else if (ACTIVEPATH.includes("legalnotice.html")) {
     setActiveInitial();
     activeLink();
   }

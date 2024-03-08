@@ -429,8 +429,35 @@ main {
     -webkit-box-orient: vertical;
 }
 
+progress {
+    border: none;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 8px;
+    height: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4589FF;
+    border-radius: 8px;
+    height: 8px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #4589FF;
+    border-radius: 8px;
+    height: 8px;
+}
+
 .progressSubtask {
     justify-content: space-between;
+    align-items: center;
 }
 
 .progressSubtask progress {
@@ -734,6 +761,12 @@ main {
 
 .mobile-plus {
     display: none !important;
+}
+
+@media (min-width:1300px) {
+    .moveToIcon {
+        display: none;
+    }
 }
 
 @media (max-width:1300px) {
