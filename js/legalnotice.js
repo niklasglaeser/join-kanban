@@ -31,3 +31,23 @@ function updatePageForExternal() {
   document.getElementById("headerRight").style.display = "none";
   document.getElementById("link").href = "../index.html";
 }
+
+
+/**
+ * check if user logged in - close tab if not
+ * @returns 
+ */
+function checkExtern() {
+  if (extern === 'yes') {
+      close_window();
+      return false;
+  }
+    return true;
+}
+
+/**
+ * close current tab
+ */
+function close_window() {
+    window.close();
+}

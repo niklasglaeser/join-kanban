@@ -24,7 +24,13 @@ header {
     gap: 35px;
     padding-top: 60px;
     margin-right: 100px;
+    animation-name: load-content;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1.5s;
+    animation-delay: 1.4s;
 }
+
 
 .header-right div {
     display: flex;
@@ -60,8 +66,8 @@ main {
     animation-name: load-content;
     animation-fill-mode: backwards;
     animation-timing-function: ease-in-out;
-    animation-duration: 0.1s;
-    animation-delay: 0.4s;
+    animation-duration: 1.5s;
+    animation-delay: 1.4s;
 }
 
 @keyframes load-content {
@@ -79,7 +85,7 @@ main {
     animation: forwards 1;
     animation-name: moving-to-target;
     animation-duration: 1.5s;
-    animation-delay: 1.0s;
+    animation-delay: 0.9s;
     opacity: 1;
     z-index: 2000;
     top: 50%;
@@ -103,6 +109,31 @@ main {
         left: 77px;
         opacity: 1;
         width: 100.03px;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    animation: forwards 1;
+    animation-name: overlay-animation;
+    animation-duration: 0.1s;
+}
+
+@keyframes overlay-animation {
+    from {
+        visibility: visible;
+    }
+
+    to {
+        visibility: hidden;
     }
 }
 

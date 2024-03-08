@@ -36,22 +36,32 @@ function changePasswordIcon(inputId, iconId) {
     passwordIcon.src = "img/lock.svg";
   } else {
     passwordIcon.src = "img/show-password-icon.svg";
-    passwordIcon.onclick = function () {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        passwordIcon.src = "img/hide-password-icon.svg";
-      } else {
-        passwordInput.type = "password";
-        passwordIcon.src = "img/show-password-icon.svg";
-      }
+    passwordIcon.onclick = function() {
+      togglePasswordVisibility(passwordInput, passwordIcon);
     };
   }
 
-  passwordInput.addEventListener("input", function () {
+  passwordInput.addEventListener("input", function() {
     if (passwordInput.type === "text" && passwordInput.value.trim() !== "") {
       passwordIcon.src = "img/hide-password-icon.svg";
     }
   });
+}
+
+
+/**
+ * toggle password icon for visibility passwort
+ * @param {*} passwordInput 
+ * @param {*} passwordIcon 
+ */
+function togglePasswordVisibility(passwordInput, passwordIcon) {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    passwordIcon.src = "img/hide-password-icon.svg";
+  } else {
+    passwordInput.type = "password";
+    passwordIcon.src = "img/show-password-icon.svg";
+  }
 }
 
 

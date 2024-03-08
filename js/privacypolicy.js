@@ -22,23 +22,6 @@ let extern = urlParams.get("extern");
 /**
  * hide sidebar and user icon if user not login
  */
-// window.addEventListener("load", () => {
-//   if (extern == "yes") {
-//     setTimeout(function () {
-//       document.getElementById("link-privacy").href =
-//         "../pages/privacypolicy.html?extern=yes";
-//       document.getElementById("link-privacy").setAttribute("target", "_blank");
-//       document.getElementById("link-legal").href =
-//         "../pages/legalnotice.html?extern=yes";
-//       document.getElementById("link-legal").setAttribute("target", "_blank");
-//       document.getElementById("nav-menu").style.display = "none";
-//       document.getElementById("headerRight").style.display = "none";
-//       document.getElementById("link").href = "../index.html";
-//     }, 1000);
-//   }
-// });
-
-
 function updatePageForExternal() {
     document.getElementById("link-privacy").href = "../pages/privacypolicy.html?extern=yes";
     document.getElementById("link-privacy").setAttribute("target", "_blank");
@@ -48,3 +31,23 @@ function updatePageForExternal() {
     document.getElementById("headerRight").style.display = "none";
     document.getElementById("link").href = "../index.html";
 }
+
+/**
+ * check if user logged in - close tab if not
+ * @returns 
+ */
+function checkExtern() {
+    if (extern === 'yes') {
+        close_window();
+        return false;
+    }
+      return true;
+  }
+  
+  /**
+   * close current tab
+   */
+  function close_window() {
+      window.close();
+  }
+  

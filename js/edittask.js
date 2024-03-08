@@ -60,6 +60,10 @@ function changePriorityEdit(buttonIdEdit, priority) {
 }
 
 
+function removePrioState () {
+  
+}
+
 /**
  * Toggles the assignment dropdown menu on Click
  */
@@ -128,7 +132,6 @@ function renderAssignedToEdit() {
 async function renderAssignmentContactsEdit(i) {
   let assignmentDropdownListEdit = document.getElementById("assignmentDropdownListEdit");
   assignmentDropdownListEdit.innerHTML = "";
-
   assignedToEdit = [];
 
   for (const user of users) {
@@ -140,7 +143,6 @@ async function renderAssignmentContactsEdit(i) {
     if (isAssigned) {
       assignedToEdit.push(assignedTasks.find((task) => task.id === id));
     }
-
     const userHtml = assignmentContactsTemplateEdit(name, initial, initial_color, id, isSelected);
     assignmentDropdownListEdit.innerHTML += userHtml;
   }
@@ -248,9 +250,7 @@ function addSubtaskToListEdit() {
   if (subTaskValueEdit !== "") {
     let subtasksListEdit = document.getElementById("subtasksListEdit");
     addSubtaskEntryEdit(subtasksListEdit, subTaskValueEdit);
-
     subtasksEdit.push(subTaskValueEdit);
-
     subTaskInputEdit.value = "";
     let imageContainerEdit = document.getElementById("imageContainerEdit");
     imageContainerEdit.innerHTML = `<img src="../img/subtasks-add-icon.svg" onclick="focusSubtaskInputEdit()">`;
