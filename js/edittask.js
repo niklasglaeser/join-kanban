@@ -357,9 +357,12 @@ function hideIcons(entryDiv) {
  */
 function showIcons(entryDiv) {
   let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
-  editIconEdit.style.display = "inline";
+  editIconEdit.style.display = "none";
   let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
   deleteIconEdit.style.display = "inline";
+  let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
+  saveIconEdit.style.display = "inline";
+
 }
 
 

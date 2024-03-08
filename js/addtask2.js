@@ -1,4 +1,3 @@
-
 /**
  * Hides editing icons
  * @param {Element} entryDiv - The entry div of the subtask
@@ -17,9 +16,11 @@ function hideIcons(entryDiv) {
  */
 function showIcons(entryDiv) {
   let editIcon = entryDiv.querySelector(".edit-icon");
-  editIcon.style.display = "inline";
+  editIcon.style.display = "none";
   let deleteIcon = entryDiv.querySelector(".delete-icon");
   deleteIcon.style.display = "inline";
+  let saveIcon = entryDiv.querySelector(".save-icon");
+  saveIcon.style.display = "inline";
 }
 
 
@@ -56,6 +57,16 @@ function saveSubtask(event) {
     subtasks[index] = subTaskValue;
   }
 
+  resetSubtask(entryDiv);
+}
+
+
+/**
+ * Resets the subtask input field and icons to their default state
+ * @param {HTMLElement} entryDiv - The entry div containing the subtask
+ */
+function resetSubtask(entryDiv) {
+  let subTaskInput = entryDiv.querySelector("li input");
   subTaskInput.readOnly = true;
   subTaskInput.style.backgroundColor = "";
   let saveIcon = entryDiv.querySelector(".save-icon");
@@ -115,17 +126,15 @@ function deleteSubtask(event) {
 
 
 /**
- * Checks for value of title and category and then adds a new task
+ * Checks for value of title, dueDate and category and then adds a new task
  */
 async function addNewTask() {
   let title = document.getElementById("titleInput").value;
   let description = document.getElementById("descriptionInput").value;
   let dueDate = document.getElementById("dueDateInput").value;
-
   let titleError = !title ? "A Title is required!" : "";
   let dueDateError = !dueDate ? "A Due Date is required!" : "";
   let categoryError = !category ? "A Category must be selected!" : "";
-
   handleInputError("titleInput", titleError);
   handleInputError("dueDateInput", dueDateError);
   handleInputError("categorySelect", categoryError);
@@ -142,17 +151,15 @@ async function addNewTask() {
 
 
 /**
- * Checks for value of title and category and then adds a new task
+ * Checks for value of title, dueDate and category and then adds a new task
  */
 async function addNewTaskBoard() {
   let title = document.getElementById("titleInput").value;
   let description = document.getElementById("descriptionInput").value;
   let dueDate = document.getElementById("dueDateInput").value;
-
   let titleError = !title ? "A Title is required!" : "";
   let dueDateError = !dueDate ? "A Due Date is required!" : "";
   let categoryError = !category ? "A Category must be selected!" : "";
-
   handleInputError("titleInput", titleError);
   handleInputError("dueDateInput", dueDateError);
   handleInputError("categorySelect", categoryError);
@@ -164,7 +171,8 @@ async function addNewTaskBoard() {
   let newTask = createNewTask(title, description, dueDate);
   await saveTask(newTask);
   resetAddTaskForm();
-  redirectToBoardPage();
+  updateHTML();
+  openAddTaskPopUp();
 }
 
 
