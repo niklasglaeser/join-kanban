@@ -527,12 +527,12 @@ progress::-moz-progress-bar {
 }
 
 .left-column {
-    gap: 16px !important;
+    gap: 24px !important;
 }
 
 .right-column {
     margin-top: 0px !important;
-    padding-top: 77px;
+    padding-top: 85px;
     gap: 24px !important;
 }
 
@@ -761,6 +761,22 @@ progress::-moz-progress-bar {
 
 .mobile-plus {
     display: none !important;
+}
+
+#errortitleInputEdit {
+    position: absolute;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: red;
+    font-size: 15px;
+}
+
+#errordueDateInput {
+    position: absolute;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: red;
+    font-size: 15px;
 }
 
 @media (min-width:1300px) {

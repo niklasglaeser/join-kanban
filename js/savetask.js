@@ -44,6 +44,17 @@ function enableEnterForNewLineEditTask() {
  * @param {number} i - The index of the task
  */
 async function saveEditTask(i) {
+    let titleInputEdit = document.getElementById("titleInputEdit").value;
+    let dueDateInputEdit = document.getElementById("dueDateInputEdit").value;
+    let titleErrorEdit = !titleInputEdit ? "A Title is required!" : "";
+    let dueDateErrorEdit = !dueDateInputEdit ? "A Due Date is required!" : "";
+    handleInputError("titleInputEdit", titleErrorEdit);
+    handleInputError("dueDateInputEdit", dueDateErrorEdit);
+
+    if (titleErrorEdit || dueDateErrorEdit) {
+      return;
+    }
+    
     saveTitleChange(i);
     saveDescriptionChange(i);
     saveDueDateChange(i);

@@ -83,7 +83,7 @@ main {
     font-size: 18px;
 }
 
-#errorTitle {
+#errortitleInput {
     position: absolute;
     padding-left: 10px;
     padding-top: 5px;
@@ -240,6 +240,14 @@ main {
     padding: 10px;
     margin-top: 8px;
     font-size: 18px;
+}
+
+#errordueDateInput {
+    position: absolute;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: red;
+    font-size: 15px;
 }
 
 #urgentButton {
@@ -429,7 +437,7 @@ main {
 }
 
 
-#requiredCategoryMessage {
+#errorcategorySelect {
     position: absolute;
     padding-left: 10px;
     padding-top: 5px;

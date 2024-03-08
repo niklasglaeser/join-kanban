@@ -82,6 +82,7 @@ function generateCard(i) {
         <div>
           <div class="font-21-light">Title</div>
           <input type="text" id="titleInputEdit" value='${task.title}'>
+          <div id="errortitleInputEdit"></div>
         </div>
         <div id="errorTitle"></div>
         <div>
@@ -91,6 +92,7 @@ function generateCard(i) {
         <div>
           <div class="font-21-light">Due Date</div>
           <input type="date" id="dueDateInputEdit" value='${task.dueDate}'>
+          <div id="errordueDateInputEdit"></div>
         </div>
         <div>
           <div class="font-21-light">Prio</div>

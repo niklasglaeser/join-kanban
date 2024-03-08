@@ -81,12 +81,15 @@ async function addNewTask() {
   let description = document.getElementById("descriptionInput").value;
   let dueDate = document.getElementById("dueDateInput").value;
 
-  if (!title) {
-    handleTitleError();
-    return;
-  }
-  if (!category) {
-    handleCategoryError();
+  let titleError = !title ? "A Title is required!" : "";
+  let dueDateError = !dueDate ? "A Due Date is required!" : "";
+  let categoryError = !category ? "A Category must be selected!" : "";
+
+  handleInputError("titleInput", titleError);
+  handleInputError("dueDateInput", dueDateError);
+  handleInputError("categorySelect", categoryError);
+
+  if (titleError || dueDateError || categoryError) {
     return;
   }
 
@@ -98,59 +101,43 @@ async function addNewTask() {
 
 
 /**
- * Checks for value of title and category and then adds a new task for the Board AddTaskPopup
+ * Checks for value of title and category and then adds a new task
  */
 async function addNewTaskBoard() {
   let title = document.getElementById("titleInput").value;
   let description = document.getElementById("descriptionInput").value;
   let dueDate = document.getElementById("dueDateInput").value;
 
-  if (!title) {
-    handleTitleError();
-    return;
-  }
-  if (!category) {
-    handleCategoryError();
+  let titleError = !title ? "A Title is required!" : "";
+  let dueDateError = !dueDate ? "A Due Date is required!" : "";
+  let categoryError = !category ? "A Category must be selected!" : "";
+
+  handleInputError("titleInput", titleError);
+  handleInputError("dueDateInput", dueDateError);
+  handleInputError("categorySelect", categoryError);
+
+  if (titleError || dueDateError || categoryError) {
     return;
   }
 
   let newTask = createNewTask(title, description, dueDate);
   await saveTask(newTask);
   resetAddTaskForm();
-  openAddTaskPopUp();
-  updateHTML();
+  redirectToBoardPage();
 }
 
 
 /**
- * Handles error when no title is provided
+ * Handles error for input fields
+ * @param {string} inputId - The id of the input field
+ * @param {string} errorMessage - The error message to display or an empty string to remove the error message
  */
-function handleTitleError() {
-  let errorTitle = document.getElementById("errorTitle");
-  let titleInput = document.getElementById("titleInput");
-  let errorCategory = document.getElementById("requiredCategoryMessage");
-  let categoryInput = document.getElementById("categorySelect");
+function handleInputError(inputId, errorMessage) {
+  let errorElement = document.getElementById(`error${inputId}`);
+  let inputElement = document.getElementById(inputId);
 
-  errorTitle.innerHTML = `A Title is required!`;
-  titleInput.style.borderColor = "red";
-  errorCategory.innerHTML = ``;
-  categoryInput.style.borderColor = "#D1D1D1";
-}
-
-
-/**
- * Handles error when no category is selected
- */
-function handleCategoryError() {
-  let errorTitle = document.getElementById("errorTitle");
-  let titleInput = document.getElementById("titleInput");
-  let errorCategory = document.getElementById("requiredCategoryMessage");
-  let categoryInput = document.getElementById("categorySelect");
-
-  errorTitle.innerHTML = ``;
-  titleInput.style.borderColor = "#D1D1D1";
-  errorCategory.innerHTML = `A Category must be selected!`;
-  categoryInput.style.borderColor = "red";
+  errorElement.innerHTML = errorMessage;
+  inputElement.style.borderColor = errorMessage ? "red" : "#D1D1D1";
 }
 
 
@@ -206,7 +193,7 @@ function resetTitleInput() {
   let titleInput = document.getElementById("titleInput");
   titleInput.value = "";
   titleInput.style.borderColor = "#D1D1D1";
-  document.getElementById("errorTitle").innerHTML = "";
+  document.getElementById("errortitleInput").innerHTML = "";
 }
 
 
@@ -232,6 +219,9 @@ function resetAssignedTo() {
  */
 function resetDueDateInput() {
   document.getElementById("dueDateInput").value = "";
+  document.getElementById("dueDateInput").style.borderColor = "#D1D1D1";
+
+  document.getElementById("errordueDateInput").innerHTML = "";
 }
 
 
@@ -253,9 +243,8 @@ function resetPriority() {
 function resetCategory() {
   category = "";
   let categorySelect = document.getElementById("categorySelect");
-  categorySelect.innerHTML =
-    'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
-  document.getElementById("requiredCategoryMessage").innerHTML = "";
+  categorySelect.innerHTML = 'Select task category <img src="../img/dropdown-icon.svg" id="dropdownIconCategory">';
+  document.getElementById("errorcategorySelect").innerHTML = "";
   categorySelect.style.borderColor = "#D1D1D1";
 }
 
