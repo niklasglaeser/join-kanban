@@ -1,8 +1,19 @@
  main {
-     justify-content: center;
+     display: flex;
+     flex-direction: column;
+     /* justify-content: center; */
      overflow: auto;
+     position: relative;
  }
 
+ .summary-wrapper {
+     display: flex;
+     justify-content: center;
+     flex-grow: 1;
+     margin-top: 64px;
+     margin-bottom: 64px;
+
+ }
 
  .summary-left {
      display: flex;
@@ -290,7 +301,6 @@
  @media (max-width:600px) {
      .summary-left {
          justify-content: flex-start;
-         margin-top: 48px;
          width: 100%;
      }
 

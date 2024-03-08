@@ -96,7 +96,7 @@ function getInitialColor() {
  */
 
 function resetForm() {
-  name.value = "";
+  contact.value = "";
   email.value = "";
   phone.value = "";
 }

@@ -24,12 +24,7 @@ async function updateHTML(filteredTasks) {
       });
     }
   });
-
-  try {
-    await setItem("tasks", JSON.stringify(tasks));
-  } catch (error) {
-    console.error("Error adding task:", error);
-  }
+  await saveTasks();
 }
 
 
@@ -346,7 +341,9 @@ document.addEventListener("click", (event) => {
   }
 });
 
-
+/**
+ * update color from category on dashboard
+ */
 function updateCategoryStyles() {
   document.querySelectorAll('.task-category').forEach(function(categorySpan) {
     if (categorySpan.textContent === "User Story") {
@@ -355,4 +352,16 @@ function updateCategoryStyles() {
       categorySpan.style.backgroundColor = '#1FD7C1';
     }
   });
+}
+
+
+/**
+ * save the task to remote storage
+ */
+async function saveTasks() {
+  try {
+    await setItem("tasks", JSON.stringify(tasks));
+  } catch (error) {
+    console.error("Error saving tasks:", error);
+  }
 }

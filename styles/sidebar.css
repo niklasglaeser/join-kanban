@@ -19,6 +19,8 @@ nav {
   justify-content: center;
   align-items: flex-start;
   gap: 15px;
+  margin-top: 16px;
+
 }
 
 .nav-button {
