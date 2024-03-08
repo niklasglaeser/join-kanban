@@ -6,25 +6,34 @@ async function updateHTML(filteredTasks) {
   let progress = ["todo", "inProgress", "awaitFeedback", "done"];
   let statusText = ["To Do", "In Progress", "Await feedback", "Done"];
 
-  progress.forEach((status, i) => {
+  progress.forEach(async (status, i) => {
     let filtered = filteredTasks ? filteredTasks.filter((task) => task.progress === status) : tasks.filter((task) => task.progress === status);
     let element = document.getElementById(status);
     element.innerHTML = "";
     if (filtered.length < 1) {
       element.innerHTML = `<div id="area_${status}" class="noTask">No task in ${statusText[i]}</div>`;
     } else {
-      filtered.forEach((task) => {
-        let taskID = task.id;
-        let generateHTML = generateTodoHTML(task, taskID);
-        element.innerHTML += generateHTML;
-        updateCategoryStyles();
-        generateAssignedToInitial(task, taskID, "cardInitial", "cardInitialAssignedTo", 5);
-        generatePrioIcon(task, taskID, "prioArrow");
-        generateSubTask(task, taskID);
-      });
+      await updateTasksInStatus(filtered, element);
     }
   });
   await saveTasks();
+}
+
+/**
+ * helper for Update Cards on Dashboard - all tasks or filtered tasks 
+ * @param {object} filtered 
+ * @param {object} element 
+ */
+async function updateTasksInStatus(filtered, element) {
+  filtered.forEach(async (task) => {
+    let taskID = task.id;
+    let generateHTML = generateTodoHTML(task, taskID);
+    element.innerHTML += generateHTML;
+    updateCategoryStyles();
+    generateAssignedToInitial(task, taskID, "cardInitial", "cardInitialAssignedTo", 5);
+    generatePrioIcon(task, taskID, "prioArrow");
+    generateSubTask(task, taskID);
+  });
 }
 
 
