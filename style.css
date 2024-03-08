@@ -60,8 +60,8 @@ main {
     animation-name: load-content;
     animation-fill-mode: backwards;
     animation-timing-function: ease-in-out;
-    animation-duration: 0.5s;
-    animation-delay: 0.5s;
+    animation-duration: 0.1s;
+    animation-delay: 0.4s;
 }
 
 @keyframes load-content {
@@ -76,12 +76,15 @@ main {
 
 #joinLogo {
     position: absolute;
-    width: 100.03px;
     animation: forwards 1;
     animation-name: moving-to-target;
     animation-duration: 1.5s;
-    animation-delay: 0.5s;
-    opacity: 0;
+    animation-delay: 1.0s;
+    opacity: 1;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    width: 0%;
 }
 
 @keyframes moving-to-target {
@@ -92,12 +95,14 @@ main {
         left: 50%;
         width: 600px;
         transform: translate(-50%, -50%);
+        z-index: 200;
     }
 
     to {
         top: 80px;
         left: 77px;
         opacity: 1;
+        width: 100.03px;
     }
 }
 
@@ -417,12 +422,16 @@ footer a:hover {
 
     #joinLogo {
         position: absolute;
-        width: 80px;
+        /* width: 80px; */
         animation: forwards 1;
         animation-name: moving-to-target-800;
         animation-duration: 1.5s;
         animation-delay: 0.5s;
-        opacity: 0;
+        opacity: 1;
+        z-index: 2000;
+        top: 50%;
+        left: 50%;
+        width: 0%;
     }
 
     @keyframes moving-to-target-800 {
@@ -439,6 +448,7 @@ footer a:hover {
             top: 80px;
             left: 77px;
             opacity: 1;
+            width: 80px;
         }
     }
 
@@ -551,12 +561,16 @@ footer a:hover {
 
     #joinLogo {
         position: absolute;
-        width: 80px;
+        /* width: 80px; */
         animation: forwards 1;
         animation-name: moving-to-target-550;
         animation-duration: 1.5s;
         animation-delay: 0.5s;
-        opacity: 0;
+        opacity: 1;
+        z-index: 2000;
+        top: 50%;
+        left: 50%;
+        width: 0%;
     }
 
     @keyframes moving-to-target-550 {
@@ -574,6 +588,7 @@ footer a:hover {
             left: 30px;
             width: 50px;
             opacity: 1;
+            width: 80px;
         }
     }
 
