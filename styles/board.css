@@ -771,7 +771,7 @@ progress::-moz-progress-bar {
     font-size: 15px;
 }
 
-#errordueDateInput {
+#errordueDateInputEdit {
     position: absolute;
     padding-left: 10px;
     padding-top: 5px;
