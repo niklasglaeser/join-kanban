@@ -90,7 +90,7 @@ function generateCard(i) {
           <textarea id="descriptionInputEdit" placeholder="Enter a Description">${task.description}</textarea>
         </div>
         <div>
-          <div class="font-21-light">Due Date</div>
+          <div class="font-21-light">Due Date*</div>
           <input type="date" id="dueDateInputEdit" value='${task.dueDate}'>
           <div id="errordueDateInputEdit"></div>
         </div>

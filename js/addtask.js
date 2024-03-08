@@ -214,9 +214,7 @@ function selectAssignment(entry, id) {
   id = id + 1;
   let name = entry.querySelector(".contact-option span").textContent;
   let initial = entry.querySelector(".contact-option div").textContent;
-  let index = assignedTo.findIndex(
-    (user) => user.name === name && user.initial === initial
-  );
+  let index = assignedTo.findIndex((user) => user.name === name && user.initial === initial);
 
   if (isSelected) {
     assignedTo.push({ name, initial, initial_color, id });
@@ -373,18 +371,10 @@ function editSubtask(event) {
   subTaskInput.readOnly = false;
   subTaskInput.focus();
 
-  let editIcon = entryDiv.querySelector(".edit-icon");
-  editIcon.style.display = "none";
-  let deleteIcon = entryDiv.querySelector(".delete-icon");
-  deleteIcon.style.display = "inline";
-  let saveIcon = entryDiv.querySelector(".save-icon");
-  saveIcon.style.display = "inline";
+  showIcons(entryDiv);
 
-  subTaskInput.addEventListener("input", function() {
-    if (subTaskInput.value.trim() === "") {
-      saveIcon.style.display = "none";
-    } else {
-      saveIcon.style.display = "inline";
-    }
-  });
+  let saveIcon = entryDiv.querySelector(".save-icon");
+  handleInput(subTaskInput, saveIcon);
 }
+
+

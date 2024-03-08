@@ -1,3 +1,44 @@
+
+/**
+ * Hides editing icons
+ * @param {Element} entryDiv - The entry div of the subtask
+ */
+function hideIcons(entryDiv) {
+  let editIcon = entryDiv.querySelector(".edit-icon");
+  editIcon.style.display = "none";
+  let deleteIcon = entryDiv.querySelector(".delete-icon");
+  deleteIcon.style.display = "none";
+}
+
+
+/**
+ * Shows editing icons
+ * @param {Element} entryDiv - The entry div of the subtask
+ */
+function showIcons(entryDiv) {
+  let editIcon = entryDiv.querySelector(".edit-icon");
+  editIcon.style.display = "inline";
+  let deleteIcon = entryDiv.querySelector(".delete-icon");
+  deleteIcon.style.display = "inline";
+}
+
+
+/**
+ * Handles input for subtask
+ * @param {Element} subTaskInput - The input element for the subtask
+ * @param {Element} saveIcon - The save icon element
+ */
+function handleInput(subTaskInput, saveIcon) {
+  subTaskInput.addEventListener("input", function() {
+    if (subTaskInput.value.trim() === "") {
+      saveIcon.style.display = "none";
+    } else {
+      saveIcon.style.display = "inline";
+    }
+  });
+}
+
+
 /**
  * Saves the changes made to the subtask after editing it
  * @param {Event} event - The click event triggering the save action

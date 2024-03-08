@@ -293,6 +293,7 @@ function renderSubtasksEditTest(i) {
   }
 }
 
+
 /**
  * Renders subtasks of the opened task for editing
  * @param {number} i - The index of the task.
@@ -300,7 +301,6 @@ function renderSubtasksEditTest(i) {
 function renderSubtasksEdit(i) {
   let subtasksListEdit = document.getElementById("subtasksListEdit");
   subtasksListEdit.innerHTML = "";
-
   subtasksEdit = [];
   subtasksDoneEdit = [];
 
@@ -310,14 +310,12 @@ function renderSubtasksEdit(i) {
       subtasksEdit.push(subTaskValueEdit);
     });
   }
-
   if (tasks[i] && tasks[i].subtasksdone) {
     tasks[i].subtasksdone.forEach((subTaskDoneValueEdit) => {
       subtasksDoneEdit.push(subTaskDoneValueEdit);
     });
   }
 }
-
 
 
 /**
@@ -334,50 +332,48 @@ function editSubtaskEdit(event) {
   subTaskInputEdit.readOnly = false;
   subTaskInputEdit.focus();
 
+  showIcons(entryDiv);
+
+  let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
+  handleInput(subTaskInputEdit, saveIconEdit);
+}
+
+
+/**
+ * Hides editing icons
+ * @param {Element} entryDiv - The entry div of the subtask
+ */
+function hideIcons(entryDiv) {
   let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
   editIconEdit.style.display = "none";
   let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
-  deleteIconEdit.style.display = "inline";
-  let saveIconEdit = entryDiv.querySelector(".save-icon-edit");
-  saveIconEdit.style.display = "inline";
+  deleteIconEdit.style.display = "none";
+}
 
-  subTaskInputEdit.addEventListener("input", function() {
-    if (subTaskInputEdit.value.trim() === "") {
+
+/**
+ * Shows editing icons
+ * @param {Element} entryDiv - The entry div of the subtask
+ */
+function showIcons(entryDiv) {
+  let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
+  editIconEdit.style.display = "inline";
+  let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
+  deleteIconEdit.style.display = "inline";
+}
+
+
+/**
+ * Handles input for subtask
+ * @param {Element} subTaskInput - The input element for the subtask
+ * @param {Element} saveIconEdit - The save icon element
+ */
+function handleInput(subTaskInput, saveIconEdit) {
+  subTaskInput.addEventListener("input", function() {
+    if (subTaskInput.value.trim() === "") {
       saveIconEdit.style.display = "none";
     } else {
       saveIconEdit.style.display = "inline";
     }
   });
-}
-
-
-/**
- * Adds hover effect to a subtask in the Edit Popup
- * @param {Event} event - The click event
- */
-function addHoverToSubtaskEdit(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry-edit");
-  entryDiv.style.backgroundColor = "";
-
-  let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
-  deleteIconEdit.style.display = "inline";
-
-  let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
-  editIconEdit.style.display = "inline";
-}
-
-
-/**
- * Removes hover effect from a subtask in the Edit Popup
- * @param {Event} event - The click event
- */
-function removeHoverFromSubtaskEdit(event) {
-  let entryDiv = event.target.closest(".subtasks-list-entry-edit");
-  entryDiv.style.backgroundColor = "";
-
-  let deleteIconEdit = entryDiv.querySelector(".delete-icon-edit");
-  deleteIconEdit.style.display = "none";
-
-  let editIconEdit = entryDiv.querySelector(".edit-icon-edit");
-  editIconEdit.style.display = "none";
 }
