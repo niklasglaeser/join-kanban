@@ -233,11 +233,7 @@ function editTask(i) {
     popup.style.display = "flex";
     popupEdit.classList.add("d-none");
     subtasksEdit = [];
-    generateCard(i);
-    renderSubtasksTask(i);
-    generatePrioIcon(element, i, "prioArrowCard");
-    generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
-    generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
+    renderTask (i, element)
   }
 }
 
@@ -258,12 +254,22 @@ function togglePopup(taskID) {
     subtasks = [];
   } else {
     showPopup(overlay, popup);
-    generateCard(i);
-    renderSubtasksTask(i);
-    generatePrioIcon(element, i, "prioArrowCard");
-    generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
-    generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
+    renderTask (i, element)
   }
+}
+
+
+/**
+ * render task details in card
+ * @param {number} i 
+ * @param {*} element 
+ */
+function renderTask (i, element) {
+  generateCard(i);
+  renderSubtasksTask(i);
+  generatePrioIcon(element, i, "prioArrowCard");
+  generateAssignedToInitial(element, i, "cardInitalCard", "overlayTaskAssignedToInitial", 2);
+  generateAssignedToInitialName(element, i, "cardInitalCardName", 2);
 }
 
 
