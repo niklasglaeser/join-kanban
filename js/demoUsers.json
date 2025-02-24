@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Guest User",
+        "email": "guest@example.com",
+        "password": "guest",
+        "initial": "GU",
+        "initial_color": "#FFA35E",
+        "contacts": [],
+        "tasks": []
+    },
+    {
+        "id": 2,
+        "name": "Niklas Gläser",
+        "email": "niklas@example.com",
+        "password": "niklas",
+        "initial": "NG",
+        "initial_color": "#FFA35E",
+        "contacts": [],
+        "tasks": []
+    },
+    {
+        "id": 3,
+        "name": "Marco Engelhardt",
+        "email": "marco@example.com",
+        "password": "marco",
+        "initial": "ME",
+        "initial_color": "#FFA35E",
+        "contacts": [],
+        "tasks": []
+    },
+    {
+        "id": 4,
+        "name": "Kevin Fischer",
+        "email": "kevin@example.com",
+        "password": "kevin",
+        "initial": "KF",
+        "initial_color": "#FFA35E",
+        "contacts": [],
+        "tasks": []
+    }
+]
