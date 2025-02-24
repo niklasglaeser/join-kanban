@@ -117,17 +117,18 @@ function activeLink() {
 
 
 /**
- * Loads users and tasks data from remote storage and sets the active user.
+ * Lädt die Benutzer- und Aufgaben-Daten von JSONBin und setzt den aktiven Benutzer.
  */
 async function loadUsers() {
   try {
-    users = JSON.parse(await getItem("users"));
-    tasks = JSON.parse(await getItem("tasks"));
+    users = await getUsers(); // Holt die Benutzer-Daten aus JSONBin
+    tasks = await getTasks(); // Holt die Aufgaben-Daten aus JSONBin
     getActiveUser();
   } catch (e) {
     console.error("Loading error:", e);
   }
 }
+
 
 
 /**

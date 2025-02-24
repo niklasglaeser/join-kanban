@@ -93,7 +93,7 @@ async function saveEditTask(i) {
     savePrioEditChange(i);
     saveAssignedToChangeInput(i);
     saveSubtasksChangeInput(i);
-    await setItem("tasks", JSON.stringify(tasks));
+    await setTasks(tasks);
     editTask(i);
   }
   

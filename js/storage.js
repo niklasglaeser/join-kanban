@@ -1,42 +1,58 @@
-/**
- * token and url for remote storage
- */
-const STORAGE_TOKEN = "2M8CK50K3XEI4YZ1I8QPBAQNFXIY1ZXEOAGB3EE5";
-const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+const USERS_STORAGE_URL = "https://api.jsonbin.io/v3/b/67bca799acd3cb34a8ef23e7";
+const TASKS_STORAGE_URL = "https://api.jsonbin.io/v3/b/67bca9a4ad19ca34f810abf5";
+const HEADERS = {
+    "Content-Type": "application/json",
+    "X-Master-Key": "$2a$10$jXnKR8Kcsg7ELSzrxjiIDO5iGDYdoby7f52s/8NPc5/RVjHV5iDr."
+};
 
+/**
+ * Speichert die Benutzer-Daten in JSONBin.
+ */
+async function setUsers(data) {
+    return fetch(USERS_STORAGE_URL, {
+        method: "PUT",
+        headers: HEADERS,
+        body: JSON.stringify({ record: data })
+    }).then(res => res.json());
+}
 
 /**
- * async set the item in the remote storage.
- * @param {string} key - The key under which to store the item.
- * @param {string} value - The value to store.
- * @returns {Promise} A Promise that resolves when the item is successfully set.
+ * Holt die Benutzer-Daten aus JSONBin.
  */
-async function setItem(key, value) {
-  const payload = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, {
-    method: "POST",
-    body: JSON.stringify(payload),
-  }).then((res) => res.json());
+async function getUsers() {
+    return fetch(USERS_STORAGE_URL, {
+        method: "GET",
+        headers: HEADERS
+    })
+    .then(res => res.json())
+    .then(res => res.record);
+}
+
+/**
+ * Speichert die Aufgaben-Daten in JSONBin.
+ */
+async function setTasks(data) {
+    return fetch(TASKS_STORAGE_URL, {
+        method: "PUT",
+        headers: HEADERS,
+        body: JSON.stringify({ record: data })
+    }).then(res => res.json());
+}
+
+/**
+ * Holt die Aufgaben-Daten aus JSONBin.
+ */
+async function getTasks() {
+    return fetch(TASKS_STORAGE_URL, {
+        method: "GET",
+        headers: HEADERS
+    })
+    .then(res => res.json())
+    .then(res => res.record);
 }
 
 
-/**
- * async get the item from the remote storage.
- * @param {string} key - The key of the item to retrieve.
- * @returns {Promise} A Promise that resolves with the retrieved value.
- * If the item is not found, the Promise will be rejected.
- */
-async function getItem(key) {
-  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-  return fetch(url)
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.data) {
-        return res.data.value;
-      }
-      throw `Could not find data with key "${key}".`;
-    });
-}
+
 
 
 /**

@@ -375,7 +375,7 @@ function updateCategoryStyles() {
  */
 async function saveTasks() {
   try {
-    await setItem("tasks", JSON.stringify(tasks));
+    await setTasks(tasks);
   } catch (error) {
     console.error("Error saving tasks:", error);
   }

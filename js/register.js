@@ -48,7 +48,7 @@ async function register() {
     };
     users.push(newUser);
     await generateDemoContacts(nextId);
-    await setItem("users", JSON.stringify(users));
+    await setUsers(users);
     window.location.href = "index.html";
     resetForm();
   }
