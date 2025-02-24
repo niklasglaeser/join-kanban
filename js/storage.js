@@ -9,47 +9,56 @@ const HEADERS = {
  * Speichert die Benutzer-Daten in JSONBin.
  */
 async function setUsers(data) {
-    return fetch(USERS_STORAGE_URL, {
-        method: "PUT",
-        headers: HEADERS,
-        body: JSON.stringify({ record: data })
-    }).then(res => res.json());
+  return fetch(USERS_STORAGE_URL, {
+      method: "PUT",
+      headers: HEADERS,
+      body: JSON.stringify(data) // Direkt die Daten speichern, ohne { record: data }
+  }).then(res => res.json());
 }
 
 /**
  * Holt die Benutzer-Daten aus JSONBin.
  */
 async function getUsers() {
-    return fetch(USERS_STORAGE_URL, {
-        method: "GET",
-        headers: HEADERS
-    })
-    .then(res => res.json())
-    .then(res => res.record);
+  return fetch(USERS_STORAGE_URL, {
+      method: "GET",
+      headers: HEADERS
+  })
+  .then(res => res.json())
+  .then(res => res.record ?? res); // Falls `record` existiert, dann nur `record` zurückgeben
 }
 
 /**
  * Speichert die Aufgaben-Daten in JSONBin.
  */
 async function setTasks(data) {
-    return fetch(TASKS_STORAGE_URL, {
-        method: "PUT",
-        headers: HEADERS,
-        body: JSON.stringify({ record: data })
-    }).then(res => res.json());
+  return fetch(TASKS_STORAGE_URL, {
+      method: "PUT",
+      headers: HEADERS,
+      body: JSON.stringify(data) // Direkt die Daten speichern, ohne { record: data }
+  }).then(res => res.json());
 }
 
 /**
  * Holt die Aufgaben-Daten aus JSONBin.
  */
 async function getTasks() {
-    return fetch(TASKS_STORAGE_URL, {
-        method: "GET",
-        headers: HEADERS
-    })
-    .then(res => res.json())
-    .then(res => res.record);
+  return fetch(TASKS_STORAGE_URL, {
+      method: "GET",
+      headers: HEADERS
+  })
+  .then(res => res.json())
+  .then(res => res.record ?? res); // Falls `record` existiert, dann nur `record` zurückgeben
 }
+
+/**
+ * Lädt Demo-Kontakte aus einer JSON-Datei.
+ */
+async function loadDemoContacts() {
+  const response = await fetch("js/demoContacts.json");
+  demoJsonContacts = await response.json();
+}
+
 
 
 
