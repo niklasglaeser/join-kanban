@@ -6,18 +6,18 @@ const HEADERS = {
 };
 
 /**
- * Speichert die Benutzer-Daten in JSONBin.
+ * saves users data in the remote storage
  */
 async function setUsers(data) {
   return fetch(USERS_STORAGE_URL, {
       method: "PUT",
       headers: HEADERS,
-      body: JSON.stringify(data) // Direkt die Daten speichern, ohne { record: data }
+      body: JSON.stringify(data)
   }).then(res => res.json());
 }
 
 /**
- * Holt die Benutzer-Daten aus JSONBin.
+ * pulls user data from the remote storage
  */
 async function getUsers() {
   return fetch(USERS_STORAGE_URL, {
@@ -25,22 +25,22 @@ async function getUsers() {
       headers: HEADERS
   })
   .then(res => res.json())
-  .then(res => res.record ?? res); // Falls `record` existiert, dann nur `record` zurückgeben
+  .then(res => res.record ?? res);
 }
 
 /**
- * Speichert die Aufgaben-Daten in JSONBin.
+ * saves tasks data in the remote storage
  */
 async function setTasks(data) {
   return fetch(TASKS_STORAGE_URL, {
       method: "PUT",
       headers: HEADERS,
-      body: JSON.stringify(data) // Direkt die Daten speichern, ohne { record: data }
+      body: JSON.stringify(data)
   }).then(res => res.json());
 }
 
 /**
- * Holt die Aufgaben-Daten aus JSONBin.
+ * pulls task data from remote storage
  */
 async function getTasks() {
   return fetch(TASKS_STORAGE_URL, {
@@ -48,20 +48,8 @@ async function getTasks() {
       headers: HEADERS
   })
   .then(res => res.json())
-  .then(res => res.record ?? res); // Falls `record` existiert, dann nur `record` zurückgeben
+  .then(res => res.record ?? res);
 }
-
-/**
- * Lädt Demo-Kontakte aus einer JSON-Datei.
- */
-async function loadDemoContacts() {
-  const response = await fetch("js/demoContacts.json");
-  demoJsonContacts = await response.json();
-}
-
-
-
-
 
 
 /**
