@@ -223,7 +223,7 @@ function createNewTask(title, description, dueDate) {
  */
 async function saveTask(task) {
   tasks.push(task);
-  await setItem("tasks", JSON.stringify(tasks));
+  await setTasks(tasks);
 }
 
 

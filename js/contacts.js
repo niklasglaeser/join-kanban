@@ -57,7 +57,7 @@ async function addContact() {
     email: email.value,
     phone: phone.value,
   });
-  await setItem("users", JSON.stringify(users));
+  await setUsers(users);
   currentContact = contact.value;
   resetForm();
   toogleInfo("Contact was created");
@@ -371,7 +371,7 @@ async function saveEdit(i) {
   contacts[i].email = newEmail;
   contacts[i].phone = newPhone;
 
-  await setItem("users", JSON.stringify(users));
+  await setUsers(users);
   currentContact = newUser;
   toogleInfo("Contact was edited");
   renderContact();
@@ -387,7 +387,7 @@ async function saveEdit(i) {
  */
 async function deleteUser(id) {
   contacts.splice(id, 1);
-  await setItem("users", JSON.stringify(users));
+  await setUsers(users);
   await init();
   await generateUserDetails(0);
   await new Promise(resolve => setTimeout(resolve, 500)); 

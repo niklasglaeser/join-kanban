@@ -208,13 +208,13 @@ async function selectSubtask(entry, taskId, subtaskIndex) {
 
   if (isSelected) {
     tasks[taskId].subtasksdone.push(subtask);
-    await setItem("tasks", JSON.stringify(tasks));
+    await setTasks(tasks);
     entry.style.backgroundColor = "";
     entry.querySelector("img").src = "../img/checkedtask-button.svg";
   } else {
     let index = tasks[taskId].subtasksdone.findIndex((item) => item === subtask);
     tasks[taskId].subtasksdone.splice(index, 1);
-    await setItem("tasks", JSON.stringify(tasks));
+    await setTasks(tasks);
     entry.style.backgroundColor = "";
     entry.querySelector("img").src = "../img/check-button.svg";
   }

@@ -92,7 +92,7 @@ function comparePasswords(passwordInputId, confirmPasswordInputId, errorMessageI
  */
 async function deleteAllUser() {
   users.splice(0, users.length);
-  await setItem("users", JSON.stringify(users));
+  await setUsers(users);
 }
 
 
@@ -102,7 +102,7 @@ async function deleteAllUser() {
  */
 async function deleteOneUser(x) {
   users.splice(x, 1);
-  await setItem("users", JSON.stringify(users));
+  await setUsers(users);
 }
 
 
@@ -111,7 +111,7 @@ async function deleteOneUser(x) {
  */
 async function deleteAllTasks() {
   tasks.splice(0, tasks.length);
-  await setItem("tasks", JSON.stringify(tasks));
+  await setTasks(tasks);
 }
 
 
@@ -121,7 +121,7 @@ async function deleteAllTasks() {
  */
 async function deleteOneTask(index) {
   tasks.splice(index, 1);
-  await setItem("tasks", JSON.stringify(tasks));
+  await setTasks(tasks);
   await updateHTML();
   togglePopup();
 }
